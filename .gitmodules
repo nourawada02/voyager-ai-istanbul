@@ -1,0 +1,12 @@
+[submodule "services/istanbul-expert-b"]
+	path = services/istanbul-expert-b
+	url = https://github.com/nourawada02/voyager-istanbul-expert-b.git
+[submodule "services/travel-mcp"]
+	path = services/travel-mcp
+	url = https://github.com/nourawada02/voyager-travel-mcp.git
+[submodule "services/frontend"]
+	path = services/frontend
+	url = https://github.com/nourawada02/voyager-frontend.git
+[submodule "services/planner-a"]
+	path = services/planner-a
+	url = https://github.com/nourawada02/voyager-planner-a.git
