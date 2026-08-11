@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/LocalItinerary.schema.json",
+  "title": "LocalItinerary",
+  "description": "System B -> System A A2A artifact (architecture.md §7.2).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "contract_version": { "const": "1.0.0" },
+    "recommended_base_candidate_id": { "type": "string", "minLength": 1 },
+    "accessibility_scores": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "candidate_id": { "type": "string", "minLength": 1 },
+          "score": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "required": ["candidate_id", "score"],
+        "additionalProperties": false
+      }
+    },
+    "selected_poi_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^poi_[a-z0-9_]+$" }
+    },
+    "daily_plans": {
+      "type": "array",
+      "items": { "$ref": "DailyPlan.schema.json" },
+      "minItems": 1
+    },
+    "estimated_travel_minutes": { "type": "number", "minimum": 0 },
+    "expected_walking_minutes": { "type": "number", "minimum": 0 },
+    "side_crossings": { "type": "integer", "minimum": 0 },
+    "weather_substitutions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "citations": {
+      "type": "array",
+      "items": { "$ref": "SourceReference.schema.json" }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "data_quality": { "$ref": "DataQuality.schema.json" },
+    "hard_constraint_validation_passed": { "type": "boolean" }
+  },
+  "required": [
+    "schema_version", "session_id", "trace_id", "contract_version",
+    "recommended_base_candidate_id", "accessibility_scores", "selected_poi_ids",
+    "daily_plans", "estimated_travel_minutes", "expected_walking_minutes",
+    "side_crossings", "citations", "assumptions", "warnings", "data_quality",
+    "hard_constraint_validation_passed"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-09-10",
+  "side": "european",
+  "poi_ids": ["poi_ayasofya", "poi_topkapi"],
+  "legs": [
+    {
+      "schema_version": "1.0.0",
+      "from_poi_id": "poi_ayasofya",
+      "to_poi_id": "poi_topkapi",
+      "mode": "walk",
+      "duration_minutes": 8,
+      "distance_km": 0.6,
+      "is_estimated": false,
+      "side_crossing": false
+    }
+  ],
+  "walking_minutes": 25,
+  "transfer_minutes": 0,
+  "activity_minutes": 240,
+  "meal_minutes": 60,
+  "slack_minutes": 30,
+  "warnings": []
+}

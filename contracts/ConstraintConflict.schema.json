@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/ConstraintConflict.schema.json",
+  "title": "ConstraintConflict",
+  "description": "Returned when nothing is feasible: the minimum budget gap and ranked relaxations, presented to the user before any hard constraint is relaxed (architecture.md §12).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "minimum_budget_gap": {
+      "type": "object",
+      "properties": {
+        "amount_minor_units": { "type": "integer", "minimum": 1 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      },
+      "required": ["amount_minor_units", "currency"],
+      "additionalProperties": false
+    },
+    "ranked_relaxations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "constraint": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "impact": { "type": "string", "minLength": 1 }
+        },
+        "required": ["constraint", "description", "impact"],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["schema_version", "session_id", "trace_id", "minimum_budget_gap", "ranked_relaxations"],
+  "additionalProperties": false
+}

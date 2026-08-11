@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555556",
+  "provider": "synthetic-fixture-weather-provider",
+  "data_mode": "estimated",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 0.0,
+    "freshness": "estimated",
+    "assumptions": [
+      "Weather unavailable; plan built weather-neutral per architecture.md §13.5. No forecast fields populated."
+    ]
+  },
+  "result": {
+    "forecast_days": []
+  }
+}

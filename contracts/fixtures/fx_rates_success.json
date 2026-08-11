@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555560",
+  "provider": "pinned-fx-snapshot",
+  "data_mode": "cached",
+  "retrieved_at": "2026-08-01T00:00:00Z",
+  "valid_for": "P1D",
+  "currency": "TRY",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 1.0,
+    "freshness": "cached",
+    "assumptions": ["One pinned daily FX snapshot; not updated intraday."]
+  },
+  "result": {
+    "base_currency": "USD",
+    "quote_currency": "TRY",
+    "rate": 34.21,
+    "inverse_rate_method": "reciprocal"
+  }
+}

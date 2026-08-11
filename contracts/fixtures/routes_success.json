@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555557",
+  "provider": "synthetic-cached-istanbul-matrix",
+  "data_mode": "cached",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 1.0,
+    "freshness": "cached",
+    "assumptions": ["Cached travel-time matrix, refreshed periodically, not real-time."]
+  },
+  "result": {
+    "legs": [
+      {
+        "schema_version": "1.0.0",
+        "from_poi_id": "poi_ayasofya",
+        "to_poi_id": "poi_topkapi",
+        "mode": "walk",
+        "duration_minutes": 8,
+        "distance_km": 0.6,
+        "is_estimated": false,
+        "side_crossing": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/TravelLeg.schema.json",
+  "title": "TravelLeg",
+  "description": "One transfer leg between two POIs. Estimated transit/ferry time is explicitly labeled when only road routing is available (architecture.md §11.2).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "from_poi_id": { "type": "string", "pattern": "^poi_[a-z0-9_]+$" },
+    "to_poi_id": { "type": "string", "pattern": "^poi_[a-z0-9_]+$" },
+    "mode": { "type": "string", "enum": ["walk", "ferry", "transit", "drive"] },
+    "duration_minutes": { "type": "number", "minimum": 0 },
+    "distance_km": { "type": "number", "minimum": 0 },
+    "is_estimated": { "type": "boolean" },
+    "side_crossing": { "type": "boolean" }
+  },
+  "required": ["schema_version", "from_poi_id", "to_poi_id", "mode", "duration_minutes", "is_estimated", "side_crossing"],
+  "additionalProperties": false
+}

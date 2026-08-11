@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "not-a-uuid",
+  "trace_id": "22222222-2222-4222-8222-222222222222",
+  "contract_version": "1.0.0",
+  "trip_start_date": "2026-09-10",
+  "trip_end_date": "2026-09-13",
+  "interests": ["history"],
+  "pace": "moderate",
+  "language": "en",
+  "mobility_constraints": [],
+  "daily_activity_budget_minutes": 480,
+  "stay_candidates": [{ "candidate_id": "stay_001", "lat": 41.0055, "lon": 28.9769 }],
+  "hard_constraints": [],
+  "soft_constraints": []
+}

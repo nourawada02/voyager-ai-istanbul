@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/DataProvenance.schema.json",
+  "title": "DataProvenance",
+  "description": "Where a piece of data came from and how fresh it is. Live, cached, historical, and fixture data must be visibly and permanently distinguished in every payload (architecture.md §4.2).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "provider": { "type": "string", "minLength": 1 },
+    "data_mode": {
+      "type": "string",
+      "enum": ["live", "cached", "historical", "fixture", "estimated"]
+    },
+    "retrieved_at": { "type": "string", "format": "date-time" },
+    "valid_for": {
+      "type": "string",
+      "pattern": "^P(?!$)(\\d+Y)?(\\d+M)?(\\d+D)?(T(?=\\d)(\\d+H)?(\\d+M)?(\\d+S)?)?$"
+    },
+    "source_urls": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    }
+  },
+  "required": ["schema_version", "provider", "data_mode", "retrieved_at"],
+  "additionalProperties": false
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/StayOption.schema.json",
+  "title": "StayOption",
+  "description": "A normalized stay candidate returned by search_stays (architecture.md §8).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "stay_id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "district_id": { "type": "string", "pattern": "^district_[a-z0-9_]+$" },
+    "side": { "type": "string", "enum": ["european", "asian"] },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+      },
+      "required": ["lat", "lon"],
+      "additionalProperties": false
+    },
+    "nightly_price": {
+      "type": "object",
+      "properties": {
+        "amount_minor_units": { "type": "integer", "minimum": 0 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      },
+      "required": ["amount_minor_units", "currency"],
+      "additionalProperties": false
+    },
+    "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+    "review_count": { "type": "integer", "minimum": 0 },
+    "amenities": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "provenance": { "$ref": "DataProvenance.schema.json" }
+  },
+  "required": ["schema_version", "stay_id", "name", "district_id", "side", "coordinates", "nightly_price", "provenance"],
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": "1.0.0",
+  "provider": "inside-airbnb-snapshot",
+  "data_mode": "definitely_current",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": []
+}

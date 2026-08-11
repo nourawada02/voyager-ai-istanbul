@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/StreamEvent.schema.json",
+  "title": "StreamEvent",
+  "description": "One SSE event on the public streaming endpoint. Only operational status and validated artifacts stream -- never private chain-of-thought (architecture.md §15.4).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "sequence": { "type": "integer", "minimum": 0 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "request.accepted", "search.started", "search.completed",
+        "local_plan.started", "local_plan.completed", "budget.validated",
+        "warning", "partial_failure", "plan.completed", "error"
+      ]
+    },
+    "payload": { "type": "object" }
+  },
+  "required": ["schema_version", "event_id", "session_id", "trace_id", "sequence", "timestamp", "stage", "payload"],
+  "additionalProperties": false
+}

@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "completeness": 0.94,
+  "freshness": "historical",
+  "assumptions": ["Snapshot reflects listing state on collection date only."]
+}

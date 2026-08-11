@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/PartialFailure.schema.json",
+  "title": "PartialFailure",
+  "description": "One entry in the honest-degradation failure policy table (architecture.md §13.5): which component failed and what degraded behavior was applied instead. A usable partial plan is always produced.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "component": {
+      "type": "string",
+      "enum": [
+        "flight_provider", "stay_source", "system_b_a2a", "qdrant",
+        "route_provider", "weather", "operational_status", "ml_artifact"
+      ]
+    },
+    "degraded_behavior": { "type": "string", "minLength": 1 }
+  },
+  "required": ["schema_version", "trace_id", "component", "degraded_behavior"],
+  "additionalProperties": false
+}

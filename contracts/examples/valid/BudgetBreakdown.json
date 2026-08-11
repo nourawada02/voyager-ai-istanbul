@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "currency": "TRY",
+  "known_costs_minor_units": 89000000,
+  "estimated_costs_minor_units": 45000000,
+  "contingency_minor_units": 10000000,
+  "total_minor_units": 144000000,
+  "fx_snapshot": {
+    "provider": "pinned-fx-snapshot",
+    "rate": 34.21,
+    "timestamp": "2026-08-01T00:00:00Z",
+    "inverse_rate_method": "reciprocal"
+  }
+}

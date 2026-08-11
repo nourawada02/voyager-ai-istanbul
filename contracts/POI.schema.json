@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/POI.schema.json",
+  "title": "POI",
+  "description": "A point of interest with a canonical ID. Coordinates always come from the verified catalog, never from LLM generation (architecture.md §9.4).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "poi_id": { "type": "string", "pattern": "^poi_[a-z0-9_]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "district_id": { "type": "string", "pattern": "^district_[a-z0-9_]+$" },
+    "side": { "type": "string", "enum": ["european", "asian"] },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+      },
+      "required": ["lat", "lon"],
+      "additionalProperties": false
+    },
+    "category": { "type": "string", "minLength": 1 },
+    "citations": {
+      "type": "array",
+      "items": { "$ref": "SourceReference.schema.json" }
+    }
+  },
+  "required": ["schema_version", "poi_id", "name", "district_id", "side", "coordinates", "category"],
+  "additionalProperties": false
+}

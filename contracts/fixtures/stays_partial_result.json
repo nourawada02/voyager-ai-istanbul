@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555554",
+  "provider": "inside-airbnb-snapshot",
+  "data_mode": "historical",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "valid_for": "P30D",
+  "currency": "TRY",
+  "source_urls": ["https://example-synthetic-source.voyagerai.dev/inside-airbnb"],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 0.4,
+    "freshness": "historical",
+    "assumptions": [
+      "Only 1 of 2 requested districts returned results; treat as a partial result."
+    ]
+  },
+  "result": {
+    "stays": [
+      {
+        "schema_version": "1.0.0",
+        "stay_id": "stay_001",
+        "name": "Synthetic Sultanahmet Loft",
+        "district_id": "district_fatih",
+        "side": "european",
+        "coordinates": { "lat": 41.0055, "lon": 28.9769 },
+        "nightly_price": { "amount_minor_units": 220000, "currency": "TRY" },
+        "amenities": ["wifi"],
+        "provenance": {
+          "schema_version": "1.0.0",
+          "provider": "inside-airbnb-snapshot",
+          "data_mode": "historical",
+          "retrieved_at": "2026-08-01T12:00:00Z",
+          "valid_for": "P30D",
+          "source_urls": ["https://example-synthetic-source.voyagerai.dev/inside-airbnb"]
+        }
+      }
+    ]
+  }
+}

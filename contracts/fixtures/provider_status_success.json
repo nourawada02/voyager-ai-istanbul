@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555559",
+  "provider": "synthetic-fixture-status-provider",
+  "data_mode": "fixture",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 1.0,
+    "freshness": "fixture",
+    "assumptions": ["Synthetic operational-status fixture; never implies current live hours."]
+  },
+  "result": {
+    "poi_id": "poi_ayasofya",
+    "is_open": true,
+    "closure_notices": []
+  }
+}

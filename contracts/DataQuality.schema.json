@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/DataQuality.schema.json",
+  "title": "DataQuality",
+  "description": "Quality metadata attached to a provider or provenance-bearing response (architecture.md §8.2).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "completeness": { "type": "number", "minimum": 0, "maximum": 1 },
+    "freshness": {
+      "type": "string",
+      "enum": ["live", "cached", "historical", "fixture", "estimated"]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "required": ["schema_version", "completeness", "freshness", "assumptions"],
+  "additionalProperties": false
+}

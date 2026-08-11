@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "flight_id": "flight_syn_001",
+  "origin": "BEY",
+  "destination": "IST",
+  "depart_at": "2026-09-10T06:30:00Z",
+  "arrive_at": "2026-09-10T08:15:00Z",
+  "carrier": "SyntheticAir",
+  "stops": 0,
+  "price": { "amount_minor_units": 450000, "currency": "TRY" },
+  "provenance": {
+    "schema_version": "1.0.0",
+    "provider": "fixture-flight-provider",
+    "data_mode": "fixture",
+    "retrieved_at": "2026-08-01T12:00:00Z",
+    "source_urls": []
+  }
+}

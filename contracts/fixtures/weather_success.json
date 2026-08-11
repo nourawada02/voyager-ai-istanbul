@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555555",
+  "provider": "synthetic-fixture-weather-provider",
+  "data_mode": "fixture",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 1.0,
+    "freshness": "fixture",
+    "assumptions": ["Synthetic deterministic forecast; not a live reading."]
+  },
+  "result": {
+    "forecast_days": [
+      { "date": "2026-09-10", "condition": "clear", "high_c": 27, "low_c": 19, "precipitation_chance": 0.05 },
+      { "date": "2026-09-11", "condition": "partly_cloudy", "high_c": 26, "low_c": 18, "precipitation_chance": 0.1 }
+    ]
+  }
+}

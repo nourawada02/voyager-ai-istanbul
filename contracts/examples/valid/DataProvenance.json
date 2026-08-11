@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "provider": "inside-airbnb-snapshot",
+  "data_mode": "historical",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "valid_for": "P30D",
+  "source_urls": ["https://example-synthetic-source.voyagerai.dev/inside-airbnb"]
+}

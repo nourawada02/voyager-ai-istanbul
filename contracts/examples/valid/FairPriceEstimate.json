@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "stay_id": "stay_001",
+  "estimated_fair_price": { "amount_minor_units": 235000, "currency": "TRY" },
+  "deal_score": 0.78,
+  "components": {
+    "capped_price_value": { "weight": 0.35, "raw_value": 0.9, "normalized_value": 0.9 },
+    "itinerary_accessibility": { "weight": 0.25, "raw_value": 0.87, "normalized_value": 0.87 },
+    "rating_quality": { "weight": 0.15, "raw_value": 0.92, "normalized_value": 0.92 },
+    "preference_match": { "weight": 0.10, "raw_value": 0.7, "normalized_value": 0.7 },
+    "amenities_match": { "weight": 0.10, "raw_value": 0.6, "normalized_value": 0.6 },
+    "review_confidence": { "weight": 0.05, "raw_value": 0.8, "normalized_value": 0.8 }
+  },
+  "model_version": "ridge-v1-2026-08-01",
+  "baseline_beaten": true,
+  "provenance": {
+    "schema_version": "1.0.0",
+    "provider": "voyager-fair-price-model",
+    "data_mode": "estimated",
+    "retrieved_at": "2026-08-01T12:00:00Z",
+    "source_urls": []
+  }
+}

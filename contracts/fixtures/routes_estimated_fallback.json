@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555558",
+  "provider": "synthetic-haversine-fallback",
+  "data_mode": "estimated",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 0.6,
+    "freshness": "estimated",
+    "assumptions": [
+      "Route provider unavailable; Haversine straight-line fallback used and labeled as an estimate per architecture.md §13.5."
+    ]
+  },
+  "result": {
+    "legs": [
+      {
+        "schema_version": "1.0.0",
+        "from_poi_id": "poi_ayasofya",
+        "to_poi_id": "poi_topkapi",
+        "mode": "walk",
+        "duration_minutes": 10,
+        "distance_km": 0.65,
+        "is_estimated": true,
+        "side_crossing": false
+      }
+    ]
+  }
+}

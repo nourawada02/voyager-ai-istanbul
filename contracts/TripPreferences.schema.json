@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/TripPreferences.schema.json",
+  "title": "TripPreferences",
+  "description": "Optional trip preferences; unset fields use documented defaults instead of triggering clarification (architecture.md §5.4).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "interests": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "pace": { "type": "string", "enum": ["relaxed", "moderate", "packed"] },
+    "language": { "type": "string", "enum": ["en", "tr", "ar"] },
+    "mobility_constraints": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "required": ["schema_version", "interests", "pace", "language", "mobility_constraints"],
+  "additionalProperties": false
+}
