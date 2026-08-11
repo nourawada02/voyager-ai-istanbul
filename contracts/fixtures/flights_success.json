@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "55555555-5555-4555-8555-555555555551",
+  "provider": "synthetic-fixture-flight-provider",
+  "data_mode": "fixture",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 1.0,
+    "freshness": "fixture",
+    "assumptions": ["Synthetic deterministic fixture; not a live quote."]
+  },
+  "result": {
+    "flights": [
+      {
+        "schema_version": "1.0.0",
+        "flight_id": "flight_syn_001",
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_at": "2026-09-10T06:30:00Z",
+        "arrive_at": "2026-09-10T08:15:00Z",
+        "carrier": "SyntheticAir",
+        "stops": 0,
+        "price": { "amount_minor_units": 450000, "currency": "TRY" },
+        "provenance": {
+          "schema_version": "1.0.0",
+          "provider": "synthetic-fixture-flight-provider",
+          "data_mode": "fixture",
+          "retrieved_at": "2026-08-01T12:00:00Z",
+          "source_urls": []
+        }
+      },
+      {
+        "schema_version": "1.0.0",
+        "flight_id": "flight_syn_002",
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_at": "2026-09-10T14:00:00Z",
+        "arrive_at": "2026-09-10T17:10:00Z",
+        "carrier": "SyntheticWings",
+        "stops": 1,
+        "price": { "amount_minor_units": 320000, "currency": "TRY" },
+        "provenance": {
+          "schema_version": "1.0.0",
+          "provider": "synthetic-fixture-flight-provider",
+          "data_mode": "fixture",
+          "retrieved_at": "2026-08-01T12:00:00Z",
+          "source_urls": []
+        }
+      }
+    ]
+  }
+}

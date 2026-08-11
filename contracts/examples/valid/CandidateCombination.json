@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "combination_id": "combo_001",
+  "flight_id": "flight_syn_001",
+  "stay_id": "stay_001",
+  "total_price": { "amount_minor_units": 890000, "currency": "TRY" },
+  "feasible": true,
+  "score": 0.81
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/TripPlan.schema.json",
+  "title": "TripPlan",
+  "description": "The final typed, source-aware plan: ranked flights, ranked stays, itinerary, budget breakdown, and provenance/confidence (architecture.md §1). Never a booking or reservation.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "flights": {
+      "type": "array",
+      "items": { "$ref": "FlightOption.schema.json" }
+    },
+    "stays": {
+      "type": "array",
+      "items": { "$ref": "StayOption.schema.json" }
+    },
+    "itinerary": { "$ref": "LocalItinerary.schema.json" },
+    "budget": { "$ref": "BudgetBreakdown.schema.json" },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "partial_failures": {
+      "type": "array",
+      "items": { "$ref": "PartialFailure.schema.json" }
+    },
+    "data_quality": { "$ref": "DataQuality.schema.json" }
+  },
+  "required": ["schema_version", "session_id", "trace_id", "created_at", "flights", "stays", "budget", "warnings", "partial_failures", "data_quality"],
+  "additionalProperties": false
+}

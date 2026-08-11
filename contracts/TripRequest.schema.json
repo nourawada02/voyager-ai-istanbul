@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/TripRequest.schema.json",
+  "title": "TripRequest",
+  "description": "Incoming trip request. Istanbul is the only fully supported destination and dates must be valid and non-past (architecture.md §13.1).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "origin": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "destination": { "const": "IST" },
+    "depart_date": { "type": "string", "format": "date" },
+    "return_date": { "type": "string", "format": "date" },
+    "traveler_count": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "amount_minor_units": { "type": "integer", "minimum": 1 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      },
+      "required": ["amount_minor_units", "currency"],
+      "additionalProperties": false
+    },
+    "preferences": { "$ref": "TripPreferences.schema.json" }
+  },
+  "required": ["schema_version", "session_id", "trace_id", "origin", "destination", "depart_date", "return_date", "traveler_count", "budget", "preferences"],
+  "additionalProperties": false
+}

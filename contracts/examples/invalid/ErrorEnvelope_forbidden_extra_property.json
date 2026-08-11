@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "error_code": "MCP_TIMEOUT",
+  "message": "The travel MCP server did not respond in time.",
+  "trace_id": "22222222-2222-4222-8222-222222222222",
+  "retriable": true,
+  "stack_trace": "Traceback (most recent call last): ..."
+}

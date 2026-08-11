@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0.0",
+  "stay_id": "stay_001",
+  "name": "Synthetic Sultanahmet Loft",
+  "district_id": "district_fatih",
+  "side": "european",
+  "coordinates": { "lat": 41.0055, "lon": 28.9769 },
+  "nightly_price": { "amount_minor_units": 220000, "currency": "TRY" }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/DailyPlan.schema.json",
+  "title": "DailyPlan",
+  "description": "One day of a side-aware, ferry-aware itinerary (architecture.md §11).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "date": { "type": "string", "format": "date" },
+    "side": { "type": "string", "enum": ["european", "asian", "mixed"] },
+    "poi_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^poi_[a-z0-9_]+$" },
+      "minItems": 1
+    },
+    "legs": {
+      "type": "array",
+      "items": { "$ref": "TravelLeg.schema.json" }
+    },
+    "walking_minutes": { "type": "number", "minimum": 0 },
+    "transfer_minutes": { "type": "number", "minimum": 0 },
+    "activity_minutes": { "type": "number", "minimum": 0 },
+    "meal_minutes": { "type": "number", "minimum": 0 },
+    "slack_minutes": { "type": "number", "minimum": 0 },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "required": ["schema_version", "date", "side", "poi_ids", "legs", "walking_minutes", "transfer_minutes", "activity_minutes", "meal_minutes", "slack_minutes", "warnings"],
+  "additionalProperties": false
+}

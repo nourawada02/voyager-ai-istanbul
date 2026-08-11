@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/FlightOption.schema.json",
+  "title": "FlightOption",
+  "description": "A normalized, ranked flight candidate returned by search_flights (architecture.md §8).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "flight_id": { "type": "string", "minLength": 1 },
+    "origin": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "destination": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "depart_at": { "type": "string", "format": "date-time" },
+    "arrive_at": { "type": "string", "format": "date-time" },
+    "carrier": { "type": "string", "minLength": 1 },
+    "stops": { "type": "integer", "minimum": 0 },
+    "price": {
+      "type": "object",
+      "properties": {
+        "amount_minor_units": { "type": "integer", "minimum": 0 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      },
+      "required": ["amount_minor_units", "currency"],
+      "additionalProperties": false
+    },
+    "provenance": { "$ref": "DataProvenance.schema.json" }
+  },
+  "required": ["schema_version", "flight_id", "origin", "destination", "depart_at", "arrive_at", "carrier", "stops", "price", "provenance"],
+  "additionalProperties": false
+}

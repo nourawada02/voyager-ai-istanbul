@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "11111111-1111-4111-8111-111111111111",
+  "trace_id": "22222222-2222-4222-8222-222222222222",
+  "minimum_budget_gap": { "amount_minor_units": 15000000, "currency": "TRY" },
+  "ranked_relaxations": [
+    {
+      "constraint": "max_nightly_price",
+      "description": "Allow stays up to 15% above the stated nightly budget.",
+      "impact": "Adds ~15,000,000 minor units to estimated_costs."
+    }
+  ]
+}

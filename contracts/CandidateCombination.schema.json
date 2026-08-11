@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/CandidateCombination.schema.json",
+  "title": "CandidateCombination",
+  "description": "One feasible flight x stay combination from the Cartesian product enumeration (architecture.md §12).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "combination_id": { "type": "string", "minLength": 1 },
+    "flight_id": { "type": "string", "minLength": 1 },
+    "stay_id": { "type": "string", "minLength": 1 },
+    "total_price": {
+      "type": "object",
+      "properties": {
+        "amount_minor_units": { "type": "integer", "minimum": 0 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      },
+      "required": ["amount_minor_units", "currency"],
+      "additionalProperties": false
+    },
+    "feasible": { "type": "boolean" },
+    "score": { "type": "number", "minimum": 0, "maximum": 1 }
+  },
+  "required": ["schema_version", "combination_id", "flight_id", "stay_id", "total_price", "feasible"],
+  "additionalProperties": false
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "11111111-1111-4111-8111-111111111111",
+  "trace_id": "22222222-2222-4222-8222-222222222222",
+  "created_at": "2026-08-01T12:00:00Z",
+  "flights": [
+    {
+      "schema_version": "1.0.0",
+      "flight_id": "flight_syn_001",
+      "origin": "BEY",
+      "destination": "IST",
+      "depart_at": "2026-09-10T06:30:00Z",
+      "arrive_at": "2026-09-10T08:15:00Z",
+      "carrier": "SyntheticAir",
+      "stops": 0,
+      "price": { "amount_minor_units": 450000, "currency": "TRY" },
+      "provenance": {
+        "schema_version": "1.0.0",
+        "provider": "fixture-flight-provider",
+        "data_mode": "fixture",
+        "retrieved_at": "2026-08-01T12:00:00Z",
+        "source_urls": []
+      }
+    }
+  ],
+  "stays": [
+    {
+      "schema_version": "1.0.0",
+      "stay_id": "stay_001",
+      "name": "Synthetic Sultanahmet Loft",
+      "district_id": "district_fatih",
+      "side": "european",
+      "coordinates": { "lat": 41.0055, "lon": 28.9769 },
+      "nightly_price": { "amount_minor_units": 220000, "currency": "TRY" },
+      "provenance": {
+        "schema_version": "1.0.0",
+        "provider": "inside-airbnb-snapshot",
+        "data_mode": "historical",
+        "retrieved_at": "2026-08-01T12:00:00Z",
+        "source_urls": []
+      }
+    }
+  ],
+  "budget": {
+    "schema_version": "1.0.0",
+    "currency": "TRY",
+    "known_costs_minor_units": 89000000,
+    "estimated_costs_minor_units": 45000000,
+    "contingency_minor_units": 10000000,
+    "total_minor_units": 144000000
+  },
+  "warnings": [],
+  "partial_failures": [],
+  "data_quality": {
+    "schema_version": "1.0.0",
+    "completeness": 0.94,
+    "freshness": "historical",
+    "assumptions": []
+  }
+}

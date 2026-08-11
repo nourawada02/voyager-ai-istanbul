@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "11111111-1111-4111-8111-111111111111",
+  "trace_id": "22222222-2222-4222-8222-222222222222",
+  "contract_version": "1.0.0",
+  "recommended_base_candidate_id": "stay_001",
+  "accessibility_scores": [
+    { "candidate_id": "stay_001", "score": 0.87 },
+    { "candidate_id": "stay_002", "score": 0.62 }
+  ],
+  "selected_poi_ids": ["poi_ayasofya", "poi_topkapi"],
+  "daily_plans": [
+    {
+      "schema_version": "1.0.0",
+      "date": "2026-09-10",
+      "side": "european",
+      "poi_ids": ["poi_ayasofya", "poi_topkapi"],
+      "legs": [
+        {
+          "schema_version": "1.0.0",
+          "from_poi_id": "poi_ayasofya",
+          "to_poi_id": "poi_topkapi",
+          "mode": "walk",
+          "duration_minutes": 8,
+          "distance_km": 0.6,
+          "is_estimated": false,
+          "side_crossing": false
+        }
+      ],
+      "walking_minutes": 25,
+      "transfer_minutes": 0,
+      "activity_minutes": 240,
+      "meal_minutes": 60,
+      "slack_minutes": 30,
+      "warnings": []
+    }
+  ],
+  "estimated_travel_minutes": 33,
+  "expected_walking_minutes": 25,
+  "side_crossings": 0,
+  "weather_substitutions": [],
+  "citations": [
+    {
+      "schema_version": "1.0.0",
+      "source_id": "src_hagia_sophia_history_001",
+      "title": "Hagia Sophia — Historical Overview",
+      "retrieved_at": "2026-08-01T12:00:00Z",
+      "chunk_ids": ["chunk_0012"]
+    }
+  ],
+  "assumptions": ["No public holidays during the trip window."],
+  "warnings": [],
+  "data_quality": {
+    "schema_version": "1.0.0",
+    "completeness": 0.94,
+    "freshness": "historical",
+    "assumptions": []
+  },
+  "hard_constraint_validation_passed": true
+}

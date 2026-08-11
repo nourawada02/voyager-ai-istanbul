@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "33333333-3333-4333-8333-333333333333",
+  "provider": "inside-airbnb-snapshot",
+  "data_mode": "historical",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "valid_for": "P30D",
+  "currency": "TRY",
+  "source_urls": ["https://example-synthetic-source.voyagerai.dev/inside-airbnb"],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 0.94,
+    "freshness": "historical",
+    "assumptions": ["Snapshot reflects listing state on collection date only."]
+  },
+  "result": { "listing_count": 3 }
+}

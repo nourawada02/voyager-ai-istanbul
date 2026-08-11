@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0.0",
+  "trace_id": "22222222-2222-4222-8222-222222222222",
+  "component": "system_b_a2a",
+  "degraded_behavior": "Returned global candidates; local itinerary marked unavailable."
+}

@@ -1,0 +1,9 @@
+{
+  "_fixture_purpose": "INTENTIONALLY malformed provider response used to test resilience/error handling. This document does not conform to ProviderResponseEnvelope.schema.json on purpose (missing 'quality' and 'data_mode', wrong type for 'result') -- it is not, and must not be treated as, a valid example.",
+  "schema_version": "1.0.0",
+  "request_id": "not-even-a-uuid",
+  "provider": "synthetic-broken-status-provider",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "result": "unexpected string instead of an object"
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase1/FairPriceEstimate.schema.json",
+  "title": "FairPriceEstimate",
+  "description": "ML fair-price estimate plus the deterministic, capped deal_score computed in Python from stated weighted components (architecture.md §10.3). The price-advantage contribution is capped so one erroneous prediction cannot dominate ranking.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "stay_id": { "type": "string", "minLength": 1 },
+    "estimated_fair_price": {
+      "type": "object",
+      "properties": {
+        "amount_minor_units": { "type": "integer", "minimum": 0 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+      },
+      "required": ["amount_minor_units", "currency"],
+      "additionalProperties": false
+    },
+    "deal_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "components": {
+      "type": "object",
+      "properties": {
+        "capped_price_value": { "$ref": "#/$defs/component" },
+        "itinerary_accessibility": { "$ref": "#/$defs/component" },
+        "rating_quality": { "$ref": "#/$defs/component" },
+        "preference_match": { "$ref": "#/$defs/component" },
+        "amenities_match": { "$ref": "#/$defs/component" },
+        "review_confidence": { "$ref": "#/$defs/component" }
+      },
+      "required": [
+        "capped_price_value", "itinerary_accessibility", "rating_quality",
+        "preference_match", "amenities_match", "review_confidence"
+      ],
+      "additionalProperties": false
+    },
+    "model_version": { "type": "string", "minLength": 1 },
+    "baseline_beaten": { "type": "boolean" },
+    "provenance": { "$ref": "DataProvenance.schema.json" }
+  },
+  "required": ["schema_version", "stay_id", "estimated_fair_price", "deal_score", "components", "model_version", "baseline_beaten", "provenance"],
+  "additionalProperties": false,
+  "$defs": {
+    "component": {
+      "type": "object",
+      "properties": {
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "raw_value": { "type": "number" },
+        "normalized_value": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "required": ["weight", "raw_value", "normalized_value"],
+      "additionalProperties": false
+    }
+  }
+}
