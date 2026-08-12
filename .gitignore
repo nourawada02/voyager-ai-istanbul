@@ -3,4 +3,26 @@ __pycache__/
 *.pyc
 .venv/
 node_modules/
-ml\artifacts\*.joblib
+
+# Phase 2: downloaded/generated accommodation datasets (see
+# docs/adr/0002-phase2-checkpoint-a.md). The canonical dataset manifest
+# (data/manifests/*.manifest.json) is small aggregate metadata and stays
+# tracked; the raw/processed bulk data is ignored. *.profile.json files in
+# the same directory are a separately generated profiling report (produced
+# by phase2/data_pipeline/profile_dataset.py, not hand-authored) and are
+# ignored too -- narrowly scoped to that one suffix, not all JSON/manifest
+# files in the directory.
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/manifests/*.profile.json
+
+# Phase 2: generated model artifacts (trained model, preprocessing pipeline,
+# bundled feature schema) and generated metrics reports -- reproducible from
+# data/ + ml/training/, never committed (Checkpoint A.2: reports containing
+# generated metrics are artifacts too, not audit-trail documents).
+ml/artifacts/*
+!ml/artifacts/.gitkeep
+ml/reports/*
+!ml/reports/.gitkeep

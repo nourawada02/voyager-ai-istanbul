@@ -334,6 +334,8 @@ deal_score =
 
 Every component, weight, raw value, and normalization rule is returned with the score, and the price-advantage contribution is capped so one erroneous prediction cannot dominate ranking.
 
+**Invariant**: the six weights above always sum to exactly `1.00`. Any implementation of this formula must assert this at call time and fail loudly if it does not hold (see `docs/adr/0002-phase2-checkpoint-a.md`).
+
 ## 11. Istanbul Itinerary Optimizer
 
 The LLM selects preferences and explains tradeoffs; Python constructs and validates the schedule.
