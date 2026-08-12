@@ -30,7 +30,7 @@ A change inside a submodule and the corresponding pointer bump in this root repo
 
 One gated phase at a time. No whole-repository code generation in a single pass. Each phase report lists files changed, commands run, test results, unresolved risks, and the next gate. A broken gate is reported, never hidden or worked around silently. Full phase table: [§17](docs/architecture.md#17-implementation-timeline--gated-phases).
 
-**Current state as of 2026-08-12: Phase 0 (compatibility spike) closed. Phase 1 (contracts & fixtures) closed. Phase 2 (data & accommodation ML) Checkpoint A (data and architecture foundation) complete. Checkpoint B has not started — no model trained, no MCP tool implemented yet.** Update this line only when a phase gate is formally passed.
+**Current state as of 2026-08-12: Phase 0 (compatibility spike) closed. Phase 1 (contracts & fixtures) closed. Phase 2 (data & accommodation ML) Checkpoint A (data and architecture foundation) complete, Checkpoint B (model experimentation and artifact selection) complete. Checkpoint C has not started — no MCP tool implemented yet. Unrestricted Hotel-room serving remains blocked pending an independently designed policy (not implemented).** Update this line only when a phase gate is formally passed.
 
 ## Testing / reporting expectations
 
