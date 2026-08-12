@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.1.0",
+  "stay_id": "stay_001",
+  "estimated_fair_price": { "amount_minor_units": 208395, "currency": "TRY" },
+  "scoring_status": "incomplete",
+  "missing_components": ["itinerary_accessibility"],
+  "incomplete_reason": "itinerary_accessibility is System-B-owned and was not supplied.",
+  "deal_score": 0.62,
+  "components": {
+    "capped_price_value": { "weight": 0.35, "raw_value": 0.8, "normalized_value": 0.8 },
+    "itinerary_accessibility": { "weight": 0.25, "raw_value": 0.5, "normalized_value": 0.5 },
+    "rating_quality": { "weight": 0.15, "raw_value": 0.92, "normalized_value": 0.92 },
+    "preference_match": { "weight": 0.10, "raw_value": 0.7, "normalized_value": 0.7 },
+    "amenities_match": { "weight": 0.10, "raw_value": 0.6, "normalized_value": 0.6 },
+    "review_confidence": { "weight": 0.05, "raw_value": 0.9, "normalized_value": 0.9 }
+  },
+  "model_version": "hist_gradient_boosting@688a6dd2706c211ef4682e5564743ab84f96ab0e7dce9ee068efb2fffc6bb5fc",
+  "baseline_beaten": true,
+  "provenance": {
+    "schema_version": "1.0.0",
+    "provider": "inside-airbnb-snapshot",
+    "data_mode": "historical",
+    "retrieved_at": "2026-08-01T12:00:00Z",
+    "valid_for": "P30D",
+    "source_urls": ["https://example-synthetic-source.voyagerai.dev/inside-airbnb"]
+  }
+}

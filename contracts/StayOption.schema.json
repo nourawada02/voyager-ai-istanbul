@@ -2,10 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase1/StayOption.schema.json",
   "title": "StayOption",
-  "description": "A normalized stay candidate returned by search_stays (architecture.md §8).",
+  "description": "A normalized stay candidate returned by search_stays (architecture.md §8). schema_version 1.1.0 (Checkpoint C.0, docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §3) additively introduces room_type/property_type/capacity/availability_status/snapshot_date, all optional here so every existing 1.0.0 instance remains valid unchanged; search_stays's own SearchStaysResult.schema.json tightens the relevant subset to required for its own use.",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
     "stay_id": { "type": "string", "minLength": 1 },
     "name": { "type": "string", "minLength": 1 },
     "district_id": { "type": "string", "pattern": "^district_[a-z0-9_]+$" },
@@ -34,7 +34,29 @@
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
     },
-    "provenance": { "$ref": "DataProvenance.schema.json" }
+    "provenance": { "$ref": "DataProvenance.schema.json" },
+    "room_type": {
+      "type": "string",
+      "enum": ["Entire home/apt", "Private room", "Hotel room", "Shared room"],
+      "description": "The raw listing's room type as recorded in the dataset. Not restricted to the serving-supported subset here -- SearchStaysResult.schema.json's resultItem restricts this to the supported values only."
+    },
+    "property_type": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "capacity": {
+      "type": "object",
+      "properties": {
+        "accommodates": { "type": "integer", "minimum": 0 },
+        "bedrooms": { "type": "integer", "minimum": 0 },
+        "beds": { "type": "integer", "minimum": 0 },
+        "bathrooms": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "availability_status": {
+      "type": "string",
+      "enum": ["unknown"],
+      "description": "Always 'unknown' -- this system never claims a fixture/historical listing is currently available (architecture.md §13.2)."
+    },
+    "snapshot_date": { "type": "string", "format": "date" }
   },
   "required": ["schema_version", "stay_id", "name", "district_id", "side", "coordinates", "nightly_price", "provenance"],
   "additionalProperties": false

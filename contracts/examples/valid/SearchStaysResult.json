@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "snapshot_date": "2026-06-30",
+  "dataset_sha256": "496db43edf236a53737bfe2f0f868ad4f812ff5db0f61798dba7de4ee4769dff",
+  "bundle_sha256": "81f857fd52a0fbeaa2662f02c5ca6dfc187acdb42ce6f14219b1e08df856c15f",
+  "model_version": "hist_gradient_boosting@688a6dd2706c211ef4682e5564743ab84f96ab0e7dce9ee068efb2fffc6bb5fc",
+  "currency": "TRY",
+  "data_mode": "historical",
+  "disclaimer": "Prices and details reflect a historical Inside Airbnb snapshot dated 2026-06-30 and are not live availability, a live price, or a booking confirmation.",
+  "predictions_produced": true,
+  "ranking_basis": "preliminary_price_value_desc",
+  "excluded_row_count": 0,
+  "stays": [
+    {
+      "stay": {
+        "schema_version": "1.1.0",
+        "stay_id": "stay_001",
+        "name": "Synthetic Sultanahmet Loft",
+        "district_id": "district_fatih",
+        "side": "european",
+        "coordinates": { "lat": 41.0055, "lon": 28.9769 },
+        "nightly_price": { "amount_minor_units": 100000, "currency": "TRY" },
+        "rating": 4.6,
+        "review_count": 128,
+        "amenities": ["wifi", "air_conditioning"],
+        "provenance": {
+          "schema_version": "1.0.0",
+          "provider": "inside-airbnb-snapshot",
+          "data_mode": "historical",
+          "retrieved_at": "2026-08-01T12:00:00Z",
+          "valid_for": "P30D",
+          "source_urls": ["https://example-synthetic-source.voyagerai.dev/inside-airbnb"]
+        },
+        "room_type": "Entire home/apt",
+        "property_type": "Entire rental unit",
+        "capacity": { "accommodates": 2, "bedrooms": 1, "beds": 1, "bathrooms": 1 },
+        "availability_status": "unknown",
+        "snapshot_date": "2026-06-30"
+      },
+      "fair_price": {
+        "schema_version": "1.1.0",
+        "stay_id": "stay_001",
+        "estimated_fair_price": { "amount_minor_units": 208395, "currency": "TRY" },
+        "interval": {
+          "lower_minor_units": 0,
+          "upper_minor_units": 584361,
+          "currency": "TRY",
+          "target_coverage": 0.9,
+          "lower_bound_clamped": true
+        },
+        "scoring_status": "incomplete",
+        "missing_components": ["itinerary_accessibility"],
+        "incomplete_reason": "itinerary_accessibility is System-B-owned and was not supplied to this Travel-MCP-only call.",
+        "model_version": "hist_gradient_boosting@688a6dd2706c211ef4682e5564743ab84f96ab0e7dce9ee068efb2fffc6bb5fc",
+        "baseline_beaten": true,
+        "provenance": {
+          "schema_version": "1.0.0",
+          "provider": "inside-airbnb-snapshot",
+          "data_mode": "historical",
+          "retrieved_at": "2026-08-01T12:00:00Z",
+          "valid_for": "P30D",
+          "source_urls": ["https://example-synthetic-source.voyagerai.dev/inside-airbnb"]
+        }
+      },
+      "preliminary_capped_price_value": 0.5201420379567648,
+      "estimated_total": { "amount_minor_units": 300000, "currency": "TRY", "nights": 3 },
+      "rank": 1,
+      "warnings": ["Calibrated interval is wide relative to the point estimate for this listing."]
+    }
+  ]
+}

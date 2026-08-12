@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase2/SearchStaysRequest.schema.json",
+  "title": "SearchStaysRequest",
+  "description": "Checkpoint C.0.1 design contract for the future search_stays MCP tool (docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §6). Not yet wired to a production tool. Dates, if supplied, are used only to compute nights/estimated_total -- they never imply or filter on availability. Every optional filter field is typed to exclude null; an omitted key means 'no filter', an explicit empty array on a list filter is a contradictory-filter request, not 'no filter' (enforced here via minItems on each list filter). ranking_mode is 'preliminary_price_value_desc' -- Travel MCP never claims to compute or accept a request for the final deal_score_desc ranking, since itinerary_accessibility is System-B-owned and unavailable to a standalone search_stays call (Checkpoint C.0.1 §1 correction).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "guest_count": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "check_in": { "type": "string", "format": "date" },
+    "check_out": { "type": "string", "format": "date" },
+    "currency": { "const": "TRY" },
+    "district_ids": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^district_[a-z0-9_]+$" },
+      "minItems": 1,
+      "maxItems": 20,
+      "uniqueItems": true
+    },
+    "side": { "type": "string", "enum": ["european", "asian"] },
+    "room_types": {
+      "type": "array",
+      "description": "Checkpoint C.0.1 §4 correction: intentionally NOT a closed enum of the known vocabulary. Every requested value -- 'Hotel room', 'Shared room', or a genuinely unrecognized future string -- must reach the semantic room-type validator and fail as UNSUPPORTED_ROOM_TYPE uniformly, never as a generic schema-level INVALID_REQUEST. Only a bounded string length/list size is enforced here.",
+      "items": { "type": "string", "minLength": 1, "maxLength": 64 },
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true
+    },
+    "min_bedrooms": { "type": "integer", "minimum": 0 },
+    "min_beds": { "type": "integer", "minimum": 0 },
+    "min_bathrooms": { "type": "number", "minimum": 0 },
+    "required_amenities": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[^\\n\\r\\x00]{1,64}$" },
+      "minItems": 1,
+      "maxItems": 20,
+      "uniqueItems": true
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "amount_minor_units": { "type": "integer", "minimum": 1 },
+        "currency": { "const": "TRY" },
+        "period": { "type": "string", "enum": ["nightly", "total"] }
+      },
+      "required": ["amount_minor_units", "currency", "period"],
+      "additionalProperties": false
+    },
+    "result_limit": { "type": "integer", "minimum": 1, "maximum": 50 },
+    "ranking_mode": {
+      "const": "preliminary_price_value_desc",
+      "description": "The only ranking mode search_stays itself performs (docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §1). The canonical six-component deal_score_desc ranking is computed by System A after an A2A round trip with System B, not by this tool -- there is no request field for it here."
+    }
+  },
+  "required": [
+    "schema_version", "session_id", "trace_id", "guest_count",
+    "currency", "result_limit", "ranking_mode"
+  ],
+  "dependentRequired": {
+    "check_in": ["check_out"],
+    "check_out": ["check_in"]
+  },
+  "additionalProperties": false
+}

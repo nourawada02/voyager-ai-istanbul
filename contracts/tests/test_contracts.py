@@ -64,7 +64,10 @@ def test_schema_is_valid_draft_2020_12(schema_path: str):
 @pytest.mark.parametrize("schema_path", SCHEMA_FILES, ids=lambda p: os.path.basename(p))
 def test_schema_has_stable_id_and_schema_version_field(schema_path: str):
     schema = _load(schema_path)
-    assert schema["$id"].startswith("https://schemas.voyagerai.dev/phase1/")
+    assert schema["$id"].startswith((
+        "https://schemas.voyagerai.dev/phase1/",
+        "https://schemas.voyagerai.dev/phase2/",
+    ))
     assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
     props = schema.get("properties", {})
     assert "schema_version" in props, f"{schema_path} missing schema_version property"

@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.1.0",
+  "error_code": "UNSUPPORTED_ROOM_TYPE",
+  "message": "One or more requested room types are not supported by this version of search_stays. Supported room types: Entire home/apt, Private room.",
+  "trace_id": "77777777-7777-4777-8777-777777777771",
+  "retriable": false,
+  "details": {
+    "requested_room_types": ["Private room", "Hotel room"],
+    "unsupported_room_types": ["Hotel room"],
+    "supported_room_types": ["Entire home/apt", "Private room"]
+  }
+}

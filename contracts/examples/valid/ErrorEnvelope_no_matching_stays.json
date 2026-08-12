@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.1.0",
+  "error_code": "NO_MATCHING_STAYS",
+  "message": "No stays matched every requested filter for this historical snapshot. Try relaxing one or more filters.",
+  "trace_id": "77777777-7777-4777-8777-777777777772",
+  "retriable": false,
+  "details": {
+    "eliminated_by_filter_categories": ["room_type", "min_bedrooms"]
+  }
+}

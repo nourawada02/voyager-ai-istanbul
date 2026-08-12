@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.1.0",
+  "error_code": "REQUEST_TOO_BROAD",
+  "message": "Too many candidate stays matched the requested hard filters to score in one request. Narrow your filters (district, room type, capacity, or amenities) and try again.",
+  "trace_id": "77777777-7777-4777-8777-777777777773",
+  "retriable": false,
+  "details": {
+    "candidate_count": 5231,
+    "limit": 5000
+  }
+}

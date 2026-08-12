@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "66666666-6666-4666-8666-666666666661",
+  "trace_id": "66666666-6666-4666-8666-666666666662",
+  "guest_count": 2,
+  "check_in": "2026-09-10",
+  "currency": "TRY",
+  "result_limit": 10,
+  "ranking_mode": "preliminary_price_value_desc"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase2/IstanbulDistrictRegistry.schema.json",
+  "title": "IstanbulDistrictRegistry",
+  "description": "The single authoritative Istanbul district catalog (docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §5, added in Checkpoint C.0.1). No prior Phase 1 district catalog contract existed -- this is a new, small, committed aggregate derived 1:1 from services/travel-mcp/phase2/data_pipeline/side_mapping.py's accepted 39-district side mapping (25 European + 14 Asian, fixed public administrative geography, not learned or dataset-derived). The canonical instance IS contracts/examples/valid/IstanbulDistrictRegistry.json -- not merely a validation fixture; SearchStaysRequest.district_ids and search_stays's future UNKNOWN_DISTRICT check are validated against that exact file, so there is one authoritative registry, never a duplicated or conflicting second list. side uses the uppercase canonical values EUROPEAN/ASIAN; StayOption.side (contracts/StayOption.schema.json, already-accepted Phase 1 contract) separately uses lowercase european/asian for the wire payload -- the deterministic normalization rule is side.lower(), documented here so the two never silently drift.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "source": {
+      "const": "services/travel-mcp/phase2/data_pipeline/side_mapping.py:_DISTRICTS_BY_SIDE"
+    },
+    "districts": {
+      "type": "array",
+      "minItems": 39,
+      "maxItems": 39,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "district_id": {
+            "type": "string",
+            "pattern": "^district_[a-z0-9_]+$",
+            "description": "ASCII-normalized, matches StayOption.district_id and side_mapping.py's own ASCII-transliterated table entries (e.g. 'Besiktas' -> district_besiktas)."
+          },
+          "canonical_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "description": "Correct Turkish Unicode spelling, current official name."
+          },
+          "side": { "type": "string", "enum": ["EUROPEAN", "ASIAN"] }
+        },
+        "required": ["district_id", "canonical_name", "side"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["schema_version", "source", "districts"],
+  "additionalProperties": false
+}

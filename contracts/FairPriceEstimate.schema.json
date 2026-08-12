@@ -2,10 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase1/FairPriceEstimate.schema.json",
   "title": "FairPriceEstimate",
-  "description": "ML fair-price estimate plus the deterministic, capped deal_score computed in Python from stated weighted components (architecture.md §10.3). The price-advantage contribution is capped so one erroneous prediction cannot dominate ranking.",
+  "description": "ML fair-price estimate plus the deterministic, capped deal_score computed in Python from stated weighted components (architecture.md §10.3). The price-advantage contribution is capped so one erroneous prediction cannot dominate ranking. schema_version 1.1.0 (Checkpoint C.0, docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §3) resolves a structural conflict: itinerary_accessibility is System-B-owned and caller-supplied, so Travel-MCP-only serving cannot always produce it. deal_score/components are now conditionally required on scoring_status, never fabricated or silently redistributed when incomplete. Every existing 1.0.0 instance (unconditionally complete) remains valid unchanged.",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
     "stay_id": { "type": "string", "minLength": 1 },
     "estimated_fair_price": {
       "type": "object",
@@ -15,6 +15,31 @@
       },
       "required": ["amount_minor_units", "currency"],
       "additionalProperties": false
+    },
+    "interval": {
+      "type": "object",
+      "description": "Split-conformal calibrated interval (phase2/ml/calibration.py) -- a statistical coverage statement about the model on historical data, never a guarantee about a real future price.",
+      "properties": {
+        "lower_minor_units": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Serving-response value: clamped to 0 if the raw calibrated lower bound was negative. See lower_bound_clamped. This is a serving representation rule, never a change to the trained artifact, the calibration quantile, or its target_coverage."
+        },
+        "upper_minor_units": { "type": "integer" },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "target_coverage": { "type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1 },
+        "lower_bound_clamped": {
+          "type": "boolean",
+          "description": "True iff the raw split-conformal lower bound (prediction - quantile) was negative and was clamped to 0 for this response."
+        }
+      },
+      "required": ["lower_minor_units", "upper_minor_units", "currency", "target_coverage", "lower_bound_clamped"],
+      "additionalProperties": false
+    },
+    "scoring_status": {
+      "type": "string",
+      "enum": ["complete", "incomplete"],
+      "description": "'incomplete' when a required deal_score component (typically itinerary_accessibility, which is System-B-owned) is not available. Never redistribute the missing weight or fabricate a neutral value -- see missing_components/incomplete_reason."
     },
     "deal_score": { "type": "number", "minimum": 0, "maximum": 1 },
     "components": {
@@ -33,12 +58,71 @@
       ],
       "additionalProperties": false
     },
+    "missing_components": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "capped_price_value", "itinerary_accessibility", "rating_quality",
+          "preference_match", "amenities_match", "review_confidence"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "incomplete_reason": { "type": "string", "minLength": 1, "maxLength": 256 },
     "model_version": { "type": "string", "minLength": 1 },
     "baseline_beaten": { "type": "boolean" },
     "provenance": { "$ref": "DataProvenance.schema.json" }
   },
-  "required": ["schema_version", "stay_id", "estimated_fair_price", "deal_score", "components", "model_version", "baseline_beaten", "provenance"],
+  "required": ["schema_version", "stay_id", "estimated_fair_price", "model_version", "baseline_beaten", "provenance"],
   "additionalProperties": false,
+  "allOf": [
+    {
+      "description": "1.0.0: exactly the original contract (deal_score/components always required), PLUS Checkpoint C.0.1: explicitly forbid every 1.1-only state field individually, so a 1.0.0 payload can never claim 'incomplete' or otherwise become contradictory.",
+      "if": { "properties": { "schema_version": { "const": "1.0.0" } }, "required": ["schema_version"] },
+      "then": {
+        "required": ["deal_score", "components"],
+        "not": { "anyOf": [
+          { "required": ["scoring_status"] },
+          { "required": ["missing_components"] },
+          { "required": ["incomplete_reason"] }
+        ] }
+      }
+    },
+    {
+      "if": { "properties": { "schema_version": { "const": "1.1.0" } }, "required": ["schema_version"] },
+      "then": { "required": ["scoring_status"] }
+    },
+    {
+      "description": "1.1.0 complete: deal_score/components required; incomplete-only fields forbidden INDIVIDUALLY (not just as a pair), so a payload cannot bypass the gate by supplying only one of them.",
+      "if": {
+        "properties": { "schema_version": { "const": "1.1.0" }, "scoring_status": { "const": "complete" } },
+        "required": ["schema_version", "scoring_status"]
+      },
+      "then": {
+        "required": ["deal_score", "components"],
+        "not": { "anyOf": [
+          { "required": ["missing_components"] },
+          { "required": ["incomplete_reason"] }
+        ] }
+      }
+    },
+    {
+      "description": "1.1.0 incomplete: missing_components/incomplete_reason required; deal_score/components forbidden INDIVIDUALLY (not just as a pair), so a payload cannot bypass the gate by supplying only one of them.",
+      "if": {
+        "properties": { "schema_version": { "const": "1.1.0" }, "scoring_status": { "const": "incomplete" } },
+        "required": ["schema_version", "scoring_status"]
+      },
+      "then": {
+        "required": ["missing_components", "incomplete_reason"],
+        "not": { "anyOf": [
+          { "required": ["deal_score"] },
+          { "required": ["components"] }
+        ] }
+      }
+    }
+  ],
   "$defs": {
     "component": {
       "type": "object",

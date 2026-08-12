@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.1.0",
+  "error_code": "UNKNOWN_DISTRICT",
+  "message": "One or more requested district_ids are not in the canonical Istanbul district registry.",
+  "trace_id": "77777777-7777-4777-8777-777777777774",
+  "retriable": false,
+  "details": {
+    "requested_district_ids": ["district_fatih", "district_notreal"],
+    "unknown_district_ids": ["district_notreal"]
+  }
+}

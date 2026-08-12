@@ -2,10 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase1/ErrorEnvelope.schema.json",
   "title": "ErrorEnvelope",
-  "description": "Uniform error shape. No internal detail (stack traces, exception text, file paths, credentials) may ever appear in message (architecture.md §13.4). error_code is an open, extensible SCREAMING_SNAKE_CASE vocabulary, not a closed enum, matching the source proposal's illustrative '...'",
+  "description": "Uniform error shape. No internal detail (stack traces, exception text, file paths, credentials) may ever appear in message or details (architecture.md §13.4). error_code is an open, extensible SCREAMING_SNAKE_CASE vocabulary, not a closed enum, matching the source proposal's illustrative '...'. schema_version 1.1.0 (Checkpoint C.0.1, docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §4) additively introduces optional structured 'details' -- machine-readable error context (e.g. which room types are supported) must live in typed detail fields, never only inside the human-readable message string. Every existing 1.0.0 instance (no details) remains valid unchanged.",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
     "error_code": {
       "type": "string",
       "pattern": "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
@@ -15,7 +15,24 @@
       "type": "string",
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
     },
-    "retriable": { "type": "boolean" }
+    "retriable": { "type": "boolean" },
+    "details": {
+      "type": "object",
+      "description": "Flat, bounded, machine-readable context only -- no nested objects, no arbitrary depth, no stack traces/exception text/local paths/credentials/row data. Every value is a short string, number, boolean, or a short list of short strings.",
+      "maxProperties": 10,
+      "additionalProperties": {
+        "oneOf": [
+          { "type": "string", "maxLength": 128 },
+          { "type": "number" },
+          { "type": "boolean" },
+          {
+            "type": "array",
+            "maxItems": 20,
+            "items": { "type": "string", "maxLength": 128 }
+          }
+        ]
+      }
+    }
   },
   "required": ["schema_version", "error_code", "message", "trace_id", "retriable"],
   "additionalProperties": false
