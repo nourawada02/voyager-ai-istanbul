@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase2/EstimateFairPriceRequest.schema.json",
+  "title": "EstimateFairPriceRequest",
+  "description": "Checkpoint C.2.1 request contract for the estimate_fair_price MCP tool. Looks up ONE existing historical listing by its stable dataset id and returns the same fair-price estimate search_stays would compute for that listing -- never accepts arbitrary caller-supplied model features, coordinates, or property attributes. A stay_id absent from the current pinned snapshot is NOT_FOUND (STAY_NOT_FOUND), never silently substituted or interpolated. currency is fixed to the model's one accepted currency (TRY), matching SearchStaysRequest's own currency field -- no conversion contract exists yet, so no other value is accepted.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "stay_id": {
+      "type": "string",
+      "description": "The stable dataset id of an existing listing in the current pinned historical snapshot -- the same value returned as stays[].stay.stay_id by search_stays. Never a raw feature vector, model input, or arbitrary caller-constructed listing.",
+      "pattern": "^[^\\n\\r\\x00]{1,64}$"
+    },
+    "currency": { "const": "TRY" }
+  },
+  "required": ["schema_version", "session_id", "trace_id", "stay_id", "currency"],
+  "additionalProperties": false
+}

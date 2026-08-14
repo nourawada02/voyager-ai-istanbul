@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "session_id": "88888888-8888-4888-8888-888888888881",
+  "trace_id": "88888888-8888-4888-8888-888888888882",
+  "stay_id": "stay_001",
+  "currency": "TRY",
+  "accommodates": 4,
+  "latitude": 41.0,
+  "longitude": 29.0
+}

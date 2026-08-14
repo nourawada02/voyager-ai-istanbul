@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase2/EstimateFairPriceResult.schema.json",
+  "title": "EstimateFairPriceResult",
+  "description": "Checkpoint C.2.1 success-result contract for the estimate_fair_price MCP tool. Reuses the existing FairPriceEstimate object by $ref (never duplicated field-by-field), the same way SearchStaysResult.$defs.resultItem does, pinned to exactly schema_version 1.1.0 with interval required -- the same rules apply for the same reasons (docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §7/§9). Every field here is either a fixed snapshot fact, a model output, or a deterministic Python computation -- never a live-availability or booking claim, exactly like search_stays.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "stay_id": { "type": "string", "minLength": 1 },
+    "snapshot_date": { "type": "string", "format": "date" },
+    "dataset_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "bundle_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "model_version": { "type": "string", "minLength": 1 },
+    "currency": { "const": "TRY" },
+    "provenance": {
+      "description": "The same manifest-derived historical provenance every search_stays result item carries -- never request execution time.",
+      "$ref": "https://schemas.voyagerai.dev/phase1/DataProvenance.schema.json"
+    },
+    "disclaimer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "description": "Fixed, server-authored snapshot-data disclaimer -- the same text and the same truthfulness rule as SearchStaysResult.disclaimer."
+    },
+    "fair_price": {
+      "description": "FairPriceEstimate pinned to exactly schema_version 1.1.0, with interval required -- identical tightening to SearchStaysResult.$defs.resultItem.fair_price, not a separate parallel shape.",
+      "allOf": [
+        { "$ref": "https://schemas.voyagerai.dev/phase1/FairPriceEstimate.schema.json" },
+        { "properties": { "schema_version": { "const": "1.1.0" } }, "required": ["schema_version"] },
+        { "required": ["interval"] }
+      ]
+    }
+  },
+  "required": [
+    "schema_version", "stay_id", "snapshot_date", "dataset_sha256", "bundle_sha256",
+    "model_version", "currency", "provenance", "disclaimer", "fair_price"
+  ],
+  "additionalProperties": false
+}
