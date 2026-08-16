@@ -1,0 +1,722 @@
+{
+  "citation_coverage": 0.42424242424242425,
+  "failure_categories": {
+    "generation_hallucination": 16,
+    "generation_hallucination_risk_uncited_claim": 19,
+    "refusal_failure": 2
+  },
+  "judge_available": true,
+  "judge_model": "qwen3.5:2b",
+  "judge_summary": {
+    "mean_correctness": 0.6785714285714286,
+    "mean_faithfulness": 0.5357142857142857,
+    "mean_relevance": 1.4642857142857142,
+    "n_judged": 28
+  },
+  "provider_detection": "local Ollama fallback: qwen3.5:2b (no hosted provider key was found)",
+  "question_count": 45,
+  "refusal_accuracy": 1.0,
+  "reproducibility_command": "python -m rag.run_generation_eval",
+  "rows": [
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "reasoning": "The assistant provides a relevant answer addressing both parts of the question (construction date and commissioner). However, 'correctness' is scored as 0 because while it uses facts from the text ('532', 'Justinian I'), it incorrectly interprets 'commissioned architects... for this specific replacement project' in the final note as evidence that Emperor Justinian commissioned Hagia Sophia itself. In reality, according to the provided context (and historical fact), Emperors Constantine and Theodosius II previously built churches on site; Justinian's involvement was with *designing* a new structure or replacing an existing one later than 537-538 AD under Emperor Heraclius, not that he commissioned Hagia Sophia specifically. Thus, the statement 'Emperor Justinian I commissioned architects... for this specific replacement' attributed to him as his own commissioner is factually wrong relative to the context.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_01_en",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 1,
+        "faithfulness": 2,
+        "reasoning": "The assistant provided a detailed answer based only on the context (0-2 faithfulness), was mostly correct regarding facts but slightly inaccurate in claiming 'managed' architects instead of 'built by', and perfectly addressed the question (high relevance).",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_01_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "",
+        "relevance": 1
+      },
+      "language": "ar",
+      "question_id": "gt_01_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "reasoning": "The assistant correctly identifies the sultan (Mehmed II), action (ordering construction to begin in 1459 - note: context says conquest began then, not necessarily ordered start immediately after without delay but date is key for chronology check vs text), and mentions a specific year found. However, it contradicts 'chunk_7d295...' which states the Sultan took control on May 29, 1453 (after construction started in 6th century BC as per some interpretations or early medieval phases). The answer also hallucinates that the initial structure was built between 1459-1460s, while 'chunk_8427...' describes it being restored/converted to a mosque then turned into a museum after conquest.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_02_en",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "refusal_failure",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 0,
+        "reasoning": "The assistant's refusal is based on an assertion about its internal data source availability that cannot be verified from the provided CONTEXT chunks; this makes it ungrounded even though the fact itself is retrievable.",
+        "relevance": 1
+      },
+      "language": "tr",
+      "question_id": "gt_02_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 2,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "The answer claims construction began in 1459 under Sultan Muhammad II and cites non-existent sources. The context contains nothing about Istanbul's history beyond Byzantine/Imperial eras, never mentioning any 'palace' (crown) or Ottoman sultan named Mu\u02bfammad II; it only mentions that the city was conquered on May 28\u201329, 1453 by Mehmed the Conqueror and renamed Istanbul.",
+        "relevance": 1
+      },
+      "language": "ar",
+      "question_id": "gt_02_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "alias",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "reasoning": "The answer correctly identifies the year (2020) and addresses the user's specific question about when it became a mosque again. However, the reasoning contains hallucinated facts not present in the context: Turkey has no 'Council of State' that reclassified Hagia Sophia in this manner, nor is there information supporting claims about 900 years or Christian/Catholic status for over two millennia (it was never used by those groups continuously). Despite these factual errors and off-topic reasoning elements affecting faithfulness/correctness/accuracy relative to the provided text, the answer directly addresses the core question using data found in the source.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_03_en",
+      "refusal_required": false
+    },
+    {
+      "category": "alias",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reasoning": "The assistant correctly identified that the answer is not provided because specific grounding data isn't available but explained why (4079631 limit) and referenced the actual text content ('\u0622\u064a\u0627 \u0635\u0648\u0641\u06cc\u0627 \u0627\u0644\u062d\u0627\u0644\u064a\u0629 \u0631\u062b\u0627\u062b\u064f third structure built at Constantinople' confirming its current religious status as an active mosque, aligning with '\u064a\u0639\u062f \u0627\u0644\u064a\u0648\u0645 \u0645\u0633\u062c\u062f\u0627\u064b') for relevance. However, it introduced factual details not in context (e.g., specific construction cost of 108 million TL and the architect Anthemius Tralles) which are incorrect.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_03_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "alias",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_03_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "neighborhood",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_04_en",
+      "refusal_required": false
+    },
+    {
+      "category": "neighborhood",
+      "citation_count": 3,
+      "correctly_refused": null,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reasoning": "The assistant accurately cites specific information (namesake 'Beyo\u011flu', historical name 'Pera' and its etymology; current cultural status in Istanbul) supported by the provided context chunks.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_04_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 1,
+        "reasoning": "The assistant correctly identifies the historical name 'Perai' (which corresponds to Beyo\u011flu) based on the context provided in [chunk_94ad2df914db266ce487dccf], which states that settlements from Megara built Byzantium around 660 BC located strategically at Bosphorus and served as a major strategic site. The answer correctly identifies 'Pera' (Perai) as the historical name used by locals, noting it was referred to because its location is opposite Constantinople.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_04_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 1,
+        "faithfulness": 0,
+        "reasoning": "The assistant's answer is factually incorrect because it claims construction began in 1348 and cites a Genoese colony as the builder when the context only states that Hagia Sophia was completed around 537-539 CE under Emperor Justinian I. The provided text does not contain information about Galata Tower or any of its builders, so there are no claims supported by the CONTEXT.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_05_en",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "refusal_failure",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 0,
+        "reasoning": "The assistant refused to answer because the context does not mention Galata Kulesi or its history; however, the actual correct information (built by Sultan Mehmed II in 537 CE) is provided elsewhere in the context.",
+        "relevance": 1
+      },
+      "language": "tr",
+      "question_id": "gt_05_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 1,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "The answer states the construction date as 1348 and claims it was built by Genoese efforts in Constantinople, which are unsupported facts not found in any context; additionally, no actual building project occurred at Galata Tower during that specific period.",
+        "relevance": 1
+      },
+      "language": "ar",
+      "question_id": "gt_05_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "accessibility",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_06_en",
+      "refusal_required": true
+    },
+    {
+      "category": "accessibility",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_06_tr",
+      "refusal_required": true
+    },
+    {
+      "category": "accessibility",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_06_ar",
+      "refusal_required": true
+    },
+    {
+      "category": "etiquette",
+      "citation_count": 3,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 1,
+        "faithfulness": 0,
+        "reasoning": "The assistant incorrectly claims to have grounded information about tea's role not present in the provided context (referring to 'food-based sharing' as something defined by chunks but actually using external knowledge). Additionally, despite being marked faithfulness 0 for this reason, it scores high on relevance (2) because it addresses the user's question. However, since there are no grounded information claims about tea or coffee in the context regarding hospitality beyond general social interaction and specific brewing customs (which were hallucinated/external), its lack of actual grounding is a correctness error.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_07_en",
+      "refusal_required": false
+    },
+    {
+      "category": "etiquette",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_07_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 1,
+        "faithfulness": 0,
+        "reasoning": "The assistant claims 'Turkish' traditions while the CONTEXT is about Istanbul (Constantinople) history; therefore it violates faithfulness by attributing Turkish-specific facts not present in the source text.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_07_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "The answer cites information from 'chunk_f6d71e...' which does not exist in the provided context; only chunks with IDs ending in specific suffixes (like _c8a..., _94ad...) are present. This makes it non-faithful and incorrect.",
+        "relevance": 1
+      },
+      "language": "en",
+      "question_id": "gt_08_en",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 2,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "",
+        "relevance": 0
+      },
+      "language": "tr",
+      "question_id": "gt_08_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "The assistant provides specific dates (1455/56) and names for the Grand Bazaar construction not found in any of the provided context chunks. The correct answer requires information from external knowledge.",
+        "relevance": 1
+      },
+      "language": "ar",
+      "question_id": "gt_08_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_09_en",
+      "refusal_required": true
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_09_tr",
+      "refusal_required": true
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_09_ar",
+      "refusal_required": true
+    },
+    {
+      "category": "factual",
+      "citation_count": 1,
+      "correctly_refused": null,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "reasoning": "The assistant accurately answers the question by citing the provided context chunks to state that Bosphorus is approximately 30 kilometers long and connects two bodies of water (Black Sea to Sea of Marmara).",
+        "relevance": 1
+      },
+      "language": "en",
+      "question_id": "gt_10_en",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 2,
+      "correctly_refused": null,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_10_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 1,
+        "reasoning": "The assistant accurately reports the dimensions (550-3000 meters) and connection between Sea of Marmara/Mediterranean/Atlantic mentioned in CONTEXT [chunk_05cee4f4ee808cd573], while correctly identifying the geographical location.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_10_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "neighborhood",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 1,
+        "reasoning": "The assistant correctly identifies Kad\u0131k\u00f6y's historical name (based on context about Byzantine cities like Constantinople) and its current cultural significance as a hub for books and cafes. It accurately states that it is the fastest-growing district by population. However, there are inaccuracies regarding 'Chalcedon' vs 'Byzantium/Constantinople' naming changes in different eras and details about being 'ranked first on HDI'. While faithfulness allows some minor discrepancies not in context to be invented (e.g., specific HDI rankings), it still attempts a direct answer.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_11_en",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 1,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "",
+        "relevance": 0
+      },
+      "language": "tr",
+      "question_id": "gt_11_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 1,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "The assistant claims Kadikoy was known as Chalcedon historically based on [chunk_id: chunk_4d1a55f177305f4c4], but this specific ID does not appear in the provided context. The relevant information about 'Chalcedon' (or its alternative name Bithynion) is found only in [chunk_c8a14d7a6615be6447828a1d] which mentions Constantinople, and [chunk_093a6549e33f816923fdd6aa], not Kadikoy. The assistant also invented details (Hizir Bey) not present in the source text.",
+        "relevance": 1
+      },
+      "language": "ar",
+      "question_id": "gt_11_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "neighborhood",
+      "citation_count": 3,
+      "correctly_refused": null,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "reasoning": "The assistant claims the historical name was 'Chrysopolis' and cultural character is a conservative center with mosques/dergahs. These specific facts (specific names like Chrysopolis/Skoutarion not present in context; general description as dergah/mosque hub) are not supported by any of the provided chunks, which discuss geography, other landmarks, construction details for Hagia Sophia, and events after 1453 without mentioning these specific cultural attributes.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_12_en",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_12_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 2,
+      "correctly_refused": null,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "reasoning": "The assistant correctly identifies the faithfulness (claims are supported by context) and relevance (addresses the question about Uskudar's historical names). However, it is incorrect on correctness because the CONTEXT explicitly states '\u0645\u0645\u0631 \u0627\u0644\u0628\u0642\u0631\u0629' (Mudhjar al-Baqara), not Chrysopolis.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_12_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "factual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "The assistant's answer introduces 'Istanbulkart' with a definition about unified payment approaches and contactless smart cards, but the provided context contains no information regarding Istanbulkart; thus there are no claims supported by the CONTEXT.",
+        "relevance": 1
+      },
+      "language": "en",
+      "question_id": "gt_13_en",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 0,
+      "correctly_refused": null,
+      "failure_categories": [
+        "generation_hallucination_risk_uncited_claim",
+        "generation_hallucination"
+      ],
+      "has_uncited_factual_claim": true,
+      "judge_score": {
+        "correctness": 0,
+        "faithfulness": 0,
+        "reasoning": "The assistant's answer contains specific claims about 'Istanbulkart' (network unified payment approach) and transport types (metro, tram, ferry, bus) that are not present in any of the provided CONTEXT chunks; these details appear to be hallucinated as they do not exist in the source text.",
+        "relevance": 1
+      },
+      "language": "tr",
+      "question_id": "gt_13_tr",
+      "refusal_required": false
+    },
+    {
+      "category": "cross_lingual",
+      "citation_count": 1,
+      "correctly_refused": null,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_13_ar",
+      "refusal_required": false
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_14_en",
+      "refusal_required": true
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_14_tr",
+      "refusal_required": true
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_14_ar",
+      "refusal_required": true
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_15_en",
+      "refusal_required": true
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_15_tr",
+      "refusal_required": true
+    },
+    {
+      "category": "dynamic",
+      "citation_count": 0,
+      "correctly_refused": true,
+      "failure_categories": [],
+      "has_uncited_factual_claim": false,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_15_ar",
+      "refusal_required": true
+    }
+  ],
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,760 @@
+{
+  "language_counts": {
+    "ar": 15,
+    "en": 15,
+    "tr": 15
+  },
+  "question_count": 45,
+  "questions": [
+    {
+      "category": "factual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "built between 532 and 537 AD",
+        "commissioned by Emperor Justinian I"
+      ],
+      "expected_section": "Construction History",
+      "expected_source_ids": [
+        "wiki_en_hagia_sophia"
+      ],
+      "language": "en",
+      "poi_id": "poi_hagia_sophia",
+      "question": "When was Hagia Sophia originally constructed and who commissioned it?",
+      "question_id": "gt_01_en",
+      "refusal_required": false,
+      "slot": 1
+    },
+    {
+      "category": "factual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "532-537 yılları arasında inşa edildi",
+        "İmparator I. Justinianus tarafından yaptırıldı"
+      ],
+      "expected_section": "İnşa Tarihi",
+      "expected_source_ids": [
+        "wiki_tr_hagia_sophia"
+      ],
+      "language": "tr",
+      "poi_id": "poi_hagia_sophia",
+      "question": "Ayasofya ilk olarak ne zaman inşa edildi ve kim tarafından yaptırıldı?",
+      "question_id": "gt_01_tr",
+      "refusal_required": false,
+      "slot": 1
+    },
+    {
+      "category": "factual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "بُنيت بين 532 و537 ميلادية",
+        "أمر ببنائها الإمبراطور جستنيان الأول"
+      ],
+      "expected_section": "تاريخ البناء",
+      "expected_source_ids": [
+        "wiki_ar_hagia_sophia"
+      ],
+      "language": "ar",
+      "poi_id": "poi_hagia_sophia",
+      "question": "متى بُنيت آيا صوفيا أصلاً ومن الذي أمر ببنائها؟",
+      "question_id": "gt_01_ar",
+      "refusal_required": false,
+      "slot": 1
+    },
+    {
+      "category": "factual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "Sultan Mehmed II ordered construction",
+        "began in 1459"
+      ],
+      "expected_section": "Construction and Development",
+      "expected_source_ids": [
+        "wiki_en_topkapi"
+      ],
+      "language": "en",
+      "poi_id": "poi_topkapi_palace",
+      "question": "Who ordered the construction of Topkapı Palace and when did construction begin?",
+      "question_id": "gt_02_en",
+      "refusal_required": false,
+      "slot": 2
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "Sultan II. Mehmed inşaatı emretti",
+        "inşaat 1459'da başladı"
+      ],
+      "expected_section": "Construction and Development / البناء والتاريخ",
+      "expected_source_ids": [
+        "wiki_en_topkapi",
+        "wiki_ar_topkapi"
+      ],
+      "language": "tr",
+      "poi_id": "poi_topkapi_palace",
+      "question": "Topkapı Sarayı'nın inşasını kim emretti ve inşaat ne zaman başladı?",
+      "question_id": "gt_02_tr",
+      "refusal_required": false,
+      "slot": 2
+    },
+    {
+      "category": "factual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "أمر به السلطان محمد الثاني الفاتح",
+        "بدأ البناء سنة 1459"
+      ],
+      "expected_section": "البناء والتاريخ",
+      "expected_source_ids": [
+        "wiki_ar_topkapi"
+      ],
+      "language": "ar",
+      "poi_id": "poi_topkapi_palace",
+      "question": "من أمر ببناء قصر توب قابي ومتى بدأ البناء؟",
+      "question_id": "gt_02_ar",
+      "refusal_required": false,
+      "slot": 2
+    },
+    {
+      "category": "alias",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "reclassified as a mosque in 2020"
+      ],
+      "expected_section": "Modern Period: Museum and Mosque",
+      "expected_source_ids": [
+        "wiki_en_hagia_sophia"
+      ],
+      "language": "en",
+      "poi_id": "poi_hagia_sophia",
+      "question": "When did Ayasofya (Hagia Sophia) become a mosque again?",
+      "question_id": "gt_03_en",
+      "refusal_required": false,
+      "slot": 3
+    },
+    {
+      "category": "alias",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "2020 yılında yeniden cami statüsüne dönüştürüldü"
+      ],
+      "expected_section": "Dini ve Siyasi Dönüşümler",
+      "expected_source_ids": [
+        "wiki_tr_hagia_sophia"
+      ],
+      "language": "tr",
+      "poi_id": "poi_hagia_sophia",
+      "question": "Aya Sofya günümüzde ne zaman yeniden camiye dönüştürüldü?",
+      "question_id": "gt_03_tr",
+      "refusal_required": false,
+      "slot": 3
+    },
+    {
+      "category": "alias",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "أُعيد تصنيفها كمسجد سنة 2020"
+      ],
+      "expected_section": "التحولات الدينية",
+      "expected_source_ids": [
+        "wiki_ar_hagia_sophia"
+      ],
+      "language": "ar",
+      "poi_id": "poi_hagia_sophia",
+      "question": "متى تحولت آيا صوفيا مرة أخرى إلى مسجد؟",
+      "question_id": "gt_03_ar",
+      "refusal_required": false,
+      "slot": 3
+    },
+    {
+      "category": "neighborhood",
+      "district_id": "district_beyoglu",
+      "expected_facts": [
+        "historically known as Pera",
+        "today a center for cultural activities, leisure and entertainment"
+      ],
+      "expected_section": "Etymology and Historical Names",
+      "expected_source_ids": [
+        "wiki_en_beyoglu"
+      ],
+      "language": "en",
+      "poi_id": null,
+      "question": "What was the Beyoğlu district of Istanbul historically known as, and what is it culturally known for today?",
+      "question_id": "gt_04_en",
+      "refusal_required": false,
+      "slot": 4
+    },
+    {
+      "category": "neighborhood",
+      "district_id": "district_beyoglu",
+      "expected_facts": [
+        "tarihte Pera olarak bilinirdi",
+        "günümüzde kültürel etkinliklerin merkezi"
+      ],
+      "expected_section": "Etimoloji",
+      "expected_source_ids": [
+        "wiki_tr_beyoglu"
+      ],
+      "language": "tr",
+      "poi_id": null,
+      "question": "Beyoğlu ilçesi tarihte hangi isimle bilinirdi ve bugün kültürel olarak neyle tanınır?",
+      "question_id": "gt_04_tr",
+      "refusal_required": false,
+      "slot": 4
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_beyoglu",
+      "expected_facts": [
+        "كانت تُعرف تاريخياً باسم پيرا (Pera)"
+      ],
+      "expected_section": "Etymology and Historical Names / Etimoloji",
+      "expected_source_ids": [
+        "wiki_en_beyoglu",
+        "wiki_tr_beyoglu"
+      ],
+      "language": "ar",
+      "poi_id": null,
+      "question": "بأي اسم كانت تُعرف منطقة بي أوغلو (Beyoğlu) تاريخياً؟",
+      "question_id": "gt_04_ar",
+      "refusal_required": false,
+      "slot": 4
+    },
+    {
+      "category": "factual",
+      "district_id": "district_beyoglu",
+      "expected_facts": [
+        "built in 1348",
+        "built by the Genoese"
+      ],
+      "expected_section": "Construction and Early History",
+      "expected_source_ids": [
+        "wiki_en_galata_tower"
+      ],
+      "language": "en",
+      "poi_id": "poi_galata_tower",
+      "question": "When was Galata Tower built and by whom?",
+      "question_id": "gt_05_en",
+      "refusal_required": false,
+      "slot": 5
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_beyoglu",
+      "expected_facts": [
+        "1348 yılında inşa edildi",
+        "Cenevizliler tarafından inşa edildi"
+      ],
+      "expected_section": "Construction and Early History",
+      "expected_source_ids": [
+        "wiki_en_galata_tower"
+      ],
+      "language": "tr",
+      "poi_id": "poi_galata_tower",
+      "question": "Galata Kulesi ne zaman ve kimin tarafından inşa edildi?",
+      "question_id": "gt_05_tr",
+      "refusal_required": false,
+      "slot": 5
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_beyoglu",
+      "expected_facts": [
+        "بُني سنة 1348",
+        "بناه الجنويون"
+      ],
+      "expected_section": "Construction and Early History",
+      "expected_source_ids": [
+        "wiki_en_galata_tower"
+      ],
+      "language": "ar",
+      "poi_id": "poi_galata_tower",
+      "question": "متى بُني برج غالطة ومن الذي بناه؟",
+      "question_id": "gt_05_ar",
+      "refusal_required": false,
+      "slot": 5
+    },
+    {
+      "category": "accessibility",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "en",
+      "poi_id": "poi_topkapi_palace",
+      "question": "What wheelchair accessibility features does Topkapı Palace currently have?",
+      "question_id": "gt_06_en",
+      "refusal_required": true,
+      "slot": 6
+    },
+    {
+      "category": "accessibility",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "tr",
+      "poi_id": "poi_topkapi_palace",
+      "question": "Topkapı Sarayı'nda şu anda hangi tekerlekli sandalye erişilebilirlik özellikleri var?",
+      "question_id": "gt_06_tr",
+      "refusal_required": true,
+      "slot": 6
+    },
+    {
+      "category": "accessibility",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "ar",
+      "poi_id": "poi_topkapi_palace",
+      "question": "ما ميزات إمكانية الوصول للكراسي المتحركة المتوفرة حالياً في قصر توب قابي؟",
+      "question_id": "gt_06_ar",
+      "refusal_required": true,
+      "slot": 6
+    },
+    {
+      "category": "etiquette",
+      "district_id": null,
+      "expected_facts": [
+        "tea/coffee sharing is a key aspect of hospitality",
+        "guests offered refreshment as a sign of respect"
+      ],
+      "expected_section": "Hospitality and Food Culture",
+      "expected_source_ids": [
+        "wiki_en_culture"
+      ],
+      "language": "en",
+      "poi_id": null,
+      "question": "What role does tea or coffee play in Turkish hospitality customs?",
+      "question_id": "gt_07_en",
+      "refusal_required": false,
+      "slot": 7
+    },
+    {
+      "category": "etiquette",
+      "district_id": null,
+      "expected_facts": [
+        "kahve misafirperverliğin temel taşlarından biridir",
+        "önemli ziyaretlere eşlik eder"
+      ],
+      "expected_section": "Misafirperverlik ve Görgü Kuralları",
+      "expected_source_ids": [
+        "wiki_tr_coffee",
+        "wiki_en_culture"
+      ],
+      "language": "tr",
+      "poi_id": null,
+      "question": "Çay veya kahvenin Türk misafirperverlik geleneklerindeki rolü nedir?",
+      "question_id": "gt_07_tr",
+      "refusal_required": false,
+      "slot": 7
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": null,
+      "expected_facts": [
+        "مشاركة الشاي والقهوة جانب أساسي من الضيافة"
+      ],
+      "expected_section": "Hospitality and Food Culture / Misafirperverlik ve Görgü Kuralları",
+      "expected_source_ids": [
+        "wiki_en_culture",
+        "wiki_tr_coffee"
+      ],
+      "language": "ar",
+      "poi_id": null,
+      "question": "ما هو دور الشاي أو القهوة في تقاليد الضيافة التركية؟",
+      "question_id": "gt_07_ar",
+      "refusal_required": false,
+      "slot": 7
+    },
+    {
+      "category": "factual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "construction began in winter 1455/56",
+        "commissioned by Sultan Mehmed II"
+      ],
+      "expected_section": "Founding and Early Development",
+      "expected_source_ids": [
+        "wiki_en_grand_bazaar"
+      ],
+      "language": "en",
+      "poi_id": "poi_grand_bazaar",
+      "question": "When did construction of the Grand Bazaar begin and who commissioned it?",
+      "question_id": "gt_08_en",
+      "refusal_required": false,
+      "slot": 8
+    },
+    {
+      "category": "factual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "1455/56 kışında başlamıştır",
+        "Fatih Sultan Mehmed tarafından yaptırılmıştır"
+      ],
+      "expected_section": "Tarihsel Gelişim",
+      "expected_source_ids": [
+        "wiki_tr_grand_bazaar"
+      ],
+      "language": "tr",
+      "poi_id": "poi_grand_bazaar",
+      "question": "Kapalıçarşı'nın inşasına ne zaman başlandı ve kim tarafından yaptırıldı?",
+      "question_id": "gt_08_tr",
+      "refusal_required": false,
+      "slot": 8
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_fatih",
+      "expected_facts": [
+        "بدأ البناء في شتاء 1455/56",
+        "أمر به السلطان محمد الثاني"
+      ],
+      "expected_section": "Founding and Early Development / Tarihsel Gelişim",
+      "expected_source_ids": [
+        "wiki_en_grand_bazaar",
+        "wiki_tr_grand_bazaar"
+      ],
+      "language": "ar",
+      "poi_id": "poi_grand_bazaar",
+      "question": "متى بدأ بناء البازار الكبير ومن أمر به؟",
+      "question_id": "gt_08_ar",
+      "refusal_required": false,
+      "slot": 8
+    },
+    {
+      "category": "dynamic",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "en",
+      "poi_id": "poi_hagia_sophia",
+      "question": "What is the current ticket price for Hagia Sophia?",
+      "question_id": "gt_09_en",
+      "refusal_required": true,
+      "slot": 9
+    },
+    {
+      "category": "dynamic",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "tr",
+      "poi_id": "poi_hagia_sophia",
+      "question": "Ayasofya'nın güncel giriş ücreti nedir?",
+      "question_id": "gt_09_tr",
+      "refusal_required": true,
+      "slot": 9
+    },
+    {
+      "category": "dynamic",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "ar",
+      "poi_id": "poi_hagia_sophia",
+      "question": "ما هو سعر تذكرة الدخول الحالي لآيا صوفيا؟",
+      "question_id": "gt_09_ar",
+      "refusal_required": true,
+      "slot": 9
+    },
+    {
+      "category": "factual",
+      "district_id": null,
+      "expected_facts": [
+        "approximately 31 kilometers long",
+        "connects the Black Sea and the Sea of Marmara"
+      ],
+      "expected_section": "Geographic Overview",
+      "expected_source_ids": [
+        "wiki_en_bosphorus"
+      ],
+      "language": "en",
+      "poi_id": null,
+      "question": "How long is the Bosphorus strait and what two bodies of water does it connect?",
+      "question_id": "gt_10_en",
+      "refusal_required": false,
+      "slot": 10
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": null,
+      "expected_facts": [
+        "yaklaşık 31 kilometre uzunluğundadır",
+        "Karadeniz ile Marmara Denizi'ni birbirine bağlar"
+      ],
+      "expected_section": "Geographic Overview / الموقع والجغرافيا",
+      "expected_source_ids": [
+        "wiki_en_bosphorus",
+        "wiki_ar_bosphorus"
+      ],
+      "language": "tr",
+      "poi_id": null,
+      "question": "İstanbul Boğazı ne kadar uzundur ve hangi iki denizi birbirine bağlar?",
+      "question_id": "gt_10_tr",
+      "refusal_required": false,
+      "slot": 10
+    },
+    {
+      "category": "factual",
+      "district_id": null,
+      "expected_facts": [
+        "يبلغ طوله نحو 30 كيلومتراً",
+        "يربط البحر الأسود وبحر مرمرة"
+      ],
+      "expected_section": "الموقع والجغرافيا",
+      "expected_source_ids": [
+        "wiki_ar_bosphorus"
+      ],
+      "language": "ar",
+      "poi_id": null,
+      "question": "كم يبلغ طول مضيق البوسفور وماذا يربط؟",
+      "question_id": "gt_10_ar",
+      "refusal_required": false,
+      "slot": 10
+    },
+    {
+      "category": "neighborhood",
+      "district_id": "district_kadikoy",
+      "expected_facts": [
+        "historically known as Chalcedon",
+        "the liberal cultural centre of the Anatolian side"
+      ],
+      "expected_section": "Etymology and Historical Names",
+      "expected_source_ids": [
+        "wiki_en_kadikoy"
+      ],
+      "language": "en",
+      "poi_id": null,
+      "question": "What was Kadıköy historically called and what is it known for culturally today?",
+      "question_id": "gt_11_en",
+      "refusal_required": false,
+      "slot": 11
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_kadikoy",
+      "expected_facts": [
+        "tarihte Chalcedon olarak biliniyordu",
+        "Anadolu yakasının liberal kültür merkezi"
+      ],
+      "expected_section": "Etymology and Historical Names",
+      "expected_source_ids": [
+        "wiki_en_kadikoy"
+      ],
+      "language": "tr",
+      "poi_id": null,
+      "question": "Kadıköy tarihte hangi isimle biliniyordu ve bugün kültürel olarak neyle tanınıyor?",
+      "question_id": "gt_11_tr",
+      "refusal_required": false,
+      "slot": 11
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_kadikoy",
+      "expected_facts": [
+        "كانت تُعرف تاريخياً باسم خلقيدونية (Chalcedon)"
+      ],
+      "expected_section": "Etymology and Historical Names",
+      "expected_source_ids": [
+        "wiki_en_kadikoy"
+      ],
+      "language": "ar",
+      "poi_id": null,
+      "question": "بأي اسم كانت تُعرف كاديكوي (Kadıköy) تاريخياً؟",
+      "question_id": "gt_11_ar",
+      "refusal_required": false,
+      "slot": 11
+    },
+    {
+      "category": "neighborhood",
+      "district_id": "district_uskudar",
+      "expected_facts": [
+        "historically called Chrysopolis",
+        "a conservative cultural center of the Anatolian side"
+      ],
+      "expected_section": "Etymology and Ancient Foundations",
+      "expected_source_ids": [
+        "wiki_en_uskudar"
+      ],
+      "language": "en",
+      "poi_id": null,
+      "question": "What was Üsküdar historically called and what is its cultural character?",
+      "question_id": "gt_12_en",
+      "refusal_required": false,
+      "slot": 12
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_uskudar",
+      "expected_facts": [
+        "tarihte Chrysopolis olarak biliniyordu",
+        "Anadolu yakasının muhafazakar kültür merkezi"
+      ],
+      "expected_section": "Etymology and Ancient Foundations",
+      "expected_source_ids": [
+        "wiki_en_uskudar"
+      ],
+      "language": "tr",
+      "poi_id": null,
+      "question": "Üsküdar tarihte hangi isimle biliniyordu ve kültürel karakteri nedir?",
+      "question_id": "gt_12_tr",
+      "refusal_required": false,
+      "slot": 12
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": "district_uskudar",
+      "expected_facts": [
+        "كانت تُعرف تاريخياً باسم خريسوبوليس (Chrysopolis)"
+      ],
+      "expected_section": "Etymology and Ancient Foundations",
+      "expected_source_ids": [
+        "wiki_en_uskudar"
+      ],
+      "language": "ar",
+      "poi_id": null,
+      "question": "بأي اسم كانت تُعرف أسكودار (Üsküdar) تاريخياً؟",
+      "question_id": "gt_12_ar",
+      "refusal_required": false,
+      "slot": 12
+    },
+    {
+      "category": "factual",
+      "district_id": null,
+      "expected_facts": [
+        "a contactless smart card",
+        "works across metro, tram, bus, ferry, and funicular"
+      ],
+      "expected_section": "Integrated Payment System",
+      "expected_source_ids": [
+        "wiki_en_transport"
+      ],
+      "language": "en",
+      "poi_id": null,
+      "question": "What is the Istanbulkart and what transit modes does it work across?",
+      "question_id": "gt_13_en",
+      "refusal_required": false,
+      "slot": 13
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": null,
+      "expected_facts": [
+        "temassız akıllı bir karttır",
+        "metro, tramvay, otobüs, vapur ve füniküler için geçerlidir"
+      ],
+      "expected_section": "Integrated Payment System",
+      "expected_source_ids": [
+        "wiki_en_transport"
+      ],
+      "language": "tr",
+      "poi_id": null,
+      "question": "İstanbulkart nedir ve hangi ulaşım türlerinde kullanılabilir?",
+      "question_id": "gt_13_tr",
+      "refusal_required": false,
+      "slot": 13
+    },
+    {
+      "category": "cross_lingual",
+      "district_id": null,
+      "expected_facts": [
+        "بطاقة ذكية بدون تلامس",
+        "تعمل عبر المترو والترام والحافلات والعبارات"
+      ],
+      "expected_section": "Integrated Payment System",
+      "expected_source_ids": [
+        "wiki_en_transport"
+      ],
+      "language": "ar",
+      "poi_id": null,
+      "question": "ما هي بطاقة إسطنبول كارت (Istanbulkart) وما وسائل النقل التي تعمل بها؟",
+      "question_id": "gt_13_ar",
+      "refusal_required": false,
+      "slot": 13
+    },
+    {
+      "category": "dynamic",
+      "district_id": null,
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "en",
+      "poi_id": null,
+      "question": "What is the weather in Istanbul today?",
+      "question_id": "gt_14_en",
+      "refusal_required": true,
+      "slot": 14
+    },
+    {
+      "category": "dynamic",
+      "district_id": null,
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "tr",
+      "poi_id": null,
+      "question": "İstanbul'da bugün hava durumu nasıl?",
+      "question_id": "gt_14_tr",
+      "refusal_required": true,
+      "slot": 14
+    },
+    {
+      "category": "dynamic",
+      "district_id": null,
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "ar",
+      "poi_id": null,
+      "question": "كيف هو الطقس في إسطنبول اليوم؟",
+      "question_id": "gt_14_ar",
+      "refusal_required": true,
+      "slot": 14
+    },
+    {
+      "category": "dynamic",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "en",
+      "poi_id": "poi_grand_bazaar",
+      "question": "What are today's opening hours for the Grand Bazaar?",
+      "question_id": "gt_15_en",
+      "refusal_required": true,
+      "slot": 15
+    },
+    {
+      "category": "dynamic",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "tr",
+      "poi_id": "poi_grand_bazaar",
+      "question": "Kapalıçarşı'nın bugünkü açılış saatleri nedir?",
+      "question_id": "gt_15_tr",
+      "refusal_required": true,
+      "slot": 15
+    },
+    {
+      "category": "dynamic",
+      "district_id": "district_fatih",
+      "expected_facts": [],
+      "expected_section": null,
+      "expected_source_ids": [],
+      "language": "ar",
+      "poi_id": "poi_grand_bazaar",
+      "question": "ما هي ساعات فتح البازار الكبير اليوم؟",
+      "question_id": "gt_15_ar",
+      "refusal_required": true,
+      "slot": 15
+    }
+  ],
+  "schema_version": "1.0.0"
+}

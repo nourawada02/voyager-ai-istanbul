@@ -1,0 +1,305 @@
+{
+  "generator_model": "qwen3.7-flash",
+  "judge_failed_question_ids": [],
+  "judge_model": "openai/gpt-oss-20b",
+  "provider_detection": "hosted provider configured: groq",
+  "provider_transport_failed_question_ids": [],
+  "reproducibility_command": "python -m rag.run_smoke_eval",
+  "rows": [
+    {
+      "answer_text": "Beyoğlu was historically known as Pera. The name Pera is derived from the Greek word meaning 'across' or 'beyond', referencing its location on the opposite side of the Golden Horn from Constantinople's historic peninsula. In 1925, the use of Pera was removed from official documents and the name Beyoğlu was adopted. Today, Beyoğlu is described as Istanbul's most characteristic district due to its cosmopolitan identity. Present-day Beyoğlu functions as one of the main centers for cultural activities, leisure, and entertainment in Istanbul. Istiklal Avenue and the surrounding streets, along with museums, theaters, galleries, and performance venues, form the commercial and cultural heart of the district.",
+      "category": "neighborhood",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_899c66969fab67218b1a18b1",
+            "chunk_dd9f8069987c303132ef98f0"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_beyoglu",
+          "title": "Beyoğlu",
+          "url": "https://en.wikipedia.org/wiki/Beyo%C4%9Flu"
+        },
+        {
+          "chunk_ids": [
+            "chunk_4c2f14fb7ceb1c52b3194446",
+            "chunk_fd946df2a1cbeb01137c9bbc"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_beyoglu",
+          "title": "Beyoğlu",
+          "url": "https://tr.wikipedia.org/wiki/Beyo%C4%9Flu"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 6,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully supported by context, factually correct, and directly addresses both parts of the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_04_en",
+      "reason_in_smoke_set": "Beyoglu, English -- previously a false refusal",
+      "refusal_required": false,
+      "refused": false,
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Günümüz Beyoğlu'su, kozmopolit kimliğiyle 'İstanbul'un en karakteristik İstanbul ilçesi' olarak tanımlanır.",
+      "category": "neighborhood",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_fd946df2a1cbeb01137c9bbc"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_beyoglu",
+          "title": "Beyoğlu",
+          "url": "https://tr.wikipedia.org/wiki/Beyo%C4%9Flu"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": "structured_generation_failed_after_retries_used_relevant_extractive_fallback",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 1,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer accurately repeats the cultural description from the context but omits the historical name, so it is fully faithful and correct but only partially relevant.",
+        "relevance": 1
+      },
+      "language": "tr",
+      "question_id": "gt_04_tr",
+      "reason_in_smoke_set": "Beyoglu, Turkish -- previously a false refusal",
+      "refusal_required": false,
+      "refused": false,
+      "used_fallback": true
+    },
+    {
+      "answer_text": "Kahve, Türk geleneğinde misafirperverliğin temel taşlarından biridir. Türk kahvesi ve çay, yemek amaçlarının ötesine geçerek ritüel, sohbet ve sosyal bağ kurma ile ilişkilendirilir ve sosyal etkileşim için odak noktaları olarak hizmet eder. Çay veya kahve paylaşımı gibi gelenekler, misafirperverliğin ana unsurlarını oluşturur. Misafirlere saygı ve cömertlik belirtisi olarak geleneksel olarak yiyecek veya içecek sunulur.",
+      "category": "etiquette",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_be1ced6c849bea109eafd182",
+            "chunk_d7cd3a8e9cca49ac9163826f"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_culture",
+          "title": "Culture of Turkey (etiquette and hospitality)",
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Turkey"
+        },
+        {
+          "chunk_ids": [
+            "chunk_00d7d2d8e7a4140c85a2387b"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_coffee",
+          "title": "Türk kahvesi",
+          "url": "https://tr.wikipedia.org/wiki/T%C3%BCrk_kahvesi"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 4,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully supported by context, correct, and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_07_tr",
+      "reason_in_smoke_set": "hospitality, Turkish -- previously a false refusal",
+      "refusal_required": false,
+      "refused": false,
+      "used_fallback": false
+    },
+    {
+      "answer_text": "يُعتبر الشاي والقهوة في الثقافة التركية نقاطًا محورية للتفاعل الاجتماعي وبناء العلاقات، حيث تتجاوز أغراضها الغذائية لتترافق مع الطقوس والمحادثات. تولي المجتمع التركي أهمية كبيرة للضيافة من خلال مشاركة الطعام والمشروبات، وتُعد عادات مثل مشاركة الشاي أو القهوة جوانب رئيسية للضيافة. يتم تقديم الطعام أو الشراب للضيوف تقليديًا كعلامة على الاحترام والكرم. يُعد القهوة حجر الزاوية في الضيافة في التقاليد التركية، وترافق الأحداث الاجتماعية المهمة والزيارات الرسمية. يُقدم القهوة مع اللوكم والماء كتعبير عن احترام الضيف وانعكاس لمبادئ الكرم المركزية في العادات الاجتماعية التركية.",
+      "category": "cross_lingual",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_be1ced6c849bea109eafd182",
+            "chunk_d7cd3a8e9cca49ac9163826f"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_culture",
+          "title": "Culture of Turkey (etiquette and hospitality)",
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Turkey"
+        },
+        {
+          "chunk_ids": [
+            "chunk_00d7d2d8e7a4140c85a2387b"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_coffee",
+          "title": "Türk kahvesi",
+          "url": "https://tr.wikipedia.org/wiki/T%C3%BCrk_kahvesi"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 5,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer fully aligns with the context, accurately reflects the facts, and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_07_ar",
+      "reason_in_smoke_set": "hospitality, Arabic -- previously a false refusal",
+      "refusal_required": false,
+      "refused": false,
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_09_en",
+      "reason_in_smoke_set": "current ticket price, English -- previously an unsafe answer",
+      "refusal_required": true,
+      "refused": true,
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_09_tr",
+      "reason_in_smoke_set": "current ticket price, Turkish -- previously an unsafe answer",
+      "refusal_required": true,
+      "refused": true,
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_09_ar",
+      "reason_in_smoke_set": "current ticket price, Arabic -- required example",
+      "refusal_required": true,
+      "refused": true,
+      "used_fallback": false
+    },
+    {
+      "answer_text": "İstanbulkart, tüm ulaşım modlarında yolcuların ödeme yapmasını sağlayan temasız bir akıllı karttır. İstanbulkart metro, tramvay, otobüs, vapur ve teleferik hizmetlerinde kullanılabilir.",
+      "category": "cross_lingual",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_10632e4cff5626bb06127305"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_transport",
+          "title": "Istanbul Metro (transit system overview)",
+          "url": "https://en.wikipedia.org/wiki/Istanbul_Metro"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully matches the context and addresses the question.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_13_tr",
+      "reason_in_smoke_set": "cross-lingual Istanbulkart, Turkish question over an English-only source",
+      "refusal_required": false,
+      "refused": false,
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_14_en",
+      "reason_in_smoke_set": "weather refusal, English -- regression control (previously correct)",
+      "refusal_required": true,
+      "refused": true,
+      "used_fallback": false
+    }
+  ],
+  "schema_version": "1.0.0",
+  "smoke_gate_passed": true
+}

@@ -1,0 +1,4 @@
+# Canonical test/dev dependency source for rag/ (Checkpoint Phase 3).
+pytest==9.1.1
+jsonschema==4.26.0
+referencing==0.37.0

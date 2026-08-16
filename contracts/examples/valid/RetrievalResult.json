@@ -1,0 +1,34 @@
+{
+  "chunk_config": "A",
+  "collection_fingerprint": "d21772d5408e49b8e7746db49108be81ed5781e6791873e07142034b104ab0dc",
+  "items": [
+    {
+      "chunk_id": "chunk_41d1a1fcde61c2e64982492f",
+      "dense_score": 0.9308807204435412,
+      "rank": 1,
+      "score": 0.9308807204435412,
+      "source_id": "wiki_en_culture"
+    },
+    {
+      "chunk_id": "chunk_0d1a6751e895800deedf5a52",
+      "dense_score": 0.9133876573909722,
+      "rank": 2,
+      "score": 0.9133876573909722,
+      "source_id": "wiki_en_beyoglu"
+    },
+    {
+      "chunk_id": "chunk_aefa63c4ab5a7ae21b345ee3",
+      "dense_score": 0.8783031994184761,
+      "rank": 3,
+      "score": 0.8783031994184761,
+      "source_id": "wiki_tr_istanbul"
+    }
+  ],
+  "latency_ms": 3.64469998748973,
+  "query": "Hagia Sophia history",
+  "query_language": "en",
+  "retrieval_mode": "dense",
+  "schema_version": "1.0.0",
+  "top_k": 3,
+  "zero_result": false
+}

@@ -26,3 +26,21 @@ ml/artifacts/*
 !ml/artifacts/.gitkeep
 ml/reports/*
 !ml/reports/.gitkeep
+
+# Phase 3: local Qdrant on-disk storage (if a persisted path is ever used
+# instead of embedded in-memory mode), embedding-model download caches,
+# and any downloaded model weights -- never committed. The pinned E5
+# revision/model name is recorded as text (rag/embeddings.py), never the
+# weights themselves; corpus manifests/documents/ground-truth JSON stay
+# tracked as small evaluation/reproducibility artifacts.
+rag/qdrant_storage/
+rag/.model_cache/
+*.safetensors
+*.onnx
+
+# Phase 3: resumability checkpoint for the live 45-case generation eval
+# run (rag/run_generation_eval.py) -- a scratch JSONL of already-computed
+# per-question rows so an interrupted long-running Ollama-backed run can
+# resume without redoing completed questions. Not evaluation output; the
+# committed artifact is the final rag_generation_eval_report_remediated.json.
+rag/_gen_eval_checkpoint.jsonl

@@ -1,0 +1,5132 @@
+[
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 36.31359999417327,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_01_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 33.5209000040777,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_01_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 35.517800017260015,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_01_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 33.12310000183061,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_02_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 34.211099991807714,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_02_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.279199989512563,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_02_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 33.565200021257624,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_03_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 30.89449999970384,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_03_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 30.673999979626387,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_03_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_tr_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 34.47879999293946,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_04_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 38.36570002022199,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_04_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 39.24310000729747,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_04_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_ar_istanbul",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 47.87609999766573,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_05_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 37.80750001897104,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_05_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_tr_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 38.5946000169497,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_05_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_galata_tower"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 36.2205000128597,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 40.79880000790581,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 42.95589998946525,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 38.0324000143446,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_07_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "A",
+    "failure_category": "retrieval_ranking_failure",
+    "language": "tr",
+    "latency_ms": 42.173199995886534,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 39.76200000033714,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 37.79090000898577,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_08_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 41.8329999956768,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_08_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "ar",
+    "latency_ms": 36.157599999569356,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_08_ar",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 28.59770000213757,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.68080001301132,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.93000001576729,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 35.71080000256188,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_10_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 32.3052000021562,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_10_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.5,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_en_bosphorus",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 30.778500018641353,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_10_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.870199996978045,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_11_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 34.033000003546476,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_11_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 33.981499989749864,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_11_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.593099993187934,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_12_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_en_kadikoy"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 32.47629999532364,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_12_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_tr_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 34.46049999911338,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_12_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.47089999401942,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_13_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 30.741399998078123,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_13_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_tr_istanbul",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 35.51869999500923,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_13_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_ar_istanbul",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.34150001662783,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_istanbul",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 33.33659999771044,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.59699998307042,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.765199993969873,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.25260001211427,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "A",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.489100016187876,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_en_grand_bazaar",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.08700000261888,
+    "mode": "dense",
+    "precision_at_k": 0.8,
+    "question_id": "gt_01_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 35.39259999524802,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_01_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.994400022085756,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_01_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 28.642899997066706,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_02_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_istanbul",
+      "wiki_en_topkapi",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.224299978930503,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_02_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_en_topkapi",
+      "wiki_tr_hagia_sophia",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.09729999070987,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_02_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.329099991125986,
+    "mode": "dense",
+    "precision_at_k": 0.8,
+    "question_id": "gt_03_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.81460001319647,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_03_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_beyoglu",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.730999984778464,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_03_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 35.11080000316724,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_04_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_en_uskudar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 35.90819999226369,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_04_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_en_beyoglu",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.84010000061244,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_04_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_ar_istanbul",
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.653700010385364,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_05_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_en_beyoglu",
+      "wiki_en_hagia_sophia",
+      "wiki_en_galata_tower"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.194300012430176,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_05_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_beyoglu",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.244999980321154,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_05_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_galata_tower",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 34.7215999790933,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_beyoglu",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 32.55849998095073,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_topkapi",
+      "wiki_tr_coffee",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 36.504699994111434,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 35.48019999288954,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_07_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 35.784600011538714,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_en_culture",
+      "wiki_en_culture"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 35.71660001762211,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 35.06270001525991,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_08_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_hagia_sophia",
+      "wiki_en_grand_bazaar",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 34.827499999664724,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_08_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "ar",
+    "latency_ms": 30.712700012372807,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_08_ar",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.965300014941022,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 33.64480001619086,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar",
+      "wiki_ar_hagia_sophia",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 35.00100001110695,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.36689998791553,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_10_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_bosphorus",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 29.856599983759224,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_10_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.5,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_bosphorus",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 25.288799981353804,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_10_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 28.16380001604557,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_11_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_uskudar",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 32.843399996636435,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_11_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.25,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_en_kadikoy",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.40090000326745,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_11_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_kadikoy",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 27.251499996054918,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_12_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_en_kadikoy",
+      "wiki_en_uskudar",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.08249999745749,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_12_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.781300000147894,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_12_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.9966000020504,
+    "mode": "dense",
+    "precision_at_k": 0.8,
+    "question_id": "gt_13_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 27.4529000162147,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_13_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_tr_istanbul",
+      "wiki_en_transport",
+      "wiki_tr_beyoglu",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.776499992702156,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_13_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_ar_istanbul",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 27.592700003879145,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_istanbul",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.1179999767337,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 29.288899997482076,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.664099991554394,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_topkapi",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 30.567899986635894,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 28.990200022235513,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_en_grand_bazaar",
+      "wiki_ar_bosphorus",
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 34.535599988885224,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_01_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.38770000077784,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_01_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 29.261299991048872,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_01_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.421099993167445,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_02_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 34.135299996705726,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_02_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 29.886099975556135,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_02_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.597700020531192,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_03_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 28.110900020692497,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_03_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 28.543699998408556,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_03_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_tr_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 33.126599999377504,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_04_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.750200017588213,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_04_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 35.748700000112876,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_04_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_ar_istanbul",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.602299975929782,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_05_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 32.19559998251498,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_05_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_tr_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.84890000941232,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_05_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_galata_tower"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.5029999979306,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.92239999771118,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.32090000528842,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.3179999939166,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_07_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "C",
+    "failure_category": "retrieval_ranking_failure",
+    "language": "tr",
+    "latency_ms": 31.121799984248355,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 29.48089997516945,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.439099984709173,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_08_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.007699988549575,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_08_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "ar",
+    "latency_ms": 31.3062000204809,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_08_ar",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.208900007186458,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.04550001444295,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.29610000178218,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.60860001319088,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_10_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 33.205200015800074,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_10_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.5,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_en_bosphorus",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.948599993484095,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_10_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.47360001457855,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_11_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 30.327899992698804,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_11_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.565000001341105,
+    "mode": "dense",
+    "precision_at_k": 0.3333333333333333,
+    "question_id": "gt_11_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 33.231700013857335,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_12_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_en_kadikoy"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 33.64989999681711,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_12_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_tr_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 33.73580001061782,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_12_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.520199991064146,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_13_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.174800001783296,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_13_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_tr_istanbul",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 33.00230001332238,
+    "mode": "dense",
+    "precision_at_k": 0.6666666666666666,
+    "question_id": "gt_13_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_ar_istanbul",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.746600008569658,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_istanbul",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.94350000517443,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 30.828599992673844,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.493599992245436,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.578000023728237,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "C",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 30.80119998776354,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_en_grand_bazaar",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.580700007500127,
+    "mode": "dense",
+    "precision_at_k": 0.8,
+    "question_id": "gt_01_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 28.473100013798103,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_01_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 28.139800007920712,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_01_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 27.92550000594929,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_02_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_istanbul",
+      "wiki_en_topkapi",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.687899987446144,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_02_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_en_topkapi",
+      "wiki_tr_hagia_sophia",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 27.720299985958263,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_02_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.094100016867742,
+    "mode": "dense",
+    "precision_at_k": 0.8,
+    "question_id": "gt_03_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 32.45580001384951,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_03_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_beyoglu",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 33.596099994610995,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_03_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 36.24760001548566,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_04_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_en_uskudar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 44.05379999661818,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_04_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_en_beyoglu",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.53900000709109,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_04_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_ar_istanbul",
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.894000014290214,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_05_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_en_beyoglu",
+      "wiki_en_hagia_sophia",
+      "wiki_en_galata_tower"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 26.52390001458116,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_05_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_beyoglu",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 28.545399982249364,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_05_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_galata_tower",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.38309997646138,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_beyoglu",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 34.256800019647926,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_topkapi",
+      "wiki_tr_coffee",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 37.24599999259226,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 58.04060000809841,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_07_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 33.27799998805858,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_en_culture",
+      "wiki_en_culture"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 28.684399992926046,
+    "mode": "dense",
+    "precision_at_k": 1.0,
+    "question_id": "gt_07_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.285099994624034,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_08_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_hagia_sophia",
+      "wiki_en_grand_bazaar",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 32.45709999464452,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_08_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "ar",
+    "latency_ms": 26.910000015050173,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_08_ar",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.417699996381998,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.59499999997206,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_grand_bazaar",
+      "wiki_ar_hagia_sophia",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 29.612100013764575,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.5623000098858,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_10_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_bosphorus",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 32.504300004802644,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_10_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.5,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_bosphorus",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 27.718299999833107,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_10_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.255599984433502,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_11_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_uskudar",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 33.8249999913387,
+    "mode": "dense",
+    "precision_at_k": 0.2,
+    "question_id": "gt_11_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.25,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_en_kadikoy",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.68609999213368,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_11_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_kadikoy",
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_kadikoy",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.89749999344349,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_12_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_en_kadikoy",
+      "wiki_en_uskudar",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 33.664500020677224,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_12_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 33.4930999961216,
+    "mode": "dense",
+    "precision_at_k": 0.4,
+    "question_id": "gt_12_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_uskudar",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.741099995793775,
+    "mode": "dense",
+    "precision_at_k": 0.8,
+    "question_id": "gt_13_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 32.70460001658648,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_13_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_tr_istanbul",
+      "wiki_en_transport",
+      "wiki_tr_beyoglu",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 35.02710000611842,
+    "mode": "dense",
+    "precision_at_k": 0.6,
+    "question_id": "gt_13_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_ar_istanbul",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.09420001762919,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_istanbul",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.43509998335503,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.091100012417883,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 30.03930000704713,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_topkapi",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 30.122099997242913,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "D",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 28.308700013440102,
+    "mode": "dense",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_en_grand_bazaar",
+      "wiki_ar_bosphorus",
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.603500014171004,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.8,
+    "question_id": "gt_01_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 30.394400004297495,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_01_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.379899999592453,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.2,
+    "question_id": "gt_01_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 33.25149999000132,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.6,
+    "question_id": "gt_02_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_grand_bazaar",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 30.330400011735037,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_02_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_en_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 29.329400014830753,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.8,
+    "question_id": "gt_02_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_topkapi"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.176899988669902,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.6,
+    "question_id": "gt_03_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.27669999958016,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_03_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_istanbul",
+      "wiki_tr_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "alias",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 31.857800000580028,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_03_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_hagia_sophia"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 34.30649999063462,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_04_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_kadikoy",
+      "wiki_en_uskudar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.69000000343658,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.6,
+    "question_id": "gt_04_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "ar",
+    "latency_ms": 33.4335999796167,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.6,
+    "question_id": "gt_04_ar",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.5,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_tr_beyoglu"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      "wiki_tr_beyoglu",
+      ""
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 33.730900002410635,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.6,
+    "question_id": "gt_05_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_en_beyoglu",
+      "wiki_en_beyoglu",
+      "wiki_en_galata_tower",
+      "wiki_en_galata_tower"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.914399987319484,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.2,
+    "question_id": "gt_05_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_galata_tower",
+      "wiki_tr_istanbul",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 30.905500025255606,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.2,
+    "question_id": "gt_05_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.25,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_galata_tower"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi",
+      "wiki_en_galata_tower",
+      ""
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.09200000856072,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_en_topkapi",
+      "wiki_tr_istanbul",
+      ""
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 31.908799981465563,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_hagia_sophia",
+      "wiki_en_topkapi",
+      "wiki_tr_coffee"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "accessibility",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 34.601999999722466,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_06_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.063699999824166,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.8,
+    "question_id": "gt_07_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_en_culture",
+      "wiki_en_kadikoy"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "etiquette",
+    "chunk_config": "B",
+    "failure_category": "retrieval_ranking_failure",
+    "language": "tr",
+    "latency_ms": 30.194699997082353,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.8,
+    "question_id": "gt_07_tr",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_coffee",
+      "wiki_tr_beyoglu"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "ar",
+    "latency_ms": 30.758800014154986,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.2,
+    "question_id": "gt_07_ar",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.25,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_culture",
+      "wiki_tr_coffee"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi",
+      "wiki_ar_istanbul",
+      "wiki_en_culture",
+      ""
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 27.942500018980354,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.6,
+    "question_id": "gt_08_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_hagia_sophia",
+      "wiki_en_topkapi",
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 34.925100015243515,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_08_tr",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "ar",
+    "latency_ms": 30.469999997876585,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.2,
+    "question_id": "gt_08_ar",
+    "recall_at_k": 0.5,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_tr_grand_bazaar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_topkapi",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_grand_bazaar",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 29.794400004902855,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia",
+      "wiki_en_istanbul",
+      "wiki_en_hagia_sophia",
+      "wiki_en_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 34.46630001417361,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_hagia_sophia",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar",
+      "wiki_ar_hagia_sophia"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 34.38920000917278,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_09_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_ar_topkapi",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 36.755000008270144,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_10_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_bosphorus",
+      "wiki_en_transport",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus",
+      "wiki_en_kadikoy"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 33.15489998203702,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_10_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_en_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_istanbul",
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.09630001219921,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_10_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_ar_bosphorus"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul",
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.87260001525283,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_11_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.5,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_beyoglu",
+      "wiki_en_kadikoy",
+      "wiki_en_topkapi",
+      "wiki_en_kadikoy",
+      "wiki_en_uskudar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 32.824199995957315,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_11_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_coffee",
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 33.1268000009004,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.2,
+    "question_id": "gt_11_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_kadikoy"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_bosphorus",
+      "wiki_en_kadikoy",
+      "",
+      "wiki_ar_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "neighborhood",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.238800002029166,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_12_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_uskudar",
+      "wiki_en_beyoglu",
+      "wiki_en_uskudar",
+      "wiki_en_kadikoy",
+      "wiki_en_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 30.449700017925352,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_12_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_coffee",
+      "wiki_tr_istanbul",
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 29.864399984944612,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.4,
+    "question_id": "gt_12_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 0.3333333333333333,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_uskudar"
+    ],
+    "retrieved_source_ids": [
+      "wiki_ar_bosphorus",
+      "wiki_ar_istanbul",
+      "wiki_en_uskudar",
+      "",
+      "wiki_en_uskudar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "factual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.37269999226555,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.8,
+    "question_id": "gt_13_en",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_en_istanbul",
+      "wiki_en_transport"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": "cross_lingual_retrieval_miss",
+    "language": "tr",
+    "latency_ms": 32.03519998351112,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_13_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "cross_lingual",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 34.62829999625683,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.6,
+    "question_id": "gt_13_ar",
+    "recall_at_k": 1.0,
+    "reciprocal_rank": 1.0,
+    "refusal_required": false,
+    "relevant_source_ids": [
+      "wiki_en_transport"
+    ],
+    "retrieved_source_ids": [
+      "wiki_en_transport",
+      "wiki_ar_istanbul",
+      "wiki_en_transport",
+      "wiki_en_transport",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 32.19560001161881,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_istanbul",
+      "wiki_en_topkapi",
+      "wiki_en_bosphorus",
+      "wiki_en_istanbul",
+      "wiki_en_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.886200005421415,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_beyoglu",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul",
+      "wiki_tr_istanbul"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 32.82389999367297,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_14_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi",
+      "wiki_ar_hagia_sophia",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "en",
+    "latency_ms": 31.6467999946326,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_en",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_en_grand_bazaar",
+      "wiki_en_grand_bazaar",
+      "wiki_en_topkapi",
+      "wiki_en_grand_bazaar",
+      "wiki_en_topkapi"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "tr",
+    "latency_ms": 29.75789998890832,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_tr",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_grand_bazaar",
+      "wiki_tr_istanbul",
+      "",
+      "wiki_tr_grand_bazaar"
+    ],
+    "zero_result": false
+  },
+  {
+    "category": "dynamic",
+    "chunk_config": "B",
+    "failure_category": null,
+    "language": "ar",
+    "latency_ms": 27.673100004903972,
+    "mode": "hybrid_rrf",
+    "precision_at_k": 0.0,
+    "question_id": "gt_15_ar",
+    "recall_at_k": 0.0,
+    "reciprocal_rank": 0.0,
+    "refusal_required": true,
+    "relevant_source_ids": [],
+    "retrieved_source_ids": [
+      "wiki_ar_istanbul",
+      "wiki_ar_topkapi",
+      "wiki_ar_hagia_sophia",
+      "wiki_en_grand_bazaar",
+      "wiki_ar_bosphorus"
+    ],
+    "zero_result": false
+  }
+]

@@ -1,0 +1,2147 @@
+{
+  "answerable_question_count": 33,
+  "answerable_response_count": 33,
+  "answerable_response_rate": 1.0,
+  "by_category": {
+    "accessibility": {
+      "answerable_question_count": 0,
+      "answerable_response_count": 0,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 0,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 0,
+      "fallback_question_ids": [],
+      "fallback_rate": 0.0,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": null,
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 3,
+      "refusal_required_question_count": 3,
+      "total_citations": 0,
+      "total_emitted_claims": 0
+    },
+    "alias": {
+      "answerable_question_count": 3,
+      "answerable_response_count": 3,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 6,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {
+        "generation_hallucination": 1
+      },
+      "fallback_count": 1,
+      "fallback_question_ids": [
+        "gt_03_ar"
+      ],
+      "fallback_rate": 0.3333333333333333,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 1,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 1.3333333333333333,
+        "mean_faithfulness": 1.6666666666666667,
+        "mean_relevance": 1.6666666666666667,
+        "n_judged": 3
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 3,
+      "refusal_required_question_count": 0,
+      "total_citations": 5,
+      "total_emitted_claims": 6
+    },
+    "cross_lingual": {
+      "answerable_question_count": 13,
+      "answerable_response_count": 13,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 29,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 1,
+      "fallback_question_ids": [
+        "gt_13_ar"
+      ],
+      "fallback_rate": 0.07692307692307693,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 2.0,
+        "mean_faithfulness": 2.0,
+        "mean_relevance": 2.0,
+        "n_judged": 13
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 13,
+      "refusal_required_question_count": 0,
+      "total_citations": 15,
+      "total_emitted_claims": 29
+    },
+    "dynamic": {
+      "answerable_question_count": 0,
+      "answerable_response_count": 0,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 0,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 0,
+      "fallback_question_ids": [],
+      "fallback_rate": 0.0,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": null,
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 9,
+      "refusal_required_question_count": 9,
+      "total_citations": 0,
+      "total_emitted_claims": 0
+    },
+    "etiquette": {
+      "answerable_question_count": 2,
+      "answerable_response_count": 2,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 11,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 0,
+      "fallback_question_ids": [],
+      "fallback_rate": 0.0,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 2.0,
+        "mean_faithfulness": 2.0,
+        "mean_relevance": 2.0,
+        "n_judged": 2
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 2,
+      "refusal_required_question_count": 0,
+      "total_citations": 4,
+      "total_emitted_claims": 11
+    },
+    "factual": {
+      "answerable_question_count": 11,
+      "answerable_response_count": 11,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 24,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 0,
+      "fallback_question_ids": [],
+      "fallback_rate": 0.0,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 2.0,
+        "mean_faithfulness": 2.0,
+        "mean_relevance": 1.9090909090909092,
+        "n_judged": 11
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 11,
+      "refusal_required_question_count": 0,
+      "total_citations": 13,
+      "total_emitted_claims": 24
+    },
+    "neighborhood": {
+      "answerable_question_count": 4,
+      "answerable_response_count": 4,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 16,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 0,
+      "fallback_question_ids": [],
+      "fallback_rate": 0.0,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 2.0,
+        "mean_faithfulness": 2.0,
+        "mean_relevance": 2.0,
+        "n_judged": 4
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 4,
+      "refusal_required_question_count": 0,
+      "total_citations": 6,
+      "total_emitted_claims": 16
+    }
+  },
+  "by_language": {
+    "ar": {
+      "answerable_question_count": 11,
+      "answerable_response_count": 11,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 25,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 2,
+      "fallback_question_ids": [
+        "gt_03_ar",
+        "gt_13_ar"
+      ],
+      "fallback_rate": 0.13333333333333333,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 1.9090909090909092,
+        "mean_faithfulness": 2.0,
+        "mean_relevance": 1.9090909090909092,
+        "n_judged": 11
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 15,
+      "refusal_required_question_count": 4,
+      "total_citations": 15,
+      "total_emitted_claims": 25
+    },
+    "en": {
+      "answerable_question_count": 11,
+      "answerable_response_count": 11,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 32,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {
+        "generation_hallucination": 1
+      },
+      "fallback_count": 0,
+      "fallback_question_ids": [],
+      "fallback_rate": 0.0,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 1,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 1.9090909090909092,
+        "mean_faithfulness": 1.9090909090909092,
+        "mean_relevance": 1.9090909090909092,
+        "n_judged": 11
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 15,
+      "refusal_required_question_count": 4,
+      "total_citations": 14,
+      "total_emitted_claims": 32
+    },
+    "tr": {
+      "answerable_question_count": 11,
+      "answerable_response_count": 11,
+      "answerable_response_rate": 1.0,
+      "citation_coverage_over_emitted_claims": 1.0,
+      "cited_emitted_claim_count": 29,
+      "dynamic_refusal_accuracy": 1.0,
+      "failure_categories": {},
+      "fallback_count": 0,
+      "fallback_question_ids": [],
+      "fallback_rate": 0.0,
+      "false_refusal_count": 0,
+      "false_refusal_rate": 0.0,
+      "generation_hallucination_count": 0,
+      "generator_transport_failure_count": 0,
+      "generator_transport_failure_question_ids": [],
+      "grounded_claim_citation_coverage": 1.0,
+      "judge_failed_question_ids": [],
+      "judge_summary": {
+        "mean_correctness": 2.0,
+        "mean_faithfulness": 2.0,
+        "mean_relevance": 2.0,
+        "n_judged": 11
+      },
+      "judge_transport_failure_count": 0,
+      "judge_transport_failure_question_ids": [],
+      "question_count": 15,
+      "refusal_required_question_count": 4,
+      "total_citations": 14,
+      "total_emitted_claims": 29
+    }
+  },
+  "checkpoint_schema_version": "2.0.0",
+  "citation_coverage_over_emitted_claims": 1.0,
+  "cited_emitted_claim_count": 86,
+  "dynamic_refusal_accuracy": 1.0,
+  "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+  "failure_categories": {
+    "generation_hallucination": 1
+  },
+  "fallback_count": 2,
+  "fallback_question_ids": [
+    "gt_03_ar",
+    "gt_13_ar"
+  ],
+  "fallback_rate": 0.044444444444444446,
+  "false_refusal_count": 0,
+  "false_refusal_rate": 0.0,
+  "gate_passed": false,
+  "generation_hallucination_count": 1,
+  "generator_available": true,
+  "generator_model": "qwen3.7-flash",
+  "generator_provider": "qwen",
+  "generator_transport_failure_count": 0,
+  "generator_transport_failure_question_ids": [],
+  "grounded_claim_citation_coverage": 1.0,
+  "judge_available": true,
+  "judge_failed_question_ids": [],
+  "judge_model": "openai/gpt-oss-20b",
+  "judge_provider": "groq",
+  "judge_summary": {
+    "mean_correctness": 1.9393939393939394,
+    "mean_faithfulness": 1.9696969696969697,
+    "mean_relevance": 1.9393939393939394,
+    "n_judged": 33
+  },
+  "judge_transport_failure_count": 0,
+  "judge_transport_failure_question_ids": [],
+  "provider_detection": "hosted provider configured: groq",
+  "question_count": 45,
+  "refusal_required_question_count": 12,
+  "reproducibility_command": "python -m rag.run_generation_eval",
+  "rows": [
+    {
+      "answer_text": "The current Hagia Sophia was commissioned by Emperor Justinian I. Construction of the current Hagia Sophia began on February 23, 532. The current Hagia Sophia was inaugurated on December 27, 537.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_53ccbbc780ae1b1228215f6f"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_hagia_sophia",
+          "title": "Hagia Sophia",
+          "url": "https://en.wikipedia.org/wiki/Hagia_Sophia"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 3,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "All claims are directly supported by the context and correctly answer the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_01_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_53ccbbc780ae1b1228215f6f",
+        "chunk_22b53dc5b3286054f06b8b34",
+        "chunk_8894707de46fdce1a2776fde",
+        "chunk_3459fb83a93ca7b807aba73d",
+        "chunk_c8a14d7a6615be6447828a1d"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Ayasofya'n\u0131n ilk yap\u0131s\u0131, Konstantinopolis'teki mevcut \u00fc\u00e7 ana yap\u0131dan ilki olarak yakla\u015f\u0131k 360 y\u0131l\u0131nda in\u015fa edildi. Bu ilk kilise, I. Konstantin d\u00f6neminde (Konsantin II olarak da belirtilen) in\u015fa edildi.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_c8a14d7a6615be6447828a1d"
+          ],
+          "language": "ar",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_ar_hagia_sophia",
+          "title": "\u0622\u064a\u0627 \u0635\u0648\u0641\u064a\u0627",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A2%D9%8A%D8%A7_%D8%B5%D9%88%D9%81%D9%8A%D8%A7"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer accurately reflects the context: first built ~360 AD during Constantine II's reign.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_01_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_f28a1dadc603b59d4e2f8c44",
+        "chunk_1de1013dfe5b2758afc3b993",
+        "chunk_c8a14d7a6615be6447828a1d",
+        "chunk_53ccbbc780ae1b1228215f6f",
+        "chunk_84276927c4b05d7071cb6fac"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0628\u064f\u0646\u064a \u0647\u064a\u0643\u0644 \u0622\u064a\u0627 \u0635\u0648\u0641\u064a\u0627 \u0627\u0644\u062d\u0627\u0644\u064a \u0628\u064a\u0646 \u0639\u0627\u0645\u064a 532 \u0648537 \u0645\u064a\u0644\u0627\u062f\u064a\u0629. \u0623\u0645\u0631 \u0627\u0644\u0625\u0645\u0628\u0631\u0627\u0637\u0648\u0631 \u062c\u0633\u062a\u0646\u064a\u0627\u0646 \u0627\u0644\u0623\u0648\u0644 \u0628\u0628\u0646\u0627\u0621 \u0627\u0644\u0647\u064a\u0643\u0644 \u0627\u0644\u062d\u0627\u0644\u064a \u0644\u0622\u064a\u0627 \u0635\u0648\u0641\u064a\u0627. \u0628\u062f\u0623\u062a \u0623\u0639\u0645\u0627\u0644 \u0627\u0644\u0628\u0646\u0627\u0621 \u0641\u064a 23 \u0641\u0628\u0631\u0627\u064a\u0631 532 \u0648\u0627\u0643\u062a\u0645\u0644 \u0627\u0644\u0627\u0641\u062a\u062a\u0627\u062d \u0641\u064a 27 \u062f\u064a\u0633\u0645\u0628\u0631 537.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_c8a14d7a6615be6447828a1d"
+          ],
+          "language": "ar",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_ar_hagia_sophia",
+          "title": "\u0622\u064a\u0627 \u0635\u0648\u0641\u064a\u0627",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A2%D9%8A%D8%A7_%D8%B5%D9%88%D9%81%D9%8A%D8%A7"
+        },
+        {
+          "chunk_ids": [
+            "chunk_53ccbbc780ae1b1228215f6f"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_hagia_sophia",
+          "title": "Hagia Sophia",
+          "url": "https://en.wikipedia.org/wiki/Hagia_Sophia"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 3,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully matches the provided context and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_01_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_c8a14d7a6615be6447828a1d",
+        "chunk_84276927c4b05d7071cb6fac",
+        "chunk_f28a1dadc603b59d4e2f8c44",
+        "chunk_22b53dc5b3286054f06b8b34",
+        "chunk_53ccbbc780ae1b1228215f6f"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Sultan Mehmed II ordered the construction of Topkap\u0131 Palace. Construction of Topkap\u0131 Palace began in 1459.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_2d2705521794e28c04691c3e"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_topkapi",
+          "title": "Topkap\u0131 Palace",
+          "url": "https://en.wikipedia.org/wiki/Topkap%C4%B1_Palace"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer accurately reflects the context and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_02_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_83053db6a04896aeb821d629",
+        "chunk_2d2705521794e28c04691c3e",
+        "chunk_2e713ae8e5ac16f7ea1d3bdc",
+        "chunk_fce055cdf4bf3868727cbc1b",
+        "chunk_10e5b142d293aef41f797c10"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Topkap\u0131 Saray\u0131'n\u0131n in\u015fas\u0131n\u0131 II. Mehmed emretti. \u0130n\u015faat 1459 y\u0131l\u0131nda ba\u015flad\u0131.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_2d2705521794e28c04691c3e"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_topkapi",
+          "title": "Topkap\u0131 Palace",
+          "url": "https://en.wikipedia.org/wiki/Topkap%C4%B1_Palace"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer accurately reflects the context and fully addresses the question.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_02_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_83053db6a04896aeb821d629",
+        "chunk_10e5b142d293aef41f797c10",
+        "chunk_2d2705521794e28c04691c3e",
+        "chunk_39abc54a5344bd8f9d162666",
+        "chunk_2e713ae8e5ac16f7ea1d3bdc"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0628\u062f\u0623 \u0628\u0646\u0627\u0621 \u0642\u0635\u0631 \u062a\u0648\u0628 \u0642\u0627\u0628\u064a \u0633\u0646\u0629 1459 \u0639\u0644\u0649 \u064a\u062f \u0627\u0644\u0633\u0644\u0637\u0627\u0646 \u0645\u062d\u0645\u062f \u0627\u0644\u062b\u0627\u0646\u064a \u0627\u0644\u0641\u0627\u062a\u062d. \u0623\u0645\u0631 \u0627\u0644\u0633\u0644\u0637\u0627\u0646 \u0645\u062d\u0645\u062f \u0627\u0644\u062b\u0627\u0646\u064a (\u0645\u064a\u0647\u0645\u0629 \u0627\u0644\u062b\u0627\u0646\u064a) \u0628\u0628\u062f\u0621 \u0627\u0644\u0628\u0646\u0627\u0621 \u0641\u064a \u0639\u0627\u0645 1459.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_10e5b142d293aef41f797c10"
+          ],
+          "language": "ar",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_ar_topkapi",
+          "title": "\u0637\u0648\u0628 \u0642\u0627\u0628\u064a \u0633\u0631\u0627\u064a",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B7%D9%88%D8%A8_%D9%82%D8%A7%D8%A8%D9%8A_%D8%B3%D8%B1%D8%A7%D9%8A"
+        },
+        {
+          "chunk_ids": [
+            "chunk_2d2705521794e28c04691c3e"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_topkapi",
+          "title": "Topkap\u0131 Palace",
+          "url": "https://en.wikipedia.org/wiki/Topkap%C4%B1_Palace"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer accurately reflects the context, correctly states the facts, and directly answers the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_02_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_10e5b142d293aef41f797c10",
+        "chunk_39abc54a5344bd8f9d162666",
+        "chunk_ff4fcfe101bbebca90d7c4e4",
+        "chunk_33474979aba097e60d75473f",
+        "chunk_2d2705521794e28c04691c3e"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Hagia Sophia became a mosque again in 2020. Ayasofya was converted back to mosque status in 2020 by a presidential decree.",
+      "category": "alias",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_8894707de46fdce1a2776fde"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_hagia_sophia",
+          "title": "Hagia Sophia",
+          "url": "https://en.wikipedia.org/wiki/Hagia_Sophia"
+        },
+        {
+          "chunk_ids": [
+            "chunk_1de1013dfe5b2758afc3b993"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_hagia_sophia",
+          "title": "Ayasofya",
+          "url": "https://tr.wikipedia.org/wiki/Ayasofya"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [
+        "generation_hallucination"
+      ],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "reason": "Answer correctly states the 2020 reclassification but incorrectly claims a presidential decree, which is not in the context.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_03_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_8894707de46fdce1a2776fde",
+        "chunk_22b53dc5b3286054f06b8b34",
+        "chunk_53ccbbc780ae1b1228215f6f",
+        "chunk_1de1013dfe5b2758afc3b993",
+        "chunk_3459fb83a93ca7b807aba73d"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Aya Sofya 2020 y\u0131l\u0131nda yeniden cami stat\u00fcs\u00fcne d\u00f6n\u00fc\u015ft\u00fcr\u00fcld\u00fc. Aya Sofya 2020 y\u0131l\u0131nda tekrar bir mabet olarak s\u0131n\u0131fland\u0131r\u0131ld\u0131.",
+      "category": "alias",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_8894707de46fdce1a2776fde"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_hagia_sophia",
+          "title": "Hagia Sophia",
+          "url": "https://en.wikipedia.org/wiki/Hagia_Sophia"
+        },
+        {
+          "chunk_ids": [
+            "chunk_1de1013dfe5b2758afc3b993"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_hagia_sophia",
+          "title": "Ayasofya",
+          "url": "https://tr.wikipedia.org/wiki/Ayasofya"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer correctly states 2020, fully supported by context.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_03_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_1de1013dfe5b2758afc3b993",
+        "chunk_f28a1dadc603b59d4e2f8c44",
+        "chunk_c8a14d7a6615be6447828a1d",
+        "chunk_8894707de46fdce1a2776fde",
+        "chunk_53ccbbc780ae1b1228215f6f"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u062a\u0645\u062b\u0644 \u0622\u064a\u0627 \u0635\u0648\u0641\u064a\u0627 \u0627\u0644\u062d\u0627\u0644\u064a\u0629 \u062b\u0627\u0644\u062b \u0647\u064a\u0643\u0644 \u0631\u0626\u064a\u0633\u064a \u0628\u064f\u0646\u064a \u0641\u064a \u0645\u0648\u0642\u0639\u0647\u0627 \u0628\u0627\u0644\u0642\u0633\u0637\u0646\u0637\u064a\u0646\u064a\u0629. \u0628\u0639\u062f \u0641\u062a\u062d 1453\u060c \u062d\u0648\u0651\u0644 \u0627\u0644\u0633\u0644\u0637\u0627\u0646 \u0645\u062d\u0645\u062f \u0627\u0644\u0641\u0627\u062a\u062d \u0627\u0644\u0645\u0628\u0646\u0649 \u0625\u0644\u0649 \u0645\u0633\u062c\u062f.",
+      "category": "alias",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_84276927c4b05d7071cb6fac",
+            "chunk_c8a14d7a6615be6447828a1d"
+          ],
+          "language": "ar",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_ar_hagia_sophia",
+          "title": "\u0622\u064a\u0627 \u0635\u0648\u0641\u064a\u0627",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A2%D9%8A%D8%A7_%D8%B5%D9%88%D9%81%D9%8A%D8%A7"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": "structured_generation_failed_after_retries_used_relevant_extractive_fallback",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 1,
+        "faithfulness": 2,
+        "reason": "The answer correctly states the 1453 conversion, but omits the 2020 re\u2011designation, so it is partially correct and only partially addresses the question.",
+        "relevance": 1
+      },
+      "language": "ar",
+      "question_id": "gt_03_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_c8a14d7a6615be6447828a1d",
+        "chunk_84276927c4b05d7071cb6fac",
+        "chunk_1de1013dfe5b2758afc3b993",
+        "chunk_8894707de46fdce1a2776fde",
+        "chunk_22b53dc5b3286054f06b8b34"
+      ],
+      "used_fallback": true
+    },
+    {
+      "answer_text": "The Beyo\u011flu district was historically known as Pera. The name Pera is derived from the Greek word meaning 'across' or 'beyond'. The use of the name Pera was officially removed from documents in 1925 and the name Beyo\u011flu was adopted. Today, Beyo\u011flu is described as Istanbul's most characteristic district due to its cosmopolitan identity. Present-day Beyo\u011flu functions as one of the main centers for cultural activities, leisure, and entertainment in Istanbul. Istiklal Avenue and the surrounding streets form the commercial and cultural heart of the district, featuring museums, theaters, galleries, and performance venues.",
+      "category": "neighborhood",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_899c66969fab67218b1a18b1",
+            "chunk_dd9f8069987c303132ef98f0"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_beyoglu",
+          "title": "Beyo\u011flu",
+          "url": "https://en.wikipedia.org/wiki/Beyo%C4%9Flu"
+        },
+        {
+          "chunk_ids": [
+            "chunk_4c2f14fb7ceb1c52b3194446",
+            "chunk_fd946df2a1cbeb01137c9bbc"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_beyoglu",
+          "title": "Beyo\u011flu",
+          "url": "https://tr.wikipedia.org/wiki/Beyo%C4%9Flu"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 6,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully supported by context, correct, and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_04_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_899c66969fab67218b1a18b1",
+        "chunk_dd9f8069987c303132ef98f0",
+        "chunk_fd946df2a1cbeb01137c9bbc",
+        "chunk_2592b4250c08841ce12a896a",
+        "chunk_4c2f14fb7ceb1c52b3194446"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Beyo\u011flu il\u00e7esi tarihte Pera olarak bilinirdi. Beyo\u011flu il\u00e7esinin ad\u0131, 'kar\u015f\u0131 k\u0131y\u0131' veya '\u00f6b\u00fcr taraf' anlam\u0131na gelen Yunanca 'Pera' kelimesinden gelir. G\u00fcn\u00fcm\u00fczde Beyo\u011flu, kozmopolit kimli\u011fiyle \u0130stanbul'un en karakteristik il\u00e7esi olarak tan\u0131mlan\u0131r. Bug\u00fcn Beyo\u011flu, \u0130stanbul'da k\u00fclt\u00fcrel faaliyetler, e\u011flence ve dinlence i\u00e7in ana merkezlerden biri olarak i\u015flev g\u00f6r\u00fcr.",
+      "category": "neighborhood",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_899c66969fab67218b1a18b1",
+            "chunk_dd9f8069987c303132ef98f0"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_beyoglu",
+          "title": "Beyo\u011flu",
+          "url": "https://en.wikipedia.org/wiki/Beyo%C4%9Flu"
+        },
+        {
+          "chunk_ids": [
+            "chunk_4c2f14fb7ceb1c52b3194446",
+            "chunk_fd946df2a1cbeb01137c9bbc"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_beyoglu",
+          "title": "Beyo\u011flu",
+          "url": "https://tr.wikipedia.org/wiki/Beyo%C4%9Flu"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 4,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully supported, correct, and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_04_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_fd946df2a1cbeb01137c9bbc",
+        "chunk_4c2f14fb7ceb1c52b3194446",
+        "chunk_900586ce5386c656c317f2cc",
+        "chunk_dd9f8069987c303132ef98f0",
+        "chunk_899c66969fab67218b1a18b1"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0643\u0627\u0646\u062a \u0645\u0646\u0637\u0642\u0629 \u0628\u064a \u0623\u0648\u063a\u0644\u0648 \u062a\u064f\u0639\u0631\u0641 \u062a\u0627\u0631\u064a\u062e\u064a\u0627\u064b \u0628\u0627\u0633\u0645 \"\u0628\u064a\u0631\u0627\" (Pera). \u062a\u0645 \u0627\u0633\u062a\u0628\u062f\u0627\u0644 \u0627\u0633\u0645 \"\u0628\u064a\u0631\u0627\" \u0631\u0633\u0645\u064a\u0627\u064b \u0628\u0627\u0633\u0645 \"\u0628\u064a \u0623\u0648\u063a\u0644\u0648\" \u0641\u064a \u0639\u0627\u0645 1925.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_dd9f8069987c303132ef98f0"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_beyoglu",
+          "title": "Beyo\u011flu",
+          "url": "https://en.wikipedia.org/wiki/Beyo%C4%9Flu"
+        },
+        {
+          "chunk_ids": [
+            "chunk_4c2f14fb7ceb1c52b3194446"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_beyoglu",
+          "title": "Beyo\u011flu",
+          "url": "https://tr.wikipedia.org/wiki/Beyo%C4%9Flu"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer accurately reflects the context and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_04_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_4c2f14fb7ceb1c52b3194446",
+        "chunk_dd9f8069987c303132ef98f0",
+        "chunk_900586ce5386c656c317f2cc",
+        "chunk_fd946df2a1cbeb01137c9bbc",
+        "chunk_e917755c94239354f3656277"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "The Galata Tower was built in 1348. The Galata Tower was built by the Genoese.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_696dcfff45a84851b09534f3"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_galata_tower",
+          "title": "Galata Tower",
+          "url": "https://en.wikipedia.org/wiki/Galata_Tower"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer matches the context exactly and fully addresses the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_05_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_696dcfff45a84851b09534f3",
+        "chunk_4a7b7dc5125a9a233a1ea46d",
+        "chunk_0e8bfa2c8d39284082e6c03e"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Galata Kulesi 1348 y\u0131l\u0131nda in\u015fa edildi. Galata Kulesi Cenevizliler taraf\u0131ndan in\u015fa edildi.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_696dcfff45a84851b09534f3"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_galata_tower",
+          "title": "Galata Tower",
+          "url": "https://en.wikipedia.org/wiki/Galata_Tower"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer accurately reflects the date and builders stated in the context.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_05_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_696dcfff45a84851b09534f3",
+        "chunk_0e8bfa2c8d39284082e6c03e",
+        "chunk_4a7b7dc5125a9a233a1ea46d"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0628\u064f\u0646\u064a \u0628\u0631\u062c \u063a\u0627\u0644\u0637\u0629 \u0641\u064a \u0639\u0627\u0645 1348. \u0628\u0646\u0649 \u0628\u0631\u062c \u063a\u0627\u0644\u0637\u0629 \u0627\u0644\u0645\u0633\u062a\u0639\u0645\u0631\u0629 \u0627\u0644\u062c\u064a\u0646\u0648\u064a\u0629 \u0627\u0644\u062a\u064a \u0643\u0627\u0646\u062a \u0642\u062f \u062a\u0623\u0633\u0633\u062a \u0641\u064a \u0627\u0644\u0642\u0633\u0637\u0646\u0637\u064a\u0646\u064a\u0629 \u0641\u064a \u0639\u0627\u0645 1267.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_696dcfff45a84851b09534f3"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_galata_tower",
+          "title": "Galata Tower",
+          "url": "https://en.wikipedia.org/wiki/Galata_Tower"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer matches context and addresses question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_05_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_696dcfff45a84851b09534f3",
+        "chunk_0e8bfa2c8d39284082e6c03e",
+        "chunk_4a7b7dc5125a9a233a1ea46d"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "accessibility",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_06_en",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "accessibility",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_06_tr",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "accessibility",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_06_ar",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Turkish society places significant emphasis on hospitality through food and beverage sharing, with customs such as sharing tea or coffee forming key aspects of hospitality. Meals are often family-centered, and guests are traditionally offered food or drink as a sign of respect and generosity. Turkish tea, coffee, and raki transcend their culinary purposes and are often associated with ritual, conversation, and social bonding, serving as focal points for social interaction and relationship-building. Coffee is one of the fundamental pillars of hospitality in Turkish tradition. Serving coffee accompanied by lokum and water shows respect to the guest and reflects the principles of generosity at the center of Turkish social traditions.",
+      "category": "etiquette",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_be1ced6c849bea109eafd182",
+            "chunk_d7cd3a8e9cca49ac9163826f"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_culture",
+          "title": "Culture of Turkey (etiquette and hospitality)",
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Turkey"
+        },
+        {
+          "chunk_ids": [
+            "chunk_00d7d2d8e7a4140c85a2387b"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_coffee",
+          "title": "T\u00fcrk kahvesi",
+          "url": "https://tr.wikipedia.org/wiki/T%C3%BCrk_kahvesi"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 5,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "All claims are directly supported by the context and accurately answer the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_07_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_be1ced6c849bea109eafd182",
+        "chunk_d7cd3a8e9cca49ac9163826f",
+        "chunk_00d7d2d8e7a4140c85a2387b",
+        "chunk_4b507823d62abf9b1b44c84d",
+        "chunk_cad76ab19c2c7422deb73b57"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Kahve, T\u00fcrk gelene\u011finde misafirperverli\u011fin temel ta\u015flar\u0131ndan biridir. T\u00fcrk kahvesi ve lokumun birlikte sunulmas\u0131, misafire sayg\u0131 g\u00f6sterir ve c\u00f6mertlik ilkelerini yans\u0131t\u0131r. \u00c7ay, kahve ve rak\u0131 gibi i\u00e7ecekler yemek ama\u00e7lar\u0131n\u0131n \u00f6tesine ge\u00e7erek rit\u00fcel, sohbet ve sosyal ba\u011f kurma ile ili\u015fkilendirilir. T\u00fcrk toplumunda yiyecek ve i\u00e7ecek payla\u015f\u0131m\u0131 arac\u0131l\u0131\u011f\u0131yla misafirperverli\u011fe \u00f6nemli \u00f6l\u00e7\u00fcde \u00f6nem verilir. \u00c7ay veya kahve payla\u015fmak gibi adetler, misafirperverli\u011fin temel y\u00f6nlerini olu\u015fturur. Misafirlere geleneksel olarak sayg\u0131 ve c\u00f6mertlik belirtisi olarak yiyecek veya i\u00e7ecek sunulur.",
+      "category": "etiquette",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_be1ced6c849bea109eafd182",
+            "chunk_d7cd3a8e9cca49ac9163826f"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_culture",
+          "title": "Culture of Turkey (etiquette and hospitality)",
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Turkey"
+        },
+        {
+          "chunk_ids": [
+            "chunk_00d7d2d8e7a4140c85a2387b"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_coffee",
+          "title": "T\u00fcrk kahvesi",
+          "url": "https://tr.wikipedia.org/wiki/T%C3%BCrk_kahvesi"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 6,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully supported by context, correct, and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_07_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_00d7d2d8e7a4140c85a2387b",
+        "chunk_4b507823d62abf9b1b44c84d",
+        "chunk_7e2dc2d1506196e8cca540af",
+        "chunk_d7cd3a8e9cca49ac9163826f",
+        "chunk_be1ced6c849bea109eafd182"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u064a\u064f\u0639\u062a\u0628\u0631 \u0627\u0644\u0634\u0627\u064a \u0648\u0627\u0644\u0642\u0647\u0648\u0629 \u0641\u064a \u0627\u0644\u062b\u0642\u0627\u0641\u0629 \u0627\u0644\u062a\u0631\u0643\u064a\u0629 \u0646\u0642\u0627\u0637\u064b\u0627 \u0645\u062d\u0648\u0631\u064a\u0629 \u0644\u0644\u062a\u0641\u0627\u0639\u0644 \u0627\u0644\u0627\u062c\u062a\u0645\u0627\u0639\u064a \u0648\u0628\u0646\u0627\u0621 \u0627\u0644\u0639\u0644\u0627\u0642\u0627\u062a\u060c \u062d\u064a\u062b \u062a\u062a\u062c\u0627\u0648\u0632 \u0623\u063a\u0631\u0627\u0636\u0647\u0627 \u0627\u0644\u063a\u0630\u0627\u0626\u064a\u0629 \u0644\u062a\u062a\u0631\u0627\u0641\u0642 \u0645\u0639 \u0627\u0644\u0637\u0642\u0648\u0633 \u0648\u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0627\u062a. \u062a\u0648\u0644\u064a \u0627\u0644\u0645\u062c\u062a\u0645\u0639 \u0627\u0644\u062a\u0631\u0643\u064a \u0623\u0647\u0645\u064a\u0629 \u0643\u0628\u064a\u0631\u0629 \u0644\u0644\u0636\u064a\u0627\u0641\u0629 \u0645\u0646 \u062e\u0644\u0627\u0644 \u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0637\u0639\u0627\u0645 \u0648\u0627\u0644\u0645\u0634\u0631\u0648\u0628\u0627\u062a\u060c \u0648\u062a\u064f\u0639\u062f \u0639\u0627\u062f\u0627\u062a \u0645\u062b\u0644 \u0645\u0634\u0627\u0631\u0643\u0629 \u0627\u0644\u0634\u0627\u064a \u0623\u0648 \u0627\u0644\u0642\u0647\u0648\u0629 \u062c\u0648\u0627\u0646\u0628 \u0631\u0626\u064a\u0633\u064a\u0629 \u0644\u0644\u0636\u064a\u0627\u0641\u0629. \u064a\u062a\u0645 \u062a\u0642\u062f\u064a\u0645 \u0627\u0644\u0637\u0639\u0627\u0645 \u0623\u0648 \u0627\u0644\u0634\u0631\u0627\u0628 \u0644\u0644\u0636\u064a\u0648\u0641 \u062a\u0642\u0644\u064a\u062f\u064a\u064b\u0627 \u0643\u0639\u0644\u0627\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0627\u062d\u062a\u0631\u0627\u0645 \u0648\u0627\u0644\u0643\u0631\u0645. \u064a\u064f\u0639\u062f \u0627\u0644\u0642\u0647\u0648\u0629 \u062d\u062c\u0631 \u0627\u0644\u0632\u0627\u0648\u064a\u0629 \u0641\u064a \u0627\u0644\u0636\u064a\u0627\u0641\u0629 \u0641\u064a \u0627\u0644\u062a\u0642\u0627\u0644\u064a\u062f \u0627\u0644\u062a\u0631\u0643\u064a\u0629\u060c \u0648\u062a\u0631\u0627\u0641\u0642 \u0627\u0644\u0623\u062d\u062f\u0627\u062b \u0627\u0644\u0627\u062c\u062a\u0645\u0627\u0639\u064a\u0629 \u0627\u0644\u0645\u0647\u0645\u0629 \u0648\u0627\u0644\u0632\u064a\u0627\u0631\u0627\u062a \u0627\u0644\u0631\u0633\u0645\u064a\u0629. \u064a\u062a\u0645 \u062a\u0642\u062f\u064a\u0645 \u0627\u0644\u0642\u0647\u0648\u0629 \u0645\u0639 \u0627\u0644\u0644\u0648\u0643\u0645 \u0648\u0627\u0644\u0645\u0627\u0621 \u0644\u0625\u0638\u0647\u0627\u0631 \u0627\u0644\u0627\u062d\u062a\u0631\u0627\u0645 \u0644\u0644\u0636\u064a\u0641 \u0648\u0644\u0639\u0643\u0633 \u0645\u0628\u0627\u062f\u0626 \u0627\u0644\u0643\u0631\u0645 \u0627\u0644\u0645\u0631\u0643\u0632\u064a\u0629 \u0641\u064a \u0627\u0644\u0639\u0627\u062f\u0627\u062a \u0627\u0644\u0627\u062c\u062a\u0645\u0627\u0639\u064a\u0629 \u0627\u0644\u062a\u0631\u0643\u064a\u0629.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 2,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_be1ced6c849bea109eafd182",
+            "chunk_d7cd3a8e9cca49ac9163826f"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_culture",
+          "title": "Culture of Turkey (etiquette and hospitality)",
+          "url": "https://en.wikipedia.org/wiki/Culture_of_Turkey"
+        },
+        {
+          "chunk_ids": [
+            "chunk_00d7d2d8e7a4140c85a2387b"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_coffee",
+          "title": "T\u00fcrk kahvesi",
+          "url": "https://tr.wikipedia.org/wiki/T%C3%BCrk_kahvesi"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 5,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer fully reflects the context, accurately states the facts, and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_07_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_d7cd3a8e9cca49ac9163826f",
+        "chunk_be1ced6c849bea109eafd182",
+        "chunk_00d7d2d8e7a4140c85a2387b",
+        "chunk_4b507823d62abf9b1b44c84d",
+        "chunk_7e2dc2d1506196e8cca540af"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Construction of the Grand Bazaar began in the winter of 1455/56. Sultan Mehmed II commissioned the initial structure of the Grand Bazaar.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_f6d71e168b0779bf11416060"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_grand_bazaar",
+          "title": "Grand Bazaar, Istanbul",
+          "url": "https://en.wikipedia.org/wiki/Grand_Bazaar,_Istanbul"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer directly matches the facts in the context.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_08_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_f6d71e168b0779bf11416060",
+        "chunk_eebbe90a3f6b15f2d2ddaad7",
+        "chunk_121e28a8557ed1ab28b36709",
+        "chunk_aab315b680a8d9fee205291e",
+        "chunk_6da04c5b4dcd9ebc73541c2a"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Kapal\u0131\u00e7ar\u015f\u0131'n\u0131n temel in\u015fas\u0131, Konstantinopolis'in Osmanl\u0131 fethinin hemen ard\u0131ndan 1455/56 k\u0131\u015f\u0131nda ba\u015flam\u0131\u015ft\u0131r. \u0130kinci b\u00fcy\u00fck yap\u0131 olan Sandal Bedesteni, Fatih Sultan Mehmed taraf\u0131ndan yakla\u015f\u0131k 1460 y\u0131l\u0131nda yapt\u0131r\u0131lm\u0131\u015ft\u0131r ve bu y\u0131l \u00e7ar\u015f\u0131n\u0131n resmi kurulu\u015f tarihi olarak kabul edilir.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_aab315b680a8d9fee205291e"
+          ],
+          "language": "tr",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_grand_bazaar",
+          "title": "Kapal\u0131\u00e7ar\u015f\u0131",
+          "url": "https://tr.wikipedia.org/wiki/Kapal%C4%B1%C3%A7ar%C5%9F%C4%B1"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "All claims are directly supported by the context, accurately reflect the facts, and answer the question about start time and the patron.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_08_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_64071f091d7002a53a559a45",
+        "chunk_3c2e54a612f74920be1b7007",
+        "chunk_aab315b680a8d9fee205291e",
+        "chunk_7fbfd027f4831d1280c75799",
+        "chunk_f6d71e168b0779bf11416060"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0628\u062f\u0623 \u0627\u0644\u0628\u0646\u0627\u0621 \u0627\u0644\u0623\u0633\u0627\u0633\u064a \u0644\u0644\u0628\u0627\u0632\u0627\u0631 \u0627\u0644\u0643\u0628\u064a\u0631 \u0641\u064a \u0634\u062a\u0627\u0621 \u0639\u0627\u0645 1455/56. \u0623\u0645\u0631 \u0627\u0644\u0633\u0644\u0637\u0627\u0646 \u0645\u062d\u0645\u062f \u0627\u0644\u062b\u0627\u0646\u064a \u0628\u0628\u0646\u0627\u0621 \u0627\u0644\u0628\u0627\u0632\u0627\u0631 \u0627\u0644\u0643\u0628\u064a\u0631.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_f6d71e168b0779bf11416060"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_grand_bazaar",
+          "title": "Grand Bazaar, Istanbul",
+          "url": "https://en.wikipedia.org/wiki/Grand_Bazaar,_Istanbul"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer accurately reflects the dates and the commissioning by Sultan Mehmed II as stated in the context.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_08_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_f6d71e168b0779bf11416060",
+        "chunk_aab315b680a8d9fee205291e",
+        "chunk_eebbe90a3f6b15f2d2ddaad7",
+        "chunk_7fbfd027f4831d1280c75799",
+        "chunk_121e28a8557ed1ab28b36709"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_09_en",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_09_tr",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_09_ar",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "The Bosphorus strait measures approximately 31 kilometers in length. The Bosphorus strait connects the Black Sea to the Sea of Marmara.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_3607e5b587a22ea7ad0927c3"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_bosphorus",
+          "title": "Bosphorus",
+          "url": "https://en.wikipedia.org/wiki/Bosphorus"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully matches the context facts and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_10_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_3607e5b587a22ea7ad0927c3",
+        "chunk_10144797892fb9a0f02229f9",
+        "chunk_f8028d5c8f6d6f7dde3c3fd8",
+        "chunk_999358e95d0a4130186c15b8",
+        "chunk_4dde831af74558ae35e84092"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0130stanbul Bo\u011faz\u0131'n\u0131n uzunlu\u011fu yakla\u015f\u0131k 31 kilometredir. \u0130stanbul Bo\u011faz\u0131 Karadeniz ile Marmara Denizi'ni birbirine ba\u011flar.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_3607e5b587a22ea7ad0927c3"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_bosphorus",
+          "title": "Bosphorus",
+          "url": "https://en.wikipedia.org/wiki/Bosphorus"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer accurately reflects the length and sea connections stated in the context.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_10_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_c3de7bf450bfc35c18b768bb",
+        "chunk_3607e5b587a22ea7ad0927c3",
+        "chunk_10144797892fb9a0f02229f9",
+        "chunk_4dde831af74558ae35e84092",
+        "chunk_f8028d5c8f6d6f7dde3c3fd8"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u064a\u0628\u0644\u063a \u0637\u0648\u0644 \u0645\u0636\u064a\u0642 \u0627\u0644\u0628\u0648\u0633\u0641\u0648\u0631 \u062d\u0648\u0627\u0644\u064a 30 \u0643\u064a\u0644\u0648\u0645\u062a\u0631\u0627\u064b. \u064a\u0631\u0628\u0637 \u0645\u0636\u064a\u0642 \u0627\u0644\u0628\u0648\u0633\u0641\u0648\u0631 \u0628\u064a\u0646 \u0627\u0644\u0628\u062d\u0631 \u0627\u0644\u0623\u0633\u0648\u062f \u0648\u0628\u062d\u0631 \u0645\u0631\u0645\u0631\u0629.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_05cee4f4ee808cd5735d2f17"
+          ],
+          "language": "ar",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_ar_bosphorus",
+          "title": "\u0645\u0636\u064a\u0642 \u0627\u0644\u0628\u0648\u0633\u0641\u0648\u0631",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B6%D9%8A%D9%82_%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D9%81%D9%88%D8%B1"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully matches the context and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_10_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_05cee4f4ee808cd5735d2f17",
+        "chunk_b438995f9c1c2eb024485083",
+        "chunk_ddac68c3715b9a0fc9868994",
+        "chunk_338a0b9beca41fbed386f3ca",
+        "chunk_33474979aba097e60d75473f"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Kad\u0131k\u00f6y was formerly known as Chalcedon during ancient and Byzantine periods. Kad\u0131k\u00f6y is historically known for housing populations representing Judaism, Christianity, and Islam. Today, Kad\u0131k\u00f6y is known as the liberal cultural centre of the Anatolian side of Istanbul, distinguished by its concentration of bookshops, cinemas, bars, and cafes.",
+      "category": "neighborhood",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_4d1a55f177305f4c4a755034",
+            "chunk_65d740b83f0c1992645eba74",
+            "chunk_97573ca23579324938713bb8"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_kadikoy",
+          "title": "Kad\u0131k\u00f6y",
+          "url": "https://en.wikipedia.org/wiki/Kad%C4%B1k%C3%B6y"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 3,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully supported by context, correct, and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_11_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_4d1a55f177305f4c4a755034",
+        "chunk_65d740b83f0c1992645eba74",
+        "chunk_97573ca23579324938713bb8",
+        "chunk_69a708400bc4b332e614ad13",
+        "chunk_477f414e4b5b0eb79717832f"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "Kad\u0131k\u00f6y, antik ve Bizans d\u00f6nemlerinde Chalcedon olarak biliniyordu. Kad\u0131k\u00f6y, kitap\u00e7\u0131lar, sinemalar, barlar ve kafelerdeki yo\u011funlu\u011fuyla Anadolu yakas\u0131n\u0131n liberal k\u00fclt\u00fcrel merkezi olarak tan\u0131n\u0131yor.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_4d1a55f177305f4c4a755034",
+            "chunk_97573ca23579324938713bb8"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_kadikoy",
+          "title": "Kad\u0131k\u00f6y",
+          "url": "https://en.wikipedia.org/wiki/Kad%C4%B1k%C3%B6y"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer accurately reflects the historical name Chalcedon and the cultural description of bookshops, cinemas, bars, cafes, and liberal center from the context.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_11_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_4d1a55f177305f4c4a755034",
+        "chunk_65d740b83f0c1992645eba74",
+        "chunk_97573ca23579324938713bb8",
+        "chunk_69a708400bc4b332e614ad13",
+        "chunk_5313429cfdbdc61a9a194154"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0643\u0627\u0646\u062a \u0643\u0627\u062f\u064a\u0643\u0648\u064a \u062a\u064f\u0639\u0631\u0641 \u0633\u0627\u0628\u0642\u0627\u064b \u0628\u0627\u0633\u0645 \u0634\u0627\u0644\u0633\u064a\u062f\u0648\u0646 \u062e\u0644\u0627\u0644 \u0641\u062a\u0631\u062a\u064a \u0627\u0644\u0639\u0635\u0648\u0631 \u0627\u0644\u0642\u062f\u064a\u0645\u0629 \u0648\u0627\u0644\u0628\u064a\u0632\u0646\u0637\u064a\u0629. \u0623\u0633\u0633 \u0627\u0644\u064a\u0648\u0646\u0627\u0646\u064a\u0648\u0646 \u0645\u0646 \u0645\u064a\u063a\u0627\u0631\u0627 \u0634\u0627\u0644\u0633\u064a\u062f\u0648\u0646 \u0643\u0645\u0633\u062a\u0648\u0637\u0646\u0629 \u0644\u0647\u0645 \u0639\u0644\u0649 \u0645\u0636\u064a\u0642 \u0627\u0644\u0628\u0648\u0633\u0641\u0648\u0631 \u0641\u064a \u0639\u0627\u0645 685 \u0642\u0628\u0644 \u0627\u0644\u0645\u064a\u0644\u0627\u062f.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_477f414e4b5b0eb79717832f",
+            "chunk_4d1a55f177305f4c4a755034"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_kadikoy",
+          "title": "Kad\u0131k\u00f6y",
+          "url": "https://en.wikipedia.org/wiki/Kad%C4%B1k%C3%B6y"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer correctly states that Kadikoy was historically known as Chalcedon, fully supported by the provided context.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_11_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_4d1a55f177305f4c4a755034",
+        "chunk_65d740b83f0c1992645eba74",
+        "chunk_5313429cfdbdc61a9a194154",
+        "chunk_477f414e4b5b0eb79717832f",
+        "chunk_69a708400bc4b332e614ad13"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u00dcsk\u00fcdar was originally called Chrysopolis, which means 'Golden City'. During Byzantine times, the city became known as Skoutarion. \u00dcsk\u00fcdar developed as a conservative cultural center of the Anatolian side of Istanbul.",
+      "category": "neighborhood",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_22cc02f865accdc7b1940329",
+            "chunk_42d2c99312cab2862b477690",
+            "chunk_d44bbb931095a90727b2cab8"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_uskudar",
+          "title": "\u00dcsk\u00fcdar",
+          "url": "https://en.wikipedia.org/wiki/%C3%9Csk%C3%BCdar"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 3,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer accurately reflects all historical names and cultural description provided in the context.",
+        "relevance": 2
+      },
+      "language": "en",
+      "question_id": "gt_12_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_d44bbb931095a90727b2cab8",
+        "chunk_22cc02f865accdc7b1940329",
+        "chunk_42d2c99312cab2862b477690",
+        "chunk_b740b30eeb13eaee19814fff",
+        "chunk_b42d4f3db98db4b8919ea1b7"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u00dcsk\u00fcdar, tarihte Chrysopolis (Alt\u0131n \u015eehir) ve Skoutarion isimleriyle bilinmi\u015ftir. \u00dcsk\u00fcdar, Bizans d\u00f6neminde Skoutarion olarak bilinirdi. \u00dcsk\u00fcdar, \u0130stanbul'un Anadolu yakas\u0131ndaki muhafazakar bir k\u00fclt\u00fcrel merkez olarak geli\u015fmi\u015ftir.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_22cc02f865accdc7b1940329",
+            "chunk_42d2c99312cab2862b477690",
+            "chunk_d44bbb931095a90727b2cab8"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_uskudar",
+          "title": "\u00dcsk\u00fcdar",
+          "url": "https://en.wikipedia.org/wiki/%C3%9Csk%C3%BCdar"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 3,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully matches the context and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_12_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_22cc02f865accdc7b1940329",
+        "chunk_d44bbb931095a90727b2cab8",
+        "chunk_42d2c99312cab2862b477690",
+        "chunk_b740b30eeb13eaee19814fff",
+        "chunk_b42d4f3db98db4b8919ea1b7"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0639\u064f\u0631\u0641\u062a \u0623\u0633\u0643\u0648\u062f\u0627\u0631 \u062a\u0627\u0631\u064a\u062e\u064a\u0627\u064b \u0628\u0627\u0633\u0645 \u0643\u0631\u064a\u0633\u0648\u0628\u0648\u0644\u064a\u0633 (Chrysopolis)\u060c \u0627\u0644\u0630\u064a \u064a\u0639\u0646\u064a '\u0627\u0644\u0645\u062f\u064a\u0646\u0629 \u0627\u0644\u0630\u0647\u0628\u064a\u0629'. \u0623\u062b\u0646\u0627\u0621 \u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u0628\u064a\u0632\u0646\u0637\u064a\u060c \u0639\u064f\u0631\u0641\u062a \u0627\u0644\u0645\u062f\u064a\u0646\u0629 \u0628\u0627\u0633\u0645 \u0633\u0643\u0648\u062a\u0627\u0631\u064a\u0648\u0646 (Skoutarion).",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_22cc02f865accdc7b1940329",
+            "chunk_42d2c99312cab2862b477690"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_uskudar",
+          "title": "\u00dcsk\u00fcdar",
+          "url": "https://en.wikipedia.org/wiki/%C3%9Csk%C3%BCdar"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer correctly lists the historical names Chrysopolis and Skoutarion, fully supported by the context and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_12_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_22cc02f865accdc7b1940329",
+        "chunk_d44bbb931095a90727b2cab8",
+        "chunk_42d2c99312cab2862b477690",
+        "chunk_b740b30eeb13eaee19814fff",
+        "chunk_b42d4f3db98db4b8919ea1b7"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "The Istanbulkart is a contactless smart card that represents the network's unified payment approach. The Istanbulkart enables passengers to pay across all transit modes using standardized fare structures.",
+      "category": "factual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_10632e4cff5626bb06127305"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_transport",
+          "title": "Istanbul Metro (transit system overview)",
+          "url": "https://en.wikipedia.org/wiki/Istanbul_Metro"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer accurately states the card\u2019s nature and payment function but omits the specific transit modes, so it is fully faithful and correct but only partially relevant.",
+        "relevance": 1
+      },
+      "language": "en",
+      "question_id": "gt_13_en",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_10632e4cff5626bb06127305",
+        "chunk_d214d3582f43f0892ad006cf",
+        "chunk_9a333174d60ad5238f6c3eff",
+        "chunk_10144797892fb9a0f02229f9",
+        "chunk_999358e95d0a4130186c15b8"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "\u0130stanbulkart, t\u00fcm ula\u015f\u0131m modlar\u0131nda yolcular\u0131n \u00f6deme yapmas\u0131n\u0131 sa\u011flayan temas\u0131z bir ak\u0131ll\u0131 kartt\u0131r. \u0130stanbulkart metro, tramvay, otob\u00fcs, vapur ve teleferik hizmetlerinde kullan\u0131labilir.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_10632e4cff5626bb06127305"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_transport",
+          "title": "Istanbul Metro (transit system overview)",
+          "url": "https://en.wikipedia.org/wiki/Istanbul_Metro"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": null,
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 2,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "Answer fully matches the context and directly addresses the question.",
+        "relevance": 2
+      },
+      "language": "tr",
+      "question_id": "gt_13_tr",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_10632e4cff5626bb06127305",
+        "chunk_c3de7bf450bfc35c18b768bb",
+        "chunk_d214d3582f43f0892ad006cf",
+        "chunk_fd946df2a1cbeb01137c9bbc",
+        "chunk_9a333174d60ad5238f6c3eff"
+      ],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "The Istanbulkart represents the network's unified payment approach: a contactless smart card enabling passengers to pay across all transit modes -- metro, tram, bus, ferry, and funicular services -- using standardized fare structures.",
+      "category": "cross_lingual",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 1,
+      "citations": [
+        {
+          "chunk_ids": [
+            "chunk_10632e4cff5626bb06127305"
+          ],
+          "language": "en",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_transport",
+          "title": "Istanbul Metro (transit system overview)",
+          "url": "https://en.wikipedia.org/wiki/Istanbul_Metro"
+        }
+      ],
+      "correctly_refused": null,
+      "degradation_reason": "model_reported_insufficient_despite_question_relevant_context_used_relevant_extractive_fallback",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 1,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": {
+        "correctness": 2,
+        "faithfulness": 2,
+        "reason": "The answer directly quotes the context and fully addresses the question.",
+        "relevance": 2
+      },
+      "language": "ar",
+      "question_id": "gt_13_ar",
+      "refusal_required": false,
+      "retrieved_chunk_ids": [
+        "chunk_10632e4cff5626bb06127305",
+        "chunk_ddac68c3715b9a0fc9868994",
+        "chunk_d214d3582f43f0892ad006cf",
+        "chunk_9a333174d60ad5238f6c3eff",
+        "chunk_b438995f9c1c2eb024485083"
+      ],
+      "used_fallback": true
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_14_en",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_14_tr",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_14_ar",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "en",
+      "question_id": "gt_15_en",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "tr",
+      "question_id": "gt_15_tr",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    },
+    {
+      "answer_text": "I don't have grounded information on this in my current sources.",
+      "category": "dynamic",
+      "checkpoint_schema_version": "2.0.0",
+      "citation_count": 0,
+      "citations": [],
+      "correctly_refused": true,
+      "degradation_reason": "live_data_required",
+      "dropped_claim_count": 0,
+      "emitted_claim_count": 0,
+      "evaluation_fingerprint": "d99959b8851b2f3be92b4229d202e12dc2dc07d3e26c72e764c17d89fe37fac4",
+      "failure_categories": [],
+      "judge_error": null,
+      "judge_score": null,
+      "language": "ar",
+      "question_id": "gt_15_ar",
+      "refusal_required": true,
+      "retrieved_chunk_ids": [],
+      "used_fallback": false
+    }
+  ],
+  "schema_version": "1.0.0",
+  "total_citations": 43,
+  "total_emitted_claims": 86
+}

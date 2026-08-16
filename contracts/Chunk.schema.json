@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase3/Chunk.schema.json",
+  "title": "Chunk",
+  "description": "One deterministic, heading-aware token chunk produced by RAG ingestion (architecture.md §9). Indexed in Qdrant with the same id. Never contains current-price/availability/opening-hours content -- see rag/corpus source-boundary rules.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "chunk_id": { "type": "string", "minLength": 1 },
+    "source_id": { "type": "string", "minLength": 1 },
+    "language": { "type": "string", "enum": ["en", "tr", "ar"] },
+    "content_type": { "type": "string", "minLength": 1 },
+    "heading_path": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "text": { "type": "string", "minLength": 1 },
+    "token_count": { "type": "integer", "minimum": 1 },
+    "char_start": { "type": "integer", "minimum": 0 },
+    "char_end": { "type": "integer", "minimum": 0 },
+    "chunk_index": { "type": "integer", "minimum": 0 },
+    "poi_id": { "type": "string", "pattern": "^poi_[a-z0-9_]+$" },
+    "district_id": { "type": "string", "pattern": "^district_[a-z0-9_]+$" },
+    "source_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "chunk_config": { "type": "string", "enum": ["A", "B", "C", "D"] }
+  },
+  "required": [
+    "schema_version", "chunk_id", "source_id", "language", "content_type",
+    "heading_path", "text", "token_count", "char_start", "char_end",
+    "chunk_index", "source_checksum", "chunk_config"
+  ],
+  "additionalProperties": false
+}

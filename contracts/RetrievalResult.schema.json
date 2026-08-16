@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase3/RetrievalResult.schema.json",
+  "title": "RetrievalResult",
+  "description": "One ranked retrieval response for a query against the RAG corpus (architecture.md §9.2/§9.5). Used by the retrieval experiment and by the grounded-answer service. Every returned item's chunk_id must correspond to a real indexed Chunk; the grounded-answer service must never cite a chunk_id absent from this result.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "query": { "type": "string", "minLength": 1 },
+    "query_language": { "type": "string", "enum": ["en", "tr", "ar"] },
+    "retrieval_mode": { "type": "string", "enum": ["dense", "hybrid_rrf"] },
+    "chunk_config": { "type": "string", "enum": ["A", "B", "C", "D"] },
+    "top_k": { "type": "integer", "minimum": 1 },
+    "collection_fingerprint": { "type": "string", "minLength": 1 },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rank": { "type": "integer", "minimum": 1 },
+          "chunk_id": { "type": "string", "minLength": 1 },
+          "source_id": { "type": "string", "minLength": 1 },
+          "score": { "type": "number" },
+          "dense_score": { "type": "number" },
+          "sparse_score": { "type": "number" }
+        },
+        "required": ["rank", "chunk_id", "source_id", "score"],
+        "additionalProperties": false
+      }
+    },
+    "latency_ms": { "type": "number", "minimum": 0 },
+    "zero_result": { "type": "boolean" }
+  },
+  "required": [
+    "schema_version", "query", "query_language", "retrieval_mode", "chunk_config",
+    "top_k", "collection_fingerprint", "items", "latency_ms", "zero_result"
+  ],
+  "additionalProperties": false
+}

@@ -67,6 +67,7 @@ def test_schema_has_stable_id_and_schema_version_field(schema_path: str):
     assert schema["$id"].startswith((
         "https://schemas.voyagerai.dev/phase1/",
         "https://schemas.voyagerai.dev/phase2/",
+        "https://schemas.voyagerai.dev/phase3/",
     ))
     assert schema["$schema"] == "https://json-schema.org/draft/2020-12/schema"
     props = schema.get("properties", {})
