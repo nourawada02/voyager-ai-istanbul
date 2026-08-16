@@ -1,0 +1,27 @@
+{
+  "case_count": 22,
+  "feasible_case_count": 22,
+  "naive_baseline": {
+    "mean_daily_slack_minutes": 280.941,
+    "mean_interest_coverage": 0.121,
+    "mean_pois_scheduled": 7.045,
+    "mean_runtime_ms": 0.168,
+    "mean_side_crossings": 0.591,
+    "mean_transfer_minutes": 69.623,
+    "mean_walking_minutes": 25.318,
+    "total_hard_violations": 0
+  },
+  "reproducibility_command": "python -m phase4.evaluation.run_baseline_comparison",
+  "schema_version": "1.0.0",
+  "side_aware": {
+    "mean_daily_slack_minutes": 273.032,
+    "mean_interest_coverage": 0.121,
+    "mean_pois_scheduled": 7.136,
+    "mean_runtime_ms": 0.19,
+    "mean_side_crossings": 0.091,
+    "mean_transfer_minutes": 68.8,
+    "mean_walking_minutes": 32.159,
+    "total_hard_violations": 0
+  },
+  "side_aware_zero_hard_violations": true
+}
