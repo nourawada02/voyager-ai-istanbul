@@ -2,10 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase1/StreamEvent.schema.json",
   "title": "StreamEvent",
-  "description": "One SSE event on the public streaming endpoint. Only operational status and validated artifacts stream -- never private chain-of-thought (architecture.md §15.4).",
+  "description": "One SSE event on the public streaming endpoint. Only operational status and validated artifacts stream -- never private chain-of-thought (architecture.md §15.4). schema_version 1.1.0 (Checkpoint Phase 4 D.2A, docs/adr/0015-phase4-checkpoint-d2a-system-a-api.md) additively widens 'stage' with the bounded ReAct action-loop's own run/action lifecycle vocabulary (System A's real shape since Checkpoint D.0, ADR 0009 §4) alongside the original architecture.md §5.3 linear-pipeline vocabulary -- every existing 1.0.0 instance remains valid unchanged.",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
     "event_id": {
       "type": "string",
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
@@ -25,7 +25,9 @@
       "enum": [
         "request.accepted", "search.started", "search.completed",
         "local_plan.started", "local_plan.completed", "budget.validated",
-        "warning", "partial_failure", "plan.completed", "error"
+        "warning", "partial_failure", "plan.completed", "error",
+        "run_started", "action_started", "action_completed", "action_failed",
+        "run_completed", "run_degraded", "run_failed", "run_cancelled"
       ]
     },
     "payload": { "type": "object" }

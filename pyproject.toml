@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "voyager-orchestration"
+version = "0.1.0"
+description = "VoyagerAI Istanbul root-owned composition packages (providers/, orchestration/) plus the System A planner-a code they compose against, exposed as one real installable dependency path (Checkpoint Phase 4 D.2A). Never a distributable product on its own -- this exists only so the production System A service does not depend on PYTHONPATH mutation or sys.path hacks to reach either the root packages or the services/planner-a submodule's phase1/phase4 code."
+requires-python = ">=3.12"
+
+# Third-party runtime dependencies are declared per-package in
+# requirements.in/requirements.lock files, matching this repository's
+# existing convention (services/*/phase*/requirements.in) -- never here,
+# so this file stays a pure packaging manifest, not a second dependency
+# source of truth.
+dependencies = []
+
+[tool.setuptools]
+packages = [
+    "providers",
+    "orchestration",
+    "orchestration.system_a",
+    "phase1",
+    "phase4",
+]
+
+# `phase1`/`phase4` are services/planner-a's own packages (a separate git
+# submodule with its own remote/history, kept vendor-neutral and
+# independently buildable -- CLAUDE.md "Repository / submodule
+# boundaries"). Mapping them here does not copy or fork their code and
+# does not add any file to that submodule; it only gives THIS root
+# package's own editable install a real declared import path to them, in
+# place of Checkpoint D.1's temporary PYTHONPATH convention
+# (docs/adr/0014-...md §2), for the one production service
+# (orchestration/system_a's FastAPI app, Checkpoint D.2A) that needs
+# planner-a's phase1/phase4 code importable without an ad-hoc
+# environment-variable/sys.path workaround. `services/planner-a` remains
+# free of any dependency on this file or on being installed this way --
+# its own hermetic test suite keeps running exactly as before.
+[tool.setuptools.package-dir]
+phase1 = "services/planner-a/phase1"
+phase4 = "services/planner-a/phase4"

@@ -3,6 +3,18 @@ __pycache__/
 *.pyc
 .venv/
 node_modules/
+*.egg-info/
+
+# Phase 4 Checkpoint D.2A: the production System A service's runtime
+# SQLite database (run/session/event persistence + the LangGraph
+# checkpoint tables) -- generated at run time from an explicit
+# configurable path (VOYAGER_SYSTEM_A_DB_PATH), never committed, and
+# never used by any test (tests always point at a pytest tmp_path).
+# Scoped narrowly to this one directory -- never a repository-global
+# *.db/*.db-wal/*.db-shm pattern, which would silently hide an unrelated
+# SQLite file anywhere else in the tree.
+orchestration/data/*
+!orchestration/data/.gitkeep
 
 # Phase 2: downloaded/generated accommodation datasets (see
 # docs/adr/0002-phase2-checkpoint-a.md). The canonical dataset manifest
