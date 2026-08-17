@@ -27,6 +27,9 @@ class WeatherQuery:
     timezone: str
     date_from: str  # ISO date (YYYY-MM-DD)
     date_to: str
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    country_code: Optional[str] = None  # ISO 3166-1 alpha-2, e.g. "TR" -- disambiguates geocoding
 
     def normalized(self) -> dict:
         """Whitespace/case-normalized so 'Istanbul' and ' istanbul ' fingerprint identically."""
@@ -35,7 +38,14 @@ class WeatherQuery:
             "timezone": self.timezone,
             "date_from": self.date_from,
             "date_to": self.date_to,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "country_code": self.country_code.upper() if self.country_code else None,
         }
+
+    @property
+    def has_coordinates(self) -> bool:
+        return self.latitude is not None and self.longitude is not None
 
     def fingerprint(self) -> str:
         return fingerprint_request(CAPABILITY, self.normalized())

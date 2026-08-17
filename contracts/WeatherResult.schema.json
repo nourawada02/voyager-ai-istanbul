@@ -2,15 +2,37 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase4/WeatherResult.schema.json",
   "title": "WeatherResult",
-  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='weather' (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md). Explicitly distinguishes a forecast, a current observation, historical data, and an unavailable result via 'kind' -- a caller must never infer freshness from field presence alone. freshness/provenance/retrieved_at live on the enclosing ProviderResponseEnvelope, not duplicated here.",
+  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='weather' (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md). Explicitly distinguishes a forecast, a current observation, historical data, and an unavailable result via 'kind' -- a caller must never infer freshness from field presence alone. freshness/provenance/retrieved_at live on the enclosing ProviderResponseEnvelope, not duplicated here. schema_version 1.1.0 (Checkpoint Phase 4 C.1, docs/adr/0010-phase4-checkpointc1-openmeteo-weather-adapter.md) additively introduces optional 'requested_location', 'country', 'resolved_latitude', 'resolved_longitude', and 'attribution' -- needed once a real geocoding-backed adapter (Open-Meteo) exists to resolve a free-text location and to carry the provider's own attribution/licence notice. Every existing 1.0.0 instance (none of these fields set) remains valid unchanged.",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
     "location": { "type": "string", "minLength": 1 },
+    "requested_location": {
+      "type": "string",
+      "minLength": 1,
+      "description": "1.1.0+ only. The original, unmodified location string the caller supplied -- preserved even when 'location' below reflects a geocoded/resolved name that differs from it."
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "1.1.0+ only. The resolved country name or code, present only when a geocoding step actually supplied one."
+    },
+    "resolved_latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+    "resolved_longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+    "attribution": {
+      "type": "object",
+      "description": "1.1.0+ only. Present whenever the provider's own terms require attribution -- e.g. Open-Meteo's CC BY 4.0 licence notice. Never fabricated when a provider has no such requirement.",
+      "properties": {
+        "license": { "type": "string", "minLength": 1 },
+        "notice": { "type": "string", "minLength": 1 }
+      },
+      "required": ["license", "notice"],
+      "additionalProperties": false
+    },
     "timezone": {
       "type": "string",
-      "pattern": "^[A-Za-z_]+/[A-Za-z_]+(/[A-Za-z_]+)?$",
-      "description": "IANA time zone database name (e.g. 'Europe/Istanbul'), never a raw UTC offset -- the offset itself can change with DST."
+      "pattern": "^(UTC|[A-Za-z_]+/[A-Za-z_]+(/[A-Za-z_]+)?)$",
+      "description": "IANA time zone database name (e.g. 'Europe/Istanbul'), never a raw UTC offset -- the offset itself can change with DST. 'UTC' is accepted as the one special-case bare identifier without a '/' (a genuinely valid zoneinfo name, and the honest fallback when no more specific zone could be resolved)."
     },
     "kind": {
       "type": "string",

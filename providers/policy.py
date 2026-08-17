@@ -36,8 +36,16 @@ FAILURE_STATUSES = frozenset({"unavailable", "timeout", "rate_limited", "provide
 # these must use data_mode="unavailable" (ProviderResponseEnvelope 1.1.0's
 # correction-pass value), never "estimated". "estimated" is reserved for
 # an adapter that genuinely computed a fallback (e.g. a Haversine
-# distance) -- none of the failure statuses below imply that happened.
-NO_DATA_STATUSES = frozenset({"timeout", "rate_limited", "provider_error", "cancelled", "unavailable"})
+# distance) -- none of the statuses below imply that happened.
+# invalid_request/unsupported (Checkpoint Phase 4 C.1 fix) are included
+# too: a rejected request never even reaches a live data source, so it is
+# exactly as "no data" as a timeout or a provider error -- found via
+# OpenMeteoWeatherProvider's own hermetic tests, where an invalid_request
+# status was incorrectly reported with data_mode='live'.
+NO_DATA_STATUSES = frozenset({
+    "timeout", "rate_limited", "provider_error", "cancelled", "unavailable",
+    "invalid_request", "unsupported",
+})
 
 
 def completeness_for_status(status: str) -> float:
