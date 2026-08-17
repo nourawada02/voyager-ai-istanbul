@@ -27,6 +27,7 @@ import os
 import socket
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.request
 from pathlib import Path
@@ -124,15 +125,33 @@ def test_real_cross_process_bounded_integration_scenario():
         "RAG_REQUIRED": "false",  # System B's own documented default -- no Qdrant needed for this gate
     })
 
+    # Root cause (Checkpoint D.1.1): `stdout=subprocess.PIPE` with nothing
+    # ever draining it while the process runs is a classic OS
+    # pipe-buffer-fill deadlock -- once a child process's own stdout
+    # (ADK's internal logging is verbose) fills the pipe's small OS
+    # buffer, the child blocks on its own write() and stops servicing
+    # requests entirely, indistinguishable from a real hang. System B's
+    # own accepted separate-process A2A test
+    # (services/istanbul-expert-b/phase4/tests/test_a2a_integration.py)
+    # already established the correct pattern: redirect to a real log
+    # file, never an undrained pipe. Card resolution (one small response,
+    # early) still succeeded before the deadlock; real task processing
+    # (heavier logging) is exactly where every prior attempt hung.
+    work_dir = Path(tempfile.mkdtemp(prefix="d1-1-cross-process-"))
+    mcp_log_path = work_dir / "travel_mcp.log"
+    expert_log_path = work_dir / "istanbul_expert_b.log"
+
+    mcp_log_file = open(mcp_log_path, "w", encoding="utf-8")
+    expert_log_file = open(expert_log_path, "w", encoding="utf-8")
     mcp_process = subprocess.Popen(
         [sys.executable, "-m", "phase2.mcp.server", "--host", "127.0.0.1", "--port", str(mcp_port)],
         cwd=str(TRAVEL_MCP_DIR), env=mcp_env,
-        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+        stdout=mcp_log_file, stderr=subprocess.STDOUT,
     )
     expert_process = subprocess.Popen(
         [sys.executable, "-m", "phase4.run_server"],
         cwd=str(ISTANBUL_EXPERT_DIR), env=expert_env,
-        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+        stdout=expert_log_file, stderr=subprocess.STDOUT,
     )
 
     try:
@@ -207,18 +226,25 @@ def test_real_cross_process_bounded_integration_scenario():
         # added -- not a fixture, not a fabricated result).
         assert observed["search_stays"]["status"] == "success"
         assert "call_istanbul_expert" in observed
-        # System B's own real Agent Card discovery and /health both
-        # succeeded (this test would already have failed at
-        # _wait_for_http_health otherwise) -- but this environment's real
-        # ADK agent task genuinely did not complete within any bounded
-        # timeout tried (25s/60s/100s, each reproducing the same
-        # A2A-level timeout; documented in ADR 0014 as an honest, real
-        # finding, not retried further here). The bounded ReAct loop's
-        # own 60s workflow deadline then correctly, safely degrades --
-        # never fabricating a result, never leaking a credential/traceback.
-        assert observed["call_istanbul_expert"]["status"] in ("success", "timeout", "provider_error")
-        assert observed["call_istanbul_expert"]["envelope"] is None or observed["call_istanbul_expert"]["status"] == "success"
-        assert result["final_result"]["status"] in ("success", "partial", "degraded")
+        # Checkpoint D.1.1 repair: the real root cause of the earlier
+        # A2A-level timeout was an undrained subprocess.PIPE deadlock
+        # (see the subprocess construction above), never a defect in
+        # System B's real A2A server or in IstanbulExpertA2AClient
+        # itself -- both are independently proven correct (System B's
+        # own services/istanbul-expert-b/phase4/tests/test_a2a_integration.py,
+        # and this checkpoint's own hermetic orchestration/tests/test_a2a_client.py).
+        # With the deadlock fixed, the real A2A task must now genuinely
+        # complete and return a schema-valid LocalItinerary.
+        assert observed["call_istanbul_expert"]["status"] == "success", (
+            f"call_istanbul_expert did not succeed: {observed['call_istanbul_expert']['status']!r} "
+            f"(warnings={observed['call_istanbul_expert'].get('warnings')})"
+        )
+        call_istanbul_envelope = observed["call_istanbul_expert"]["envelope"]
+        assert call_istanbul_envelope is not None
+        from phase1.models import LocalItinerary
+
+        LocalItinerary.model_validate(call_istanbul_envelope)  # raises if not schema-valid
+        assert result["final_result"]["status"] in ("success", "partial")
 
         serialized = json.dumps(result, default=str).lower()
         assert "authorization" not in serialized
@@ -233,3 +259,5 @@ def test_real_cross_process_bounded_integration_scenario():
             except subprocess.TimeoutExpired:
                 process.kill()
                 process.wait(timeout=5)
+        mcp_log_file.close()
+        expert_log_file.close()
