@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "original_query": "Hagia Sophia current visiting hours",
+  "normalized_query": "hagia sophia visiting hours",
+  "items": [
+    {
+      "title": "Hagia Sophia Mosque - Official Visitor Information",
+      "canonical_url": "https://example-synthetic-source.voyagerai.dev/hagia-sophia-visiting",
+      "publisher": "Example Synthetic Ministry of Culture",
+      "published_at": "2026-06-01T00:00:00Z",
+      "retrieved_at": "2026-08-01T12:00:00Z",
+      "snippet": "The mosque is open to visitors outside of the five daily prayer times.",
+      "language": "en",
+      "rank": 1,
+      "freshness": "live",
+      "source_type": "official",
+      "provenance": {
+        "schema_version": "1.0.0",
+        "provider": "synthetic-fixture-web-search-provider",
+        "data_mode": "fixture",
+        "retrieved_at": "2026-08-01T12:00:00Z",
+        "source_urls": ["https://example-synthetic-source.voyagerai.dev/hagia-sophia-visiting"]
+      }
+    }
+  ]
+}

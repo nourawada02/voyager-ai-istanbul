@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "location": "Istanbul, Turkey",
+  "timezone": "Europe/Istanbul",
+  "kind": "forecast",
+  "units": { "temperature": "C", "wind_speed": "kmh", "precipitation": "mm" },
+  "issued_at": "2026-08-01T06:00:00Z",
+  "forecast_days": [
+    { "date": "2026-09-10", "condition": "clear", "high": 27, "low": 19, "precipitation_chance": 0.05 },
+    { "date": "2026-09-11", "condition": "partly_cloudy", "high": 26, "low": 18, "precipitation_chance": 0.1 }
+  ],
+  "missing_fields": []
+}

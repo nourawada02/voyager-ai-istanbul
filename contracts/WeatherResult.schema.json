@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase4/WeatherResult.schema.json",
+  "title": "WeatherResult",
+  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='weather' (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md). Explicitly distinguishes a forecast, a current observation, historical data, and an unavailable result via 'kind' -- a caller must never infer freshness from field presence alone. freshness/provenance/retrieved_at live on the enclosing ProviderResponseEnvelope, not duplicated here.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "location": { "type": "string", "minLength": 1 },
+    "timezone": {
+      "type": "string",
+      "pattern": "^[A-Za-z_]+/[A-Za-z_]+(/[A-Za-z_]+)?$",
+      "description": "IANA time zone database name (e.g. 'Europe/Istanbul'), never a raw UTC offset -- the offset itself can change with DST."
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["forecast", "current_observation", "historical", "unavailable"]
+    },
+    "units": {
+      "type": "object",
+      "properties": {
+        "temperature": { "type": "string", "enum": ["C", "F"] },
+        "wind_speed": { "type": "string", "enum": ["kmh", "mph", "ms"] },
+        "precipitation": { "type": "string", "enum": ["mm", "in"] }
+      },
+      "required": ["temperature", "wind_speed", "precipitation"],
+      "additionalProperties": false
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The provider's own forecast/observation issue time -- distinct from the envelope's retrieved_at (when we fetched it). Absent when kind='unavailable'."
+    },
+    "observation": {
+      "type": "object",
+      "description": "Present only when kind='current_observation'.",
+      "properties": {
+        "observed_at": { "type": "string", "format": "date-time" },
+        "condition": { "type": "string", "minLength": 1 },
+        "temperature": { "type": "number" },
+        "precipitation_probability": { "type": "number", "minimum": 0, "maximum": 1 },
+        "precipitation_amount": { "type": "number", "minimum": 0 },
+        "wind_speed": { "type": "number", "minimum": 0 },
+        "wind_direction_degrees": { "type": "number", "minimum": 0, "maximum": 360 }
+      },
+      "required": ["observed_at", "condition", "temperature"],
+      "additionalProperties": false
+    },
+    "forecast_days": {
+      "type": "array",
+      "description": "Present for kind='forecast' or kind='historical'; empty for 'current_observation'/'unavailable'.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "condition": { "type": "string", "minLength": 1 },
+          "high": { "type": "number" },
+          "low": { "type": "number" },
+          "precipitation_chance": { "type": "number", "minimum": 0, "maximum": 1 },
+          "precipitation_amount": { "type": "number", "minimum": 0 },
+          "wind_speed": { "type": "number", "minimum": 0 }
+        },
+        "required": ["date", "condition", "high", "low"],
+        "additionalProperties": false
+      }
+    },
+    "missing_fields": {
+      "type": "array",
+      "description": "Explicitly names any field a caller might expect but this response could not populate -- never silently omitted without a reason recorded here.",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "required": ["schema_version", "location", "timezone", "kind", "units", "missing_fields"],
+  "additionalProperties": false
+}

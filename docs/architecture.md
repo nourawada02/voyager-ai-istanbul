@@ -134,11 +134,13 @@ mcp-server also fronts provider adapters, fixtures, and the ML artifact.
 ```
 input_guard -> load_session -> classify_intent -> parse_trip_request
    -> [optional clarification_interrupt]
-   -> parallel: search_flights_mcp | search_stays_mcp | fetch_weather_mcp
+   -> parallel: search_flights_tool | search_stays_mcp | fetch_weather_tool
    -> rank_global_candidates -> budget_feasibility
    -> call_istanbul_expert_a2a -> combine_global_and_local_scores
    -> constraint_repair -> output_guard -> format_trip_plan
 ```
+
+`search_flights_tool` and `fetch_weather_tool` are the independent typed provider tools described in §8's superseded-row note (Phase 4 Checkpoint C.0, ADR 0009) — invoked directly by System A's bounded ReAct orchestration, not `_mcp`-suffixed. `search_stays_mcp` is unchanged: accommodation remains a genuine Travel MCP tool.
 
 The router skips irrelevant branches: a museum-hours question never triggers flight or stay search; a flight-only request never invokes System B.
 
@@ -208,13 +210,13 @@ One independent MCP server, official Python SDK, Streamable HTTP transport.
 
 | Tool | Primary caller | Purpose |
 |---|---|---|
-| search_flights | System A | Find and normalize flight candidates |
 | search_stays | System A | Find snapshot, sandbox, or live stay candidates |
 | estimate_fair_price | System A | Run the persisted Istanbul ML pipeline |
-| get_weather | A or B | Obtain dated forecast data |
 | get_travel_times | System B | Route, transit, walking, ferry estimates |
 | get_operational_status | System B | Hours, closures, timetable notices from allowlisted sources |
 | get_fx_rate | System A | Normalize currencies from a pinned rate snapshot |
+
+**Superseded rows (Phase 4 Checkpoint C.0, accepted; [ADR 0009](adr/0009-phase4-checkpointc0-live-data-and-react-design.md)):** `search_flights` and `get_weather` are no longer Travel MCP tools. Weather, web-search evidence, and flight search are instead independent typed provider/tool capabilities (root `providers/`) that System A's bounded ReAct orchestration invokes directly — never routed through Travel MCP, and never handed to System B, which receives only pre-normalized context from System A and never gains provider credentials. Every other row above is unchanged: Travel MCP remains responsible for accommodation search, fair-price estimation, travel-time, operational-status, and FX-rate lookups exactly as before. This supersedes only these two rows/wording, not the rest of this document.
 
 ### 8.1 Provider adapters (fixture-first, live optional)
 

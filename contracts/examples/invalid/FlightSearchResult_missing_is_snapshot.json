@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "origin": "BEY",
+  "destination": "IST",
+  "depart_date_from": "2026-09-10",
+  "depart_date_to": "2026-09-10",
+  "passenger_count": 1,
+  "is_snapshot": false,
+  "searched_at": "2026-08-01T12:00:00Z",
+  "options": [],
+  "limitations": []
+}

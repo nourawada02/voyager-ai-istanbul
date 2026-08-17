@@ -2,18 +2,47 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase1/ProviderResponseEnvelope.schema.json",
   "title": "ProviderResponseEnvelope",
-  "description": "Required response envelope for MCP tool / provider-adapter responses (architecture.md §8.2). Scope: provider/MCP tool responses only — A2A payloads carry their own separately-specified fields (§7.1–7.3), never this envelope.",
+  "description": "Required response envelope for MCP tool / provider-adapter responses (architecture.md §8.2). Scope: provider/MCP tool responses only — A2A payloads carry their own separately-specified fields (§7.1–7.3), never this envelope. schema_version 1.1.0 (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md) additively introduces optional 'capability', 'status', 'query_fingerprint', 'cache_status', and 'cache_age_seconds' -- the richer operational-status vocabulary the new live-data tools (weather, web-search evidence, flight search) need to distinguish a genuine provider failure (timeout, rate limit, provider error, cancellation) from an empty-but-successful result, which 'data_mode' alone was never designed to express. Every existing 1.0.0 instance (none of the new fields set) remains valid unchanged; this is the same additive-minor-version discipline already used by ErrorEnvelope (1.0.0 -> 1.1.0) and StayOption/FairPriceEstimate (1.0.0 -> 1.1.0, docs/adr/0003-phase2-checkpoint-c0-serving-contract.md).",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
     "request_id": {
       "type": "string",
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
     },
     "provider": { "type": "string", "minLength": 1 },
+    "capability": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "1.1.0+ only. Which capability this envelope answers (e.g. 'weather', 'web_search', 'flight_search', 'search_stays'). An open, extensible lower_snake_case vocabulary -- deliberately a pattern, not a closed enum, matching ErrorEnvelope.error_code's own open-vocabulary precedent, so a future capability never requires a schema change just to be named."
+    },
     "data_mode": {
       "type": "string",
-      "enum": ["live", "cached", "historical", "fixture", "estimated"]
+      "enum": ["live", "cached", "historical", "fixture", "estimated", "unavailable"],
+      "description": "'unavailable' (1.1.0+, Checkpoint Phase 4 C.0 correction pass) means no data and no computed estimate exist at all -- distinct from 'estimated' (a genuine computed fallback exists, e.g. a Haversine distance). A timeout/rate_limited/provider_error/cancelled/unavailable status must use data_mode='unavailable' here, never 'estimated', unless an adapter actually computed a real fallback value."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success", "partial", "unavailable", "unsupported", "invalid_request",
+        "timeout", "rate_limited", "provider_error", "stale", "cancelled"
+      ],
+      "description": "1.1.0+ only. The operational outcome of this specific call, orthogonal to data_mode (which describes the *kind* of data returned, not whether the call succeeded). Omitted on a 1.0.0 instance implies 'success' for backward compatibility with every pre-existing fixture. A provider failure must always be represented as one of the non-'success'/'partial' values here -- never as an empty 'result' object with no status signal (Checkpoint Phase 4 C.0 failure-policy requirement)."
+    },
+    "query_fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "1.1.0+ only. sha256 hex digest of the normalized request (see providers/fingerprint.py). Deterministic: the same logical query always produces the same fingerprint, used for cache-key construction and duplicate-call detection in a bounded ReAct loop -- never derived from wall-clock time or call order."
+    },
+    "cache_status": {
+      "type": "string",
+      "enum": ["hit", "miss", "stale", "bypass"],
+      "description": "1.1.0+ only. Whether this result came from cache. Present only when the provider adapter has a cache layer at all."
+    },
+    "cache_age_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "1.1.0+ only. Age of the cached value at response time. Required whenever cache_status is 'hit' or 'stale' (dependentRequired below); meaningless for 'miss'/'bypass' and must be omitted there."
     },
     "retrieved_at": { "type": "string", "format": "date-time" },
     "valid_for": {
@@ -41,5 +70,12 @@
     "quality",
     "result"
   ],
+  "if": {
+    "properties": { "cache_status": { "enum": ["hit", "stale"] } },
+    "required": ["cache_status"]
+  },
+  "then": {
+    "required": ["cache_age_seconds"]
+  },
   "additionalProperties": false
 }

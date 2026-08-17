@@ -9,7 +9,8 @@
     "provider": { "type": "string", "minLength": 1 },
     "data_mode": {
       "type": "string",
-      "enum": ["live", "cached", "historical", "fixture", "estimated"]
+      "enum": ["live", "cached", "historical", "fixture", "estimated", "unavailable"],
+      "description": "'unavailable' (Checkpoint Phase 4 C.0 correction pass) is a purely additive new enum value: no data or estimate exists at all, distinct from 'estimated' (a computed fallback genuinely exists). Every pre-existing document using only the original five values remains valid unchanged."
     },
     "retrieved_at": { "type": "string", "format": "date-time" },
     "valid_for": {

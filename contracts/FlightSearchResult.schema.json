@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase4/FlightSearchResult.schema.json",
+  "title": "FlightSearchResult",
+  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='flight_search' (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md). 'is_snapshot' is a structural const true -- it can never be false or omitted in a valid instance, so nothing downstream can accidentally treat a flight search result as bookable inventory. No booking, payment, reservation, or purchase contract is authorized by this schema or any consumer of it.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "origin": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "destination": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "depart_date_from": { "type": "string", "format": "date" },
+    "depart_date_to": { "type": "string", "format": "date" },
+    "return_date_from": { "type": "string", "format": "date" },
+    "return_date_to": { "type": "string", "format": "date" },
+    "passenger_count": { "type": "integer", "minimum": 1, "maximum": 12 },
+    "cabin_class": {
+      "type": "string",
+      "enum": ["economy", "premium_economy", "business", "first"]
+    },
+    "is_snapshot": {
+      "const": true,
+      "description": "Always true: a search-time snapshot of quoted offers, never a claim that a seat is available now, that a fare is guaranteed, or that anything is booked."
+    },
+    "searched_at": { "type": "string", "format": "date-time" },
+    "options": {
+      "type": "array",
+      "items": { "$ref": "https://schemas.voyagerai.dev/phase1/FlightOption.schema.json" }
+    },
+    "limitations": {
+      "type": "array",
+      "description": "Explicit, human-readable limitations of this result (e.g. why it is empty, which constraints could not be honored). Always present, even when options is non-empty, if any limitation applies; an empty array means no known limitation.",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "required": [
+    "schema_version", "origin", "destination", "depart_date_from", "depart_date_to",
+    "passenger_count", "is_snapshot", "searched_at", "options", "limitations"
+  ],
+  "dependentRequired": {
+    "return_date_from": ["return_date_to"],
+    "return_date_to": ["return_date_from"]
+  },
+  "additionalProperties": false
+}

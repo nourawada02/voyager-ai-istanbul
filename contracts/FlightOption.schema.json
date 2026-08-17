@@ -2,17 +2,45 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase1/FlightOption.schema.json",
   "title": "FlightOption",
-  "description": "A normalized, ranked flight candidate returned by search_flights (architecture.md §8).",
+  "description": "A normalized, ranked flight candidate returned by search_flights (architecture.md §8). schema_version 1.1.0 (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md) additively introduces optional 'flight_number', 'provider_reference', 'offer_expires_at', 'baggage_limitations', 'fare_limitations', 'duration_minutes', and 'legs' for connecting itineraries. Every existing 1.0.0 instance (none of the new fields set, single implicit leg) remains valid unchanged. This project never claims a seat is available now, a fare is guaranteed, an itinerary is booked, or that payment occurred -- a FlightOption is always a search-time snapshot (see FlightSearchResult.is_snapshot), never bookable inventory.",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
     "flight_id": { "type": "string", "minLength": 1 },
     "origin": { "type": "string", "pattern": "^[A-Z]{3}$" },
     "destination": { "type": "string", "pattern": "^[A-Z]{3}$" },
     "depart_at": { "type": "string", "format": "date-time" },
     "arrive_at": { "type": "string", "format": "date-time" },
     "carrier": { "type": "string", "minLength": 1 },
+    "flight_number": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{2,3}[0-9]{1,4}[A-Z]?$",
+      "description": "1.1.0+ only. Present only when the provider actually supplied a specific flight identifier -- never invented to fill this field."
+    },
     "stops": { "type": "integer", "minimum": 0 },
+    "duration_minutes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "1.1.0+ only. Total scheduled origin-to-destination duration. Independently derivable from depart_at/arrive_at; present explicitly so a caller never has to parse timestamps to rank by duration."
+    },
+    "legs": {
+      "type": "array",
+      "description": "1.1.0+ only. Present only for connecting itineraries with more than one physical flight segment; a nonstop result omits this entirely (stops=0 is sufficient). Each leg is its own scheduled segment -- never a booking guarantee for any individual segment.",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "properties": {
+          "origin": { "type": "string", "pattern": "^[A-Z]{3}$" },
+          "destination": { "type": "string", "pattern": "^[A-Z]{3}$" },
+          "depart_at": { "type": "string", "format": "date-time" },
+          "arrive_at": { "type": "string", "format": "date-time" },
+          "carrier": { "type": "string", "minLength": 1 },
+          "flight_number": { "type": "string", "pattern": "^[A-Z0-9]{2,3}[0-9]{1,4}[A-Z]?$" }
+        },
+        "required": ["origin", "destination", "depart_at", "arrive_at", "carrier"],
+        "additionalProperties": false
+      }
+    },
     "price": {
       "type": "object",
       "properties": {
@@ -21,6 +49,26 @@
       },
       "required": ["amount_minor_units", "currency"],
       "additionalProperties": false
+    },
+    "provider_reference": {
+      "type": "string",
+      "minLength": 1,
+      "description": "1.1.0+ only. The provider's own opaque offer/quote identifier, if supplied -- never fabricated when absent."
+    },
+    "offer_expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "1.1.0+ only. When the provider states this quoted price/offer is no longer expected to be valid. Absence does not imply the offer is guaranteed indefinitely -- see FlightSearchResult.is_snapshot."
+    },
+    "baggage_limitations": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "1.1.0+ only. Free-text baggage allowance/restriction summary, present only when the provider actually supplied it."
+    },
+    "fare_limitations": {
+      "type": "string",
+      "maxLength": 512,
+      "description": "1.1.0+ only. Free-text fare-rule summary (change/refund restrictions etc.), present only when the provider actually supplied it."
     },
     "provenance": { "$ref": "DataProvenance.schema.json" }
   },

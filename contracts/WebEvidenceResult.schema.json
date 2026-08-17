@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase4/WebEvidenceResult.schema.json",
+  "title": "WebEvidenceResult",
+  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='web_search' (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md). A web result is evidence, not automatically a trusted fact -- 'source_type' lets the caller distinguish official sources from secondary or unknown publishers. This shape is deliberately distinct from contracts/SourceReference.schema.json (frozen RAG citations, docs/adr/0005-phase3-rag-ownership.md): a WebEvidenceItem is never silently converted into a SourceReference, and never presented as frozen corpus-backed knowledge.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "original_query": { "type": "string", "minLength": 1 },
+    "normalized_query": { "type": "string", "minLength": 1 },
+    "items": {
+      "type": "array",
+      "maxItems": 20,
+      "items": { "$ref": "#/$defs/evidenceItem" }
+    }
+  },
+  "required": ["schema_version", "original_query", "normalized_query", "items"],
+  "additionalProperties": false,
+  "$defs": {
+    "evidenceItem": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "canonical_url": { "type": "string", "format": "uri" },
+        "publisher": { "type": "string", "minLength": 1 },
+        "published_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "null when the publication date is genuinely unknown -- never guessed or backfilled with retrieved_at."
+        },
+        "retrieved_at": { "type": "string", "format": "date-time" },
+        "snippet": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600,
+          "description": "A short extracted evidence snippet or fact, copied from the source -- never a model-generated summary presented as a direct quotation."
+        },
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        },
+        "rank": { "type": "integer", "minimum": 1 },
+        "freshness": {
+          "type": "string",
+          "enum": ["live", "cached", "historical", "fixture", "estimated"]
+        },
+        "source_type": {
+          "type": "string",
+          "enum": ["official", "news", "reference", "secondary", "unknown"],
+          "description": "'official' = government/venue/airline/carrier's own site; 'news'/'reference' = established editorial or encyclopedic publishers; 'secondary' = blogs/forums/aggregators; 'unknown' = publisher could not be classified. The orchestrator, never this tool, decides how much weight to give a source."
+        },
+        "provenance": { "$ref": "https://schemas.voyagerai.dev/phase1/DataProvenance.schema.json" }
+      },
+      "required": [
+        "title", "canonical_url", "retrieved_at", "snippet", "language",
+        "rank", "freshness", "source_type", "provenance"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

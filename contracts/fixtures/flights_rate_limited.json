@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.1.0",
+  "request_id": "55555555-5555-4555-8555-555555555553",
+  "provider": "synthetic-fixture-flight-provider",
+  "capability": "flight_search",
+  "data_mode": "unavailable",
+  "status": "rate_limited",
+  "retrieved_at": "2026-08-01T12:00:00Z",
+  "source_urls": [],
+  "quality": {
+    "schema_version": "1.0.0",
+    "completeness": 0.0,
+    "freshness": "unavailable",
+    "assumptions": ["Flight provider rate limit exceeded; no offers retrieved for this call. Never invented from web snippets."]
+  },
+  "result": {
+    "schema_version": "1.0.0",
+    "origin": "BEY",
+    "destination": "IST",
+    "depart_date_from": "2026-09-10",
+    "depart_date_to": "2026-09-10",
+    "passenger_count": 1,
+    "is_snapshot": true,
+    "searched_at": "2026-08-01T12:00:00Z",
+    "options": [],
+    "limitations": ["Provider rate limit exceeded; retry after the provider's Retry-After window."]
+  }
+}
