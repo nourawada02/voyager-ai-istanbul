@@ -29,9 +29,14 @@ def normalize_query(query: str) -> str:
 class WebEvidenceQuery:
     query: str
     language_hint: str = "en"
+    max_results: "int | None" = None
 
     def normalized(self) -> dict:
-        return {"normalized_query": normalize_query(self.query), "language_hint": self.language_hint}
+        return {
+            "normalized_query": normalize_query(self.query),
+            "language_hint": self.language_hint,
+            "max_results": self.max_results,
+        }
 
     def fingerprint(self) -> str:
         return fingerprint_request(CAPABILITY, self.normalized())

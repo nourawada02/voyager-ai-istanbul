@@ -76,6 +76,16 @@ def data_mode_for_status(status: str, computed_estimate: bool = False) -> str:
 
 @dataclass(frozen=True)
 class TimeoutPolicy:
+    """`connect_timeout_seconds` is kept for interface compatibility and
+    is meaningful for a transport that can bound connect and read phases
+    separately -- `providers.http_transport.UrllibHttpTransport` cannot
+    (see its own module docstring: the stdlib `urllib.request` exposes
+    only one end-to-end socket timeout), so that transport enforces only
+    `total_timeout_seconds` and does not separately enforce
+    `connect_timeout_seconds`. A future transport built on a lower-level
+    HTTP client could honor both independently without this dataclass
+    needing to change shape."""
+
     connect_timeout_seconds: float = 3.0
     total_timeout_seconds: float = 10.0
 
