@@ -5,8 +5,9 @@ stubbed MCP/A2A async calls), so no real socket is ever opened, but the
 executor class, provider bindings, and mapping logic are the genuine
 production code, not `FakeToolExecutor`. Measures the actual
 graph-transition count for the canonical five-tool-call plan:
-search_flights -> search_stays -> estimate_fair_price -> get_weather ->
-call_istanbul_expert -> synthesize.
+call_travel_search (delegating search_flights -> search_stays ->
+estimate_fair_price -> get_weather to the internal Travel Search
+specialist, Checkpoint Phase 4 D.3) -> call_istanbul_expert -> synthesize.
 """
 
 from __future__ import annotations
@@ -152,15 +153,17 @@ def _build_real_tool_executor() -> ProductionToolExecutor:
 
 def test_canonical_five_tool_plan_completes_with_real_production_executor():
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_flight_info"),
         _decision("search_flights", {"origin": "BEY", "destination": "IST", "depart_date": "2026-08-20", "passenger_count": 2}, "missing_flight_info"),
         _decision("search_stays", {"check_in": "2026-08-20", "check_out": "2026-08-25", "guest_count": 2}, "missing_stay_info"),
         _decision("estimate_fair_price", {"stay_id": "stay_it_001"}, "needs_fair_price"),
         _decision("get_weather", {"location": "Istanbul", "date_from": "2026-08-20", "date_to": "2026-08-20"}, "missing_weather_info"),
+        _decision("travel_search_complete", {}, "all_required_evidence_present"),
         _decision("call_istanbul_expert", {"question": "What should I see near my stay?"}, "missing_local_expertise"),
         _decision("synthesize", {}, "all_required_evidence_present"),
     ])
     tool_executor = _build_real_tool_executor()
-    graph = build_graph(tool_executor, decider)
+    graph = build_graph(tool_executor, decider, decider)
     request = PlannerRequest(session_id=uuid4(), trace_id=uuid4(), user_message="Plan my Istanbul trip", trip_request=TRIP_REQUEST)
 
     result = start_session(graph, request, "t-full-trip-hermetic")

@@ -201,7 +201,7 @@ def test_real_cross_process_bounded_integration_scenario():
         request = PlannerRequest(
             session_id=uuid4(), trace_id=uuid4(), user_message="Plan my Istanbul trip", trip_request=trip_request
         )
-        graph = build_graph(tool_executor, decider)
+        graph = build_graph(tool_executor, decider, decider)
         result = start_session(graph, request, "cross-process-gate")
         runtime_seconds = time.monotonic() - gate_start
 

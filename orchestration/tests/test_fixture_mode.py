@@ -1,8 +1,8 @@
 """Hermetic tests for System A's explicit deterministic demo/fixture mode
 (Checkpoint Phase 4 D.2B). No real Qwen/SerpApi/Open-Meteo/Travel MCP/
 System B/Qdrant call is ever made -- fixture mode is, by construction,
-`phase4.tools.FakeToolExecutor` + `FixtureDecisionProvider`, both fully
-in-process and network-free.
+`phase4.tools.FakeToolExecutor` + `SupervisorFixtureDecisionProvider` +
+`SpecialistFixtureDecisionProvider`, all fully in-process and network-free.
 """
 
 from __future__ import annotations
@@ -13,7 +13,10 @@ from fastapi.testclient import TestClient
 
 from orchestration.system_a.api import create_app
 from orchestration.system_a.config import SystemAModeConfigurationError, is_fixture_mode, system_a_mode
-from orchestration.system_a.fixture_decision_provider import FixtureDecisionProvider
+from orchestration.system_a.fixture_decision_provider import (
+    SpecialistFixtureDecisionProvider,
+    SupervisorFixtureDecisionProvider,
+)
 from phase4.tools import FakeToolExecutor
 
 TRIP_REQUEST = {
@@ -64,7 +67,8 @@ def test_unrecognized_mode_value_raises_loudly_never_silently_falls_back(monkeyp
 def test_fixture_mode_completes_a_real_run_through_the_public_api(tmp_db_path):
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=FixtureDecisionProvider,
+        decision_provider_factory=SupervisorFixtureDecisionProvider,
+        specialist_decision_provider_factory=SpecialistFixtureDecisionProvider,
         db_path=tmp_db_path, max_workers=1, mode="fixture",
     )
     with TestClient(app) as client:
@@ -84,7 +88,8 @@ def test_fixture_mode_completes_a_real_run_through_the_public_api(tmp_db_path):
 def test_fixture_mode_with_no_structured_trip_request_synthesizes_immediately(tmp_db_path):
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=FixtureDecisionProvider,
+        decision_provider_factory=SupervisorFixtureDecisionProvider,
+        specialist_decision_provider_factory=SpecialistFixtureDecisionProvider,
         db_path=tmp_db_path, max_workers=1, mode="fixture",
     )
     with TestClient(app) as client:
@@ -103,7 +108,8 @@ def test_real_mode_is_still_the_default_label_on_health(tmp_db_path):
     as entrypoint.py does when VOYAGER_SYSTEM_A_MODE is unset."""
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=FixtureDecisionProvider,
+        decision_provider_factory=SupervisorFixtureDecisionProvider,
+        specialist_decision_provider_factory=SpecialistFixtureDecisionProvider,
         db_path=tmp_db_path, max_workers=1,  # mode intentionally omitted -> default "real"
     )
     with TestClient(app) as client:

@@ -17,6 +17,40 @@ from orchestration.tests.conftest import GatedFakeToolExecutor, ScriptedDecision
 from phase4.tools import FakeToolExecutor
 
 
+def _dual(provider):
+    # A single shared provider INSTANCE serves both the supervisor and
+    # specialist roles (`RunService` now calls two separate factories) --
+    # every script in this file is one flat, sequentially-consumed queue
+    # regardless of which role asks next. Safe for a single run per app;
+    # see `_dual_per_run` below for the multi-concurrent-run case.
+    return (lambda: provider), (lambda: provider)
+
+
+def _dual_per_run(build_provider):
+    """Like `_dual`, but for an app that serves MANY concurrent runs from
+    ONE shared factory pair (`test_concurrent_sessions_do_not_share_observations`):
+    each run's own worker thread calls `decision_provider_factory()` then
+    `specialist_decision_provider_factory()` in that order, synchronously,
+    within `RunService._execute` -- thread-local storage lets the first
+    call construct a brand-new provider (so concurrent runs never share
+    one queue/instance) while the second call, on that same thread,
+    retrieves that exact instance (so the two roles within one run still
+    share one sequential queue)."""
+    import threading
+
+    local = threading.local()
+
+    def decision_factory():
+        provider = build_provider()
+        local.provider = provider
+        return provider
+
+    def specialist_factory():
+        return local.provider
+
+    return decision_factory, specialist_factory
+
+
 def _poll_until_terminal(client: TestClient, run_id: str, attempts: int = 200, delay: float = 0.02) -> dict:
     data = {}
     for _ in range(attempts):
@@ -42,21 +76,23 @@ def _wait_until(predicate, attempts: int = 200, delay: float = 0.01) -> None:
 def test_cancel_before_execution_starts_prevents_any_tool_call(tmp_db_path):
     gated = GatedFakeToolExecutor()
     gated.gate.set()  # never actually blocks -- this test cancels before the run even starts
+    # A second (never-needed-if-cancellation-wins) scripted response is a
+    # deliberate safety net: cancellation is only checked as a
+    # precondition of Decide (ADR 0009 §4.5), so this test's actual
+    # assertion is a real, tiny timing race against the background
+    # worker thread's first Decide call. If that race is ever lost on a
+    # slow CI box, this extra response keeps the run completing honestly
+    # (0 or 1 tool calls, asserted below) instead of crashing into an
+    # unrelated "ran out of scripted responses" failure that would hide
+    # the real assertion.
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=lambda: gated,
-        # A second (never-needed-if-cancellation-wins) scripted response
-        # is a deliberate safety net: cancellation is only checked as a
-        # precondition of Decide (ADR 0009 §4.5), so this test's actual
-        # assertion is a real, tiny timing race against the background
-        # worker thread's first Decide call. If that race is ever lost
-        # on a slow CI box, this extra response keeps the run completing
-        # honestly (0 or 1 tool calls, asserted below) instead of
-        # crashing into an unrelated "ran out of scripted responses"
-        # failure that would hide the real assertion.
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -71,13 +107,17 @@ def test_cancel_before_execution_starts_prevents_any_tool_call(tmp_db_path):
 
 def test_cancel_during_execution_stops_further_tool_calls(tmp_db_path):
     gated = GatedFakeToolExecutor()
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
+        decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("get_weather", {"location": "Ankara", "date_from": "2026-09-11", "date_to": "2026-09-11"}, "missing_weather_info"),
+        decision("travel_search_complete", {}, "all_required_evidence_present"),
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=lambda: gated,
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-            decision("get_weather", {"location": "Ankara", "date_from": "2026-09-11", "date_to": "2026-09-11"}, "missing_weather_info"),
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -108,12 +148,15 @@ def test_cancellation_is_idempotent(tmp_db_path):
     # deliberately never provides) makes the exact moment of each cancel
     # call non-deterministic.
     gated = GatedFakeToolExecutor()
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
+        decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=lambda: gated,
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -134,9 +177,11 @@ def test_cancellation_is_idempotent(tmp_db_path):
 
 
 def test_cancel_unknown_run_returns_404(tmp_db_path):
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([]))
     app = create_app(
         tool_executor_factory=lambda: GatedFakeToolExecutor(),
-        decision_provider_factory=lambda: ScriptedDecisionProvider([]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -145,12 +190,16 @@ def test_cancel_unknown_run_returns_404(tmp_db_path):
 
 
 def test_cancel_after_completion_is_a_harmless_no_op(tmp_db_path):
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
+        decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("travel_search_complete", {}, "all_required_evidence_present"),
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -173,15 +222,19 @@ def test_cancel_after_completion_is_a_harmless_no_op(tmp_db_path):
 
 
 def test_concurrent_sessions_do_not_share_observations(tmp_db_path):
-    def make_provider(location: str):
-        return lambda: ScriptedDecisionProvider([
+    def build_provider(location: str = "Istanbul") -> ScriptedDecisionProvider:
+        return ScriptedDecisionProvider([
+            decision("call_travel_search", {}, "missing_weather_info"),
             decision("get_weather", {"location": location, "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+            decision("travel_search_complete", {}, "all_required_evidence_present"),
             decision("synthesize", {}, "all_required_evidence_present"),
         ])
 
+    decision_factory, specialist_factory = _dual_per_run(build_provider)
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=make_provider("Istanbul"),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=4,
     )
     with TestClient(app) as client:
@@ -210,12 +263,16 @@ def test_duplicate_run_is_never_executed_twice(tmp_db_path):
             call_log.append(action)
             return FakeToolExecutor().execute(action, arguments, context)
 
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
+        decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("travel_search_complete", {}, "all_required_evidence_present"),
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=lambda: CountingToolExecutor(),
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=8,
     )
 

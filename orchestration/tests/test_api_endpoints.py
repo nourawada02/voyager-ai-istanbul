@@ -20,15 +20,25 @@ from phase4.tools import FakeToolExecutor
 
 def _weather_then_synthesize_provider() -> ScriptedDecisionProvider:
     return ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
         decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("travel_search_complete", {}, "all_required_evidence_present"),
         decision("synthesize", {}, "all_required_evidence_present"),
     ])
 
 
 def _make_app(tmp_db_path: str, decision_provider_factory=None, max_workers: int = 2):
+    # A single shared provider INSTANCE serves both the supervisor and
+    # specialist roles (`RunService` now calls two separate factories) --
+    # each of these test scripts is one flat, sequentially-consumed
+    # queue regardless of which role asks next, so both factories must
+    # resolve to the exact same object, never two independent instances
+    # each starting over at index 0.
+    provider = (decision_provider_factory or _weather_then_synthesize_provider)()
     return create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=decision_provider_factory or _weather_then_synthesize_provider,
+        decision_provider_factory=lambda: provider,
+        specialist_decision_provider_factory=lambda: provider,
         db_path=tmp_db_path,
         max_workers=max_workers,
     )

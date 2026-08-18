@@ -98,6 +98,7 @@ class RunService:
         db_path: str,
         tool_executor_factory: Callable[[], ToolExecutor],
         decision_provider_factory: Callable[[], DecisionProvider],
+        specialist_decision_provider_factory: Callable[[], DecisionProvider],
         max_workers: int = 4,
         busy_timeout_ms: int = 5000,
     ):
@@ -105,6 +106,7 @@ class RunService:
         self._db_path = db_path
         self._tool_executor_factory = tool_executor_factory
         self._decision_provider_factory = decision_provider_factory
+        self._specialist_decision_provider_factory = specialist_decision_provider_factory
         self._busy_timeout_ms = busy_timeout_ms
         self._pool = ThreadPoolExecutor(max_workers=max_workers, thread_name_prefix="voyager-run-worker")
 
@@ -177,11 +179,14 @@ class RunService:
 
             tool_executor = self._tool_executor_factory()
             decision_provider = self._decision_provider_factory()
+            specialist_decision_provider = self._specialist_decision_provider_factory()
             graph = build_graph(
                 tool_executor,
                 decision_provider,
+                specialist_decision_provider,
                 cancellation_check=lambda: self._store.is_cancellation_requested(run_id),
                 checkpointer=saver,
+                specialist_event_callback=lambda event: self._handle_specialist_event(run_id, event),
             )
 
             # Mirrors phase4.graph.start_session's own initial-state
@@ -257,3 +262,32 @@ class RunService:
                     obs = observations[-1]
                     stage = sse.ACTION_COMPLETED if obs.get("status") == "success" else sse.ACTION_FAILED
                     self._emit(run_id, stage, {"action": obs.get("action"), "status": obs.get("status")})
+
+    def _handle_specialist_event(self, run_id: str, event: dict[str, Any]) -> None:
+        # Checkpoint Phase 4 D.3 (correction pass): a `call_travel_search`
+        # delegation runs the internal Travel Search specialist's own
+        # genuinely separate, compiled LangGraph `StateGraph`
+        # (`phase4/specialist.py`). `phase4.graph.build_graph`'s own
+        # `specialist_event_callback` seam calls THIS method in real
+        # time, DURING the specialist's own `.stream()` iteration --
+        # i.e. genuinely as each specialist transition happens, not after
+        # the whole delegation has already completed (the D.3 correction
+        # this replaces: a prior draft derived these events from the
+        # supervisor's own "execute" node update AFTER the entire
+        # delegation had already finished, which looked live but was not
+        # -- every event landed at once, post hoc). `event` is already
+        # sanitized -- action name and status only, never a prompt, an
+        # argument, or an explanation (see
+        # `phase4.specialist._emit_specialist_events`).
+        stage_by_name = {
+            "action_started": sse.ACTION_STARTED,
+            "action_completed": sse.ACTION_COMPLETED,
+            "action_failed": sse.ACTION_FAILED,
+        }
+        stage = stage_by_name.get(event.get("stage"))
+        if stage is None:
+            return
+        payload: dict[str, Any] = {"action": event.get("action")}
+        if "status" in event:
+            payload["status"] = event["status"]
+        self._emit(run_id, stage, payload)

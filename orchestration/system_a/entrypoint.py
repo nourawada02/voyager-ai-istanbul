@@ -37,7 +37,10 @@ from fastapi import FastAPI
 
 from orchestration.system_a import config
 from orchestration.system_a.api import create_app
-from orchestration.system_a.fixture_decision_provider import FixtureDecisionProvider
+from orchestration.system_a.fixture_decision_provider import (
+    SpecialistFixtureDecisionProvider,
+    SupervisorFixtureDecisionProvider,
+)
 from orchestration.system_a.tool_executor import ProductionToolExecutor
 from phase4.qwen_client import QwenDecisionProvider
 from phase4.tools import FakeToolExecutor
@@ -47,13 +50,22 @@ def _build_production_app() -> FastAPI:
     mode = config.system_a_mode()  # raises SystemAModeConfigurationError on an unrecognized value
     if mode == "fixture":
         tool_executor_factory = FakeToolExecutor
-        decision_provider_factory = FixtureDecisionProvider
+        decision_provider_factory = SupervisorFixtureDecisionProvider
+        specialist_decision_provider_factory = SpecialistFixtureDecisionProvider
     else:
         tool_executor_factory = ProductionToolExecutor
+        # Two separate instances -- the internal Travel Search
+        # specialist gets its own `DecisionProvider` object, never the
+        # supervisor's own (ADR 0017 §3). `QwenDecisionProvider` is a
+        # frozen, stateless-per-call dataclass, so the two behave
+        # identically; the separate construction is what makes "role" a
+        # constructor-time fact rather than something inferred later.
         decision_provider_factory = QwenDecisionProvider
+        specialist_decision_provider_factory = QwenDecisionProvider
     return create_app(
         tool_executor_factory=tool_executor_factory,
         decision_provider_factory=decision_provider_factory,
+        specialist_decision_provider_factory=specialist_decision_provider_factory,
         mode=mode,
     )
 

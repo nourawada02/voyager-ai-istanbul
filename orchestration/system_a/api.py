@@ -120,6 +120,7 @@ def _record_to_status_response(record: RunRecord) -> RunStatusResponse:
 def create_app(
     tool_executor_factory: Callable[[], ToolExecutor],
     decision_provider_factory: Callable[[], DecisionProvider],
+    specialist_decision_provider_factory: Callable[[], DecisionProvider],
     db_path: Optional[str] = None,
     max_workers: Optional[int] = None,
     mode: str = "real",
@@ -132,6 +133,14 @@ def create_app(
     `ProductionToolExecutor`/`QwenDecisionProvider`; every test passes a
     factory that builds a fake/scripted/stubbed equivalent instead, so no
     test ever depends on network access.
+
+    `specialist_decision_provider_factory` (Checkpoint Phase 4 D.3
+    correction pass) is a SEPARATE, explicitly supplied factory for the
+    internal Travel Search specialist's own `DecisionProvider` -- never
+    the same object as `decision_provider_factory`'s result, and never
+    inferred from prompt content at runtime (ADR 0017 §3). Production
+    wiring (`entrypoint.py`) passes a second, independent
+    `QwenDecisionProvider`/`SpecialistFixtureDecisionProvider` factory.
 
     `mode` is a non-secret operational label only (`"real"` or
     `"fixture"`, Checkpoint D.2B) -- it never changes which factories run,
@@ -147,6 +156,7 @@ def create_app(
         db_path=resolved_db_path,
         tool_executor_factory=tool_executor_factory,
         decision_provider_factory=decision_provider_factory,
+        specialist_decision_provider_factory=specialist_decision_provider_factory,
         max_workers=resolved_max_workers,
         busy_timeout_ms=config.busy_timeout_ms(),
     )

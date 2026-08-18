@@ -110,10 +110,12 @@ def test_unavailable_weather_produces_a_partial_plan_not_a_hard_failure():
         mcp_client=_StubMcpClient(), a2a_client=_StubA2AClient(),
     )
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_weather_info"),
         _decision("get_weather", {"location": "Nowhere", "date_from": "2026-08-20", "date_to": "2026-08-20"}, "missing_weather_info"),
+        _decision("travel_search_complete", {}, "all_required_evidence_present"),
         _decision("synthesize", {}, "all_required_evidence_present"),
     ])
-    result = start_session(build_graph(executor, decider), _request(), "t-weather-unavailable")
+    result = start_session(build_graph(executor, decider, decider), _request(), "t-weather-unavailable")
     assert result["observations"][0]["status"] == "unavailable"
     assert result["final_result"]["status"] == "partial"
     serialized = json.dumps(result, default=str).lower()
@@ -130,11 +132,12 @@ def test_serpapi_rate_limiting_does_not_loop_and_never_invents_flights():
     )
     same_args = {"origin": "BEY", "destination": "IST", "depart_date": "2026-08-20", "passenger_count": 1}
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_flight_info"),
         _decision("search_flights", same_args, "missing_flight_info"),
-        _decision("search_flights", same_args, "missing_flight_info"),  # duplicate -> skipped
-        _decision("search_flights", same_args, "missing_flight_info"),  # 2nd consecutive duplicate -> forced synthesize
+        _decision("search_flights", same_args, "missing_flight_info"),  # duplicate -> specialist loop breaks, returns control
+        _decision("synthesize", {}, "all_required_evidence_present"),  # supervisor's next decision
     ])
-    result = start_session(build_graph(executor, decider), _request(), "t-rate-limited")
+    result = start_session(build_graph(executor, decider, decider), _request(), "t-rate-limited")
     assert result["observations"][0]["status"] == "rate_limited"
     assert result["observations"][0]["envelope"] is None  # no invented flight data
     assert len(result["trace"]) < 20  # bounded, never open-ended
@@ -147,10 +150,12 @@ def test_mcp_timeout_produces_safe_partial_failure():
         mcp_client=_StubMcpClient(scenario="timeout"), a2a_client=_StubA2AClient(),
     )
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_stay_info"),
         _decision("search_stays", {"check_in": "2026-08-20", "check_out": "2026-08-25", "guest_count": 1}, "missing_stay_info"),
+        _decision("travel_search_complete", {}, "all_required_evidence_present"),
         _decision("synthesize", {}, "all_required_evidence_present"),
     ])
-    result = start_session(build_graph(executor, decider), _request(), "t-mcp-timeout")
+    result = start_session(build_graph(executor, decider, decider), _request(), "t-mcp-timeout")
     assert result["observations"][0]["status"] == "timeout"
     assert result["final_result"]["status"] == "partial"
 
@@ -161,10 +166,12 @@ def test_malformed_mcp_data_is_rejected_not_inserted_as_valid():
         mcp_client=_StubMcpClient(scenario="malformed"), a2a_client=_StubA2AClient(),
     )
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_stay_info"),
         _decision("search_stays", {"check_in": "2026-08-20", "check_out": "2026-08-25", "guest_count": 1}, "missing_stay_info"),
+        _decision("travel_search_complete", {}, "all_required_evidence_present"),
         _decision("synthesize", {}, "all_required_evidence_present"),
     ])
-    result = start_session(build_graph(executor, decider), _request(), "t-mcp-malformed")
+    result = start_session(build_graph(executor, decider, decider), _request(), "t-mcp-malformed")
     assert result["observations"][0]["status"] == "provider_error"
     assert result["observations"][0]["envelope"] is None
     assert any("malformed_tool_result" in w for w in result["warnings"])
@@ -176,11 +183,13 @@ def test_a2a_timeout_produces_a_safe_partial_result():
         mcp_client=_StubMcpClient(), a2a_client=_StubA2AClient(scenario="timeout"),
     )
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_stay_info"),
         _decision("search_stays", {"check_in": "2026-08-20", "check_out": "2026-08-25", "guest_count": 1}, "missing_stay_info"),
+        _decision("travel_search_complete", {}, "all_required_evidence_present"),
         _decision("call_istanbul_expert", {"question": "what to see?"}, "missing_local_expertise"),
         _decision("synthesize", {}, "all_required_evidence_present"),
     ])
-    result = start_session(build_graph(executor, decider), _request(TRIP_REQUEST), "t-a2a-timeout")
+    result = start_session(build_graph(executor, decider, decider), _request(TRIP_REQUEST), "t-a2a-timeout")
     call_istanbul_obs = [o for o in result["observations"] if o["action"] == "call_istanbul_expert"][0]
     assert call_istanbul_obs["status"] == "timeout"
     assert result["final_result"]["status"] == "partial"
@@ -192,11 +201,13 @@ def test_invalid_system_b_artifact_is_rejected():
         mcp_client=_StubMcpClient(), a2a_client=_StubA2AClient(scenario="invalid_artifact"),
     )
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_stay_info"),
         _decision("search_stays", {"check_in": "2026-08-20", "check_out": "2026-08-25", "guest_count": 1}, "missing_stay_info"),
+        _decision("travel_search_complete", {}, "all_required_evidence_present"),
         _decision("call_istanbul_expert", {"question": "what to see?"}, "missing_local_expertise"),
         _decision("synthesize", {}, "all_required_evidence_present"),
     ])
-    result = start_session(build_graph(executor, decider), _request(TRIP_REQUEST), "t-a2a-invalid-artifact")
+    result = start_session(build_graph(executor, decider, decider), _request(TRIP_REQUEST), "t-a2a-invalid-artifact")
     call_istanbul_obs = [o for o in result["observations"] if o["action"] == "call_istanbul_expert"][0]
     assert call_istanbul_obs["status"] == "provider_error"
     assert call_istanbul_obs["envelope"] is None
@@ -235,11 +246,13 @@ def test_qdrant_unavailable_warning_from_system_b_is_preserved_verbatim():
         mcp_client=_StubMcpClient(), a2a_client=_A2AWithWarning(),
     )
     decider = ScriptedDecisionProvider([
+        _decision("call_travel_search", {}, "missing_stay_info"),
         _decision("search_stays", {"check_in": "2026-08-20", "check_out": "2026-08-25", "guest_count": 1}, "missing_stay_info"),
+        _decision("travel_search_complete", {}, "all_required_evidence_present"),
         _decision("call_istanbul_expert", {"question": "what to see?"}, "missing_local_expertise"),
         _decision("synthesize", {}, "all_required_evidence_present"),
     ])
-    result = start_session(build_graph(executor, decider), _request(TRIP_REQUEST), "t-qdrant-warning")
+    result = start_session(build_graph(executor, decider, decider), _request(TRIP_REQUEST), "t-qdrant-warning")
     call_istanbul_obs = [o for o in result["observations"] if o["action"] == "call_istanbul_expert"][0]
     assert call_istanbul_obs["status"] == "success"
     assert warning_text in call_istanbul_obs["envelope"]["warnings"]

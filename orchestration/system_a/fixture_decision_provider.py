@@ -1,4 +1,4 @@
-"""Deterministic, rule-based `DecisionProvider` for System A's explicit
+"""Deterministic, rule-based `DecisionProvider`s for System A's explicit
 demo/fixture mode (Checkpoint Phase 4 D.2B, `VOYAGER_SYSTEM_A_MODE=fixture`).
 
 Satisfies the exact same `phase4.qwen_client.DecisionProvider` protocol
@@ -6,13 +6,26 @@ Satisfies the exact same `phase4.qwen_client.DecisionProvider` protocol
 JSON `ActionDecision`), so it plugs into the unmodified bounded LangGraph
 loop through the same `decision_provider_factory` seam Checkpoint D.1
 already established -- no graph, guard, or bound is touched. Reads the
-`user` payload `phase4.graph._build_decision_prompt` already builds
-(`user_message`/`trip_request`/`evidence_collected_so_far`/
-`tool_calls_used`) and applies a small, fixed, explicit action order --
-never an LLM call, never network I/O, never randomness. Pairs naturally
-with `phase4.tools.FakeToolExecutor` (already-existing, already-tested,
-production-owned deterministic fixture executor -- reused unchanged, not
-duplicated) to make fixture mode fully network-free end to end.
+`user` payload `phase4.graph._build_decision_prompt` /
+`phase4.specialist._build_specialist_prompt` already build (`user_message`/
+`trip_request`/`evidence_collected_so_far`/`tool_calls_used`) and applies
+a small, fixed, explicit action order -- never an LLM call, never network
+I/O, never randomness. Pairs naturally with `phase4.tools.FakeToolExecutor`
+(already-existing, already-tested, production-owned deterministic fixture
+executor -- reused unchanged, not duplicated) to make fixture mode fully
+network-free end to end.
+
+Checkpoint Phase 4 D.3 (correction pass): the supervisor and the internal
+Travel Search specialist are now served by two SEPARATE classes --
+`SupervisorFixtureDecisionProvider` and `SpecialistFixtureDecisionProvider`
+-- each instantiated explicitly for its own role by the caller
+(`orchestration/system_a/service.py`), exactly mirroring how real mode
+constructs two separate `QwenDecisionProvider` instances. Neither class
+ever inspects the `system` prompt text to guess which role it is playing
+-- the role is fixed at construction/class-identity, not inferred from
+prompt content, matching the graph's own explicit
+`decision_provider`/`specialist_decision_provider` construction parameters
+(`phase4.graph.build_graph`).
 
 This is new orchestration-owned routing code, not a duplication of any
 existing business logic: no deterministic "which tool next" policy
@@ -27,18 +40,20 @@ from __future__ import annotations
 import json
 from typing import Any, Optional
 
-# The fixed, explicit action order this provider proposes, one action per
-# call, skipping whatever already has a successful observation. Chosen to
-# exercise a real, demonstrable multi-tool plan (flights, stays, weather,
-# local expertise) while deliberately omitting `estimate_fair_price` and
-# `web_search`: both are optional actions whose arguments in the REAL
-# system also depend on already-executed evidence the decision provider
-# itself never directly sees (`estimate_fair_price`'s `stay_id` is only
-# ever validated server-side against a prior `search_stays` observation,
-# see `orchestration/system_a/tool_executor.py::_validated_stay_id`) --
-# real Qwen faces the identical limitation, so skipping them here is not
+# The fixed, explicit action order the internal Travel Search specialist
+# proposes, one action per call, skipping whatever already has a
+# successful observation (visible via the shared evidence registry both
+# loops read). Chosen to exercise a real, demonstrable multi-tool plan
+# (flights, stays, weather) while deliberately omitting
+# `estimate_fair_price` and `web_search`: both are optional actions whose
+# arguments in the REAL system also depend on already-executed evidence
+# the decision provider itself never directly sees (`estimate_fair_price`'s
+# `stay_id` is only ever validated server-side against a prior
+# `search_stays` observation, see
+# `orchestration/system_a/tool_executor.py::_validated_stay_id`) -- real
+# Qwen faces the identical limitation, so skipping them here is not
 # fixture mode cutting a corner real mode does not also have.
-_FIXTURE_ACTION_ORDER = ("get_weather", "search_flights", "search_stays", "call_istanbul_expert")
+_SPECIALIST_ACTION_ORDER = ("get_weather", "search_flights", "search_stays")
 
 _REASON_CODE_BY_ACTION = {
     "get_weather": "missing_weather_info",
@@ -101,15 +116,30 @@ def _build_arguments(action: str, trip_request: dict[str, Any]) -> Optional[dict
     return None
 
 
-class FixtureDecisionProvider:
-    """Deterministic `DecisionProvider`. Never reads an environment
-    variable, never opens a socket, never stores mutable state across
-    calls -- every decision is derived purely from the `user` payload
-    passed to this exact call, matching `QwenDecisionProvider`'s own
-    "read fresh every time" statelessness."""
+def _parse_user_payload(user: str) -> dict[str, Any]:
+    # `phase4.graph._build_decision_prompt` / `phase4.specialist.
+    # _build_specialist_prompt` both prefix the JSON payload with a fixed
+    # human-readable line -- split it off rather than assuming a fixed
+    # character offset, so this stays correct even if that prefix's
+    # wording changes.
+    _, _, json_text = user.partition("\n")
+    try:
+        parsed = json.loads(json_text)
+    except json.JSONDecodeError:
+        return {}
+    return parsed if isinstance(parsed, dict) else {}
+
+
+class SupervisorFixtureDecisionProvider:
+    """Deterministic `DecisionProvider` for the SUPERVISOR role only.
+    Never reads an environment variable, never opens a socket, never
+    stores mutable state across calls, and never inspects `system` --
+    the role is fixed by this class's own identity, exactly matching
+    `phase4.graph.build_graph`'s own explicit `decision_provider`
+    construction parameter."""
 
     def generate(self, system: str, user: str) -> str:
-        payload = self._parse_user_payload(user)
+        payload = _parse_user_payload(user)
         trip_request = payload.get("trip_request") or {}
         evidence = {
             entry.get("action"): entry.get("status")
@@ -117,29 +147,45 @@ class FixtureDecisionProvider:
             if isinstance(entry, dict)
         }
 
-        for action in _FIXTURE_ACTION_ORDER:
+        if trip_request and not any(action in evidence for action in _SPECIALIST_ACTION_ORDER):
+            # Nothing travel-search-related has been gathered yet for this
+            # structured request -- delegate the whole batch to the
+            # specialist in one decision, exactly like real Qwen must
+            # (the supervisor's own contract never offers the 5 tools
+            # directly, see `SUPERVISOR_ACTIONS`).
+            return _decision("call_travel_search", {}, _REASON_CODE_BY_ACTION["get_weather"])
+        if "call_istanbul_expert" not in evidence and evidence.get("search_stays") == "success":
+            # Needs a prior successful search_stays for real stay
+            # candidates -- identical gate to the pre-D.3 fixture policy.
+            arguments = _build_arguments("call_istanbul_expert", trip_request)
+            return _decision("call_istanbul_expert", arguments, _REASON_CODE_BY_ACTION["call_istanbul_expert"])
+        return _decision("synthesize", {}, "all_required_evidence_present")
+
+
+class SpecialistFixtureDecisionProvider:
+    """Deterministic `DecisionProvider` for the internal Travel Search
+    SPECIALIST role only. Never reads an environment variable, never
+    opens a socket, never stores mutable state across calls, and never
+    inspects `system` -- the role is fixed by this class's own identity,
+    exactly matching `phase4.graph.build_graph`'s own explicit
+    `specialist_decision_provider` construction parameter."""
+
+    def generate(self, system: str, user: str) -> str:
+        payload = _parse_user_payload(user)
+        trip_request = payload.get("trip_request") or {}
+        evidence = {
+            entry.get("action"): entry.get("status")
+            for entry in payload.get("evidence_collected_so_far", [])
+            if isinstance(entry, dict)
+        }
+
+        for action in _SPECIALIST_ACTION_ORDER:
             if action in evidence:
                 continue  # already attempted (success or not) -- never repeat
-            if action != "call_istanbul_expert" and not trip_request:
+            if not trip_request:
                 continue  # no structured trip request at all -- nothing to search for
-            if action == "call_istanbul_expert" and evidence.get("search_stays") != "success":
-                continue  # needs a prior successful search_stays for real stay candidates
             arguments = _build_arguments(action, trip_request)
             if arguments is None:
                 continue
             return _decision(action, arguments, _REASON_CODE_BY_ACTION[action])
-
-        return _decision("synthesize", {}, "all_required_evidence_present")
-
-    @staticmethod
-    def _parse_user_payload(user: str) -> dict[str, Any]:
-        # `phase4.graph._build_decision_prompt` prefixes the JSON payload
-        # with a fixed human-readable line -- split it off rather than
-        # assuming a fixed character offset, so this stays correct even
-        # if that prefix's wording changes.
-        _, _, json_text = user.partition("\n")
-        try:
-            parsed = json.loads(json_text)
-        except json.JSONDecodeError:
-            return {}
-        return parsed if isinstance(parsed, dict) else {}
+        return _decision("travel_search_complete", {}, "all_required_evidence_present")

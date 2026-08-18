@@ -23,6 +23,14 @@ from phase4.models import Action
 from phase4.tools import FakeToolExecutor
 
 
+def _dual(provider):
+    # A single shared provider INSTANCE serves both the supervisor and
+    # specialist roles (`RunService` now calls two separate factories) --
+    # every script in this file is one flat, sequentially-consumed queue
+    # regardless of which role asks next.
+    return (lambda: provider), (lambda: provider)
+
+
 def _poll_until_terminal(client: TestClient, run_id: str, attempts: int = 200, delay: float = 0.02) -> dict:
     data = {}
     for _ in range(attempts):
@@ -39,12 +47,16 @@ def _poll_until_terminal(client: TestClient, run_id: str, attempts: int = 200, d
 
 def test_unavailable_weather_produces_a_degraded_run_not_a_failure(tmp_db_path):
     executor = FakeToolExecutor(scenario_by_action={Action.GET_WEATHER: "unavailable"})
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
+        decision("get_weather", {"location": "Nowhere", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("travel_search_complete", {}, "all_required_evidence_present"),
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=lambda: executor,
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Nowhere", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -58,12 +70,16 @@ def test_unavailable_weather_produces_a_degraded_run_not_a_failure(tmp_db_path):
 
 def test_malformed_tool_result_produces_a_degraded_run_never_inserted_as_valid(tmp_db_path):
     executor = FakeToolExecutor(scenario_by_action={Action.GET_WEATHER: "malformed"})
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
+        decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+        decision("travel_search_complete", {}, "all_required_evidence_present"),
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=lambda: executor,
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -78,9 +94,11 @@ def test_malformed_tool_result_produces_a_degraded_run_never_inserted_as_valid(t
 
 
 def test_decision_format_invalid_after_repairs_exhausted_produces_degraded(tmp_db_path):
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider(["not valid json"] * 5))
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=lambda: ScriptedDecisionProvider(["not valid json"] * 5),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -127,11 +145,14 @@ def test_internal_exception_produces_a_sanitized_failed_result_never_a_raw_trace
     ephemeral_secret = secrets.token_hex(32)
     logger_name = "voyager.system_a.service"
 
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("call_travel_search", {}, "missing_weather_info"),
+        decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+    ]))
     app = create_app(
         tool_executor_factory=lambda: _make_raising_tool_executor(ephemeral_secret),
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with caplog.at_level(logging.DEBUG, logger=logger_name):
@@ -194,12 +215,16 @@ def test_internal_exception_produces_a_sanitized_failed_result_never_a_raw_trace
 
 def test_status_and_result_survive_recreating_the_fastapi_app(tmp_db_path):
     def build():
+        decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+            decision("call_travel_search", {}, "missing_weather_info"),
+            decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
+            decision("travel_search_complete", {}, "all_required_evidence_present"),
+            decision("synthesize", {}, "all_required_evidence_present"),
+        ]))
         return create_app(
             tool_executor_factory=FakeToolExecutor,
-            decision_provider_factory=lambda: ScriptedDecisionProvider([
-                decision("get_weather", {"location": "Istanbul", "date_from": "2026-09-10", "date_to": "2026-09-10"}, "missing_weather_info"),
-                decision("synthesize", {}, "all_required_evidence_present"),
-            ]),
+            decision_provider_factory=decision_factory,
+            specialist_decision_provider_factory=specialist_factory,
             db_path=tmp_db_path, max_workers=1,
         )
 
@@ -232,9 +257,11 @@ def test_abandoned_running_run_is_reconciled_to_failed_on_app_recreation(tmp_db_
     store.create_run(orphaned_run_id, "s", "t", {"user_message": "x", "trip_request": None}, idempotency_key=None)
     store.mark_running(orphaned_run_id)
 
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([]))
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=lambda: ScriptedDecisionProvider([]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
@@ -249,11 +276,13 @@ def test_abandoned_running_run_is_reconciled_to_failed_on_app_recreation(tmp_db_
 
 
 def test_app_shutdown_closes_the_worker_pool_cleanly(tmp_db_path):
+    decision_factory, specialist_factory = _dual(ScriptedDecisionProvider([
+        decision("synthesize", {}, "all_required_evidence_present"),
+    ]))
     app = create_app(
         tool_executor_factory=FakeToolExecutor,
-        decision_provider_factory=lambda: ScriptedDecisionProvider([
-            decision("synthesize", {}, "all_required_evidence_present"),
-        ]),
+        decision_provider_factory=decision_factory,
+        specialist_decision_provider_factory=specialist_factory,
         db_path=tmp_db_path, max_workers=1,
     )
     with TestClient(app) as client:
