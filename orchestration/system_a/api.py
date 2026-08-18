@@ -122,6 +122,7 @@ def create_app(
     decision_provider_factory: Callable[[], DecisionProvider],
     db_path: Optional[str] = None,
     max_workers: Optional[int] = None,
+    mode: str = "real",
 ) -> FastAPI:
     """Builds one independent FastAPI app instance, owning one `RunStore`
     (one SQLite database file) and one bounded run-execution thread pool.
@@ -130,7 +131,13 @@ def create_app(
     real production entrypoint passes factories that build a
     `ProductionToolExecutor`/`QwenDecisionProvider`; every test passes a
     factory that builds a fake/scripted/stubbed equivalent instead, so no
-    test ever depends on network access."""
+    test ever depends on network access.
+
+    `mode` is a non-secret operational label only (`"real"` or
+    `"fixture"`, Checkpoint D.2B) -- it never changes which factories run,
+    it only lets `/health` honestly report which pair the caller already
+    chose, so the frontend can label demo mode without guessing from
+    behavior."""
     resolved_db_path = db_path or config.db_path()
     resolved_max_workers = max_workers if max_workers is not None else config.max_workers()
 
@@ -178,7 +185,7 @@ def create_app(
 
     @app.get("/health")
     async def health() -> dict[str, Any]:
-        return {"status": "ok", "service": "agent-system-a", "checkpointer": "sqlite"}
+        return {"status": "ok", "service": "agent-system-a", "checkpointer": "sqlite", "mode": mode}
 
     @app.post("/v1/runs", response_model=RunCreateResponse, status_code=201)
     async def create_run(body: PlanningRunRequest) -> Any:

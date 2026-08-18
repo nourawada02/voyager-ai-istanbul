@@ -52,7 +52,12 @@ pydantic==2.13.4
 pydantic_core==2.46.4
 PyJWT==2.13.0
 python-multipart==0.0.32
-pywin32==312
+# pywin32 intentionally excluded: it is a transitive dependency of `mcp`
+# declared with `sys_platform == 'win32'` (a Windows-only marker) --
+# resolved here on a Windows dev host, but the production image is
+# always Linux (python:3.12-slim), where this package is neither
+# installable nor needed. Confirmed via `mcp`'s own declared
+# environment-marker-gated requirement, not a guess.
 PyYAML==6.0.3
 referencing==0.37.0
 requests==2.34.2

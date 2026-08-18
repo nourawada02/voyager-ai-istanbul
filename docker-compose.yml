@@ -1,6 +1,54 @@
+# VoyagerAI Istanbul -- root Docker Compose (Checkpoint Phase 4 D.2B,
+# docs/adr/0016-phase4-checkpoint-d2b-frontend-and-compose.md).
+#
+# Exactly five long-running services, matching architecture.md §4.1's
+# fixed container map one-to-one -- no MongoDB, PostgreSQL, Redis,
+# Celery, Kafka, Kubernetes, auth, payment, or booking service is ever
+# added here:
+#
+#   chatbot-ui (Streamlit) -> agent-system-a (LangGraph, FastAPI/SSE)
+#     agent-system-a -> mcp-server (Travel MCP, Streamable HTTP)
+#     agent-system-a -> agent-system-b (Google ADK, A2A)
+#       agent-system-b -> vector-db (Qdrant)
+#
+# Every cross-service call uses the internal Compose service name
+# (e.g. `http://agent-system-a:8002`) -- never `localhost`, which would
+# resolve to the calling container itself, not the target service.
+#
+# Two supported modes, both offline-safe by default:
+#   1. Deterministic offline fixture mode (default): VOYAGER_SYSTEM_A_MODE
+#      defaults to "fixture" below, so `docker compose up` with no `.env`
+#      file at all makes zero paid-provider calls. agent-system-b's own
+#      RAG_REQUIRED=false lets it degrade cleanly to catalog-only
+#      scheduling even before vector-db has ever been populated (see the
+#      Qdrant population note below) -- every one of the five containers
+#      still starts and passes its own health check either way.
+#   2. Real-provider mode: set VOYAGER_SYSTEM_A_MODE=real and supply
+#      QWEN_API_KEY/QWEN_BASE_URL/SERPAPI_API_KEY through the environment
+#      (a real .env file, never committed -- see .env.example). No
+#      literal credential ever appears in this file.
+#
+# Qdrant population: vector-db starts as an empty, real Qdrant instance --
+# this file never runs ingestion itself (Checkpoint Phase 3's own
+# `rag/run_ingestion.py`-equivalent one-time step is explicitly out of
+# scope for a long-running Compose service, and is not invented here as
+# a sixth container). To populate it for real citations, run the existing
+# frozen Phase 3 ingestion pipeline once, out-of-band, against
+# `http://localhost:6333` while this stack is up, before querying
+# agent-system-b for citation-bearing results -- agent-system-b degrades
+# safely (RAG_REQUIRED=false) with an explicit warning if this step was
+# never run, exactly as Checkpoint B already proved.
+
 services:
   vector-db:
     image: qdrant/qdrant:v1.19.0
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    # Published to the host deliberately: the documented one-time,
+    # out-of-band Phase 3 ingestion workflow (see the Qdrant population
+    # note above) runs from the host against http://localhost:6333 --
+    # container-to-container calls (agent-system-b -> vector-db) use the
+    # internal Compose service name regardless of this mapping.
     ports:
       - "6333:6333"
     healthcheck:
@@ -9,16 +57,24 @@ services:
       timeout: 3s
       start_period: 15s
       retries: 6
+    restart: unless-stopped
 
   mcp-server:
     build:
-      context: ./services/travel-mcp
+      context: .
+      dockerfile: services/travel-mcp/Dockerfile
     environment:
       PORT: "8001"
-    ports:
-      - "8001:8001"
-    # No dependency on vector-db: MCP owns dynamic shared travel
-    # capabilities, never Qdrant retrieval (docs/adr/0001-phase1-contracts.md).
+    # No host port published: mcp-server is called only by agent-system-a
+    # over the internal Compose network (TRAVEL_MCP_BASE_URL=
+    # http://mcp-server:8001) -- no documented host-side workflow needs
+    # to reach it directly, so it is not exposed beyond the Compose
+    # network (revalidated during this checkpoint's D.2B correction pass).
+    expose:
+      - "8001"
+    restart: unless-stopped
+    # No dependency on vector-db: MCP owns dynamic shared travel tools,
+    # never Qdrant retrieval (docs/adr/0001-phase1-contracts.md).
 
   agent-system-b:
     build:
@@ -26,34 +82,99 @@ services:
     environment:
       PORT: "8000"
       ADVERTISED_HOST: agent-system-b
-    ports:
-      - "8000:8000"
+      # Empty by default -- matches services/istanbul-expert-b/Dockerfile's
+      # own safe default exactly ("not configured", degrade to catalog-only,
+      # Checkpoint A behavior). Deliberately NOT pointed at vector-db by
+      # default: simply SETTING QDRANT_URL makes System B synchronously
+      # download and warm the pinned multilingual embedding model before
+      # it will accept any connection at all (a real, internet-dependent,
+      # multi-minute cold start, observed directly in this checkpoint's
+      # own gate) -- unnecessary and undesired for the offline fixture
+      # smoke this file defaults to. Set QDRANT_URL=http://vector-db:6333
+      # explicitly (e.g. in a real .env) only after populating vector-db
+      # (see the Qdrant population note above) and only when real
+      # citation-bearing RAG results are actually wanted.
+      QDRANT_URL: "${QDRANT_URL:-}"
+      QDRANT_COLLECTION_NAME: "istanbul_rag_B"
+      # Explicitly false for the offline fixture smoke (checkpoint
+      # instruction) -- System B degrades cleanly to catalog-only
+      # scheduling with an explicit warning rather than requiring a
+      # populated vector-db before it can even start.
+      RAG_REQUIRED: "false"
+    # No host port published: agent-system-b is called only by
+    # agent-system-a over the internal Compose network
+    # (ISTANBUL_EXPERT_A2A_BASE_URL=http://agent-system-b:8000) -- no
+    # documented host-side workflow needs to reach it directly
+    # (revalidated during this checkpoint's D.2B correction pass).
+    expose:
+      - "8000"
+    volumes:
+      - agent_system_b_data:/data
     depends_on:
       vector-db:
         condition: service_healthy
-      mcp-server:
-        condition: service_healthy
+    restart: unless-stopped
 
   agent-system-a:
     build:
-      context: ./services/planner-a
+      context: .
+      dockerfile: orchestration/system_a/Dockerfile
     environment:
       PORT: "8002"
+      # Explicit, default-safe: "fixture" unless the caller sets
+      # VOYAGER_SYSTEM_A_MODE=real in a real .env file. Never silently
+      # switches direction on its own (orchestration/system_a/config.py).
+      VOYAGER_SYSTEM_A_MODE: "${VOYAGER_SYSTEM_A_MODE:-fixture}"
+      VOYAGER_SYSTEM_A_DB_PATH: /data/system_a.db
+      TRAVEL_MCP_BASE_URL: "http://mcp-server:8001"
+      ISTANBUL_EXPERT_A2A_BASE_URL: "http://agent-system-b:8000"
+      # Placeholders only -- required in "real" mode, unused and safe to
+      # leave empty in "fixture" mode. Never a literal credential; always
+      # supplied through the environment (a real, never-committed .env).
+      QWEN_API_KEY: "${QWEN_API_KEY:-}"
+      QWEN_BASE_URL: "${QWEN_BASE_URL:-}"
+      QWEN_MODEL: "${QWEN_MODEL:-}"
+      SERPAPI_API_KEY: "${SERPAPI_API_KEY:-}"
+    # Published to the host deliberately: agent-system-a is the system's
+    # one genuine public API/SSE surface (architecture.md's own "public
+    # System A service" design, Checkpoint D.2A) -- chatbot-ui itself
+    # still reaches it over the internal Compose network
+    # (AGENT_SYSTEM_A_BASE_URL=http://agent-system-a:8002), this mapping
+    # exists for direct host-side API access/testing.
     ports:
       - "8002:8002"
+    volumes:
+      - agent_system_a_data:/data
     depends_on:
       mcp-server:
         condition: service_healthy
       agent-system-b:
         condition: service_healthy
+    restart: unless-stopped
 
   chatbot-ui:
     build:
       context: ./services/frontend
     environment:
       PORT: "8501"
+      AGENT_SYSTEM_A_BASE_URL: "http://agent-system-a:8002"
     ports:
       - "8501:8501"
     depends_on:
       agent-system-a:
         condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  # Checkpoint Phase 4 D.2A/D.2B: run/session/event history plus the
+  # LangGraph checkpoint tables (orchestration/system_a/run_store.py,
+  # config.py::db_path) -- survives `docker compose restart
+  # agent-system-a` and `docker compose down` (without `-v`).
+  agent_system_a_data:
+  # Qdrant's own on-disk index storage -- survives a restart; explicitly
+  # NOT pre-populated by this file (see the Qdrant population note above).
+  qdrant_storage:
+  # agent-system-b's ADK session store + optional embedding-model cache
+  # (services/istanbul-expert-b/Dockerfile's own /data ENV vars) --
+  # avoids re-downloading the pinned embedding model on every restart.
+  agent_system_b_data:

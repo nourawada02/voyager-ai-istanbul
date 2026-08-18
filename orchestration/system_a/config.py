@@ -72,3 +72,56 @@ def sse_heartbeat_interval_seconds() -> float:
     except ValueError:
         value = DEFAULT_SSE_HEARTBEAT_SECONDS
     return max(0.5, value)
+
+
+# --- deterministic demo/fixture mode (Checkpoint Phase 4 D.2B) ---------------------
+
+VALID_SYSTEM_A_MODES = ("real", "fixture")
+DEFAULT_SYSTEM_A_MODE = "real"
+
+
+class SystemAModeConfigurationError(RuntimeError):
+    """Raised when VOYAGER_SYSTEM_A_MODE is set to anything other than
+    exactly "real" or "fixture". Fails loudly at startup rather than
+    silently coercing an unrecognized value to either mode -- there is no
+    guessing here, matching this project's existing "no silent fallback"
+    convention for configuration (e.g. `phase4.qwen_client`'s own
+    explicit-HTTPS-URL-or-fail rule)."""
+
+
+def system_a_mode() -> str:
+    """This function's OWN default -- what a bare, standalone process
+    gets when VOYAGER_SYSTEM_A_MODE is entirely absent from its
+    environment (e.g. `python -m orchestration.system_a.entrypoint` run
+    directly, or any hermetic test that never sets the variable) -- is
+    "real": the same real Qwen decision provider + ProductionToolExecutor
+    every prior checkpoint already used, matching this project's
+    "credentials/behavior never silently downgrade" rule. Fixture mode
+    always requires the caller to set VOYAGER_SYSTEM_A_MODE=fixture
+    explicitly; any other non-empty value is a hard configuration error,
+    never a guess in either direction.
+
+    This is a DIFFERENT layer from root docker-compose.yml's own
+    `${VOYAGER_SYSTEM_A_MODE:-fixture}` substitution -- Compose supplies
+    its own explicit default of "fixture" to the container's
+    environment (so `docker compose up` with no `.env` file makes zero
+    paid-provider calls out of the box, appropriate for this project's
+    offline-by-default demo posture), which THIS function then sees as
+    if the caller had typed VOYAGER_SYSTEM_A_MODE=fixture themselves --
+    indistinguishable from an explicit choice, never a silent internal
+    fallback. Real-provider mode under Compose requires the operator to
+    set VOYAGER_SYSTEM_A_MODE=real (and supply QWEN_API_KEY/
+    QWEN_BASE_URL/SERPAPI_API_KEY) in a real, never-committed `.env` --
+    see docker-compose.yml's own header comment and .env.example."""
+    raw = os.environ.get("VOYAGER_SYSTEM_A_MODE")
+    if not raw:
+        return DEFAULT_SYSTEM_A_MODE
+    if raw not in VALID_SYSTEM_A_MODES:
+        raise SystemAModeConfigurationError(
+            f"VOYAGER_SYSTEM_A_MODE must be one of {VALID_SYSTEM_A_MODES!r} if set; got an unrecognized value"
+        )
+    return raw
+
+
+def is_fixture_mode() -> bool:
+    return system_a_mode() == "fixture"
