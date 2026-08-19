@@ -20,8 +20,20 @@ RUN pip install --no-cache-dir -r orchestration/requirements.lock
 # mapping needs -- never the whole services/planner-a submodule (its
 # other phases/tests are irrelevant to this image and would only bloat
 # it), and never rag/ (this composition layer does not depend on it).
+#
+# Production real-mode incident P.1: `contracts/` is a runtime
+# dependency of `providers/validation.py` (`_CONTRACTS_DIR` is computed
+# as a sibling of the installed `providers/` package directory, via
+# `__file__` -- correct, CWD-independent resolution that was never the
+# bug) -- but this Dockerfile never copied it into the image, so every
+# real provider call's `validate_envelope()` step failed with
+# `FileNotFoundError` on first use inside this image specifically
+# (never on a full host checkout, where `contracts/` already exists
+# next to `providers/`). Copied here, at the same sibling path
+# `_CONTRACTS_DIR` already expects.
 COPY pyproject.toml ./pyproject.toml
 COPY providers ./providers
+COPY contracts ./contracts
 COPY orchestration ./orchestration
 COPY services/planner-a/phase1 ./services/planner-a/phase1
 COPY services/planner-a/phase4 ./services/planner-a/phase4

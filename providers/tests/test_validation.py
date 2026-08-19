@@ -4,6 +4,7 @@ Phase 4 C.0 correction pass, item 5)."""
 from __future__ import annotations
 
 import copy
+import os
 
 import pytest
 
@@ -115,3 +116,29 @@ def test_error_message_never_leaks_the_full_raw_jsonschema_object_only_short_mes
     with pytest.raises(EnvelopeValidationError) as exc_info:
         validate_envelope(envelope)
     assert "not-a-list" in str(exc_info.value) or "is not of type" in str(exc_info.value)
+
+
+# --- P.1: contracts/ resolution is package-relative, never CWD-dependent -------------
+
+
+def test_contracts_directory_resolves_relative_to_the_providers_package_not_cwd():
+    """Production incident P.1: `_CONTRACTS_DIR` (`providers/validation.py`)
+    is computed once from `__file__`, never `os.getcwd()` -- this was
+    already correct before the incident (the actual bug was a Dockerfile
+    packaging omission, not this resolution logic). Proven directly here
+    by changing the process CWD to something with no `contracts/`
+    sibling at all and confirming validation still succeeds."""
+    from providers.validation import _CONTRACTS_DIR
+
+    assert os.path.isdir(_CONTRACTS_DIR)
+    assert os.path.isabs(_CONTRACTS_DIR)
+
+    original_cwd = os.getcwd()
+    scratch_dir = os.path.dirname(original_cwd)  # a real directory with no contracts/ subdirectory
+    try:
+        os.chdir(scratch_dir)
+        # A fresh envelope build + validation, performed entirely while CWD
+        # points somewhere with no contracts/ directory at all.
+        validate_envelope(build_weather_success(WEATHER_QUERY))
+    finally:
+        os.chdir(original_cwd)

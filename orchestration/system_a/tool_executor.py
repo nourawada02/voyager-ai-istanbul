@@ -30,6 +30,28 @@ DEFAULT_CURRENCY = "TRY"
 DEFAULT_DAILY_ACTIVITY_BUDGET_MINUTES = 360  # 6 hours/day -- a documented default, never an invented hard preference
 
 
+def _call_provider_binding(binding: Any, provider: Any, arguments: dict[str, Any]) -> dict[str, Any]:
+    """Production real-mode incident P.1: `TravelMcpClient.call_tool()`
+    and `IstanbulExpertA2AClient.call_istanbul_expert()` already never let
+    a raw transport exception reach the caller (their own `except
+    Exception` boundaries) -- the three DIRECT root-provider bindings
+    below (`fetch_weather`/`search_web`/`search_flights`) had no
+    equivalent boundary, so an unexpected provider-side exception (e.g. a
+    packaging/config gap surfacing as FileNotFoundError, observed in
+    production) propagated all the way to System A's own generic
+    exception handler and aborted the entire run with
+    `internal_execution_error`, discarding every observation already
+    gathered. This restores the same boundary contract those two sibling
+    clients already establish, so a genuinely unexpected exception here
+    becomes an honest `provider_error` observation instead -- the bounded
+    ReAct loop continues to whatever else remains eligible exactly as it
+    already does for any other provider failure status."""
+    try:
+        return binding(provider, arguments)
+    except Exception:  # noqa: BLE001 -- an unexpected root-provider exception must never reach the caller
+        return {"status": "provider_error", "result": None}
+
+
 def _build_search_stays_arguments(arguments: dict[str, Any], context: Optional[ExecutionContext]) -> dict[str, Any]:
     """Maps `phase4.models.SearchStaysArgs` -> the real Travel MCP
     `search_stays` contract. `session_id`/`trace_id`/`result_limit`/
@@ -165,11 +187,11 @@ class ProductionToolExecutor:
 
     def execute(self, action: Action, arguments: dict[str, Any], context: Optional[ExecutionContext] = None) -> dict[str, Any]:
         if action == Action.GET_WEATHER:
-            return fetch_weather(self.weather_provider, arguments)
+            return _call_provider_binding(fetch_weather, self.weather_provider, arguments)
         if action == Action.WEB_SEARCH:
-            return search_web(self.web_evidence_provider, arguments)
+            return _call_provider_binding(search_web, self.web_evidence_provider, arguments)
         if action == Action.SEARCH_FLIGHTS:
-            return search_flights(self.flight_provider, arguments)
+            return _call_provider_binding(search_flights, self.flight_provider, arguments)
         if action == Action.SEARCH_STAYS:
             return self.mcp_client.call_tool("search_stays", _build_search_stays_arguments(arguments, context))
         if action == Action.ESTIMATE_FAIR_PRICE:

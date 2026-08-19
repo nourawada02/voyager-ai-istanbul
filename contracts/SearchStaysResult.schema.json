@@ -5,7 +5,10 @@
   "description": "Checkpoint C.0.1 design contract (docs/adr/0003-phase2-checkpoint-c0-serving-contract.md §7/§9) for the shape of ProviderResponseEnvelope.result when provider='inside-airbnb-snapshot' / tool=search_stays. Not yet wired to a production tool. Every field here is either a fixed snapshot fact, a model output, or a deterministic Python computation -- never a live-availability or booking claim. A successful result always contains at least one supported stay with a produced prediction and interval; zero eligible rows is NOT a success (see NO_MATCHING_STAYS, ErrorEnvelope). Each stays[] item nests the existing StayOption under 'stay' and FairPriceEstimate under 'fair_price', both pinned to exactly schema_version 1.1.0 -- a nested 1.0.0 payload can never masquerade as this serving form.",
   "type": "object",
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": {
+      "enum": ["1.0.0", "1.1.0"],
+      "description": "Checkpoint P.3 (additive): 1.1.0 producers may also emit candidate_universe; every 1.0.0-era consumer/fixture remains valid unchanged since candidate_universe is optional and 1.0.0 responses never include it."
+    },
     "snapshot_date": { "type": "string", "format": "date" },
     "dataset_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "bundle_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
@@ -40,6 +43,18 @@
       "minItems": 1,
       "maxItems": 50,
       "items": { "$ref": "#/$defs/resultItem" }
+    },
+    "candidate_universe": {
+      "type": "object",
+      "description": "Checkpoint P.3 (additive, schema_version 1.1.0 only). Present ONLY when a genuinely citywide request (no district_ids) had a hard-filtered candidate set larger than MAX_CANDIDATE_ROWS_SCORED, so a deterministic, district-proportional bounded preselection (largest-remainder apportionment by district_id) was applied before scoring instead of rejecting the request. Never present for a district-filtered request or a citywide request that did not need bounding -- the candidate universe is never silently misrepresented: total_eligible_count always states the TRUE, unbounded hard-filtered count.",
+      "properties": {
+        "bounded": { "const": true },
+        "total_eligible_count": { "type": "integer", "minimum": 1 },
+        "scored_count": { "type": "integer", "minimum": 1, "maximum": 5000 },
+        "selection_method": { "type": "string", "minLength": 1 }
+      },
+      "required": ["bounded", "total_eligible_count", "scored_count", "selection_method"],
+      "additionalProperties": false
     }
   },
   "required": [

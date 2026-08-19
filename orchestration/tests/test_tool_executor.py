@@ -172,3 +172,39 @@ def test_unknown_action_returns_unavailable_never_raises():
     executor = _executor()
     result = executor.execute(Action.ASK_CLARIFICATION, {}, _context())
     assert result["status"] == "unavailable"
+
+
+# --- P.1: an unexpected root-provider exception must never reach the caller --------
+#
+# Production incident P.1: a packaging gap (contracts/ missing from the
+# built agent-system-a image) made a real provider call raise a raw
+# FileNotFoundError, which propagated uncaught through `execute()` and
+# aborted the entire bounded run with `internal_execution_error` -- never
+# reaching Observe as a typed status the ReAct loop already knows how to
+# handle. `weather_provider`/`web_evidence_provider`/`flight_provider`
+# here are bare `object()` instances (this file's own existing `_executor()`
+# fixture) -- calling e.g. `.fetch_weather(...)` on one raises a genuine,
+# unscripted `AttributeError`, exercising the real exception path rather
+# than a mocked one.
+
+
+def test_unexpected_weather_provider_exception_becomes_provider_error_not_a_raised_exception():
+    executor = _executor()
+    result = executor.execute(Action.GET_WEATHER, {"date_from": "2026-09-10", "date_to": "2026-09-10"}, _context())
+    assert result == {"status": "provider_error", "result": None}
+
+
+def test_unexpected_web_search_provider_exception_becomes_provider_error_not_a_raised_exception():
+    executor = _executor()
+    result = executor.execute(Action.WEB_SEARCH, {"query": "Hagia Sophia hours"}, _context())
+    assert result == {"status": "provider_error", "result": None}
+
+
+def test_unexpected_flight_provider_exception_becomes_provider_error_not_a_raised_exception():
+    executor = _executor()
+    result = executor.execute(
+        Action.SEARCH_FLIGHTS,
+        {"origin": "BEY", "destination": "IST", "depart_date": "2026-09-10", "passenger_count": 1},
+        _context(),
+    )
+    assert result == {"status": "provider_error", "result": None}
