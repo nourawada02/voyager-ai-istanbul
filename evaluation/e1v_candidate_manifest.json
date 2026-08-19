@@ -1,0 +1,89 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1V — candidate freeze",
+  "timestamp_utc": "2026-08-19T14:27:06Z",
+  "purpose": "Freezes the exact uncommitted candidate under E.1V independent validation, per explicit instruction that E.1S/E.1S.1 remediation was implementation-only and never required to be committed.",
+  "nothing_staged": true,
+  "repositories": {
+    "root": {
+      "name": "voyager-ai-istanbul (superproject)",
+      "head_sha": "5c154e6ebfbb158229a711bfbff60a9ac49cce5d",
+      "branch": "phase-4/istanbul-expert",
+      "git_status_short": [
+        " M EVALUATION.md",
+        " M orchestration/system_a/fixture_decision_provider.py",
+        " M orchestration/tests/conftest.py",
+        " M orchestration/tests/test_cross_process_integration.py",
+        " M orchestration/tests/test_failure_degradation.py",
+        " M orchestration/tests/test_full_trip_hermetic.py",
+        " m services/planner-a",
+        " ? services/travel-mcp",
+        "?? docs/architecture-plan.pdf",
+        "?? evaluation/build_e1_live_cases.py",
+        "?? evaluation/build_e1r_holdout_cases.py",
+        "?? evaluation/e1_end_to_end_results.json",
+        "?? evaluation/e1_failure_cases.json",
+        "?? evaluation/e1_live_qwen_cases.json",
+        "?? evaluation/e1_live_qwen_results.jsonl",
+        "?? evaluation/e1_live_qwen_summary.json",
+        "?? evaluation/e1_manifest.json",
+        "?? evaluation/e1r_baseline_failure_audit.json",
+        "?? evaluation/e1r_corrected_case_labels_v2.json",
+        "?? evaluation/e1r_deal_ranking_results.json",
+        "?? evaluation/e1r_holdout_cases.json",
+        "?? evaluation/e1r_holdout_results.jsonl",
+        "?? evaluation/e1r_holdout_summary.json",
+        "?? evaluation/run_e1_live_qwen_eval.py",
+        "?? evaluation/run_e1r_holdout_eval.py",
+        "?? orchestration/tests/test_e1_end_to_end_resilience.py"
+      ],
+      "unstaged_tracked_diff_sha256": "d30fe83a382c2e217439c1d87c1cf7e01193a9473c9b89db41d75139109b29e6",
+      "note_unstaged_diff_sha256": "sha256 of `git diff` output in the root repo (all tracked-file changes, working tree vs HEAD)",
+      "staged_files": []
+    },
+    "planner_a_submodule": {
+      "name": "services/planner-a",
+      "head_sha": "e39295677bee62d68e4b174493128c581b10fbc9",
+      "branch": "phase-4/system-a-react",
+      "git_status_short": [
+        " M phase4/graph.py",
+        " M phase4/models.py",
+        " M phase4/qwen_client.py",
+        " M phase4/tests/test_d3_evaluation.py",
+        " M phase4/tests/test_graph.py",
+        " M phase4/tests/test_qwen_client.py",
+        "?? phase4/tests/test_e1r_prompt_contract.py",
+        "?? phase4/tests/test_e1s_action_eligibility.py"
+      ],
+      "unstaged_tracked_diff_sha256": "1d1a3bff1abcd929a559ee2f10cf0ee130e70c85606de658ffe230812748a1da",
+      "note_unstaged_diff_sha256": "sha256 of `git diff` output inside services/planner-a (all tracked-file changes, working tree vs HEAD)",
+      "staged_files": []
+    },
+    "other_submodule_pointers_at_root_head": {
+      "services/frontend": "770070dad7d2b8c14e85ef521ab2a4f505e57dc7",
+      "services/istanbul-expert-b": "95512a4e17b278ec0ece6517acbf2a2eb978f27a",
+      "services/travel-mcp": "cfb197280129970da2712ccda5c9bca543e861fd (root gitlink; working-tree services/travel-mcp is currently untracked/not a registered submodule — pre-existing condition, unrelated to E.1S/E.1V, not modified by this checkpoint)"
+    }
+  },
+  "untracked_e1s_files_sha256": {
+    "services/planner-a/phase4/tests/test_e1s_action_eligibility.py": "b2dee45144343ed28a58172efd845e547d7981e2a43e5163adfca1cd4aeab308",
+    "services/planner-a/phase4/tests/test_e1r_prompt_contract.py": "0d70c339fd96055b575794d42774342634fd39886457920939c701e9e8738dd3"
+  },
+  "production_file_sha256_at_freeze": {
+    "services/planner-a/phase4/models.py": "e83a54eba56c213a1b9df8a3f7aeb7a0a72942081eb39d4dc424421c94bc42d9",
+    "services/planner-a/phase4/graph.py": "eae3ed043e55b66b1eac61d06749817c2bd76850eab7b79466c6b300a9fbe8e0",
+    "services/planner-a/phase4/qwen_client.py": "376c3e989473c03f473a4e1beccf9f0f56a5a1d1c5235ccec7411d1b7429836f",
+    "orchestration/system_a/fixture_decision_provider.py": "1a563da8e02b59f0f7ebb5eea825caade1c2e842da988c78f216a7c7f95b68d7"
+  },
+  "declared_e1s_e1s1_gates_per_prior_implementation_session": {
+    "provenance": "Asserted by the operator of the prior implementation session; NOT independently re-verified by this checkpoint except where explicitly re-run in section 'e1v_reverification_of_focused_tests' below.",
+    "planner_a_phase4_full": "177 passed, 1 skipped",
+    "planner_a_phase1_full": "61 passed",
+    "orchestration_full": "119 passed, 1 skipped",
+    "focused_e1s1_tests": "44 passed",
+    "e1r_prompt_contract_tests": "12 passed",
+    "deal_ranking_evaluation": "26 passed",
+    "five_container_fixture_smoke": "passed",
+    "secret_pattern_scan": "clean",
+    "staged_committed_pushed": "none"
+  }
+}

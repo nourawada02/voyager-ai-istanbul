@@ -1,0 +1,557 @@
+{
+  "schema_version": "1.0.0",
+  "scenarios": [
+    {
+      "scenario_id": "01_normal_full_trip",
+      "description": "Normal Beirut -> Istanbul full trip (English)",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:get_weather/search_flights/search_stays",
+        "supervisor:call_istanbul_expert",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "action_started",
+        "action_completed",
+        "action_started",
+        "action_completed",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "get_weather",
+        "search_flights",
+        "search_stays",
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": true,
+      "citation_provenance_present": true,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "02_english_request",
+      "description": "English-language weather request",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:get_weather",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "get_weather"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "03_turkish_request",
+      "description": "Turkish-language flight request",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_flights",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "search_flights"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "04_arabic_request",
+      "description": "Arabic-language local-knowledge request",
+      "expected_route": [
+        "supervisor:call_istanbul_expert",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": true,
+      "citation_provenance_present": true,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "05_budget_constrained",
+      "description": "Budget-constrained full trip",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_flights/search_stays",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "search_flights",
+        "search_stays"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "06_accessibility_preference",
+      "description": "Wheelchair-accessible mobility preference",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_stays",
+        "supervisor:call_istanbul_expert",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "search_stays",
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": true,
+      "citation_provenance_present": true,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "07_flight_only",
+      "description": "Flight-only request",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_flights",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "search_flights"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "08_stay_value_only",
+      "description": "Stay + fair-price value-only request",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_stays/estimate_fair_price",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "search_stays",
+        "estimate_fair_price"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "09_local_itinerary_only",
+      "description": "Local itinerary-only request (no travel-search evidence needed)",
+      "expected_route": [
+        "supervisor:call_istanbul_expert",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [
+        "run_started",
+        "action_started",
+        "action_completed",
+        "run_completed"
+      ],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable -- no TripPlan/budget-breakdown synthesis step exists in the current D.0-D.3 bounded ReAct loop",
+      "hard_constraint_validation_passed": true,
+      "citation_provenance_present": true,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "10_session_continuation",
+      "description": "Session continuation/follow-up -- cited from existing graph-level evidence, not a public API feature",
+      "expected_route": [
+        "cited: phase4.graph.resume_session"
+      ],
+      "observed_route": [
+        "see phase4/tests/test_graph.py::test_resumed_session_does_not_repeat_completed_actions"
+      ],
+      "expected_final_status": "not_applicable",
+      "observed_final_status": "not_applicable",
+      "observed_tools": [],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": "cited_existing_evidence_not_a_public_api_endpoint"
+    },
+    {
+      "scenario_id": "11_cancellation",
+      "description": "Mid-execution cancellation",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:get_weather(in-flight, cancelled)"
+      ],
+      "observed_route": [],
+      "expected_final_status": "cancelled",
+      "observed_final_status": "cancelled",
+      "observed_tools": [],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": "cancelled"
+    },
+    {
+      "scenario_id": "12_invalid_malicious_input",
+      "description": "Prompt-injection / malicious input, InputGuard-rejected",
+      "expected_route": [
+        "InputGuard:rejected"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": "degraded"
+    },
+    {
+      "scenario_id": "13_deterministic_offline_smoke",
+      "description": "Real production fixture-mode providers, zero paid calls",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:get_weather/search_flights/search_stays",
+        "supervisor:call_istanbul_expert",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "get_weather",
+        "search_flights",
+        "search_stays",
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "inject_qwen_decision_format_invalid",
+      "description": "Malformed structured decision output, repair exhausted",
+      "expected_route": [
+        "Decide:repair x2",
+        "Degrade"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": "decision_format_invalid",
+      "safe_failure_code": "decision_format_invalid"
+    },
+    {
+      "scenario_id": "inject_weather_provider_failure",
+      "description": "Weather provider reports unavailable",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:get_weather(unavailable)",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [
+        "get_weather"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "inject_flight_provider_failure",
+      "description": "Flight provider rate-limited, no invented data",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_flights(rate_limited)",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [
+        "search_flights"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "inject_travel_mcp_timeout",
+      "description": "Travel MCP search_stays timeout/unavailable",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_stays(timeout)",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [
+        "search_stays"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "inject_malformed_mcp_result",
+      "description": "Malformed Travel MCP search_stays result, rejected not inserted",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_stays(malformed->provider_error)",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [
+        "search_stays"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [
+        "malformed_tool_result:search_stays:missing_stays"
+      ],
+      "reason": null
+    },
+    {
+      "scenario_id": "inject_system_b_a2a_timeout",
+      "description": "System B / A2A call_istanbul_expert timeout",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_stays",
+        "supervisor:call_istanbul_expert(timeout)",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [
+        "search_stays",
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    },
+    {
+      "scenario_id": "inject_invalid_a2a_artifact",
+      "description": "Invalid LocalItinerary A2A artifact, rejected not inserted",
+      "expected_route": [
+        "supervisor:call_travel_search",
+        "specialist:search_stays",
+        "supervisor:call_istanbul_expert(invalid_artifact->provider_error)",
+        "supervisor:synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "degraded",
+      "observed_final_status": "degraded",
+      "observed_tools": [
+        "search_stays",
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "not_applicable",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [
+        "malformed_tool_result:call_istanbul_expert:result_invalid:session_id"
+      ],
+      "reason": null
+    },
+    {
+      "scenario_id": "inject_external_call_budget_exhaustion",
+      "description": "Same-turn Travel Search redelegation rejected by eligibility before the shared budget must intervene; total stays well under the 8-call ceiling",
+      "expected_route": [
+        "delegation 1: 5 specialist calls (own cap)",
+        "supervisor: call_istanbul_expert",
+        "rejected redelegation -> forced synthesize"
+      ],
+      "observed_route": [],
+      "expected_final_status": "completed",
+      "observed_final_status": "completed",
+      "observed_tools": [
+        "get_weather",
+        "web_search",
+        "search_flights",
+        "search_stays",
+        "estimate_fair_price",
+        "call_istanbul_expert"
+      ],
+      "schema_valid": true,
+      "budget_arithmetic": "tool_call_count=6 (must be <= 8, redelegation never executed)",
+      "hard_constraint_validation_passed": null,
+      "citation_provenance_present": null,
+      "degradation_correct": true,
+      "pass": true,
+      "warnings": [],
+      "reason": null
+    }
+  ]
+}

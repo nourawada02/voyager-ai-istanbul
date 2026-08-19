@@ -1,0 +1,31 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1X — post-run candidate integrity re-verification",
+  "checked_at_utc": "2026-08-19T15:34:00Z",
+  "comparison": {
+    "root_unstaged_tracked_diff_sha256_raw_bytes": {
+      "at_freeze": "88b0d6fcbf713b35c328a99c5de676eaec45cc977381f52a4f756ff8e37c7228",
+      "post_run": "88b0d6fcbf713b35c328a99c5de676eaec45cc977381f52a4f756ff8e37c7228",
+      "unchanged": true
+    },
+    "planner_a_unstaged_tracked_diff_sha256_raw_bytes": {
+      "at_freeze": "a24b5a29fe92e93952573927fad0dfee96790a4a2ddabc2a50f981cb51c28109",
+      "post_run": "a24b5a29fe92e93952573927fad0dfee96790a4a2ddabc2a50f981cb51c28109",
+      "unchanged": true
+    },
+    "production_file_sha256_raw_bytes": {
+      "services/planner-a/phase4/models.py": {
+        "at_freeze": "2f0df908f2bd1a6d4749f94ab7ddfe0f825880f5e3a43ee764957d4d9a50fc66",
+        "post_run": "2f0df908f2bd1a6d4749f94ab7ddfe0f825880f5e3a43ee764957d4d9a50fc66",
+        "unchanged": true
+      },
+      "services/planner-a/phase4/graph.py": {
+        "at_freeze": "df8f37cbe1ceba4b7597d8935ca85cf0a33b48a1cbde4a9006fb11be0aa5ac83",
+        "post_run": "df8f37cbe1ceba4b7597d8935ca85cf0a33b48a1cbde4a9006fb11be0aa5ac83",
+        "unchanged": true
+      }
+    }
+  },
+  "case_set_sha256": "5d09fea13629f133735ff0b00539e522ab4f53b20a2d02cfa223b278cdb6ef98",
+  "any_production_hash_changed": false,
+  "decision": "not_blocked_by_integrity_check"
+}

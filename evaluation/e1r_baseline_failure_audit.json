@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "checkpoint": "Final Evaluation Checkpoint E.1R",
+  "description": "Audit of all 9 misclassified cases from the ORIGINAL, permanent E.1 baseline (evaluation/e1_live_qwen_results.jsonl, evaluation/e1_live_qwen_cases.json). This file does not modify, delete, or reinterpret the original baseline artifacts -- it is a separate, additive analysis. The original baseline score (supervisor 23/30, specialist 18/20) is preserved exactly as reported.",
+  "audit": [
+    {
+      "case_id": "S11", "role": "supervisor", "language": "tr", "category": "follow_up_partial_evidence",
+      "request_category": "Full trip, follow-up turn, partial travel evidence (weather+flights done, stays missing)",
+      "available_evidence": "get_weather=success, search_flights=success (search_stays NOT yet gathered)",
+      "expected_action": "synthesize", "actual_action": "call_travel_search",
+      "expected_label_unambiguous": false,
+      "failure_classification": "Evaluation-design issue",
+      "justification": "The predeclared label assumed 'any travel evidence gathered so far' is sufficient to stop delegating, matching the fixture-mode provider's own simplified heuristic. But search_stays (accommodation) is genuinely still missing for a full multi-day trip_request, and Section 4 policy #1 ('if required flight, accommodation, or weather evidence is missing, call the Travel Search specialist') makes the model's actual choice (call_travel_search again for the missing stay) the more architecturally defensible answer. The original label, not the model, is the weaker artifact here."
+    },
+    {
+      "case_id": "S12", "role": "supervisor", "language": "ar", "category": "no_unnecessary_redelegation",
+      "request_category": "Full trip, all core travel evidence already gathered (weather+flights+stays all success)",
+      "available_evidence": "get_weather=success, search_flights=success, search_stays=success",
+      "expected_action": "call_istanbul_expert", "actual_action": "synthesize",
+      "expected_label_unambiguous": true,
+      "failure_classification": "Prompt failure",
+      "justification": "A full multi-day Istanbul trip request with all travel evidence gathered architecturally requires local itinerary/attraction grounding before synthesis -- that is the system's own stated purpose (side-aware, ferry-aware day-by-day itinerary). The real supervisor prompt (phase4/graph.py::_build_decision_prompt) never states this sequencing rule explicitly; the model synthesized prematurely because nothing in the prompt told it not to."
+    },
+    {
+      "case_id": "S15", "role": "supervisor", "language": "ar", "category": "accessibility_request",
+      "request_category": "Full trip with accessibility preference, only search_stays gathered so far",
+      "available_evidence": "search_stays=success (get_weather, search_flights still missing)",
+      "expected_action": "call_istanbul_expert", "actual_action": "call_travel_search",
+      "expected_label_unambiguous": false,
+      "failure_classification": "Evaluation-design issue",
+      "justification": "Unlike S26 (below), this case's trip_request is a full multi-day trip, and flight/weather evidence genuinely has not been gathered yet. Continuing to delegate for that still-missing required evidence (policy #1) is at least as defensible as jumping to call_istanbul_expert. The label conflated 'accessibility is an Istanbul-local concern' with 'therefore evidence-sufficiency no longer matters', which is not what policy #1 says."
+    },
+    {
+      "case_id": "S18", "role": "supervisor", "language": "ar", "category": "degraded_specialist_result",
+      "request_category": "Full trip, weather attempt failed (unavailable), flights and stays succeeded",
+      "available_evidence": "get_weather=unavailable (ATTEMPTED, not missing), search_flights=success, search_stays=success",
+      "expected_action": "call_istanbul_expert", "actual_action": "call_travel_search",
+      "expected_label_unambiguous": true,
+      "failure_classification": "Prompt failure",
+      "justification": "A status=unavailable observation is a genuine, already-made attempt, not missing evidence -- Section 4 policy #6 ('respect explicit ... failed, and partial-result states') means the supervisor should treat this as a degraded-but-settled fact and proceed to call_istanbul_expert given the other two travel-search facts succeeded, not repeatedly retry weather. The real prompt never states that a failed/unavailable observation counts as 'already gathered' for delegation-avoidance purposes -- a genuine, fixable prompt gap."
+    },
+    {
+      "case_id": "S26", "role": "supervisor", "language": "tr", "category": "local_itinerary_only",
+      "request_category": "Full trip_request present, but the user's own message narrowly asks only about day-by-day itinerary organization around the already-booked stay",
+      "available_evidence": "search_stays=success (the only evidence relevant to the user's own narrow question)",
+      "expected_action": "call_istanbul_expert", "actual_action": "call_travel_search",
+      "expected_label_unambiguous": true,
+      "failure_classification": "Prompt failure",
+      "justification": "The user's own message ('plan my days according to where I'll stay') is specifically an Istanbul-local itinerary request (policy #2's trigger), and the only evidence relevant to answering it (search_stays) already succeeded -- flight/weather evidence is irrelevant to this specific question. The model over-generalized from the trip_request's broader field set rather than the user's own narrower stated intent; the prompt never tells it to weigh the two against each other."
+    },
+    {
+      "case_id": "S29", "role": "supervisor", "language": "tr", "category": "current_web_evidence",
+      "request_category": "No trip_request; a bare 'is Topkapi Palace open today' question",
+      "available_evidence": "none",
+      "expected_action": "call_travel_search", "actual_action": "call_istanbul_expert",
+      "expected_label_unambiguous": false,
+      "failure_classification": "Evaluation-design issue",
+      "justification": "A current-operational-status question about an Istanbul landmark is genuinely ambiguous between 'current web evidence' (web_search, via delegation) and 'local expert knowledge' (call_istanbul_expert) -- the architecture does not clearly disambiguate this boundary anywhere (architecture.md never states which capability owns 'is this specific site open today'). This is a real category-boundary gap in the SYSTEM DESIGN, not a defect in either the model's answer or a single prompt sentence -- flagged for future architectural clarification, not corrected in this checkpoint's single prompt edit."
+    },
+    {
+      "case_id": "S30", "role": "supervisor", "language": "ar", "category": "no_unnecessary_redelegation",
+      "request_category": "Full trip, all core travel evidence already gathered (identical shape to S12, different language/wording)",
+      "available_evidence": "get_weather=success, search_flights=success, search_stays=success",
+      "expected_action": "call_istanbul_expert", "actual_action": "synthesize",
+      "expected_label_unambiguous": true,
+      "failure_classification": "Prompt failure",
+      "justification": "Identical reasoning to S12."
+    },
+    {
+      "case_id": "P12", "role": "specialist", "language": "ar", "category": "deadline_or_budget_exhausted",
+      "request_category": "Specialist decide call with the shared external-call budget already fully exhausted",
+      "available_evidence": "tool_calls_remaining=0, stated as an explicit numeric fact in the real specialist prompt payload",
+      "expected_action": "travel_search_complete", "actual_action": "search_flights",
+      "expected_label_unambiguous": true,
+      "failure_classification": "Model failure",
+      "justification": "tool_calls_remaining=0 is unambiguous, numeric, and directly stated in the prompt the model was given -- this is not a specification gap. The specialist prompt is left UNCHANGED per this checkpoint's own default rule: the specialist already met its 90% target, and this single miss is already fully absorbed structurally in production code (phase4/specialist.py::_specialist_decide checks the shared budget before ever asking the model again), independent of what the model proposes. No specialist prompt change is warranted."
+    },
+    {
+      "case_id": "P18", "role": "specialist", "language": "en", "category": "provider_failure",
+      "request_category": "Specialist decide call after a transient (rate_limited) flight-search failure",
+      "available_evidence": "search_flights=rate_limited (an already-attempted, plausibly-transient failure), get_weather=success",
+      "expected_action": "search_stays", "actual_action": "search_flights",
+      "expected_label_unambiguous": false,
+      "failure_classification": "Evaluation-design issue",
+      "justification": "rate_limited is a transient-failure status, and MAX_CALLS_PER_TOOL=2 structurally permits a legitimate second attempt at the same tool -- retrying search_flights once, rather than moving on to a different missing capability, is a defensible choice the specialist's own bounds explicitly allow (unlike the P12 case, where the budget was already fully exhausted). The predeclared label assumed any attempted-and-failed status should always be treated like S18's 'move on' policy, but rate_limited specifically is exactly the kind of status a bounded single retry is designed for."
+    }
+  ],
+  "summary": {
+    "total_failures_audited": 9,
+    "supervisor_failures_audited": 7,
+    "specialist_failures_audited": 2,
+    "evaluation_design_issues": ["S11", "S15", "S29", "P18"],
+    "prompt_failures": ["S12", "S18", "S26", "S30"],
+    "model_failures": ["P12"],
+    "note": "No expected label was changed in the original baseline. Evaluation-design-issue cases are preserved exactly as originally scored (still counted against the original 23/30 and 18/20 baseline totals) -- see evaluation/e1r_corrected_case_labels_v2.json for the separate, versioned, non-destructive correction record."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1V — post-run candidate integrity re-verification",
+  "purpose": "Recomputes the same hashes recorded in evaluation/e1v_candidate_manifest.json AFTER the one live run completed, to confirm no production file changed while validation was in progress, per this checkpoint's own rule: \"If any production hash changed after validation began, block the checkpoint.\"",
+  "checked_at_utc": "2026-08-19T14:41:10Z",
+  "comparison": {
+    "root_unstaged_tracked_diff_sha256": {
+      "at_freeze": "d30fe83a382c2e217439c1d87c1cf7e01193a9473c9b89db41d75139109b29e6",
+      "post_run": "d30fe83a382c2e217439c1d87c1cf7e01193a9473c9b89db41d75139109b29e6",
+      "unchanged": true
+    },
+    "planner_a_unstaged_tracked_diff_sha256": {
+      "at_freeze": "1d1a3bff1abcd929a559ee2f10cf0ee130e70c85606de658ffe230812748a1da",
+      "post_run": "1d1a3bff1abcd929a559ee2f10cf0ee130e70c85606de658ffe230812748a1da",
+      "unchanged": true
+    },
+    "production_file_sha256": {
+      "services/planner-a/phase4/models.py": {
+        "at_freeze": "e83a54eba56c213a1b9df8a3f7aeb7a0a72942081eb39d4dc424421c94bc42d9",
+        "post_run": "e83a54eba56c213a1b9df8a3f7aeb7a0a72942081eb39d4dc424421c94bc42d9",
+        "unchanged": true
+      },
+      "services/planner-a/phase4/graph.py": {
+        "at_freeze": "eae3ed043e55b66b1eac61d06749817c2bd76850eab7b79466c6b300a9fbe8e0",
+        "post_run": "eae3ed043e55b66b1eac61d06749817c2bd76850eab7b79466c6b300a9fbe8e0",
+        "unchanged": true
+      },
+      "services/planner-a/phase4/qwen_client.py": {
+        "at_freeze": "376c3e989473c03f473a4e1beccf9f0f56a5a1d1c5235ccec7411d1b7429836f",
+        "post_run": "376c3e989473c03f473a4e1beccf9f0f56a5a1d1c5235ccec7411d1b7429836f",
+        "unchanged": true
+      },
+      "orchestration/system_a/fixture_decision_provider.py": {
+        "at_freeze": "1a563da8e02b59f0f7ebb5eea825caade1c2e842da988c78f216a7c7f95b68d7",
+        "post_run": "1a563da8e02b59f0f7ebb5eea825caade1c2e842da988c78f216a7c7f95b68d7",
+        "unchanged": true
+      }
+    }
+  },
+  "case_set_sha256": "30c1db92f523594b3500756662968176e887b2bb2fe11f7483109a8d0680beff",
+  "any_production_hash_changed": false,
+  "decision": "not_blocked_by_integrity_check"
+}

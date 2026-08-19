@@ -1,0 +1,47 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1Z — candidate freeze",
+  "timestamp_utc": "2026-08-19T16:07:13Z",
+  "purpose": "Freezes the exact uncommitted E.1Y candidate (action-eligibility repair) under E.1Z independent supervisor-only routing validation, before any case is written or any live call made.",
+  "nothing_staged": true,
+  "repositories": {
+    "root": {
+      "name": "voyager-ai-istanbul (superproject)",
+      "head_sha": "5c154e6ebfbb158229a711bfbff60a9ac49cce5d",
+      "branch": "phase-4/istanbul-expert",
+      "unstaged_tracked_diff_sha256_raw_bytes": "9c835535d5c61e9c26a529186cc87a71610f4ed88ba1f6f9a7b84e88ef3de384",
+      "staged_files": []
+    },
+    "planner_a_submodule": {
+      "name": "services/planner-a",
+      "head_sha": "e39295677bee62d68e4b174493128c581b10fbc9",
+      "branch": "phase-4/system-a-react",
+      "git_status_short": [
+        " M phase4/graph.py",
+        " M phase4/models.py",
+        " M phase4/qwen_client.py",
+        " M phase4/tests/test_d3_evaluation.py",
+        " M phase4/tests/test_decision_prompt.py",
+        " M phase4/tests/test_graph.py",
+        " M phase4/tests/test_qwen_client.py",
+        "?? phase4/tests/test_e1r_prompt_contract.py",
+        "?? phase4/tests/test_e1s_action_eligibility.py",
+        "?? phase4/tests/test_e1w_capability_context.py",
+        "?? phase4/tests/test_e1y_action_eligibility.py"
+      ],
+      "unstaged_tracked_diff_sha256_raw_bytes": "2be104860e0b1aab4f7e19e2ca36e816c931411a9bf90b137ce0d6b060b45c84",
+      "staged_files": []
+    }
+  },
+  "e1y_production_files_sha256_raw_bytes": {
+    "services/planner-a/phase4/models.py": "2f0df908f2bd1a6d4749f94ab7ddfe0f825880f5e3a43ee764957d4d9a50fc66",
+    "services/planner-a/phase4/graph.py": "325739f4d06ba1e8577906db0d2d97f09f750f4a23379d9eed394bc33ff86126"
+  },
+  "note_models_py_unchanged_by_e1y": "models.py's hash is identical to the E.1X-freeze value (2f0df908...) -- E.1Y touched only graph.py (compute_eligible_supervisor_actions + classifier prompt precedence sentence + both call-site union removals) and test files.",
+  "credential_presence": {
+    "QWEN_API_KEY_present": false,
+    "DASHSCOPE_API_KEY_present": false,
+    "QWEN_BASE_URL_present": false
+  },
+  "special_git_operation_in_progress": false,
+  "architecture_plan_pdf_status": "untracked (??), unstaged"
+}

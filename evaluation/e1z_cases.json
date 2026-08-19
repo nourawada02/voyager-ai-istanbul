@@ -1,0 +1,921 @@
+{
+  "schema_version": "1.0.0",
+  "checkpoint": "Final Evaluation Checkpoint E.1Z",
+  "description": "Predeclared, frozen independent live-Qwen supervisor-only routing validation case manifest for the E.1Y action-eligibility repair. New wording/dates/trip data/evidence throughout -- not copied or paraphrased from E.1, E.1R, E.1V, or E.1X. Every expected_action is a single, unambiguous predeclared label, and every label passed the mandatory preflight validation (see evaluation/e1z_preflight_audit.json) before any live call.",
+  "case_count": 30,
+  "language_distribution": {
+    "en": 10,
+    "tr": 10,
+    "ar": 10
+  },
+  "scope_distribution": {
+    "travel_only": 6,
+    "istanbul_local_only": 6,
+    "combined": 6,
+    "clarification_required": 6,
+    "out_of_scope": 6
+  },
+  "scope_by_language": {
+    "travel_only": {
+      "en": 2,
+      "tr": 2,
+      "ar": 2
+    },
+    "istanbul_local_only": {
+      "en": 2,
+      "tr": 2,
+      "ar": 2
+    },
+    "combined": {
+      "en": 2,
+      "tr": 2,
+      "ar": 2
+    },
+    "clarification_required": {
+      "en": 2,
+      "tr": 2,
+      "ar": 2
+    },
+    "out_of_scope": {
+      "en": 2,
+      "tr": 2,
+      "ar": 2
+    }
+  },
+  "followup_case_count": 12,
+  "initial_case_count": 18,
+  "expected_action_distribution": {
+    "call_travel_search": 5,
+    "synthesize": 6,
+    "ask_clarification": 8,
+    "call_istanbul_expert": 5,
+    "degrade": 6
+  },
+  "expected_scope_source_distribution": {
+    "classified": 18,
+    "inherited": 9,
+    "explicit": 3
+  },
+  "unnecessary_delegation_denominator": 20,
+  "unnecessary_delegation_definition": "eligible = expected_action in {synthesize, ask_clarification, degrade}; unnecessary = a final-schema-valid actual_action in {call_travel_search, call_istanbul_expert} for such a case.",
+  "stale_turn_signature_placeholder": {
+    "user_message": "An earlier, now-superseded planning question about a different Istanbul trip.",
+    "trip_request": null
+  },
+  "stale_turn_signature_sha256": "53fe1c0fdbd75eb5ad0af124c11d09315f5f4cf07c28db0f7bd1adda0617e0cf",
+  "cases": [
+    {
+      "case_id": "V3-S01",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "travel_only",
+      "category": "initial_complete_info",
+      "user_message": "Sort out the travel side of my Istanbul trip -- flights and a place to stay.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-06-03",
+        "return_date": "2027-06-09",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "78a2980b67496685669baee2fa7892b5528c0dae32e32b2db539fd5bdc198027",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S02",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "travel_only",
+      "category": "followup_reopens_complete_info",
+      "user_message": "Bu sefer farkli tarihler icin ucus ve otel lazim.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-07-14",
+        "return_date": "2027-07-20",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "travel_only",
+      "travel_search_attempted_signature": "53fe1c0fdbd75eb5ad0af124c11d09315f5f4cf07c28db0f7bd1adda0617e0cf",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "4b3753df4656528d8e91ab4ccb015c4b83f827aba1c75c96d9f695f39b2b92c8",
+      "is_followup": true,
+      "notes": "prior turn's completed attempt (stale signature) must never block this new one"
+    },
+    {
+      "case_id": "V3-S03",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "travel_only",
+      "category": "followup_terminal_completed",
+      "user_message": "كل شيء يبدو جاهزًا، يمكنك المتابعة.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-08-01",
+        "return_date": "2027-08-07",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "synthesize",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "travel_only",
+      "travel_search_attempted_signature": "5685baef04f1ab6cd4b72dbbebf5e6a1ea79d10c1a2dcde895193addc6d9db24",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "5685baef04f1ab6cd4b72dbbebf5e6a1ea79d10c1a2dcde895193addc6d9db24",
+      "is_followup": true,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S04",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "travel_only",
+      "category": "followup_terminal_degraded",
+      "user_message": "Even if the forecast isn't available, go ahead and finish up.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-09-11",
+        "return_date": "2027-09-17",
+        "traveler_count": 3,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "unavailable"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "get_weather": 1
+      },
+      "expected_action": "synthesize",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "travel_only",
+      "travel_search_attempted_signature": "ecb10474647665bee7e31be09c51b521eb7227d1f84f3553b232d24111ce13dd",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "ecb10474647665bee7e31be09c51b521eb7227d1f84f3553b232d24111ce13dd",
+      "is_followup": true,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S05",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "travel_only",
+      "category": "followup_explicit_change_essential_info_absent",
+      "user_message": "Aslinda gezilecek yerleri unut, sadece ucus konusunda yardim et.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "explicit",
+      "last_successful_capability_scope": "istanbul_local_only",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": "53fe1c0fdbd75eb5ad0af124c11d09315f5f4cf07c28db0f7bd1adda0617e0cf",
+      "request_signature": "2c47659f49f9fe7d15f3eb10da1755d1da7de7d41c978f47339330e61cbcd370",
+      "is_followup": true,
+      "notes": "explicit change to travel_only, but no trip_request/date/origin at all"
+    },
+    {
+      "case_id": "V3-S06",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "travel_only",
+      "category": "initial_essential_info_absent",
+      "user_message": "أريد رحلة طيران، لكن لم أحدد التاريخ بعد.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "11d0669bfba96edfc0d9cfcb50be64376ce09437f0bd26bce7e43fcec6862966",
+      "is_followup": false,
+      "notes": "clear task (flight), missing essential parameter (date)"
+    },
+    {
+      "case_id": "V3-S07",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "initial",
+      "user_message": "What neighborhoods should I wander through if I only have one afternoon free?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "e99fa10e371d73886d94971ca8ea25a6789ebba3d440cc2a2d8fbb6d49adc2fc",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S08",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "initial",
+      "user_message": "Sultanahmet disinda hangi bolgeleri gezmeliyim?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "c1f7bc7518aa27798972710ce3beeebf0a9f80c4a9f4d381b8102f89e4d52168",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S09",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "followup_not_terminal",
+      "user_message": "تابع من فضلك، أرني المزيد.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "istanbul_local_only",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "136af254f4cfb26b06b234959ea1630c70c59e6cf50d7b0f026cd6b228f86a10",
+      "is_followup": true,
+      "notes": "short-continuation (AR)"
+    },
+    {
+      "case_id": "V3-S10",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "followup_terminal_completed",
+      "user_message": "That's exactly what I needed -- go ahead and put it together.",
+      "trip_request": null,
+      "observations": [
+        {
+          "action": "call_istanbul_expert",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 1,
+      "tool_call_count_by_action": {
+        "call_istanbul_expert": 1
+      },
+      "expected_action": "synthesize",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "istanbul_local_only",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": "9e423f4010d319a91e53434daa8efd03b37a1ddde6e9b0464e01338907b72100",
+      "request_signature": "9e423f4010d319a91e53434daa8efd03b37a1ddde6e9b0464e01338907b72100",
+      "is_followup": true,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S11",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "followup_terminal_failed",
+      "user_message": "Rehber cevap veremese bile elindekiyle devam et.",
+      "trip_request": null,
+      "observations": [
+        {
+          "action": "call_istanbul_expert",
+          "status": "provider_error"
+        }
+      ],
+      "tool_call_count": 1,
+      "tool_call_count_by_action": {
+        "call_istanbul_expert": 1
+      },
+      "expected_action": "synthesize",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "istanbul_local_only",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": "d600f3513aa898d76d1e17512f7f3efb435314fb8761f7f24d7958a17bfb9c98",
+      "request_signature": "d600f3513aa898d76d1e17512f7f3efb435314fb8761f7f24d7958a17bfb9c98",
+      "is_followup": true,
+      "notes": "regression check for the E.1Y V2-S11 fix: failed-but-terminal evidence -> honest synthesize, never degrade"
+    },
+    {
+      "case_id": "V3-S12",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "followup_explicit_change_from_travel",
+      "user_message": "في الواقع، انسَ الرحلة، أخبرني فقط بالأماكن التي يجب زيارتها.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "expected_scope_source": "explicit",
+      "last_successful_capability_scope": "travel_only",
+      "travel_search_attempted_signature": "53fe1c0fdbd75eb5ad0af124c11d09315f5f4cf07c28db0f7bd1adda0617e0cf",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "783c524b00de503b2116d59f6401b8e6b884e0bec8c72c3ce6149811856cadd0",
+      "is_followup": true,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S13",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "combined",
+      "category": "initial_complete_info",
+      "user_message": "Put together the full Istanbul trip -- travel logistics and what to do each day.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-10-05",
+        "return_date": "2027-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "history"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "5e733cd9045016661428da293460a9432cfe5123b8875e944ed889dce07b5d0c",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S14",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "combined",
+      "category": "followup_travel_terminal_needs_istanbul",
+      "user_message": "Travel logistics are done -- now let's plan the days.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-10-05",
+        "return_date": "2027-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "history"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "call_istanbul_expert",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "combined",
+      "travel_search_attempted_signature": "08103187c2fc8656ffcc66752f3ac8c042f4990b98a2a2bef2c0f7c388bd2d16",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "08103187c2fc8656ffcc66752f3ac8c042f4990b98a2a2bef2c0f7c388bd2d16",
+      "is_followup": true,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S15",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "combined",
+      "category": "followup_both_terminal",
+      "user_message": "Her sey tamamlandi, artik ozetleyebilirsin.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-11-02",
+        "return_date": "2027-11-09",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "history"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "call_istanbul_expert",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 3,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "call_istanbul_expert": 1
+      },
+      "expected_action": "synthesize",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "combined",
+      "travel_search_attempted_signature": "dd728f6f12391a133b0d25ed8448367784063dd9cc5724879dc58ce2e4afc39b",
+      "istanbul_expert_attempted_signature": "dd728f6f12391a133b0d25ed8448367784063dd9cc5724879dc58ce2e4afc39b",
+      "request_signature": "dd728f6f12391a133b0d25ed8448367784063dd9cc5724879dc58ce2e4afc39b",
+      "is_followup": true,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S16",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "combined",
+      "category": "followup_explicit_change_into_combined_complete_info",
+      "user_message": "Aslinda sadece gezilecek yerler degil, ucus ve otel de lazim simdi.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2027-12-01",
+        "return_date": "2027-12-08",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "history"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "expected_scope_source": "explicit",
+      "last_successful_capability_scope": "istanbul_local_only",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": "53fe1c0fdbd75eb5ad0af124c11d09315f5f4cf07c28db0f7bd1adda0617e0cf",
+      "request_signature": "823a5d7ae9a2e5f7d0bc761b2bce5af43b11beb0d48149711140d4269f56faaf",
+      "is_followup": true,
+      "notes": "complete info supplied (TRIP_G) alongside the explicit scope expansion"
+    },
+    {
+      "case_id": "V3-S17",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "combined",
+      "category": "followup_budget_exhausted",
+      "user_message": "خطط لرحلتي الكاملة إلى إسطنبول من فضلك.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2028-01-10",
+        "return_date": "2028-01-17",
+        "traveler_count": 4,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "history"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 8,
+      "tool_call_count_by_action": {},
+      "expected_action": "synthesize",
+      "expected_scope_source": "inherited",
+      "last_successful_capability_scope": "combined",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "59e6ed2e86e485ffb45252748e93f23b7bc39281534a6eab32216bcdef262895",
+      "is_followup": true,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S18",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "combined",
+      "category": "initial_complete_info",
+      "user_message": "أرغب في تنظيم رحلة كاملة إلى إسطنبول، من الطيران إلى الأنشطة اليومية.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2028-02-14",
+        "return_date": "2028-02-21",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 480000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "history"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "d0e7053c11f72b8121324b794f8effac568e3bb7aef70712f5cbf8b786f94963",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S19",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "clarification_required",
+      "category": "initial",
+      "user_message": "I'm not sure what I need help with yet.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "c259c43af65f1ac27df2e0c64cf00e3a3feece0341fc904827cd824a23edf5f0",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S20",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "clarification_required",
+      "category": "initial",
+      "user_message": "Can you assist me with something related to my upcoming plans?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "2608e194c9b16fc706114ad23a8b7c8dce7f7cc6a03111ee79d90a1a7ddee3e9",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S21",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "clarification_required",
+      "category": "initial",
+      "user_message": "Henuz ne istedigimi tam bilmiyorum.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "83e74e62e35195551c1b4ec7a5346e25c9bf761131b0ceb2eb8f898556b69e3f",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S22",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "clarification_required",
+      "category": "initial",
+      "user_message": "Bir konuda yardimci olur musun, tam olarak ne oldugunu bilmiyorum.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "757a50c6e9a18cb7f8669877dcf332c77ab390070531fc3068550cc8a49b6d58",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S23",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "clarification_required",
+      "category": "initial",
+      "user_message": "لست متأكدًا مما أحتاجه بعد.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "2360660c57ea6919cd01ef798eb9d84dcbe77a4eb115be23ff6bbbc5179f7ad4",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S24",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "clarification_required",
+      "category": "initial",
+      "user_message": "هل يمكنك مساعدتي؟ لست متأكدًا من طلبي بالضبط.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "f711e17f03b289c03ecb62429cadfe0ecd0218d26c404df98954282afa701252",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S25",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "out_of_scope",
+      "category": "initial",
+      "user_message": "Please book my hotel immediately and charge my card.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "dbf40db71fd41979b214a1306212f1ef7910c760d98f6c35815b812fb0654794",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S26",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "out_of_scope",
+      "category": "initial",
+      "user_message": "What's the freezing point of water in Fahrenheit?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "5693a3fbab2d626e2ed361a84e90a40ae0b3ae09e375598a63a6bc1ae88a430c",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S27",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "out_of_scope",
+      "category": "initial",
+      "user_message": "Otelimi hemen rezerve edip kartimdan tahsilat yapar misin?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "ebf946e221875f47522fdec3e1d1dc72acc5a5f723a544153818a032edb88331",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S28",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "out_of_scope",
+      "category": "initial",
+      "user_message": "Suyun donma noktasi Fahrenayt cinsinden kactir?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "adf17532a9817df13f0c1bb5deb7108dd50db6f386414290aa0b4c8dc433c09d",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S29",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "out_of_scope",
+      "category": "initial",
+      "user_message": "هل يمكنك حجز فندقي فورًا والدفع من بطاقتي؟",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "8873da0d2554132a6e9f08e8a2bb164eda90236dab962f60950440f00931bdb2",
+      "is_followup": false,
+      "notes": ""
+    },
+    {
+      "case_id": "V3-S30",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "out_of_scope",
+      "category": "initial",
+      "user_message": "ما هي درجة تجمد الماء بمقياس فهرنهايت؟",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "expected_scope_source": "classified",
+      "last_successful_capability_scope": null,
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "a06c8c36ccefc8daa9142b3c0f74f943c6df7787e490a09af332001e26ba88f7",
+      "is_followup": false,
+      "notes": ""
+    }
+  ]
+}

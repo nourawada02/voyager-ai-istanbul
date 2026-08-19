@@ -1,0 +1,65 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1X — candidate freeze",
+  "timestamp_utc": "2026-08-19T15:18:23Z",
+  "purpose": "Freezes the exact uncommitted E.1W candidate (capability classification + cross-turn scope continuity repair) under E.1X independent supervisor-only validation, before any case is written or any live call made.",
+  "nothing_staged": true,
+  "repositories": {
+    "root": {
+      "name": "voyager-ai-istanbul (superproject)",
+      "head_sha": "5c154e6ebfbb158229a711bfbff60a9ac49cce5d",
+      "branch": "phase-4/istanbul-expert",
+      "git_status_short": [
+        " M EVALUATION.md",
+        " M orchestration/system_a/fixture_decision_provider.py",
+        " M orchestration/tests/conftest.py",
+        " M orchestration/tests/test_cross_process_integration.py",
+        " M orchestration/tests/test_failure_degradation.py",
+        " M orchestration/tests/test_full_trip_hermetic.py",
+        " m services/planner-a",
+        " ? services/travel-mcp",
+        "?? docs/architecture-plan.pdf",
+        "?? evaluation/ (E.1/E.1R/E.1V untracked evidence, unchanged)",
+        "?? orchestration/tests/test_e1_end_to_end_resilience.py"
+      ],
+      "unstaged_tracked_diff_sha256_raw_bytes": "88b0d6fcbf713b35c328a99c5de676eaec45cc977381f52a4f756ff8e37c7228",
+      "staged_files": []
+    },
+    "planner_a_submodule": {
+      "name": "services/planner-a",
+      "head_sha": "e39295677bee62d68e4b174493128c581b10fbc9",
+      "branch": "phase-4/system-a-react",
+      "git_status_short": [
+        " M phase4/graph.py",
+        " M phase4/models.py",
+        " M phase4/qwen_client.py",
+        " M phase4/tests/test_d3_evaluation.py",
+        " M phase4/tests/test_graph.py",
+        " M phase4/tests/test_qwen_client.py",
+        "?? phase4/tests/test_e1r_prompt_contract.py",
+        "?? phase4/tests/test_e1s_action_eligibility.py",
+        "?? phase4/tests/test_e1w_capability_context.py"
+      ],
+      "unstaged_tracked_diff_sha256_raw_bytes": "a24b5a29fe92e93952573927fad0dfee96790a4a2ddabc2a50f981cb51c28109",
+      "staged_files": []
+    }
+  },
+  "e1w_production_files_sha256_raw_bytes": {
+    "services/planner-a/phase4/models.py": "2f0df908f2bd1a6d4749f94ab7ddfe0f825880f5e3a43ee764957d4d9a50fc66",
+    "services/planner-a/phase4/graph.py": "df8f37cbe1ceba4b7597d8935ca85cf0a33b48a1cbde4a9006fb11be0aa5ac83"
+  },
+  "hashing_note": "All hashes in this manifest use raw on-disk bytes (sha256sum / Python open(...,'rb')) consistently at freeze and post-run re-check, so they are self-consistent for tamper-detection purposes even though a DIFFERENT convention (Python text-mode, universal-newline-normalized) was used for evaluation/e1v_cases.json's own case-set checksum in the E.1V checkpoint -- diagnosed as a benign CRLF artifact in the E.1W report, not a content change.",
+  "credential_presence": {
+    "QWEN_API_KEY_present": false,
+    "DASHSCOPE_API_KEY_present": false,
+    "QWEN_BASE_URL_present": false
+  },
+  "e1v_artifacts_confirmed_unchanged": {
+    "evaluation/e1v_candidate_manifest.json": "parses, python-text-mode sha256 7d3a7610b23fbb232ef86264aec15b8a0f1dc6fdb236b687b4cfacbe5529da7b",
+    "evaluation/e1v_cases.json": "parses, python-text-mode sha256 30c1db92f523594b3500756662968176e887b2bb2fe11f7483109a8d0680beff (matches originally reported case_set_sha256)",
+    "evaluation/e1v_live_qwen_summary.json": "parses, python-text-mode sha256 7d29530da9a49552e2ab26e49555c93b4ee50fea4b58bf69b685121648272b56",
+    "evaluation/e1v_post_run_integrity_check.json": "parses, python-text-mode sha256 28c5df2388aacc4ef81887f8c7238fc305c3b9d97fd4b0abba36701122aba9cc",
+    "evaluation/e1v_live_qwen_results.jsonl": "parses, 50 rows"
+  },
+  "special_git_operation_in_progress": false,
+  "architecture_plan_pdf_status": "untracked (??), unstaged"
+}

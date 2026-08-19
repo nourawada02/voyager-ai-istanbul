@@ -182,6 +182,13 @@ def test_real_cross_process_bounded_integration_scenario():
         assert not isinstance(tool_executor, FakeToolExecutor)  # explicitly proves the fake was NOT used
 
         decider = ScriptedDecisionProvider([
+            # Checkpoint Phase 4 D.3: get_weather/search_stays are now
+            # specialist-only actions -- the supervisor must delegate via
+            # call_travel_search first (rejected structurally otherwise);
+            # this script was not updated when D.3 landed since this gate
+            # is opt-in and skipped by default, so it never ran during
+            # that checkpoint's own regression passes. Fixed here.
+            _decision("call_travel_search", {}, "missing_weather_info"),
             _decision("get_weather", {"location": "Istanbul", "date_from": "2026-08-20", "date_to": "2026-08-20"}, "missing_weather_info"),
             # district_id narrows the real historical dataset's candidate
             # count under Travel MCP's own REQUEST_TOO_BROAD ceiling
@@ -189,6 +196,7 @@ def test_real_cross_process_bounded_integration_scenario():
             # snapshot legitimately exceeds it) -- district_fatih is a
             # real, registered district (contracts/examples/valid/IstanbulDistrictRegistry.json).
             _decision("search_stays", {"check_in": "2026-08-20", "check_out": "2026-08-25", "guest_count": 1, "district_id": "district_fatih"}, "missing_stay_info"),
+            _decision("travel_search_complete", {}, "all_required_evidence_present"),
             _decision("call_istanbul_expert", {"question": "What should I see near my stay?"}, "missing_local_expertise"),
             _decision("synthesize", {}, "all_required_evidence_present"),
         ])

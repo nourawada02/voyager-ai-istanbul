@@ -1,0 +1,168 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1V",
+  "case_set_sha256": "30c1db92f523594b3500756662968176e887b2bb2fe11f7483109a8d0680beff",
+  "candidate_manifest_sha256_at_freeze": null,
+  "model": "qwen3.7-flash",
+  "provider": "qwen",
+  "run_timestamp": "2026-08-19T14:41:03.929631+00:00",
+  "requested_case_count": 50,
+  "completed_case_count": 50,
+  "blocked": false,
+  "blocked_reason": "",
+  "capability_classification_accuracy": {
+    "correct": 20,
+    "n": 30,
+    "rate": 0.6666666666666666
+  },
+  "supervisor_next_action_accuracy": {
+    "correct": 21,
+    "n": 30,
+    "rate": 0.7
+  },
+  "specialist_tool_selection_accuracy": {
+    "correct": 18,
+    "n": 20,
+    "rate": 0.9
+  },
+  "first_attempt_schema_validity": {
+    "valid": 46,
+    "n": 50,
+    "rate": 0.92
+  },
+  "final_schema_validity": {
+    "valid": 50,
+    "n": 50,
+    "rate": 1.0
+  },
+  "provider_transport_completion_rate": {
+    "completed_without_transport_error": 50,
+    "n": 50,
+    "rate": 1.0
+  },
+  "unnecessary_delegation": {
+    "count": 3,
+    "eligible_n": 12,
+    "rate": 0.25
+  },
+  "correction_rate": {
+    "corrected_or_repaired": 4,
+    "n": 50,
+    "rate": 0.08
+  },
+  "retry_rate": {
+    "retried": 0,
+    "n": 50,
+    "rate": 0.0
+  },
+  "credential_or_chain_of_thought_leak_hits": 0,
+  "total_repair_attempts": 4,
+  "mean_latency_seconds": 3.60562,
+  "results_by_language": {
+    "ar": {
+      "n": 16,
+      "action_accuracy": {
+        "correct": 12,
+        "n": 16,
+        "rate": 0.75
+      },
+      "final_schema_validity": {
+        "valid": 16,
+        "n": 16,
+        "rate": 1.0
+      }
+    },
+    "en": {
+      "n": 17,
+      "action_accuracy": {
+        "correct": 15,
+        "n": 17,
+        "rate": 0.8823529411764706
+      },
+      "final_schema_validity": {
+        "valid": 17,
+        "n": 17,
+        "rate": 1.0
+      }
+    },
+    "tr": {
+      "n": 17,
+      "action_accuracy": {
+        "correct": 12,
+        "n": 17,
+        "rate": 0.7058823529411765
+      },
+      "final_schema_validity": {
+        "valid": 17,
+        "n": 17,
+        "rate": 1.0
+      }
+    }
+  },
+  "results_by_capability_scope_supervisor_only": {
+    "clarification_required": {
+      "n": 6,
+      "action_accuracy": {
+        "correct": 6,
+        "n": 6,
+        "rate": 1.0
+      },
+      "final_schema_validity": {
+        "valid": 6,
+        "n": 6,
+        "rate": 1.0
+      }
+    },
+    "combined": {
+      "n": 6,
+      "action_accuracy": {
+        "correct": 5,
+        "n": 6,
+        "rate": 0.8333333333333334
+      },
+      "final_schema_validity": {
+        "valid": 6,
+        "n": 6,
+        "rate": 1.0
+      }
+    },
+    "istanbul_local_only": {
+      "n": 6,
+      "action_accuracy": {
+        "correct": 2,
+        "n": 6,
+        "rate": 0.3333333333333333
+      },
+      "final_schema_validity": {
+        "valid": 6,
+        "n": 6,
+        "rate": 1.0
+      }
+    },
+    "out_of_scope": {
+      "n": 6,
+      "action_accuracy": {
+        "correct": 6,
+        "n": 6,
+        "rate": 1.0
+      },
+      "final_schema_validity": {
+        "valid": 6,
+        "n": 6,
+        "rate": 1.0
+      }
+    },
+    "travel_only": {
+      "n": 6,
+      "action_accuracy": {
+        "correct": 2,
+        "n": 6,
+        "rate": 0.3333333333333333
+      },
+      "final_schema_validity": {
+        "valid": 6,
+        "n": 6,
+        "rate": 1.0
+      }
+    }
+  }
+}

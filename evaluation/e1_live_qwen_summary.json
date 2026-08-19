@@ -1,0 +1,39 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1",
+  "case_set_sha256": "d2a9399aad26b728327e096e99b8dbd08314fc7a0e7b0ff7c89351dc81cecd4d",
+  "model": "qwen3.7-flash",
+  "provider": "qwen",
+  "run_timestamp": "2026-08-18T14:56:48.851132+00:00",
+  "requested_case_count": 50,
+  "completed_case_count": 50,
+  "blocked": false,
+  "blocked_reason": "",
+  "supervisor_routing_accuracy": {
+    "correct": 23,
+    "n": 30,
+    "rate": 0.7666666666666667
+  },
+  "specialist_tool_selection_correctness": {
+    "correct": 18,
+    "n": 20,
+    "rate": 0.9
+  },
+  "first_attempt_schema_validity": {
+    "valid": 50,
+    "n": 50,
+    "rate": 1.0
+  },
+  "final_schema_validity_after_bounded_repair": {
+    "valid": 50,
+    "n": 50,
+    "rate": 1.0
+  },
+  "unnecessary_delegation_or_tool_call": {
+    "count": 2,
+    "eligible_n": 6,
+    "rate": 0.3333333333333333
+  },
+  "credential_or_chain_of_thought_leak_hits": 0,
+  "total_repair_attempts": 0,
+  "mean_latency_seconds": 2.2928
+}

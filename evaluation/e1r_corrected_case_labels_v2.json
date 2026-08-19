@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "version": 2,
+  "checkpoint": "Final Evaluation Checkpoint E.1R",
+  "description": "A SEPARATE, versioned, non-destructive record of corrected/broadened expected-action sets for the 4 cases the E.1R audit (evaluation/e1r_baseline_failure_audit.json) classified as evaluation-design issues, not model or prompt defects. This file does NOT modify evaluation/e1_live_qwen_cases.json, evaluation/e1_live_qwen_results.jsonl, or evaluation/e1_live_qwen_summary.json -- those remain the permanent, unaltered E.1 baseline. This file is reference material only; the original baseline score is never recomputed against it.",
+  "corrected_cases": [
+    {
+      "case_id": "S11", "original_expected_actions": ["synthesize"],
+      "v2_expected_actions": ["synthesize", "call_travel_search"],
+      "reason": "search_stays was genuinely still missing; delegating again for it is architecturally defensible under policy #1."
+    },
+    {
+      "case_id": "S15", "original_expected_actions": ["call_istanbul_expert"],
+      "v2_expected_actions": ["call_istanbul_expert", "call_travel_search"],
+      "reason": "flight/weather evidence genuinely still missing for the full trip_request; continuing to delegate is defensible under policy #1."
+    },
+    {
+      "case_id": "S29", "original_expected_actions": ["call_travel_search"],
+      "v2_expected_actions": ["call_travel_search", "call_istanbul_expert"],
+      "reason": "Genuine, unresolved architectural category-boundary ambiguity between current-web-evidence and local-expert-knowledge for 'is this site open today' -- not resolved by this checkpoint's single prompt edit."
+    },
+    {
+      "case_id": "P18", "original_expected_actions": ["search_stays"],
+      "v2_expected_actions": ["search_stays", "search_flights"],
+      "reason": "search_flights had only failed with a transient rate_limited status; MAX_CALLS_PER_TOOL=2 structurally permits one legitimate retry."
+    }
+  ],
+  "usage_note": "If a future checkpoint wishes to re-score the original 50-case baseline against these broadened sets (never the reverse -- never narrowing), that is a distinct, explicitly-labeled re-scoring exercise, not a rewrite of the original evidence. Not performed in this checkpoint."
+}

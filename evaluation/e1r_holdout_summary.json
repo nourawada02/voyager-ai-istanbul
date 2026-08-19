@@ -1,0 +1,40 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1R",
+  "run_type": "post-fix holdout (independent from the original E.1 baseline)",
+  "case_set_sha256": "efce4efb07ebe8d35d81ecc53ae9c717800cd14b8908af2a2093bf1707de8474",
+  "model": "qwen3.7-flash",
+  "provider": "qwen",
+  "run_timestamp": "2026-08-18T21:16:42.657245+00:00",
+  "requested_case_count": 50,
+  "completed_case_count": 50,
+  "blocked": false,
+  "blocked_reason": "",
+  "supervisor_routing_accuracy": {
+    "correct": 25,
+    "n": 30,
+    "rate": 0.8333333333333334
+  },
+  "specialist_tool_selection_correctness": {
+    "correct": 20,
+    "n": 20,
+    "rate": 1.0
+  },
+  "first_attempt_schema_validity": {
+    "valid": 49,
+    "n": 50,
+    "rate": 0.98
+  },
+  "final_schema_validity_after_bounded_repair": {
+    "valid": 49,
+    "n": 50,
+    "rate": 0.98
+  },
+  "unnecessary_delegation_or_tool_call": {
+    "count": 0,
+    "eligible_n": 11,
+    "rate": 0.0
+  },
+  "credential_or_chain_of_thought_leak_hits": 0,
+  "total_repair_attempts": 0,
+  "mean_latency_seconds": 4.30278
+}

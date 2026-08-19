@@ -1,0 +1,331 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1Z — mandatory label preflight audit",
+  "case_count": 30,
+  "all_passed": true,
+  "rows": [
+    {
+      "case_id": "V3-S01",
+      "expected_action": "call_travel_search",
+      "expected_scope": "travel_only",
+      "checks": {
+        "single_expected_action": true,
+        "essential_travel_info_present": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S02",
+      "expected_action": "call_travel_search",
+      "expected_scope": "travel_only",
+      "checks": {
+        "single_expected_action": true,
+        "essential_travel_info_present": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S03",
+      "expected_action": "synthesize",
+      "expected_scope": "travel_only",
+      "checks": {
+        "single_expected_action": true,
+        "usable_evidence_or_budget_exhausted": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S04",
+      "expected_action": "synthesize",
+      "expected_scope": "travel_only",
+      "checks": {
+        "single_expected_action": true,
+        "usable_evidence_or_budget_exhausted": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S05",
+      "expected_action": "ask_clarification",
+      "expected_scope": "travel_only",
+      "checks": {
+        "single_expected_action": true,
+        "essential_travel_info_genuinely_absent": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S06",
+      "expected_action": "ask_clarification",
+      "expected_scope": "travel_only",
+      "checks": {
+        "single_expected_action": true,
+        "essential_travel_info_genuinely_absent": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S07",
+      "expected_action": "call_istanbul_expert",
+      "expected_scope": "istanbul_local_only",
+      "checks": {
+        "single_expected_action": true,
+        "sufficient_local_context": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S08",
+      "expected_action": "call_istanbul_expert",
+      "expected_scope": "istanbul_local_only",
+      "checks": {
+        "single_expected_action": true,
+        "sufficient_local_context": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S09",
+      "expected_action": "call_istanbul_expert",
+      "expected_scope": "istanbul_local_only",
+      "checks": {
+        "single_expected_action": true,
+        "sufficient_local_context": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S10",
+      "expected_action": "synthesize",
+      "expected_scope": "istanbul_local_only",
+      "checks": {
+        "single_expected_action": true,
+        "usable_evidence_or_budget_exhausted": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S11",
+      "expected_action": "synthesize",
+      "expected_scope": "istanbul_local_only",
+      "checks": {
+        "single_expected_action": true,
+        "usable_evidence_or_budget_exhausted": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S12",
+      "expected_action": "call_istanbul_expert",
+      "expected_scope": "istanbul_local_only",
+      "checks": {
+        "single_expected_action": true,
+        "sufficient_local_context": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S13",
+      "expected_action": "call_travel_search",
+      "expected_scope": "combined",
+      "checks": {
+        "single_expected_action": true,
+        "essential_travel_info_present": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S14",
+      "expected_action": "call_istanbul_expert",
+      "expected_scope": "combined",
+      "checks": {
+        "single_expected_action": true,
+        "sufficient_local_context": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S15",
+      "expected_action": "synthesize",
+      "expected_scope": "combined",
+      "checks": {
+        "single_expected_action": true,
+        "usable_evidence_or_budget_exhausted": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S16",
+      "expected_action": "call_travel_search",
+      "expected_scope": "combined",
+      "checks": {
+        "single_expected_action": true,
+        "essential_travel_info_present": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S17",
+      "expected_action": "synthesize",
+      "expected_scope": "combined",
+      "checks": {
+        "single_expected_action": true,
+        "usable_evidence_or_budget_exhausted": true,
+        "followup_has_prior_scope_state": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S18",
+      "expected_action": "call_travel_search",
+      "expected_scope": "combined",
+      "checks": {
+        "single_expected_action": true,
+        "essential_travel_info_present": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S19",
+      "expected_action": "ask_clarification",
+      "expected_scope": "clarification_required",
+      "checks": {
+        "single_expected_action": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S20",
+      "expected_action": "ask_clarification",
+      "expected_scope": "clarification_required",
+      "checks": {
+        "single_expected_action": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S21",
+      "expected_action": "ask_clarification",
+      "expected_scope": "clarification_required",
+      "checks": {
+        "single_expected_action": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S22",
+      "expected_action": "ask_clarification",
+      "expected_scope": "clarification_required",
+      "checks": {
+        "single_expected_action": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S23",
+      "expected_action": "ask_clarification",
+      "expected_scope": "clarification_required",
+      "checks": {
+        "single_expected_action": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S24",
+      "expected_action": "ask_clarification",
+      "expected_scope": "clarification_required",
+      "checks": {
+        "single_expected_action": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S25",
+      "expected_action": "degrade",
+      "expected_scope": "out_of_scope",
+      "checks": {
+        "single_expected_action": true,
+        "scope_is_out_of_scope": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S26",
+      "expected_action": "degrade",
+      "expected_scope": "out_of_scope",
+      "checks": {
+        "single_expected_action": true,
+        "scope_is_out_of_scope": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S27",
+      "expected_action": "degrade",
+      "expected_scope": "out_of_scope",
+      "checks": {
+        "single_expected_action": true,
+        "scope_is_out_of_scope": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S28",
+      "expected_action": "degrade",
+      "expected_scope": "out_of_scope",
+      "checks": {
+        "single_expected_action": true,
+        "scope_is_out_of_scope": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S29",
+      "expected_action": "degrade",
+      "expected_scope": "out_of_scope",
+      "checks": {
+        "single_expected_action": true,
+        "scope_is_out_of_scope": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    },
+    {
+      "case_id": "V3-S30",
+      "expected_action": "degrade",
+      "expected_scope": "out_of_scope",
+      "checks": {
+        "single_expected_action": true,
+        "scope_is_out_of_scope": true,
+        "non_followup_has_no_prior_scope": true
+      },
+      "passed": true
+    }
+  ]
+}

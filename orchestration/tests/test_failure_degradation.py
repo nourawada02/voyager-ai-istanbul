@@ -30,12 +30,48 @@ def _fixed_clock():
     return datetime.datetime(2026, 8, 17, tzinfo=datetime.timezone.utc)
 
 
+_REASON_CODE_BY_SCOPE = {
+    "combined": "requires_both", "travel_only": "requires_travel_evidence",
+    "istanbul_local_only": "requires_istanbul_local_grounding",
+    "clarification_required": "insufficient_information", "out_of_scope": "outside_project_scope",
+}
+
+
+def _infer_capability_scope(remaining_responses) -> str:
+    """Checkpoint Final Evaluation E.1S.1: infers the capability scope
+    from the rest of this already-authored scripted plan so every
+    existing scenario in this file keeps its ground-truth action
+    sequence unchanged while still exercising the real once-per-turn
+    classification step."""
+    actions = []
+    for raw in remaining_responses:
+        if isinstance(raw, BaseException):
+            continue
+        try:
+            actions.append(json.loads(raw).get("action"))
+        except (json.JSONDecodeError, AttributeError, TypeError):
+            continue
+    has_travel, has_istanbul = "call_travel_search" in actions, "call_istanbul_expert" in actions
+    if has_travel and has_istanbul:
+        return "combined"
+    if has_travel:
+        return "travel_only"
+    if has_istanbul:
+        return "istanbul_local_only"
+    return "out_of_scope"
+
+
 class ScriptedDecisionProvider:
     def __init__(self, responses):
         self.responses = list(responses)
         self._i = 0
 
     def generate(self, system, user):
+        from phase4.graph import CAPABILITY_SCOPE_PROMPT_MARKER
+
+        if CAPABILITY_SCOPE_PROMPT_MARKER in system:
+            scope = _infer_capability_scope(self.responses[self._i:])
+            return json.dumps({"scope": scope, "reason_code": _REASON_CODE_BY_SCOPE[scope]})
         response = self.responses[self._i]
         self._i += 1
         return response

@@ -1,0 +1,237 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1R",
+  "section": "7 -- deal-ranking evaluation gap closure",
+  "evidence_class": "deterministic-hermetic (no network, no model retraining, real production ranking/scoring functions)",
+  "provenance": {
+    "scoring_module": "services/travel-mcp/phase2/deal_score_reference.py",
+    "ranking_module": "services/travel-mcp/phase2/serving_contract_reference.py",
+    "hard_filter_source": "services/travel-mcp/phase2/serving/search_service.py::AccommodationSearchService._apply_hard_filters (called directly; unmodified)",
+    "approved_weights": {
+      "capped_price_value": 0.35,
+      "itinerary_accessibility": 0.25,
+      "rating_quality": 0.15,
+      "preference_match": 0.1,
+      "amenities_match": 0.1,
+      "review_confidence": 0.05
+    }
+  },
+  "required_categories": [
+    "approved_ranking_weights",
+    "cheaper_option_must_lose",
+    "counterfactual_explanation_consistency",
+    "hard_filter_enforcement",
+    "missing_field_behavior",
+    "stable_deterministic_ordering",
+    "tie_handling"
+  ],
+  "total_cases": 25,
+  "total_passed": 25,
+  "by_category": {
+    "hard_filter_enforcement": {
+      "total": 7,
+      "passed": 7
+    },
+    "approved_ranking_weights": {
+      "total": 3,
+      "passed": 3
+    },
+    "stable_deterministic_ordering": {
+      "total": 2,
+      "passed": 2
+    },
+    "tie_handling": {
+      "total": 3,
+      "passed": 3
+    },
+    "missing_field_behavior": {
+      "total": 3,
+      "passed": 3
+    },
+    "counterfactual_explanation_consistency": {
+      "total": 3,
+      "passed": 3
+    },
+    "cheaper_option_must_lose": {
+      "total": 4,
+      "passed": 4
+    }
+  },
+  "generated_at": "2026-08-19T14:02:01.585611+00:00",
+  "cases": [
+    {
+      "case_id": "D-A01",
+      "category": "hard_filter_enforcement",
+      "description": "room_type filter excludes non-effective room types",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-A02",
+      "category": "hard_filter_enforcement",
+      "description": "district_ids filter excludes listings outside the requested districts",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-A03",
+      "category": "hard_filter_enforcement",
+      "description": "side filter excludes listings on the other side of the Bosphorus",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-A04",
+      "category": "hard_filter_enforcement",
+      "description": "guest_count filter excludes listings that cannot accommodate the party",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-A05",
+      "category": "hard_filter_enforcement",
+      "description": "min_bedrooms/min_beds/min_bathrooms filters each independently eliminate listings below threshold",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-A06",
+      "category": "hard_filter_enforcement",
+      "description": "required_amenities matches after Unicode NFKC/casefold/whitespace normalization only",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-A07",
+      "category": "hard_filter_enforcement",
+      "description": "budget filter applies correctly for both nightly and total periods",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-B01",
+      "category": "approved_ranking_weights",
+      "description": "the approved DEAL_SCORE_WEIGHTS sum to exactly 1.00",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-B02",
+      "category": "approved_ranking_weights",
+      "description": "compute_deal_score matches the manual weighted sum using the approved weights",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-B03",
+      "category": "approved_ranking_weights",
+      "description": "a tampered (non-summing-to-1.00) weight set is rejected by the invariant guard, proving it is a real guardrail",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-C01",
+      "category": "stable_deterministic_ordering",
+      "description": "rank_preliminary produces the documented descending-value/ascending-tiebreak order, repeatably",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-C02",
+      "category": "stable_deterministic_ordering",
+      "description": "the final stay_id ranking is invariant to the input list's own order",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-D01",
+      "category": "tie_handling",
+      "description": "a tie on preliminary_capped_price_value breaks on ascending observed price",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-D02",
+      "category": "tie_handling",
+      "description": "a tie on value AND observed price breaks on ascending interval width",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-D03",
+      "category": "tie_handling",
+      "description": "a full three-way tie breaks on ascending (lexicographic) stay_id",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-E01",
+      "category": "missing_field_behavior",
+      "description": "constructing DealScoreComponents without a required component raises",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-E02",
+      "category": "missing_field_behavior",
+      "description": "an out-of-[0,1]-range component is rejected, not silently clamped",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-E03",
+      "category": "missing_field_behavior",
+      "description": "an omitted optional hard-filter field (e.g. district_ids=None) eliminates nothing on that dimension",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-F01",
+      "category": "counterfactual_explanation_consistency",
+      "description": "explain_deal_score's per-component contributions sum exactly to compute_deal_score",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-F02",
+      "category": "counterfactual_explanation_consistency",
+      "description": "'why A beats B' is quantitatively attributable to the exact differing component",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-F03",
+      "category": "counterfactual_explanation_consistency",
+      "description": "explain_deal_score is deterministic and repeatable for identical inputs",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-G01",
+      "category": "cheaper_option_must_lose",
+      "description": "a cheaper listing with an unsupported/non-requested room_type is hard-filtered out entirely, never ranked",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-G02",
+      "category": "cheaper_option_must_lose",
+      "description": "a cheaper listing that cannot fit the party size is hard-filtered out, never ranked ahead of a valid pricier one",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-G03",
+      "category": "cheaper_option_must_lose",
+      "description": "a cheaper listing missing a required amenity is hard-filtered out, never ranked ahead of a valid pricier one",
+      "passed": true,
+      "error": null
+    },
+    {
+      "case_id": "D-G04",
+      "category": "cheaper_option_must_lose",
+      "description": "a lower absolute price is not automatically a better deal -- the fair-price gap, not raw price, drives preliminary ranking",
+      "passed": true,
+      "error": null
+    }
+  ]
+}

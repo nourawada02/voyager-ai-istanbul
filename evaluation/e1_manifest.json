@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "checkpoint": "Final Evaluation Checkpoint E.1",
+  "generated": "2026-08-18",
+  "tested_shas": {
+    "superproject": "5c154e6ebfbb158229a711bfbff60a9ac49cce5d",
+    "services/planner-a": "e39295677bee62d68e4b174493128c581b10fbc9",
+    "services/frontend": "770070dad7d2b8c14e85ef521ab2a4f505e57dc7",
+    "services/travel-mcp": "cfb197280129970da2712ccda5c9bca543e861fd",
+    "services/istanbul-expert-b": "95512a4e17b278ec0ece6517acbf2a2eb978f27a"
+  },
+  "evidence_classes": {
+    "live_qwen_routing": {
+      "class": "live",
+      "case_count": 50,
+      "case_manifest": "evaluation/e1_live_qwen_cases.json",
+      "case_set_sha256": "d2a9399aad26b728327e096e99b8dbd08314fc7a0e7b0ff7c89351dc81cecd4d",
+      "raw_results": "evaluation/e1_live_qwen_results.jsonl",
+      "summary": "evaluation/e1_live_qwen_summary.json",
+      "generator_script": "evaluation/build_e1_live_cases.py",
+      "runner_script": "evaluation/run_e1_live_qwen_eval.py"
+    },
+    "scripted_structural_conformance": {
+      "class": "scripted",
+      "case_count": 12,
+      "source": "services/planner-a/phase4/tests/test_d3_evaluation.py",
+      "originating_checkpoint": "D.3",
+      "note": "Structural conformance under scripted ground-truth decisions -- not live-model routing accuracy."
+    },
+    "end_to_end_resilience": {
+      "class": "fixture",
+      "scenario_count": 21,
+      "source": "orchestration/tests/test_e1_end_to_end_resilience.py",
+      "raw_results": "evaluation/e1_end_to_end_results.json"
+    },
+    "five_container_docker_smoke": {
+      "class": "live",
+      "source": "manual gate, evidence in EVALUATION.md section 8.1"
+    },
+    "optional_real_provider_smoke": {
+      "class": "live",
+      "source": "orchestration/tests/test_cross_process_integration.py",
+      "gate_env_var": "VOYAGER_CROSS_PROCESS_INTEGRATION_GATE"
+    },
+    "rag_retrieval_and_generation": {
+      "class": "historical",
+      "originating_checkpoint": "Phase 3",
+      "sources": [
+        "evaluation/datasets/rag_experiment_report.json",
+        "evaluation/datasets/rag_experiment_raw_results.json",
+        "evaluation/datasets/rag_generation_eval_report_remediated.json",
+        "evaluation/datasets/rag_ground_truth.json",
+        "evaluation/datasets/rag_smoke_eval_report.json"
+      ]
+    },
+    "accommodation_ml": {
+      "class": "historical",
+      "originating_checkpoint": "Phase 2",
+      "sources": [
+        "ml/reports/phase2_final_2026-06-30.json",
+        "ml/reports/phase2_selection_2026-06-30.json",
+        "ml/artifacts/phase2_bundle_2026-06-30.joblib"
+      ]
+    },
+    "itinerary_optimization": {
+      "class": "historical",
+      "originating_checkpoint": "Phase 4 Checkpoint A",
+      "sources": [
+        "evaluation/datasets/istanbul_expert_baseline_comparison_report.json",
+        "evaluation/datasets/istanbul_expert_baseline_raw_results.json"
+      ]
+    },
+    "failure_case_analyses": {
+      "class": "mixed",
+      "count": 3,
+      "source": "evaluation/e1_failure_cases.json"
+    }
+  },
+  "report": "EVALUATION.md"
+}

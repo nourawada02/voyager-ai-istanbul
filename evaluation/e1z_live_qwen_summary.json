@@ -1,0 +1,192 @@
+{
+  "checkpoint": "Final Evaluation Checkpoint E.1Z",
+  "case_set_sha256": "91e8834b7f8fab15a16c14891e8750eac49fe398b2b2492b98ffa96088f4a87c",
+  "model": "qwen3.7-flash",
+  "provider": "qwen",
+  "run_timestamp": "2026-08-19T16:15:47.402040+00:00",
+  "requested_case_count": 30,
+  "completed_case_count": 30,
+  "blocked": false,
+  "blocked_reason": "",
+  "capability_scope_accuracy": {
+    "correct": 27,
+    "n": 30,
+    "rate": 0.9
+  },
+  "supervisor_next_action_accuracy": {
+    "correct": 27,
+    "n": 30,
+    "rate": 0.9
+  },
+  "initial_request_scope_accuracy": {
+    "correct": 15,
+    "n": 18,
+    "rate": 0.8333333333333334
+  },
+  "followup_scope_accuracy": {
+    "correct": 12,
+    "n": 12,
+    "rate": 1.0
+  },
+  "initial_request_action_accuracy": {
+    "correct": 16,
+    "n": 18,
+    "rate": 0.8888888888888888
+  },
+  "followup_action_accuracy": {
+    "correct": 11,
+    "n": 12,
+    "rate": 0.9166666666666666
+  },
+  "inherited_scope_accuracy": {
+    "correct": 7,
+    "n": 9,
+    "rate": 0.7777777777777778
+  },
+  "explicit_scope_change_accuracy": {
+    "correct": 3,
+    "n": 3,
+    "rate": 1.0
+  },
+  "first_attempt_schema_validity": {
+    "valid": 30,
+    "n": 30,
+    "rate": 1.0
+  },
+  "final_schema_validity": {
+    "valid": 30,
+    "n": 30,
+    "rate": 1.0
+  },
+  "provider_transport_completion_rate": {
+    "completed_without_transport_error": 30,
+    "n": 30,
+    "rate": 1.0
+  },
+  "unnecessary_delegation": {
+    "count": 2,
+    "eligible_n": 20,
+    "rate": 0.1
+  },
+  "correction_rate": {
+    "corrected_or_repaired": 0,
+    "n": 30,
+    "rate": 0.0
+  },
+  "retry_rate": {
+    "retried": 0,
+    "n": 30,
+    "rate": 0.0
+  },
+  "credential_or_chain_of_thought_leak_hits": 0,
+  "total_repair_attempts": 0,
+  "mean_latency_seconds": 5.733333333333333,
+  "results_by_language": {
+    "ar": {
+      "n": 10,
+      "scope_accuracy": {
+        "correct": 7,
+        "n": 10,
+        "rate": 0.7
+      },
+      "action_accuracy": {
+        "correct": 8,
+        "n": 10,
+        "rate": 0.8
+      }
+    },
+    "en": {
+      "n": 10,
+      "scope_accuracy": {
+        "correct": 10,
+        "n": 10,
+        "rate": 1.0
+      },
+      "action_accuracy": {
+        "correct": 10,
+        "n": 10,
+        "rate": 1.0
+      }
+    },
+    "tr": {
+      "n": 10,
+      "scope_accuracy": {
+        "correct": 10,
+        "n": 10,
+        "rate": 1.0
+      },
+      "action_accuracy": {
+        "correct": 9,
+        "n": 10,
+        "rate": 0.9
+      }
+    }
+  },
+  "results_by_capability_scope": {
+    "clarification_required": {
+      "n": 6,
+      "scope_accuracy": {
+        "correct": 6,
+        "n": 6,
+        "rate": 1.0
+      },
+      "action_accuracy": {
+        "correct": 6,
+        "n": 6,
+        "rate": 1.0
+      }
+    },
+    "combined": {
+      "n": 6,
+      "scope_accuracy": {
+        "correct": 5,
+        "n": 6,
+        "rate": 0.8333333333333334
+      },
+      "action_accuracy": {
+        "correct": 5,
+        "n": 6,
+        "rate": 0.8333333333333334
+      }
+    },
+    "istanbul_local_only": {
+      "n": 6,
+      "scope_accuracy": {
+        "correct": 6,
+        "n": 6,
+        "rate": 1.0
+      },
+      "action_accuracy": {
+        "correct": 6,
+        "n": 6,
+        "rate": 1.0
+      }
+    },
+    "out_of_scope": {
+      "n": 6,
+      "scope_accuracy": {
+        "correct": 5,
+        "n": 6,
+        "rate": 0.8333333333333334
+      },
+      "action_accuracy": {
+        "correct": 5,
+        "n": 6,
+        "rate": 0.8333333333333334
+      }
+    },
+    "travel_only": {
+      "n": 6,
+      "scope_accuracy": {
+        "correct": 5,
+        "n": 6,
+        "rate": 0.8333333333333334
+      },
+      "action_accuracy": {
+        "correct": 5,
+        "n": 6,
+        "rate": 0.8333333333333334
+      }
+    }
+  }
+}

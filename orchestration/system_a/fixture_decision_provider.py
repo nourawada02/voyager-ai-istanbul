@@ -40,6 +40,8 @@ from __future__ import annotations
 import json
 from typing import Any, Optional
 
+from phase4.graph import CAPABILITY_SCOPE_PROMPT_MARKER
+
 # The fixed, explicit action order the internal Travel Search specialist
 # proposes, one action per call, skipping whatever already has a
 # successful observation (visible via the shared evidence registry both
@@ -67,6 +69,20 @@ _SYNTHESIZE_EXPLANATION = (
     "This is a deterministic fixture-mode plan (no live provider, MCP, or A2A "
     "call was made). Review the flights, stays, weather, and itinerary tabs below."
 )
+
+
+def _classification(scope: str, reason_code: str) -> str:
+    """Checkpoint Final Evaluation E.1S.1: fixture mode's own
+    deterministic, rule-based capability-scope classification -- reuses
+    this file's own already-established design philosophy ("a small,
+    fixed, explicit... policy -- never an LLM call") rather than adding
+    a second classification mechanism. A structured trip_request means
+    'combined' (this fixture always demonstrates the full flight/stay/
+    weather + Istanbul Expert plan); no structured trip_request means
+    'out_of_scope' -- preserving the pre-existing fixture-mode behavior
+    of an honest, evidence-free degrade for a bare message with no trip
+    details, rather than ever calling a specialist for nothing."""
+    return json.dumps({"scope": scope, "reason_code": reason_code})
 
 
 def _decision(action: str, arguments: dict[str, Any], reason_code: str) -> str:
@@ -139,6 +155,18 @@ class SupervisorFixtureDecisionProvider:
     construction parameter."""
 
     def generate(self, system: str, user: str) -> str:
+        if CAPABILITY_SCOPE_PROMPT_MARKER in system:
+            # Checkpoint Final Evaluation E.1S.1: the once-per-turn
+            # capability-scope classification call. This fixture policy
+            # always demonstrates the full combined plan for a structured
+            # trip request, and honestly degrades (never calling a
+            # specialist for nothing) when there is none.
+            payload = _parse_user_payload(user)
+            trip_request = payload.get("trip_request") or {}
+            if trip_request:
+                return _classification("combined", "requires_both")
+            return _classification("out_of_scope", "outside_project_scope")
+
         payload = _parse_user_payload(user)
         trip_request = payload.get("trip_request") or {}
         evidence = {
@@ -147,16 +175,24 @@ class SupervisorFixtureDecisionProvider:
             if isinstance(entry, dict)
         }
 
-        if trip_request and not any(action in evidence for action in _SPECIALIST_ACTION_ORDER):
+        if not trip_request:
+            # Classified out_of_scope above -- only ask_clarification/
+            # degrade are structurally eligible; degrade honestly with no
+            # fabricated evidence rather than ever calling a specialist.
+            return _decision("degrade", {"reason": "outside_project_scope"}, "irrelevant_to_request")
+        if not any(action in evidence for action in _SPECIALIST_ACTION_ORDER):
             # Nothing travel-search-related has been gathered yet for this
             # structured request -- delegate the whole batch to the
             # specialist in one decision, exactly like real Qwen must
             # (the supervisor's own contract never offers the 5 tools
             # directly, see `SUPERVISOR_ACTIONS`).
             return _decision("call_travel_search", {}, _REASON_CODE_BY_ACTION["get_weather"])
-        if "call_istanbul_expert" not in evidence and evidence.get("search_stays") == "success":
-            # Needs a prior successful search_stays for real stay
-            # candidates -- identical gate to the pre-D.3 fixture policy.
+        if "call_istanbul_expert" not in evidence:
+            # Combined scope requires Istanbul Expert grounding once
+            # Travel Search has reached a terminal result, regardless of
+            # whether every individual travel sub-action itself
+            # succeeded (Checkpoint Final Evaluation E.1S.1: a failed/
+            # degraded specialist result is still terminal for this turn).
             arguments = _build_arguments("call_istanbul_expert", trip_request)
             return _decision("call_istanbul_expert", arguments, _REASON_CODE_BY_ACTION["call_istanbul_expert"])
         return _decision("synthesize", {}, "all_required_evidence_present")

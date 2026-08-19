@@ -1,0 +1,1610 @@
+{
+  "schema_version": "1.0.0",
+  "checkpoint": "Final Evaluation Checkpoint E.1V",
+  "description": "Predeclared, frozen independent live-Qwen validation case manifest, built against the current uncommitted E.1S/E.1S.1 candidate (see evaluation/e1v_candidate_manifest.json). New wording/dates/evidence combinations throughout -- not copied or paraphrased from E.1 or E.1R. Every expected_action is a single, unambiguous label, never a list of acceptable alternatives. Case IDs, languages, states, and expected labels are fixed at generation time and never edited after seeing a live-model result.",
+  "supervisor_case_count": 30,
+  "specialist_case_count": 20,
+  "supervisor_language_distribution": {
+    "en": 10,
+    "tr": 10,
+    "ar": 10
+  },
+  "specialist_language_distribution": {
+    "en": 7,
+    "tr": 7,
+    "ar": 6
+  },
+  "supervisor_scope_distribution": {
+    "travel_only": 6,
+    "istanbul_local_only": 6,
+    "combined": 6,
+    "clarification_required": 6,
+    "out_of_scope": 6
+  },
+  "specialist_category_distribution": {
+    "weather": 4,
+    "flight": 4,
+    "stay": 4,
+    "fair_price_prereq": 3,
+    "completion": 5
+  },
+  "unnecessary_delegation_denominator": 12,
+  "stale_turn_signature_placeholder": {
+    "user_message": "An earlier, now-superseded planning question.",
+    "trip_request": null
+  },
+  "stale_turn_signature_sha256": "e0c05df04315187f4011f00c8bfeeba2698a579b5c52f9462b7e9db395426440",
+  "supervisor_cases": [
+    {
+      "case_id": "V-S01",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "travel_only",
+      "category": "initial_missing_evidence",
+      "user_message": "I need a one-way flight from Beirut to Istanbul on 2026-10-05 for one adult -- nothing else.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "e3c9dd06a27af3db1546ea325f248367202c2b1c8d4d8c9fdfbb5681443cbab4",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S02",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "travel_only",
+      "category": "sufficient_evidence_terminal",
+      "user_message": "The flight and weather look settled -- go ahead and wrap this up.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "get_weather": 1
+      },
+      "expected_action": "synthesize",
+      "travel_search_attempted_signature": "338bc0108ccb4db2ce21ff311c95cbf3a61b1327ae9870c80579175ccd9a65ab",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "338bc0108ccb4db2ce21ff311c95cbf3a61b1327ae9870c80579175ccd9a65ab",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S03",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "travel_only",
+      "category": "initial_missing_evidence",
+      "user_message": "Istanbul'da 10-15 Eylul arasi 2 kisilik konaklayacak bir yer ariyorum, baska bir sey gerekmiyor.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "1746921a1b331526a057bc7658a7daa1441f9f95270b060f16fa94b03e0065be",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S04",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "travel_only",
+      "category": "degraded_terminal",
+      "user_message": "Ucus bilgisini bulamasan bile devam et, elindekiyle ilerle.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "unavailable"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "synthesize",
+      "travel_search_attempted_signature": "efb354e9d1b687c45b3d4e05c859f21f876a61f19bbdb2198d3bd70315eec3c4",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "efb354e9d1b687c45b3d4e05c859f21f876a61f19bbdb2198d3bd70315eec3c4",
+      "notes": "Genuinely degraded (unavailable), not merely claimed -- still terminal for this turn."
+    },
+    {
+      "case_id": "V-S05",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "travel_only",
+      "category": "initial_missing_evidence",
+      "user_message": "أحتاج فقط سعر الفندق وحالة الطقس، لا شيء غير ذلك.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "691f2677ad0333d78acfb7540315723c447dca23e883e3987e604f156c24122f",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S06",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "travel_only",
+      "category": "follow_up_turn_reopens_eligibility",
+      "user_message": "أريد الآن رحلة طيران مختلفة تمامًا إلى إسطنبول في تاريخ جديد.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "travel_search_attempted_signature": "e0c05df04315187f4011f00c8bfeeba2698a579b5c52f9462b7e9db395426440",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "2bf9fbd19cb92cc5a89fa1380c6bef55a7e864c9fe0def40c1e96a4596535dac",
+      "notes": "Checkpoint E.1S.1 core fix: a PRIOR turn's completed Travel Search delegation (stale_turn signature) must never block a genuinely new turn's own eligibility."
+    },
+    {
+      "case_id": "V-S07",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "initial_missing_evidence",
+      "user_message": "Which neighborhoods are best for a slow, walkable first day near the old city?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "e4adfe233c9d3e689ab6ab7dafb576f272104c84165d35502f10940fec5f26e7",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S08",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "sufficient_evidence_terminal",
+      "user_message": "That itinerary answer covers it, go ahead and finish up.",
+      "trip_request": null,
+      "observations": [
+        {
+          "action": "call_istanbul_expert",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 1,
+      "tool_call_count_by_action": {
+        "call_istanbul_expert": 1
+      },
+      "expected_action": "synthesize",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": "2ae567ad10a37026478abeb1ebc7628ef5d9a11c287d92ac6d09c82c81b94c75",
+      "request_signature": "2ae567ad10a37026478abeb1ebc7628ef5d9a11c287d92ac6d09c82c81b94c75",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S09",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "initial_missing_evidence",
+      "user_message": "Sultanahmet'e yurume mesafesinde hangi cami ve muzeleri gezmeliyim?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "112883dae08d36b8cb683655811cf64a2fdaa892249e185095711a3fc48e8919",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S10",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "degraded_terminal",
+      "user_message": "Yerel rehber cevap veremese bile elindeki bilgiyle devam et.",
+      "trip_request": null,
+      "observations": [
+        {
+          "action": "call_istanbul_expert",
+          "status": "unavailable"
+        }
+      ],
+      "tool_call_count": 1,
+      "tool_call_count_by_action": {
+        "call_istanbul_expert": 1
+      },
+      "expected_action": "synthesize",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": "d7f8a3860cf0cc2b39b6fc34d0f3c24457559c3e669b660a84bb31129c32c5ce",
+      "request_signature": "d7f8a3860cf0cc2b39b6fc34d0f3c24457559c3e669b660a84bb31129c32c5ce",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S11",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "initial_missing_evidence",
+      "user_message": "ما هي الأحياء الأنسب للمشي سيرًا على الأقدام بالقرب من البلدة القديمة؟",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "89c59b815e82d358364b30def2c23711e1fae830149209b396bc6b8327d8fbe0",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S12",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "istanbul_local_only",
+      "category": "premature_synthesis_rejected",
+      "user_message": "لقد جمعت كل المعلومات، لخصها لي الآن من فضلك.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_istanbul_expert",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "841b6945019e4d3a6d296ab5664cd85ca984702be7f4c8a84d81b17f06669c71",
+      "notes": "Tempts early synthesis via wording alone -- but zero observations exist and istanbul_expert_attempted_signature is unset, so nothing has actually been gathered yet; the unambiguous structural answer is still call_istanbul_expert."
+    },
+    {
+      "case_id": "V-S13",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "combined",
+      "category": "initial_missing_evidence",
+      "user_message": "Plan my whole Istanbul trip, including flights, a place to stay, and where to go each day.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "call_travel_search",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "1c8016049a06be003d02c5605262c4c44c342875b8a3c8669a4f609e4443e62e",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S14",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "combined",
+      "category": "travel_terminal_needs_istanbul",
+      "user_message": "Travel side is done -- now figure out what we should actually do each day.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 3,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "get_weather": 1
+      },
+      "expected_action": "call_istanbul_expert",
+      "travel_search_attempted_signature": "695f8e17a03cfd5ffc13398e7ea14de29a8e0e3086f0d278c687c7ce2ad790df",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "695f8e17a03cfd5ffc13398e7ea14de29a8e0e3086f0d278c687c7ce2ad790df",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S15",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "combined",
+      "category": "sufficient_evidence_terminal",
+      "user_message": "Her sey tamam gorunuyor, artik ozetleyebilirsin.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        },
+        {
+          "action": "call_istanbul_expert",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 4,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "get_weather": 1,
+        "call_istanbul_expert": 1
+      },
+      "expected_action": "synthesize",
+      "travel_search_attempted_signature": "180a4c885bbbfe35c8d6c702fb36528ea627078b21b7211772d225f6cff7f825",
+      "istanbul_expert_attempted_signature": "180a4c885bbbfe35c8d6c702fb36528ea627078b21b7211772d225f6cff7f825",
+      "request_signature": "180a4c885bbbfe35c8d6c702fb36528ea627078b21b7211772d225f6cff7f825",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S16",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "combined",
+      "category": "travel_terminal_needs_istanbul",
+      "user_message": "Ucus ve konaklama ayarlandi, simdi gorulecek yerlere gecebiliriz.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "call_istanbul_expert",
+      "travel_search_attempted_signature": "f5b9c4195e27447ff3e64a52e0851378bddc23439623d5fcd5d17f1b0c98eda8",
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "f5b9c4195e27447ff3e64a52e0851378bddc23439623d5fcd5d17f1b0c98eda8",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S17",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "combined",
+      "category": "invalid_redelegation_rejected",
+      "user_message": "أعد البحث عن الرحلة مرة أخرى للتأكد من عدم فوات أي شيء.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 4,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        },
+        {
+          "action": "call_istanbul_expert",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 4,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "get_weather": 1,
+        "call_istanbul_expert": 1
+      },
+      "expected_action": "synthesize",
+      "travel_search_attempted_signature": "c772b7ef8ec40f40baa1e17567d2ee82347078e91d56915d4f22fd065f19831c",
+      "istanbul_expert_attempted_signature": "c772b7ef8ec40f40baa1e17567d2ee82347078e91d56915d4f22fd065f19831c",
+      "request_signature": "c772b7ef8ec40f40baa1e17567d2ee82347078e91d56915d4f22fd065f19831c",
+      "notes": "Both specialists already terminal this turn -- re-delegating call_travel_search would be structurally ineligible; the unambiguous answer remains synthesize."
+    },
+    {
+      "case_id": "V-S18",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "combined",
+      "category": "budget_exhausted_forces_synthesize",
+      "user_message": "خطط لرحلتي الكاملة إلى إسطنبول من فضلك.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 4,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "observations": [],
+      "tool_call_count": 8,
+      "tool_call_count_by_action": {},
+      "expected_action": "synthesize",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "6a7ab34faa4c25aaaee9200824aff86bc5a854c20bdae076d3fbfa7122a08ea6",
+      "notes": "tool_call_count already at MAX_EXTERNAL_TOOL_CALLS=8 -- compute_eligible_supervisor_actions forces synthesize regardless of scope terminality."
+    },
+    {
+      "case_id": "V-S19",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "clarification_required",
+      "category": "missing_destination_and_dates",
+      "user_message": "I want to travel.",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "68869a310b237a2e095ce998428e40f8a39ae1a191ee47a253db12d91787cbb1",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S20",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "clarification_required",
+      "category": "missing_all_essential_fields",
+      "user_message": "Can you help me plan something for next month?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "76ea184e0ab8cbdb9db03d6ad1c3323643e0008202f91055881d57c0b67390a3",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S21",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "clarification_required",
+      "category": "missing_destination_and_dates",
+      "user_message": "Bir yere gitmek istiyorum, ne onerirsin?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "52673753c57e051906be117dc84435efba7f2539af584ee9246963793782a2b5",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S22",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "clarification_required",
+      "category": "missing_all_essential_fields",
+      "user_message": "Seyahat planlamama yardimci olur musun?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "ad999b01505a390df2d7784e1b293069ac374a9c8bb5808f36967c0e18e1c277",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S23",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "clarification_required",
+      "category": "missing_destination_and_dates",
+      "user_message": "أريد أن أسافر، ماذا تقترح؟",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "4aaa8ec4f422c48d3d73a2897f8d5723a9c2665d0cf4f6c42061fafc42fab4c0",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S24",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "clarification_required",
+      "category": "missing_all_essential_fields",
+      "user_message": "هل يمكنك مساعدتي في التخطيط لشيء ما؟",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "ask_clarification",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "51019516b125e57bd6460747f6dc4bce68a653825e88e7ba578e573dc3bd2035",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S25",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "out_of_scope",
+      "category": "booking_and_payment_request",
+      "user_message": "Can you book my flight right now and charge my card?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "67ca7b2160ba578fb88013ec0b14a7c6db721eacc8e4c0954aab16a1e1eeb5f5",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S26",
+      "agent_role": "supervisor",
+      "language": "en",
+      "expected_capability_scope": "out_of_scope",
+      "category": "irrelevant_general_knowledge",
+      "user_message": "What's the capital of France?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "b721a8dd8721d2c2672ceaede902d7921031a4bc1502e41dabe04b866154b741",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S27",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "out_of_scope",
+      "category": "booking_and_payment_request",
+      "user_message": "Ucusumu hemen rezerve edip kartimdan odeme yapar misin?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "a92bef9507d4363e4cf857f6bdde6960bf9819039b091e782120ae6abfa29b3b",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S28",
+      "agent_role": "supervisor",
+      "language": "tr",
+      "expected_capability_scope": "out_of_scope",
+      "category": "irrelevant_general_knowledge",
+      "user_message": "Fransa'nin baskenti neresidir?",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "1a470c9278f96ed81c506367444eb2440b8c04689e532a13b5f903247593d672",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S29",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "out_of_scope",
+      "category": "booking_and_payment_request",
+      "user_message": "هل يمكنك حجز رحلتي الآن والدفع من بطاقتي؟",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "9f75900814e51ffa3f78941c95f49182794a16df0acdc6334884bb067b6965e5",
+      "notes": ""
+    },
+    {
+      "case_id": "V-S30",
+      "agent_role": "supervisor",
+      "language": "ar",
+      "expected_capability_scope": "out_of_scope",
+      "category": "irrelevant_general_knowledge",
+      "user_message": "ما هي عاصمة فرنسا؟",
+      "trip_request": null,
+      "observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "degrade",
+      "travel_search_attempted_signature": null,
+      "istanbul_expert_attempted_signature": null,
+      "request_signature": "94e81060cdd94324f0bf0ba0647bc6826152ecd02ff4a823f4dc8a42b9d8f83f",
+      "notes": ""
+    }
+  ],
+  "specialist_cases": [
+    {
+      "case_id": "V-P01",
+      "agent_role": "specialist",
+      "language": "en",
+      "category": "weather",
+      "user_message": "Finish planning my Istanbul trip.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "get_weather",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P02",
+      "agent_role": "specialist",
+      "language": "en",
+      "category": "weather",
+      "user_message": "What should I pack for the trip?",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [],
+      "specialist_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "get_weather",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P03",
+      "agent_role": "specialist",
+      "language": "tr",
+      "category": "weather",
+      "user_message": "Istanbul gezimi tamamlamama yardim et.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "get_weather",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P04",
+      "agent_role": "specialist",
+      "language": "ar",
+      "category": "weather",
+      "user_message": "ساعدني في إنهاء خطة رحلتي إلى إسطنبول.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 4,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1
+      },
+      "expected_action": "get_weather",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P05",
+      "agent_role": "specialist",
+      "language": "tr",
+      "category": "flight",
+      "user_message": "Istanbul gezimi tamamlamama yardim et.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_stays": 1,
+        "get_weather": 1
+      },
+      "expected_action": "search_flights",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P06",
+      "agent_role": "specialist",
+      "language": "tr",
+      "category": "flight",
+      "user_message": "Beyrut'tan tek yon ucus lazim, 2026-10-05 tarihinde.",
+      "trip_request": null,
+      "inherited_observations": [],
+      "specialist_observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "search_flights",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P07",
+      "agent_role": "specialist",
+      "language": "ar",
+      "category": "flight",
+      "user_message": "أحتاج رحلة طيران من بيروت إلى إسطنبول في 2026-10-05.",
+      "trip_request": null,
+      "inherited_observations": [],
+      "specialist_observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "search_flights",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P08",
+      "agent_role": "specialist",
+      "language": "en",
+      "category": "flight",
+      "user_message": "Finish planning my Istanbul trip.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_stays": 1,
+        "get_weather": 1
+      },
+      "expected_action": "search_flights",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P09",
+      "agent_role": "specialist",
+      "language": "ar",
+      "category": "stay",
+      "user_message": "أحتاج مكان إقامة في إسطنبول من 10 إلى 15 أكتوبر لشخصين.",
+      "trip_request": null,
+      "inherited_observations": [],
+      "specialist_observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "search_stays",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P10",
+      "agent_role": "specialist",
+      "language": "ar",
+      "category": "stay",
+      "user_message": "أكمل خطة رحلتي إلى إسطنبول من فضلك.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 4,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "get_weather": 1
+      },
+      "expected_action": "search_stays",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P11",
+      "agent_role": "specialist",
+      "language": "en",
+      "category": "stay",
+      "user_message": "Finish planning my Istanbul trip.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "get_weather": 1
+      },
+      "expected_action": "search_stays",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P12",
+      "agent_role": "specialist",
+      "language": "tr",
+      "category": "stay",
+      "user_message": "Istanbul'da kalacak yer ariyorum, 2 kisilik.",
+      "trip_request": null,
+      "inherited_observations": [],
+      "specialist_observations": [],
+      "tool_call_count": 0,
+      "tool_call_count_by_action": {},
+      "expected_action": "search_stays",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P13",
+      "agent_role": "specialist",
+      "language": "en",
+      "category": "fair_price_prereq",
+      "user_message": "Is the place we'd stay at actually a fair price?",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "get_weather": 1
+      },
+      "expected_action": "search_stays",
+      "notes": "A fair-price estimate needs a real, already-searched stay listing -- since search_stays has not run yet this turn, the unambiguous prerequisite next step is search_stays, never estimate_fair_price (evidence_collected_so_far never carries a real stay_id the model could price)."
+    },
+    {
+      "case_id": "V-P14",
+      "agent_role": "specialist",
+      "language": "tr",
+      "category": "fair_price_prereq",
+      "user_message": "Bu fiyat gercekten uygun mu, once kontrol et.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "get_weather": 1
+      },
+      "expected_action": "search_stays",
+      "notes": "Same fair-price-prerequisite reasoning as V-P13."
+    },
+    {
+      "case_id": "V-P15",
+      "agent_role": "specialist",
+      "language": "ar",
+      "category": "fair_price_prereq",
+      "user_message": "هل السعر عادل فعلاً؟ تحقق أولاً.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 4,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "get_weather": 1
+      },
+      "expected_action": "search_stays",
+      "notes": "Same fair-price-prerequisite reasoning as V-P13."
+    },
+    {
+      "case_id": "V-P16",
+      "agent_role": "specialist",
+      "language": "tr",
+      "category": "completion",
+      "user_message": "Istanbul gezimi planla.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 3,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "get_weather": 1
+      },
+      "expected_action": "travel_search_complete",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P17",
+      "agent_role": "specialist",
+      "language": "ar",
+      "category": "completion",
+      "user_message": "خطط لرحلتي إلى إسطنبول.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 4,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "ar",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 3,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "get_weather": 1
+      },
+      "expected_action": "travel_search_complete",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P18",
+      "agent_role": "specialist",
+      "language": "en",
+      "category": "completion",
+      "user_message": "Plan my Istanbul trip.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [],
+      "specialist_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 3,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "get_weather": 1
+      },
+      "expected_action": "travel_search_complete",
+      "notes": ""
+    },
+    {
+      "case_id": "V-P19",
+      "agent_role": "specialist",
+      "language": "tr",
+      "category": "completion",
+      "user_message": "Istanbul gezimi planla.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 1,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "tr",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [],
+      "specialist_observations": [
+        {
+          "action": "web_search",
+          "status": "success"
+        },
+        {
+          "action": "web_search",
+          "status": "success"
+        }
+      ],
+      "tool_call_count": 2,
+      "tool_call_count_by_action": {
+        "web_search": 2
+      },
+      "expected_action": "travel_search_complete",
+      "notes": "web_search already at the shared per-tool cap of 2 for this delegation; no other evidence category is missing/needed for a web-search-only local-status question."
+    },
+    {
+      "case_id": "V-P20",
+      "agent_role": "specialist",
+      "language": "en",
+      "category": "completion",
+      "user_message": "Plan my Istanbul trip.",
+      "trip_request": {
+        "origin": "BEY",
+        "destination": "IST",
+        "depart_date": "2026-10-05",
+        "return_date": "2026-10-12",
+        "traveler_count": 2,
+        "budget": {
+          "amount_minor_units": 620000,
+          "currency": "TRY"
+        },
+        "preferences": {
+          "interests": [
+            "architecture",
+            "food"
+          ],
+          "pace": "relaxed",
+          "language": "en",
+          "mobility_constraints": []
+        }
+      },
+      "inherited_observations": [
+        {
+          "action": "search_flights",
+          "status": "success"
+        },
+        {
+          "action": "search_stays",
+          "status": "success"
+        },
+        {
+          "action": "get_weather",
+          "status": "success"
+        }
+      ],
+      "specialist_observations": [],
+      "tool_call_count": 8,
+      "tool_call_count_by_action": {
+        "search_flights": 1,
+        "search_stays": 1,
+        "get_weather": 1
+      },
+      "expected_action": "travel_search_complete",
+      "notes": "tool_call_count already at the shared MAX_EXTERNAL_TOOL_CALLS=8 ceiling."
+    }
+  ]
+}
