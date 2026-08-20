@@ -16,6 +16,7 @@ coordinate, or other prior tool's output.
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
@@ -28,6 +29,9 @@ from phase4.models import Action
 DEFAULT_SEARCH_STAYS_RESULT_LIMIT = 5
 DEFAULT_CURRENCY = "TRY"
 DEFAULT_DAILY_ACTIVITY_BUDGET_MINUTES = 360  # 6 hours/day -- a documented default, never an invented hard preference
+MAX_LOGGED_STAY_ID_CHARS = 200  # mirrors phase4.models.EstimateFairPriceArgs.stay_id's own max_length
+
+logger = logging.getLogger("voyager.system_a.tool_executor")
 
 
 def _call_provider_binding(binding: Any, provider: Any, arguments: dict[str, Any], context: Optional[ExecutionContext] = None) -> dict[str, Any]:
@@ -78,25 +82,77 @@ def _build_search_stays_arguments(arguments: dict[str, Any], context: Optional[E
     return mcp_args
 
 
-def _validated_stay_id(stay_id: Optional[str], context: Optional[ExecutionContext]) -> Optional[str]:
-    """Only a `stay_id` that actually appears in a prior successful
-    `search_stays` observation is ever forwarded -- never a value Qwen
-    could have invented without having actually seen a real search
-    result (Checkpoint D.1 §3: "never ask Qwen to invent model
-    features")."""
-    if not stay_id or context is None:
-        return None
-    for obs in context.observations_for_action(Action.SEARCH_STAYS.value):
+def _known_stays(context: Optional[ExecutionContext]) -> list[dict[str, Any]]:
+    """Every {"stay_id", "name"} pair from the MOST RECENT successful
+    `search_stays` observation -- the only source of truth for which
+    stay_id values genuinely exist. Used both to validate/alias-resolve
+    an `estimate_fair_price` argument and to ground the specialist's own
+    prompt (phase4/specialist.py) with the real values, so Qwen is never
+    left to guess one (fair-price correction root-cause fix)."""
+    if context is None:
+        return []
+    for obs in reversed(context.observations_for_action(Action.SEARCH_STAYS.value)):
         if obs.get("status") != "success":
             continue
         # search_stays observations are NOT ProviderResponseEnvelope-wrapped
         # (Travel MCP's own SearchStaysResult shape directly, ADR 0009 §5)
         # -- `envelope` here IS the SearchStaysResult, no nested "result" key.
         search_stays_result = obs.get("envelope") or {}
+        known: list[dict[str, Any]] = []
         for item in search_stays_result.get("stays", []) or []:
-            if (item.get("stay") or {}).get("stay_id") == stay_id:
-                return stay_id
+            stay = item.get("stay") or {}
+            if stay.get("stay_id"):
+                known.append({"stay_id": stay["stay_id"], "name": stay.get("name")})
+        if known:
+            return known  # most recent successful search_stays observation only
+    return []
+
+
+def _validated_stay_id(stay_id: Optional[str], context: Optional[ExecutionContext]) -> Optional[str]:
+    """Only a `stay_id` that actually appears in a prior successful
+    `search_stays` observation is ever forwarded -- never a value Qwen
+    could have invented without having actually seen a real search
+    result (Checkpoint D.1 §3: "never ask Qwen to invent model
+    features"). Two resolution paths, both against the SAME real,
+    already-returned stay list, never a fabricated or fuzzy match:
+      1. An exact `stay_id` match (the common case once
+         phase4/specialist.py's prompt grounding fix is in place).
+      2. A safe, explicit alias: an exact case-insensitive match against
+         that same stay's own real `name` field -- a known-equivalent
+         field a model could reasonably echo instead of the opaque id."""
+    if not stay_id or context is None:
+        return None
+    known = _known_stays(context)
+    for stay in known:
+        if stay["stay_id"] == stay_id:
+            return stay["stay_id"]
+    normalized = stay_id.strip().lower()
+    if normalized:
+        for stay in known:
+            name = stay.get("name")
+            if isinstance(name, str) and name.strip().lower() == normalized:
+                return stay["stay_id"]
     return None
+
+
+def _log_rejected_estimate_fair_price(
+    context: Optional[ExecutionContext], raw_stay_id: Any, known: list[dict[str, Any]], reason: str
+) -> None:
+    """Server-side-only diagnostic record, keyed by trace_id (architecture.md
+    §13.4: full detail logged server-side, never returned to the caller).
+    Logs only closed, bounded, structural facts -- the reason code, the
+    count of genuinely known stay ids, and the raw attempted value
+    (itself just a short identifier-shaped string per its own schema's
+    200-char bound, never free-form exception text or a credential) --
+    never anything else about internal state."""
+    session_id = context.session_id if context else ""
+    trace_id = context.trace_id if context else ""
+    bounded = str(raw_stay_id)[:MAX_LOGGED_STAY_ID_CHARS] if raw_stay_id is not None else ""
+    logger.warning(
+        "estimate_fair_price rejected: reason=%s known_stay_count=%d attempted_stay_id=%r "
+        "(session_id=%s trace_id=%s)",
+        reason, len(known), bounded, session_id, trace_id,
+    )
 
 
 def _build_local_plan_request(context: Optional[ExecutionContext]) -> Optional[dict[str, Any]]:
@@ -195,9 +251,20 @@ class ProductionToolExecutor:
         if action == Action.SEARCH_STAYS:
             return self.mcp_client.call_tool("search_stays", _build_search_stays_arguments(arguments, context))
         if action == Action.ESTIMATE_FAIR_PRICE:
-            stay_id = _validated_stay_id(arguments.get("stay_id"), context)
+            raw_stay_id = arguments.get("stay_id")
+            stay_id = _validated_stay_id(raw_stay_id, context)
             if stay_id is None:
-                return {"status": "invalid_request", "result": None}
+                known = _known_stays(context)
+                reason = "no_prior_search_stays" if not known else "stay_id_not_recognized"
+                _log_rejected_estimate_fair_price(context, raw_stay_id, known, reason)
+                # `reason` is additive on this internal dict -- never part
+                # of the Travel MCP contract, never returned raw to the
+                # end user; phase4/specialist.py's observe node folds it
+                # into the observation's existing `warnings` list (an
+                # already-safe, already-caller-facing field) as a closed,
+                # non-sensitive hint for the specialist's own bounded
+                # retry, not a leaked internal detail.
+                return {"status": "invalid_request", "result": None, "reason": reason}
             mcp_args = {
                 "session_id": context.session_id if context else "",
                 "trace_id": context.trace_id if context else "",

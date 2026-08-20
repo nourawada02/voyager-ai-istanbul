@@ -208,3 +208,196 @@ def test_unexpected_flight_provider_exception_becomes_provider_error_not_a_raise
         _context(),
     )
     assert result == {"status": "provider_error", "result": None}
+
+
+# --- Fair-price correction checkpoint: root cause was NOT a Travel MCP or
+# provider defect -- Qwen was never shown the real stay_id values a prior
+# search_stays call had already returned, so it had nothing to copy and had
+# to guess. The fix grounds phase4/specialist.py's prompt in the real
+# values (see services/planner-a/phase4/tests/test_specialist_prompt.py)
+# and adds ONE safe, explicit fallback here (a name match) plus a closed
+# reason code for the specialist's own bounded retry. Nothing about
+# _build_search_stays_arguments/GET_WEATHER/WEB_SEARCH/SEARCH_FLIGHTS/
+# CALL_ISTANBUL_EXPERT changed -- every test above this comment still
+# passes completely unmodified. ------------------------------------------
+
+_SEARCH_STAYS_OBSERVATION_WITH_NAME = {
+    "action": "search_stays",
+    "status": "success",
+    "envelope": {
+        "stays": [
+            {
+                "stay": {
+                    "stay_id": "stay_real_001", "name": "Beyoglu Boutique Hotel",
+                    "coordinates": {"lat": 41.0, "lon": 28.9},
+                },
+                "fair_price": {}, "rank": 1,
+            },
+            {
+                "stay": {
+                    "stay_id": "stay_real_002", "name": "Sultanahmet Palace Suites",
+                    "coordinates": {"lat": 41.01, "lon": 28.98},
+                },
+                "fair_price": {}, "rank": 2,
+            },
+        ]
+    },
+}
+
+
+def test_estimate_fair_price_canonical_arguments_pass_unchanged():
+    """Test 1/10: the exact valid shape (a real stay_id, copied verbatim)
+    still works exactly as before, with no unexpected fields leaking
+    into the MCP call and currency always TRY (never relabeled)."""
+    mcp = _FakeMcpClient()
+    executor = _executor(mcp=mcp)
+    context = _context(observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,))
+    result = executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "stay_real_001"}, context)
+    assert result["status"] == "success"
+    tool_name, args = mcp.calls[0]
+    assert tool_name == "estimate_fair_price"
+    assert args == {
+        "session_id": context.session_id, "trace_id": context.trace_id,
+        "stay_id": "stay_real_001", "currency": "TRY", "schema_version": "1.0.0",
+    }
+
+
+def test_estimate_fair_price_corrects_a_hotel_name_used_in_place_of_its_stay_id():
+    """Test 2/10: the exact previously-plausible malformed shape -- Qwen,
+    never having been shown the opaque stay_id, echoes the hotel NAME it
+    was shown instead -- is corrected once via the safe, explicit
+    name-alias resolution, never a fuzzy/partial match."""
+    mcp = _FakeMcpClient()
+    executor = _executor(mcp=mcp)
+    context = _context(observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,))
+    result = executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "Beyoglu Boutique Hotel"}, context)
+    assert result["status"] == "success"
+    tool_name, args = mcp.calls[0]
+    assert args["stay_id"] == "stay_real_001"  # resolved to the REAL id, name itself never forwarded
+
+    # Case-insensitivity is part of the same safe alias, not a separate rule.
+    mcp2 = _FakeMcpClient()
+    executor2 = _executor(mcp=mcp2)
+    result2 = executor2.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "sultanahmet palace suites"}, context)
+    assert result2["status"] == "success"
+    assert mcp2.calls[0][1]["stay_id"] == "stay_real_002"
+
+
+def test_estimate_fair_price_rejects_a_hallucinated_stay_id_matching_neither_id_nor_name():
+    """Test 3/10: missing/non-recoverable values remain rejected -- a
+    value that matches no real id AND no real name is never guessed at,
+    never partially matched, and never forwarded to MCP."""
+    mcp = _FakeMcpClient()
+    executor = _executor(mcp=mcp)
+    context = _context(observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,))
+    result = executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "The Grand Nonexistent Hotel"}, context)
+    assert result["status"] == "invalid_request"
+    assert result["reason"] == "stay_id_not_recognized"
+    assert mcp.calls == []
+
+
+def test_estimate_fair_price_reason_distinguishes_no_search_stays_from_unrecognized_id():
+    """The two distinct, closed reason codes reported internally (never
+    to the end user) so a retry has something concrete to react to."""
+    mcp = _FakeMcpClient()
+    executor = _executor(mcp=mcp)
+    no_evidence = executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "anything"}, _context())
+    assert no_evidence["reason"] == "no_prior_search_stays"
+
+    with_evidence = executor.execute(
+        Action.ESTIMATE_FAIR_PRICE, {"stay_id": "invented"}, _context(observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,))
+    )
+    assert with_evidence["reason"] == "stay_id_not_recognized"
+
+
+def test_estimate_fair_price_mcp_args_never_include_unexpected_arguments():
+    """Test: unknown fields Qwen might emit alongside stay_id are never
+    silently forwarded -- mcp_args is built fresh from fixed keys, never
+    by spreading the raw decision arguments dict."""
+    mcp = _FakeMcpClient()
+    executor = _executor(mcp=mcp)
+    context = _context(observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,))
+    executor.execute(
+        Action.ESTIMATE_FAIR_PRICE,
+        {"stay_id": "stay_real_001", "hallucinated_extra_field": "x", "currency": "USD"},
+        context,
+    )
+    _, args = mcp.calls[0]
+    assert set(args.keys()) == {"session_id", "trace_id", "stay_id", "currency", "schema_version"}
+    assert args["currency"] == "TRY"  # the caller-supplied "USD" above is never honored -- see next test
+
+
+def test_estimate_fair_price_currency_is_always_try_never_relabeled_usd():
+    """Do not duplicate currency conversion or mislabel TRY as USD:
+    Travel MCP's own contract requires currency == 'TRY' (a const); any
+    USD figure the user sees is produced downstream by
+    orchestration/system_a/budget_summary.py's FX conversion, never by
+    asking Travel MCP itself for a USD-denominated fair price."""
+    mcp = _FakeMcpClient()
+    executor = _executor(mcp=mcp)
+    context = _context(
+        observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,),
+        normalized_request={"trip_request": {**TRIP_REQUEST, "preferences": {**TRIP_REQUEST["preferences"], "currency": "USD"}}},
+    )
+    executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "stay_real_001"}, context)
+    assert mcp.calls[0][1]["currency"] == "TRY"
+
+
+def test_estimate_fair_price_arabic_request_reaches_the_same_valid_tool_contract():
+    """Arabic input can reach the same valid tool contract -- the fix
+    operates only on prior observations, never on request language."""
+    mcp = _FakeMcpClient()
+    executor = _executor(mcp=mcp)
+    context = _context(
+        observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,),
+        normalized_request={"trip_request": {**TRIP_REQUEST, "preferences": {**TRIP_REQUEST["preferences"], "language": "ar"}}},
+    )
+    result = executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "stay_real_002"}, context)
+    assert result["status"] == "success"
+    assert mcp.calls[0][1]["stay_id"] == "stay_real_002"
+
+
+def test_known_stays_helper_uses_most_recent_successful_search_stays_observation_only():
+    from orchestration.system_a.tool_executor import _known_stays
+
+    older = {**_SEARCH_STAYS_OBSERVATION_WITH_NAME}
+    newer = {
+        "action": "search_stays", "status": "success",
+        "envelope": {"stays": [{"stay": {"stay_id": "stay_newest", "name": "Newest Hotel"}, "fair_price": {}, "rank": 1}]},
+    }
+    context = _context(observations=(older, newer))
+    known = _known_stays(context)
+    assert known == [{"stay_id": "stay_newest", "name": "Newest Hotel"}]
+
+
+def test_estimate_fair_price_provider_error_from_mcp_remains_visible():
+    """Once stay_id validates, a genuine MCP-side provider failure passes
+    through completely unmodified -- never silently converted to
+    success, never swallowed."""
+    mcp = _FakeMcpClient(response={"status": "provider_error", "result": None})
+    executor = _executor(mcp=mcp)
+    context = _context(observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,))
+    result = executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "stay_real_001"}, context)
+    assert result == {"status": "provider_error", "result": None}
+    assert len(mcp.calls) == 1  # the call really was attempted, not skipped
+
+
+def test_fair_price_fix_does_not_affect_unrelated_tools_in_the_same_context():
+    """search_flights/search_stays/get_weather/call_istanbul_expert all
+    still dispatch exactly as before when exercised alongside an
+    estimate_fair_price call in the same context."""
+    mcp = _FakeMcpClient()
+    a2a = _FakeA2AClient()
+    executor = _executor(mcp=mcp, a2a=a2a)
+    context = _context(
+        observations=(_SEARCH_STAYS_OBSERVATION_WITH_NAME,),
+        normalized_request={"trip_request": TRIP_REQUEST},
+    )
+    executor.execute(Action.SEARCH_STAYS, {"guest_count": 2}, context)
+    executor.execute(Action.ESTIMATE_FAIR_PRICE, {"stay_id": "stay_real_001"}, context)
+    executor.execute(Action.CALL_ISTANBUL_EXPERT, {"question": "x"}, context)
+    weather_result = executor.execute(Action.GET_WEATHER, {"date_from": "2026-09-10", "date_to": "2026-09-10"}, context)
+    tool_names = [c[0] for c in mcp.calls]
+    assert tool_names == ["search_stays", "estimate_fair_price"]
+    assert len(a2a.calls) == 1
+    assert weather_result == {"status": "provider_error", "result": None}  # bare object() provider, as in the existing tests above
