@@ -41,6 +41,7 @@ import json
 from typing import Any, Optional
 
 from phase4.graph import CAPABILITY_SCOPE_PROMPT_MARKER
+from phase4.language_detect import is_predominantly_arabic
 
 # The fixed, explicit action order the internal Travel Search specialist
 # proposes, one action per call, skipping whatever already has a
@@ -225,3 +226,47 @@ class SpecialistFixtureDecisionProvider:
                 continue
             return _decision(action, arguments, _REASON_CODE_BY_ACTION[action])
         return _decision("travel_search_complete", {}, "all_required_evidence_present")
+
+
+# --- Hybrid Chat C.1: deterministic fixture chat-turn provider ---------------------
+
+_CHAT_FIXTURE_CLARIFY_MESSAGE = (
+    "This is deterministic fixture mode (no live Qwen call is made), so conversational trip "
+    "modification cannot be demonstrated here -- switch to real mode (VOYAGER_SYSTEM_A_MODE=real) "
+    "to try changing your trip through chat. I can still tell you: the dashboard above already "
+    "reflects your submitted trip request."
+)
+_CHAT_FIXTURE_CLARIFY_MESSAGE_AR = (
+    "هذا وضع العرض التجريبي الحتمي (لا يتم إجراء أي استدعاء حقيقي لنموذج Qwen)، لذا لا يمكن هنا "
+    "عرض تعديل الرحلة عبر المحادثة -- بدّل إلى الوضع الحقيقي (VOYAGER_SYSTEM_A_MODE=real) لتجربة "
+    "تعديل رحلتك عبر المحادثة. لوحة النتائج أعلاه تعكس بالفعل طلب رحلتك المُرسل."
+)
+
+
+class ChatFixtureDecisionProvider:
+    """Deterministic `DecisionProvider` for Hybrid Chat C.1's chat-turn
+    call, used only under `VOYAGER_SYSTEM_A_MODE=fixture`. Never opens a
+    socket, never uses randomness. Conversational trip modification is
+    genuinely a live-Qwen capability (structured-output intent
+    classification and patch extraction); this fixture honestly always
+    responds `clarify` with an explanatory message rather than faking a
+    modification/regeneration, so fixture mode never demonstrates a
+    provider call it does not actually make."""
+
+    def generate(self, system: str, user: str) -> str:
+        target_language = "en"
+        try:
+            payload = _parse_user_payload(user)
+            preferred = payload.get("preferred_language") or "en"
+            target_language = "ar" if preferred == "ar" or is_predominantly_arabic(payload.get("user_message") or "") else preferred
+        except Exception:  # noqa: BLE001 -- fixture mode must never raise
+            pass
+        message = _CHAT_FIXTURE_CLARIFY_MESSAGE_AR if target_language == "ar" else _CHAT_FIXTURE_CLARIFY_MESSAGE
+        return json.dumps({
+            "intent": "clarify",
+            "assistant_message": message,
+            "response_language": target_language,
+            "patch": None,
+            "requires_clarification": True,
+            "clarification_reason": "fixture_mode_no_live_classification",
+        })

@@ -354,15 +354,18 @@ def test_status_progresses_from_pending_to_completed_with_schema_valid_result(tm
 
 def test_get_run_never_exposes_internal_graph_state(tmp_db_path):
     """The status response must contain only run_id/session_id/status/
-    timestamps/result -- never trace/pending_action/repair_count/
-    executed_fingerprints or any other internal PlannerState field."""
+    timestamps/result/trip_request -- never trace/pending_action/
+    repair_count/executed_fingerprints or any other internal PlannerState
+    field. `trip_request` (Hybrid Chat C.2 additive field) is the
+    caller's own originally-submitted request, never internal graph
+    state -- listed here deliberately, not omitted."""
     app = _make_app(tmp_db_path)
     with TestClient(app) as client:
         create_response = client.post("/v1/runs", json={"user_message": "weather please"})
         run_id = create_response.json()["run_id"]
         final = _poll_until_terminal(client, run_id)
 
-    assert set(final.keys()) == {"run_id", "session_id", "status", "created_at", "updated_at", "result"}
+    assert set(final.keys()) == {"run_id", "session_id", "status", "created_at", "updated_at", "result", "trip_request"}
     forbidden_top_level_keys = {"trace", "pending_action", "repair_count", "executed_fingerprints", "tool_call_count_by_action"}
     assert forbidden_top_level_keys.isdisjoint(final.keys())
     assert forbidden_top_level_keys.isdisjoint(final["result"].keys())

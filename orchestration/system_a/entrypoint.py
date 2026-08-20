@@ -38,6 +38,7 @@ from fastapi import FastAPI
 from orchestration.system_a import config
 from orchestration.system_a.api import create_app
 from orchestration.system_a.fixture_decision_provider import (
+    ChatFixtureDecisionProvider,
     SpecialistFixtureDecisionProvider,
     SupervisorFixtureDecisionProvider,
 )
@@ -52,20 +53,24 @@ def _build_production_app() -> FastAPI:
         tool_executor_factory = FakeToolExecutor
         decision_provider_factory = SupervisorFixtureDecisionProvider
         specialist_decision_provider_factory = SpecialistFixtureDecisionProvider
+        chat_decision_provider_factory = ChatFixtureDecisionProvider
     else:
         tool_executor_factory = ProductionToolExecutor
-        # Two separate instances -- the internal Travel Search
-        # specialist gets its own `DecisionProvider` object, never the
-        # supervisor's own (ADR 0017 §3). `QwenDecisionProvider` is a
-        # frozen, stateless-per-call dataclass, so the two behave
+        # Three separate instances -- the internal Travel Search
+        # specialist and the Hybrid Chat C.1 chat-turn service each get
+        # their own `DecisionProvider` object, never the supervisor's own
+        # (ADR 0017 §3, extended by Hybrid Chat C.1). `QwenDecisionProvider`
+        # is a frozen, stateless-per-call dataclass, so all three behave
         # identically; the separate construction is what makes "role" a
         # constructor-time fact rather than something inferred later.
         decision_provider_factory = QwenDecisionProvider
         specialist_decision_provider_factory = QwenDecisionProvider
+        chat_decision_provider_factory = QwenDecisionProvider
     return create_app(
         tool_executor_factory=tool_executor_factory,
         decision_provider_factory=decision_provider_factory,
         specialist_decision_provider_factory=specialist_decision_provider_factory,
+        chat_decision_provider_factory=chat_decision_provider_factory,
         mode=mode,
     )
 

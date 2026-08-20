@@ -47,6 +47,17 @@ class RunStatus(str, Enum):
 
 TERMINAL_STATUSES = frozenset({RunStatus.COMPLETED, RunStatus.DEGRADED, RunStatus.FAILED, RunStatus.CANCELLED})
 
+
+class ChatTurnRole(str, Enum):
+    USER = "user"
+    ASSISTANT = "assistant"
+
+
+class ChatTurnStatus(str, Enum):
+    COMPLETED = "completed"
+    PROVIDER_FAILED = "provider_failed"
+    REJECTED = "rejected"
+
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS runs (
     run_id TEXT PRIMARY KEY,
@@ -72,6 +83,22 @@ CREATE TABLE IF NOT EXISTS run_events (
     UNIQUE(run_id, sequence)
 );
 CREATE INDEX IF NOT EXISTS idx_run_events_run_id_sequence ON run_events(run_id, sequence);
+CREATE TABLE IF NOT EXISTS chat_turns (
+    turn_id TEXT PRIMARY KEY,
+    session_id TEXT NOT NULL,
+    run_id TEXT NOT NULL,
+    sequence_number INTEGER NOT NULL,
+    role TEXT NOT NULL,
+    content TEXT NOT NULL,
+    intent TEXT,
+    response_language TEXT,
+    status TEXT NOT NULL,
+    include_in_context INTEGER NOT NULL DEFAULT 1,
+    created_at TEXT NOT NULL,
+    UNIQUE(session_id, sequence_number)
+);
+CREATE INDEX IF NOT EXISTS idx_chat_turns_session_id ON chat_turns(session_id);
+CREATE INDEX IF NOT EXISTS idx_chat_turns_session_sequence ON chat_turns(session_id, sequence_number);
 """
 
 
@@ -128,6 +155,70 @@ class RunEventRecord:
             stage=row["stage"],
             payload=json.loads(row["payload_json"]),
             created_at=row["created_at"],
+        )
+
+
+@dataclass(frozen=True)
+class ChatTurnRecord:
+    """Hybrid Chat C.1 persistent-history correction: one row of the
+    stored transcript. NEVER carries a credential, system prompt, raw
+    Qwen response, raw provider payload, HTTP header, MCP/A2A internal
+    payload, or chain-of-thought -- `content` is always either the user's
+    own message or the already-sanitized `assistant_message` this
+    project's own chat contract already produces
+    (`phase4.chat_models.ChatIntentDecision`), never anything else."""
+
+    turn_id: str
+    session_id: str
+    run_id: str
+    sequence_number: int
+    role: ChatTurnRole
+    content: str
+    intent: Optional[str]
+    response_language: Optional[str]
+    status: ChatTurnStatus
+    include_in_context: bool
+    created_at: str
+
+    @classmethod
+    def _from_row(cls, row: sqlite3.Row) -> "ChatTurnRecord":
+        return cls(
+            turn_id=row["turn_id"], session_id=row["session_id"], run_id=row["run_id"],
+            sequence_number=row["sequence_number"], role=ChatTurnRole(row["role"]), content=row["content"],
+            intent=row["intent"], response_language=row["response_language"],
+            status=ChatTurnStatus(row["status"]), include_in_context=bool(row["include_in_context"]),
+            created_at=row["created_at"],
+        )
+
+
+@dataclass(frozen=True)
+class SessionSummaryRecord:
+    """Hybrid Chat C.2: one row of the recent-session sidebar listing --
+    the LATEST run of one `session_id` from the authoritative `runs`
+    table, plus that session's total persisted chat-turn count. Never
+    carries a transcript, a prompt, a provider payload, or the full
+    `result_json` -- only the small, closed set of fields
+    `RunStore.list_sessions` itself selects (never `SELECT *`, unlike
+    `RunRecord`/`ChatTurnRecord`, which are read in full because their
+    OWN endpoints already return exactly that scope)."""
+
+    session_id: str
+    latest_run_id: str
+    latest_run_status: RunStatus
+    trip_request: Optional[dict[str, Any]]
+    created_at: str
+    updated_at: str
+    chat_turn_count: int
+
+    @classmethod
+    def _from_row(cls, row: sqlite3.Row) -> "SessionSummaryRecord":
+        request = json.loads(row["request_json"])
+        trip_request = request.get("trip_request") if isinstance(request, dict) else None
+        return cls(
+            session_id=row["session_id"], latest_run_id=row["run_id"],
+            latest_run_status=RunStatus(row["status"]), trip_request=trip_request,
+            created_at=row["created_at"], updated_at=row["updated_at"],
+            chat_turn_count=row["chat_turn_count"],
         )
 
 
@@ -287,6 +378,139 @@ class RunStore:
             )
             conn.commit()
             return cursor.rowcount
+        finally:
+            conn.close()
+
+    # --- Hybrid Chat C.1 persistent-history correction: chat_turns ------------------
+
+    def append_chat_turn_pair(
+        self,
+        session_id: str,
+        run_id: str,
+        user_turn_id: str,
+        user_content: str,
+        assistant_turn_id: str,
+        assistant_content: str,
+        intent: Optional[str],
+        response_language: Optional[str],
+        status: ChatTurnStatus,
+        include_in_context: bool,
+    ) -> tuple[ChatTurnRecord, ChatTurnRecord]:
+        """Persists one user/assistant pair atomically -- a single SQLite
+        transaction, so a caller can never observe a dangling user
+        message with no corresponding response row, regardless of
+        whether that response is a genuine answer or a `provider_failed`/
+        `rejected` placeholder. `sequence_number` is scoped to
+        `session_id` (never `run_id` alone) so a chat-triggered replan
+        that mints a new run_id still continues the SAME session's
+        transcript numbering, never restarting it."""
+        now = _utc_now_iso()
+        conn = self._connect()
+        try:
+            row = conn.execute(
+                "SELECT COALESCE(MAX(sequence_number), -1) AS max_seq FROM chat_turns WHERE session_id = ?",
+                (session_id,),
+            ).fetchone()
+            next_sequence = row["max_seq"] + 1
+            conn.execute(
+                "INSERT INTO chat_turns (turn_id, session_id, run_id, sequence_number, role, content, intent, "
+                "response_language, status, include_in_context, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (user_turn_id, session_id, run_id, next_sequence, ChatTurnRole.USER.value, user_content,
+                 None, None, status.value, int(include_in_context), now),
+            )
+            conn.execute(
+                "INSERT INTO chat_turns (turn_id, session_id, run_id, sequence_number, role, content, intent, "
+                "response_language, status, include_in_context, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (assistant_turn_id, session_id, run_id, next_sequence + 1, ChatTurnRole.ASSISTANT.value, assistant_content,
+                 intent, response_language, status.value, int(include_in_context), now),
+            )
+            conn.commit()
+        except BaseException:
+            conn.rollback()
+            raise
+        finally:
+            conn.close()
+        return (
+            ChatTurnRecord(user_turn_id, session_id, run_id, next_sequence, ChatTurnRole.USER, user_content, None, None, status, include_in_context, now),
+            ChatTurnRecord(assistant_turn_id, session_id, run_id, next_sequence + 1, ChatTurnRole.ASSISTANT, assistant_content, intent, response_language, status, include_in_context, now),
+        )
+
+    def list_chat_turns(self, session_id: str, limit: Optional[int] = None) -> list[ChatTurnRecord]:
+        """Full, ordered transcript for one session -- every row,
+        including `provider_failed`/`rejected` ones (the caller decides
+        what to show/exclude; this store never silently drops history).
+        `limit`, when given, returns only the MOST RECENT `limit` rows
+        (still in chronological order) -- used for bounded model context,
+        never for what the frontend restores (which always gets the
+        full transcript)."""
+        conn = self._connect()
+        try:
+            if limit is None:
+                rows = conn.execute(
+                    "SELECT * FROM chat_turns WHERE session_id = ? ORDER BY sequence_number ASC", (session_id,)
+                ).fetchall()
+            else:
+                rows = conn.execute(
+                    "SELECT * FROM chat_turns WHERE session_id = ? ORDER BY sequence_number DESC LIMIT ?",
+                    (session_id, limit),
+                ).fetchall()
+                rows = list(reversed(rows))
+            return [ChatTurnRecord._from_row(r) for r in rows]
+        finally:
+            conn.close()
+
+    def list_sessions(self, limit: int, offset: int) -> list[SessionSummaryRecord]:
+        """Hybrid Chat C.2: one row per DISTINCT `session_id` in the
+        authoritative `runs` table -- the session's own LATEST run
+        (`ROW_NUMBER() OVER (PARTITION BY session_id ORDER BY created_at
+        DESC, rowid DESC)`, `rowid` breaking a same-instant tie
+        deterministically by insertion order), sorted by that latest
+        run's `updated_at` DESC (most-recently-updated session first). A
+        session whose only run(s) never triggered any chat turn still
+        appears (`LEFT JOIN` against `chat_turns`, `COALESCE(...,0)`) --
+        the listing's source of truth is `runs`, never `chat_turns`.
+        Never selects `result_json`/full request beyond what
+        `SessionSummaryRecord._from_row` itself reads out -- no
+        transcript, prompt, or provider payload ever reaches this query's
+        result set. Every value is bound as a parameter, never
+        string-interpolated."""
+        conn = self._connect()
+        try:
+            rows = conn.execute(
+                """
+                WITH ranked AS (
+                    SELECT
+                        run_id, session_id, status, request_json, created_at, updated_at,
+                        ROW_NUMBER() OVER (PARTITION BY session_id ORDER BY created_at DESC, rowid DESC) AS rn
+                    FROM runs
+                )
+                SELECT
+                    ranked.session_id, ranked.run_id, ranked.status, ranked.request_json,
+                    ranked.created_at, ranked.updated_at,
+                    COALESCE(ct.turn_count, 0) AS chat_turn_count
+                FROM ranked
+                LEFT JOIN (
+                    SELECT session_id, COUNT(*) AS turn_count FROM chat_turns GROUP BY session_id
+                ) AS ct ON ct.session_id = ranked.session_id
+                WHERE ranked.rn = 1
+                ORDER BY ranked.updated_at DESC, ranked.session_id ASC
+                LIMIT ? OFFSET ?
+                """,
+                (limit, offset),
+            ).fetchall()
+            return [SessionSummaryRecord._from_row(r) for r in rows]
+        finally:
+            conn.close()
+
+    def count_sessions(self) -> int:
+        """The total number of distinct sessions -- used by the API layer
+        to make pagination deterministic/verifiable (a caller can tell
+        whether another page exists) without a second, redundant
+        `list_sessions` call."""
+        conn = self._connect()
+        try:
+            row = conn.execute("SELECT COUNT(DISTINCT session_id) AS n FROM runs").fetchone()
+            return int(row["n"])
         finally:
             conn.close()
 

@@ -27,12 +27,21 @@ from datetime import date, datetime
 from typing import Any, AsyncIterator, Callable, Optional
 from uuid import uuid4
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from orchestration.system_a import config, sse
+from orchestration.system_a.chat_service import (
+    DEFAULT_SESSION_LIST_LIMIT,
+    MAX_SESSION_LIST_LIMIT,
+    ChatProviderUnavailable,
+    ChatSessionAccessRejected,
+    ChatTurnRejected,
+    ChatTurnService,
+    default_chat_decision_provider_factory,
+)
 from orchestration.system_a.run_store import RunRecord, RunStore
 from orchestration.system_a.service import RunService, TripRequestRejected, default_fx_provider_factory
 from phase1.models import Money, TripPreferences
@@ -87,6 +96,14 @@ class RunStatusResponse(BaseModel):
     created_at: str
     updated_at: str
     result: Optional[dict[str, Any]] = None
+    # Hybrid Chat C.2 additive field: the originally-submitted
+    # `TripRequest` this run started from (`None` for a narrow-scope run
+    # that never carried one) -- needed so the recent-session sidebar can
+    # restore the full state a later chat modification needs (budget/
+    # dates/travelers/pace/interests), not just what a fresh dashboard
+    # already shows. Optional and additive: every pre-existing caller
+    # that never reads this field is completely unaffected.
+    trip_request: Optional[dict[str, Any]] = None
 
 
 class ErrorEnvelopeResponse(BaseModel):
@@ -101,6 +118,98 @@ class ErrorEnvelopeResponse(BaseModel):
     retriable: bool
 
 
+# --- Hybrid Chat C.1: chat-turn HTTP contract -----------------------------------
+#
+# Follows the exact same convention as every other contract in this file:
+# a small, `extra="forbid"` Pydantic model defined here (never a competing
+# shape elsewhere), reusing phase1/phase4 types where they already exist.
+# The frontend never sends a rewritten trip request or result -- only
+# identifiers plus the new message; the authoritative prior state is
+# always loaded server-side (ChatTurnService.handle_chat_turn) by
+# (session_id, run_id).
+
+
+class ChatTurnRequestModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: str = "1.0.0"
+    session_id: str = Field(min_length=1)
+    run_id: str = Field(min_length=1)
+    user_message: str = Field(min_length=1, max_length=2000)
+    preferred_language: str = Field(default="en", pattern=r"^(en|tr|ar)$")
+
+
+class ChatTurnResponseModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: str = "1.0.0"
+    session_id: str
+    run_id: str
+    intent: str
+    assistant_message: str
+    response_language: str
+    trip_patch: Optional[dict[str, Any]] = None
+    requires_new_run: bool
+    new_run_id: Optional[str] = None
+    new_run_status: Optional[str] = None
+    clarification_required: bool
+    warnings: list[str] = Field(default_factory=list)
+
+
+class ChatHistoryTurnModel(BaseModel):
+    """Hybrid Chat C.1 persistent-history correction §5: a closed,
+    already-safe transcript row -- never a database path, credential,
+    system prompt, or raw provider payload (`ChatTurnService.
+    get_session_history` only ever builds this from
+    `orchestration.system_a.run_store.ChatTurnRecord`, which is itself
+    structurally incapable of holding any of those, see its own
+    docstring)."""
+
+    model_config = ConfigDict(extra="forbid")
+    turn_id: str
+    role: str
+    content: str
+    intent: Optional[str] = None
+    response_language: Optional[str] = None
+    status: str
+    created_at: str
+
+
+class ChatHistoryResponseModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: str = "1.0.0"
+    session_id: str
+    run_id: str
+    turns: list[ChatHistoryTurnModel]
+
+
+class SessionSummaryModel(BaseModel):
+    """Hybrid Chat C.2: one recent-session sidebar row -- a closed,
+    already-safe set of fields only. Never the transcript, a prompt, a
+    provider payload, or the raw stored request/result."""
+
+    model_config = ConfigDict(extra="forbid")
+    session_id: str
+    latest_run_id: str
+    latest_run_status: str
+    title: str
+    origin: Optional[str] = None
+    destination: Optional[str] = None
+    depart_date: Optional[str] = None
+    return_date: Optional[str] = None
+    preferred_language: Optional[str] = None
+    chat_turn_count: int
+    created_at: str
+    updated_at: str
+
+
+class SessionListResponseModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: str = "1.0.0"
+    sessions: list[SessionSummaryModel]
+    total: int
+    limit: int
+    offset: int
+
+
 def _error_response(status_code: int, error_code: str, message: str, retriable: bool = False, trace_id: Optional[str] = None) -> JSONResponse:
     envelope = ErrorEnvelopeResponse(
         error_code=error_code, message=message, trace_id=trace_id or str(uuid4()), retriable=retriable
@@ -112,9 +221,11 @@ def _record_to_status_response(record: RunRecord) -> RunStatusResponse:
     # `record.result` is None for every non-terminal status by
     # construction (RunStore.mark_terminal is the only writer of
     # result_json) -- passed through as-is, never guessed here.
+    trip_request = record.request.get("trip_request") if isinstance(record.request, dict) else None
     return RunStatusResponse(
         run_id=record.run_id, session_id=record.session_id, status=record.status.value,
         created_at=record.created_at, updated_at=record.updated_at, result=record.result,
+        trip_request=trip_request,
     )
 
 
@@ -127,6 +238,7 @@ def create_app(
     mode: str = "real",
     wall_clock: Callable[[], datetime] = default_wall_clock,
     fx_provider_factory: Callable[[], Any] = default_fx_provider_factory,
+    chat_decision_provider_factory: Callable[[], DecisionProvider] = default_chat_decision_provider_factory,
 ) -> FastAPI:
     """Builds one independent FastAPI app instance, owning one `RunStore`
     (one SQLite database file) and one bounded run-execution thread pool.
@@ -164,6 +276,18 @@ def create_app(
         busy_timeout_ms=config.busy_timeout_ms(),
         wall_clock=wall_clock,
         fx_provider_factory=fx_provider_factory,
+    )
+    # Hybrid Chat C.1: a genuinely separate DecisionProvider instance from
+    # decision_provider_factory/specialist_decision_provider_factory --
+    # same "each role gets its own explicitly constructed provider"
+    # precedent as the supervisor/specialist split (ADR 0017 §3). Never
+    # constructed per-request: this service is stateless per call
+    # (chat_service.py never caches anything across turns), so one
+    # instance for the app's lifetime is safe, matching how `store`
+    # itself is a single shared, thread-safe instance.
+    chat_service = ChatTurnService(
+        run_store=store, run_service=service,
+        chat_decision_provider_factory=chat_decision_provider_factory, wall_clock=wall_clock,
     )
 
     @asynccontextmanager
@@ -272,5 +396,80 @@ def create_app(
             media_type="text/event-stream",
             headers={"Cache-Control": "no-cache", "Connection": "keep-alive", "X-Accel-Buffering": "no"},
         )
+
+    @app.post("/v1/chat/turns", response_model=ChatTurnResponseModel)
+    async def create_chat_turn(body: ChatTurnRequestModel) -> Any:
+        try:
+            result = await asyncio.to_thread(
+                chat_service.handle_chat_turn, body.session_id, body.run_id, body.user_message, body.preferred_language
+            )
+        except ChatTurnRejected as exc:
+            # Same convention as TripRequestRejected above: a typed client
+            # error, never an internal 500, and never leaks which part of
+            # the lookup failed beyond a closed safe_error string.
+            return _error_response(422, "CHAT_TURN_REJECTED", exc.safe_error or "chat_turn_rejected", retriable=False)
+        except ChatProviderUnavailable as exc:
+            # Persistent-history/grounding correction §10: a genuine
+            # provider outage (permanent auth/quota failure, or a
+            # transient one that exhausted its bounded retry) is surfaced
+            # honestly as a typed 503 -- never disguised as a 422 client
+            # error/user-ambiguity result, and never leaking a raw
+            # provider status code, body, or credential.
+            return _error_response(
+                503, "PROVIDER_UNAVAILABLE", "The chat assistant is temporarily unavailable.", retriable=exc.retriable
+            )
+        payload = ChatTurnResponseModel(
+            session_id=result.session_id, run_id=result.run_id, intent=result.intent,
+            assistant_message=result.assistant_message, response_language=result.response_language,
+            trip_patch=result.trip_patch, requires_new_run=result.requires_new_run,
+            new_run_id=result.new_run_id, new_run_status=result.new_run_status,
+            clarification_required=result.clarification_required, warnings=result.warnings,
+        )
+        return JSONResponse(status_code=200, content=payload.model_dump(mode="json"))
+
+    @app.get("/v1/chat/sessions/{session_id}/turns", response_model=ChatHistoryResponseModel)
+    async def get_chat_session_turns(session_id: str, run_id: str) -> Any:
+        try:
+            turns = await asyncio.to_thread(chat_service.get_session_history, session_id, run_id)
+        except ChatSessionAccessRejected as exc:
+            return _error_response(422, "CHAT_SESSION_ACCESS_REJECTED", exc.safe_error, retriable=False)
+        payload = ChatHistoryResponseModel(
+            session_id=session_id, run_id=run_id,
+            turns=[
+                ChatHistoryTurnModel(
+                    turn_id=t.turn_id, role=t.role, content=t.content, intent=t.intent,
+                    response_language=t.response_language, status=t.status, created_at=t.created_at,
+                )
+                for t in turns
+            ],
+        )
+        return JSONResponse(status_code=200, content=payload.model_dump(mode="json"))
+
+    @app.get("/v1/chat/sessions", response_model=SessionListResponseModel)
+    async def list_chat_sessions(
+        limit: int = Query(default=DEFAULT_SESSION_LIST_LIMIT, ge=1, le=MAX_SESSION_LIST_LIMIT),
+        offset: int = Query(default=0, ge=0),
+    ) -> Any:
+        # Hybrid Chat C.2: the recent-session sidebar's one bounded
+        # listing call. `Query(ge=1, le=MAX_SESSION_LIST_LIMIT)` rejects
+        # an out-of-range value with the existing 422 RequestValidationError
+        # handler BEFORE this handler body ever runs; `ChatTurnService.
+        # list_recent_sessions` re-clamps defensively too (never trusts a
+        # single validation layer, matching this project's established
+        # precedent).
+        summaries, total = await asyncio.to_thread(chat_service.list_recent_sessions, limit, offset)
+        payload = SessionListResponseModel(
+            sessions=[
+                SessionSummaryModel(
+                    session_id=s.session_id, latest_run_id=s.latest_run_id, latest_run_status=s.latest_run_status,
+                    title=s.title, origin=s.origin, destination=s.destination, depart_date=s.depart_date,
+                    return_date=s.return_date, preferred_language=s.preferred_language,
+                    chat_turn_count=s.chat_turn_count, created_at=s.created_at, updated_at=s.updated_at,
+                )
+                for s in summaries
+            ],
+            total=total, limit=limit, offset=offset,
+        )
+        return JSONResponse(status_code=200, content=payload.model_dump(mode="json"))
 
     return app

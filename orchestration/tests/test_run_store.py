@@ -12,7 +12,7 @@ from uuid import uuid4
 
 import pytest
 
-from orchestration.system_a.run_store import RunStatus, RunStore
+from orchestration.system_a.run_store import ChatTurnStatus, RunStatus, RunStore
 
 
 def _new_store(tmp_db_path: str) -> RunStore:
@@ -221,3 +221,98 @@ def test_wal_mode_and_busy_timeout_are_actually_applied(tmp_db_path):
         assert mode.lower() == "wal"
     finally:
         conn.close()
+
+
+# --- Hybrid Chat C.2: list_sessions / count_sessions -----------------------------------
+
+
+def _trip_request(origin: str = "BEY", depart: str = "2026-09-19", ret: str = "2026-09-23") -> dict:
+    return {
+        "schema_version": "1.0.0", "origin": origin, "destination": "IST",
+        "depart_date": depart, "return_date": ret, "traveler_count": 2,
+        "budget": {"amount_minor_units": 500000, "currency": "TRY"},
+        "preferences": {"interests": ["history"], "pace": "moderate", "language": "en", "mobility_constraints": []},
+    }
+
+
+def _seed_run(store: RunStore, session_id: str, *, trip_request=None, status=RunStatus.COMPLETED) -> str:
+    run_id = str(uuid4())
+    request = {"user_message": "Plan a trip.", "trip_request": trip_request}
+    store.create_run(run_id, session_id, str(uuid4()), request, idempotency_key=None)
+    store.mark_running(run_id)
+    store.mark_terminal(run_id, status, {"status": "success", "observations": [], "warnings": []})
+    return run_id
+
+
+def test_list_sessions_sorts_by_most_recently_updated_first(tmp_db_path):
+    store = _new_store(tmp_db_path)
+    _seed_run(store, "session-old", trip_request=_trip_request())
+    _seed_run(store, "session-new", trip_request=_trip_request())
+    sessions = store.list_sessions(limit=20, offset=0)
+    assert [s.session_id for s in sessions] == ["session-new", "session-old"]
+
+
+def test_list_sessions_includes_sessions_with_no_chat_turns(tmp_db_path):
+    store = _new_store(tmp_db_path)
+    _seed_run(store, "session-no-chat", trip_request=_trip_request())
+    sessions = store.list_sessions(limit=20, offset=0)
+    assert sessions[0].session_id == "session-no-chat"
+    assert sessions[0].chat_turn_count == 0
+
+
+def test_list_sessions_multiple_runs_returns_one_entry_with_the_newest_run(tmp_db_path):
+    store = _new_store(tmp_db_path)
+    _seed_run(store, "session-a", trip_request=_trip_request(depart="2026-09-19", ret="2026-09-23"))
+    newest_run_id = _seed_run(store, "session-a", trip_request=_trip_request(depart="2026-10-01", ret="2026-10-05"))
+    sessions = store.list_sessions(limit=20, offset=0)
+    assert len(sessions) == 1
+    assert sessions[0].latest_run_id == newest_run_id
+    assert sessions[0].trip_request["depart_date"] == "2026-10-01"
+
+
+def test_list_sessions_chat_turn_count_reflects_persisted_turns(tmp_db_path):
+    store = _new_store(tmp_db_path)
+    run_id = _seed_run(store, "session-a", trip_request=_trip_request())
+    store.append_chat_turn_pair(
+        session_id="session-a", run_id=run_id, user_turn_id=str(uuid4()), user_content="hi",
+        assistant_turn_id=str(uuid4()), assistant_content="hello", intent="explain_plan",
+        response_language="en", status=ChatTurnStatus.COMPLETED, include_in_context=True,
+    )
+    sessions = store.list_sessions(limit=20, offset=0)
+    assert sessions[0].chat_turn_count == 2
+
+
+def test_list_sessions_pagination_limit_and_offset(tmp_db_path):
+    store = _new_store(tmp_db_path)
+    for i in range(5):
+        _seed_run(store, f"session-{i}", trip_request=_trip_request())
+    first_page = store.list_sessions(limit=2, offset=0)
+    second_page = store.list_sessions(limit=2, offset=2)
+    assert len(first_page) == 2
+    assert len(second_page) == 2
+    assert {s.session_id for s in first_page}.isdisjoint({s.session_id for s in second_page})
+
+
+def test_count_sessions_counts_distinct_sessions_not_runs(tmp_db_path):
+    store = _new_store(tmp_db_path)
+    _seed_run(store, "session-a", trip_request=_trip_request())
+    _seed_run(store, "session-a", trip_request=_trip_request())  # a second run, same session
+    _seed_run(store, "session-b", trip_request=_trip_request())
+    assert store.count_sessions() == 2
+
+
+def test_list_sessions_session_without_trip_request_has_none_fields(tmp_db_path):
+    store = _new_store(tmp_db_path)
+    _seed_run(store, "session-narrow", trip_request=None)
+    sessions = store.list_sessions(limit=20, offset=0)
+    assert sessions[0].trip_request is None
+
+
+def test_list_sessions_never_selects_result_json_column(tmp_db_path):
+    """Structural leak-prevention check: `SessionSummaryRecord` never
+    carries a `result` field at all -- the query itself never selects
+    `result_json`."""
+    store = _new_store(tmp_db_path)
+    _seed_run(store, "session-a", trip_request=_trip_request())
+    sessions = store.list_sessions(limit=20, offset=0)
+    assert not hasattr(sessions[0], "result")

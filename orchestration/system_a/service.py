@@ -151,16 +151,22 @@ class RunService:
     # --- public API used by the FastAPI layer ---------------------------------------
 
     def create_run(
-        self, user_message: str, trip_request_partial: Optional[dict[str, Any]], idempotency_key: Optional[str]
+        self,
+        user_message: str,
+        trip_request_partial: Optional[dict[str, Any]],
+        idempotency_key: Optional[str],
+        session_id: Optional[str] = None,
     ) -> tuple[RunRecord, bool]:
         """`trip_request_partial` is the caller-supplied trip fields only
         (origin/destination/dates/traveler_count/budget/preferences) --
         never `schema_version`/`session_id`/`trace_id`, which the caller
-        cannot know in advance. This method generates one session_id/
-        trace_id pair for the whole run and stamps it into both the run
-        record and the embedded trip_request, so the two are always the
-        same session by construction, never two independently-supplied
-        values that could silently diverge.
+        cannot know in advance. A fresh `trace_id` is always minted for
+        this run (each run is its own execution/attempt); `session_id` is
+        minted fresh too UNLESS the caller explicitly supplies one
+        (Hybrid Chat C.1: a chat-triggered replanning run continues the
+        SAME conversation session rather than starting a new one) --
+        every pre-existing caller passes nothing and gets the original
+        always-fresh behavior unchanged.
 
         Manual QA remediation Q.1: `phase4.guards.check_input` is
         consulted HERE, synchronously, before any run row exists and
@@ -171,7 +177,7 @@ class RunService:
         addition to (not a replacement for) the graph's own InputGuard,
         which still re-validates the same way for any caller that invokes
         the graph directly."""
-        session_id = str(uuid4())
+        session_id = session_id or str(uuid4())
         trace_id = str(uuid4())
         trip_request: Optional[dict[str, Any]] = None
         if trip_request_partial is not None:
