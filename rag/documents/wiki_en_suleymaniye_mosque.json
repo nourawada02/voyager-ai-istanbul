@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Suleymaniye Mosque\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "356c34f7e6d21db1c6749db3dc02a6493278f9f92bff33803963d06d34e30bf9",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/S%C3%BCleymaniye_Mosque",
+  "display_name": "Suleymaniye Mosque",
+  "district_id": "district_fatih",
+  "document_id": "wiki_en_suleymaniye_mosque",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "attractions",
+    "history"
+  ],
+  "language": "en",
+  "lat": 41.0165,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9639,
+  "poi_id": "poi_suleymaniye_mosque",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_suleymaniye_mosque",
+  "text": "# Construction History\n\nThe Suleymaniye Mosque was commissioned by Suleiman the Magnificent and designed by architect Mimar Sinan. Construction began in 1550 and the building was inaugurated in 1557, on the site of the former Ottoman palace (Eski Saray).\n\n# Architect\n\nSinan created the mosque after impressing Suleiman with his earlier Sehzade Mosque; Sinan's own tomb sits just outside the complex's north wall.\n\n# Architectural Significance\n\nThe prayer hall measures nearly 58.5 by 57.5 metres, dominated by a central dome 53 metres high with a 26.5-metre diameter, following the Hagia Sophia model of semi-domes front and back. Four minarets occupy the courtyard corners, the tallest pair rising 76 metres, with ten balconies total -- said to reflect Suleiman as the Ottoman Empire's tenth sultan.\n\n# The Kulliye and Mausoleums\n\nThe complex originally included four madrasas, a hospital, public kitchen, caravanserai, and bathhouse. An enclosed cemetery behind the mosque holds the mausoleums of Suleiman and his wife Hurrem Sultan (Roxelana). It forms part of the 1985 UNESCO World Heritage designation of the Historic Areas of Istanbul.",
+  "title": "Suleymaniye Mosque",
+  "topic_group": "suleymaniye_mosque",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/S%C3%BCleymaniye_Mosque"
+}

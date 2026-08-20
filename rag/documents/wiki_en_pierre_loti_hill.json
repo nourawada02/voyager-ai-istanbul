@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"Pierre Loti Hill\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "ba7f72f95dfea64fcb3c4517ce338d7e2245472bc29a0be0cd80ceb0fdfad282",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Eyup",
+  "display_name": "Pierre Loti Hill",
+  "district_id": "district_eyup",
+  "document_id": "wiki_en_pierre_loti_hill",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "photography",
+    "nature"
+  ],
+  "language": "en",
+  "lat": 41.0563,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9339,
+  "poi_id": "poi_pierre_loti_hill",
+  "preferred_period": "afternoon",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_pierre_loti_hill",
+  "text": "# Location\n\nPierre Loti Hill overlooks the Golden Horn from the Eyup district, one of Istanbul's most historic and religiously significant areas, stretching from the Golden Horn to the Black Sea shore.\n\n# The Cable Car and Cafe\n\nA gondola lift carries visitors from the Golden Horn shore up to the Pierre Loti Cafe, named after 19th-century French author Julien Viaud (pen name Pierre Loti), who was known to frequent the area. The outdoor cafe offers panoramic views over the Golden Horn and has become a popular viewpoint for photography, especially toward sunset.\n\n# Historical Character of Eyup\n\nEyup was known as Kosmidion in the Byzantine period, home to a monastery of Saints Cosmas and Damian, and later industrialized in the 17th-18th centuries with facilities such as the Feshane fez factory along the Golden Horn.",
+  "title": "Pierre Loti Hill",
+  "topic_group": "eyup",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Eyup"
+}

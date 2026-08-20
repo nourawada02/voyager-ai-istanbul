@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Çiçek Pasajı (Flower Passage)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "329f8ae2955b9ccf4829191367f6612185a4a1f9962325bcb4197047a31b9868",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/%C3%87i%C3%A7ek_Pasaj%C4%B1",
+  "display_name": "Çiçek Pasajı (Flower Passage)",
+  "district_id": "district_beyoglu",
+  "document_id": "wiki_en_cicek_pasaji",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "food",
+    "nightlife",
+    "shopping",
+    "history"
+  ],
+  "language": "en",
+  "lat": 41.0326,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9772,
+  "poi_id": "poi_cicek_pasaji",
+  "preferred_period": "evening",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_cicek_pasaji",
+  "text": "# Overview\n\nCicek Pasaji (Flower Passage) is a historic covered arcade on Istiklal Avenue in Beyoglu, connecting the avenue with Sahne Street and opening onto the Balik Pazari (Fish Market).\n\n# Historical Development\n\nThe site previously held the Naum Theatre, severely damaged by the Fire of Pera in 1870. Ottoman Greek banker Hristaki Zografos Efendi rebuilt the property in 1876, designed by architect Kleanthis Zannos, initially called Cite de Pera or Hristaki Pasaji; the first winehouse, Yorgo's, opened there in this period.\n\n# Origin of the 'Flower Passage' Name\n\nAfter the 1917 Russian Revolution, impoverished Russian nobles opened flower shops in the arcade; by the 1940s the building was mostly occupied by flower shops, giving it its current Turkish name.\n\n# Contemporary Character\n\nThe passage today functions as a galleria of pubs, meyhanes (taverns), and restaurants across three floors, restored in 1988, 2005, and 2022 -- one of Beyoglu's best-known destinations for traditional Istanbul dining and evening drinking culture.",
+  "title": "Çiçek Pasajı (Flower Passage)",
+  "topic_group": "cicek_pasaji",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/%C3%87i%C3%A7ek_Pasaj%C4%B1"
+}

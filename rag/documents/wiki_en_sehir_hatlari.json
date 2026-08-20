@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"Sehir Hatlari (Istanbul city ferries)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "eb0166729a2da8c86e73a35ed0bb438cf72a7d51627ee0671561a4ed539ee369",
+  "content_type": "transport",
+  "derived_from_source": "https://en.wikipedia.org/wiki/%C5%9Eehir_Hatlar%C4%B1",
+  "display_name": "Sehir Hatlari (Istanbul city ferries)",
+  "district_id": null,
+  "document_id": "wiki_en_sehir_hatlari",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "transportation"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_en_sehir_hatlari",
+  "text": "# History and Founding\n\nSehir Hatlari ('City Lines') is Istanbul's oldest and largest ferry operator, founded in 1851 as the Sirket-i Hayriye ('The Goodwill Company') during the Ottoman period, later renamed in the early republican era.\n\n# Operations and Scale\n\nAs a municipally owned enterprise, Sehir Hatlari operates roughly 30 ferries across 53 piers on 32 lines, serving both shores of the Bosphorus and the Princes' Islands. In 2023 the company carried 40 million passengers.\n\n# Routes\n\nThree main route categories exist: inner-city lines, Bosphorus crossings between European and Asian districts, and seasonal service to the Princes' Islands, alongside dedicated Bosphorus sightseeing tours.\n\n# Strategic Importance\n\nBefore the first bridge opened in 1973, ferries were the only way to cross between the European and Asian halves of the city, and they remain a defining part of both daily commuting and tourism.",
+  "title": "Sehir Hatlari (Istanbul city ferries)",
+  "topic_group": "ferries",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/%C5%9Eehir_Hatlar%C4%B1"
+}

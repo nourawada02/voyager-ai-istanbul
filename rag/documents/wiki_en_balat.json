@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Balat\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "411f65b8b855a027ae841af964c8c3fc5c7c575dce5ddc391cdf83c846038bfe",
+  "content_type": "neighborhood",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Balat,_Istanbul",
+  "display_name": "Balat",
+  "district_id": "district_fatih",
+  "document_id": "wiki_en_balat",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "neighborhoods",
+    "culture",
+    "photography",
+    "history"
+  ],
+  "language": "en",
+  "lat": 41.0292,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9491,
+  "poi_id": "poi_balat",
+  "preferred_period": "morning",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_balat",
+  "text": "# Overview\n\nBalat is a neighborhood in Fatih district on the western shore of the Golden Horn, sitting between Fener and Ayvansaray.\n\n# Jewish Heritage\n\nFrom the late 15th century, Balat became the center of Istanbul's Jewish community after Sultan Bayezid II offered citizenship to Jews fleeing the 1492 Alhambra Decree. At its peak the neighborhood held 18 synagogues; three remain active, including the 15th-century Ahrida Synagogue.\n\n# Multicultural Past\n\nBalat also housed Greek, Armenian, and Bulgarian communities, including the Bulgarian Iron Church, a prefabricated iron structure shipped via the Danube and restored in 2018.\n\n# Contemporary Character\n\nIn the 2020s Balat became one of Istanbul's most photographed districts, as many historic houses were repainted in bright colors and converted into cafes and guesthouses. It was inscribed on the UNESCO World Heritage List in 1985 as part of Istanbul's Historic Areas.",
+  "title": "Balat",
+  "topic_group": "balat",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Balat,_Istanbul"
+}

@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Eyup Sultan Mosque\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "6a67d5111044652e30bc2b1c52990fdbac8541918660d88faadb29542dd69c47",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Eyup_Sultan_Mosque",
+  "display_name": "Eyup Sultan Mosque",
+  "district_id": "district_eyup",
+  "document_id": "wiki_en_eyup_sultan_mosque",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "history",
+    "attractions",
+    "seasonal_planning"
+  ],
+  "language": "en",
+  "lat": 41.0479,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9339,
+  "poi_id": "poi_eyup_sultan_mosque",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_eyup_sultan_mosque",
+  "text": "# History\n\nThe mosque complex was built in 1458 by Sultan Mehmed II, five years after Constantinople's conquest, then rebuilt by Sultan Selim III between 1798 and 1800 after the original structure deteriorated.\n\n# Religious Significance\n\nThe mosque honors Abu Ayyub al-Ansari, a companion of the Prophet Muhammad believed buried at this site following the first Arab siege of Constantinople in the 670s. His mausoleum sits on the north side of the courtyard. Ottoman sultans traditionally proceeded along the Culus Yolu (Accession Way) to be girded with the Sword of Osman here upon their accession.\n\n# Architecture\n\nThe reconstructed mosque follows an octagonal baldaquin design with a central dome surrounded by semi-domes, using white stone and marble columns bound with brass. The mausoleum displays Iznik tile panels dating to around 1580.\n\n# Modern Pilgrimage\n\nPilgrims visit year-round, with particular gatherings during Ramadan and for boys' circumcision ceremonies.",
+  "title": "Eyup Sultan Mosque",
+  "topic_group": "eyup",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Eyup_Sultan_Mosque"
+}

@@ -30,9 +30,13 @@ def _manifest() -> dict:
 
 
 def test_manifest_exists_and_has_expected_document_count():
+    # RAG-FIRST SYSTEM B R.1 CORRECTION: corpus expanded from the frozen
+    # Phase 3 20 documents to 49 (R.1) to 69 (R.1 correction: expanded
+    # Arabic/Turkish coverage, official/primary sources, and one more
+    # real food-schedulable entity, Cicek Pasaji).
     m = _manifest()
-    assert m["document_count"] == 20
-    assert len(m["documents"]) == 20
+    assert m["document_count"] == 69
+    assert len(m["documents"]) == 69
 
 
 def test_manifest_language_counts_match_actual_documents():

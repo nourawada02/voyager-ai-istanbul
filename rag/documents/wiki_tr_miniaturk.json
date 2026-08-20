@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"Miniatürk\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "670e9b1d8426318c19ee1b2b4a8e8a2fbbbd644bc6b1ac94db13cc1dfc22b6da",
+  "content_type": "attraction",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/Miniat%C3%BCrk",
+  "display_name": "Miniatürk",
+  "district_id": "district_beyoglu",
+  "document_id": "wiki_tr_miniaturk",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "family",
+    "attractions"
+  ],
+  "language": "tr",
+  "lat": 41.0576,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9377,
+  "poi_id": "poi_miniaturk",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_tr_miniaturk",
+  "text": "# Temel Bilgiler\n\nMiniatürk, İstanbul'un Beyoğlu ilçesinde bulunan ve 'Büyük Ülkenin Küçük Bir Modeli' sloganıyla tanınan bir minyatür parkıdır. 60.000 metrekarelik alanda kurulu olan tesis, dünyanın en geniş alana sahip minyatür parklarından biridir.\n\n# Açılış ve Tarih\n\n30 Haziran 2001'de temeli atılan Miniatürk, 2 Mayıs 2003'te ziyaretçilere açılmıştır. Proje, İstanbul Büyükşehir Belediyesi tarafından gerçekleştirilmiş ve işletilmektedir.\n\n# Koleksiyon\n\nParkta Hitit, Eski Yunan, Roma, Bizans, Selçuklu, Osmanlı ve Cumhuriyet dönemi mimarisini temsil eden 137 eserin 1/25 oranında küçültülmüş modelleri bulunmaktadır. Eserlerden 62'si İstanbul'dan, 64'ü Anadolu'dan ve 13'ü Osmanlı coğrafyasından seçilmiştir.\n\n# Aile Dostu Özellikler\n\nZiyaretçiler mini stadyum, kumandalı tekneler, simülasyon helikopter turu ve gezi treni gibi eğlence alanlarından yararlanabilir. Park 2015 yılında 5 milyon ziyaretçi ağırlamıştır.",
+  "title": "Miniatürk",
+  "topic_group": "miniaturk",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/Miniat%C3%BCrk"
+}

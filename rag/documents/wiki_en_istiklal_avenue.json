@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Istiklal Avenue\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "9ba07c520d88df59911e7d2f6c00361b629ff7d556ef9499db62daf5351c0fb0",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/%C4%B0stiklal_Avenue",
+  "display_name": "Istiklal Avenue",
+  "district_id": "district_beyoglu",
+  "document_id": "wiki_en_istiklal_avenue",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "shopping",
+    "nightlife",
+    "neighborhoods",
+    "culture"
+  ],
+  "language": "en",
+  "lat": 41.0328,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9784,
+  "poi_id": "poi_istiklal_avenue",
+  "preferred_period": "evening",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_istiklal_avenue",
+  "text": "# Overview and Location\n\nIstiklal Avenue is a 1.4-kilometre pedestrian street in the historic Beyoglu (Pera) district, running from Tunel Square in the south to Taksim Square in the north.\n\n# Naming and Historical Significance\n\nThe street acquired its modern name after the declaration of the Republic on 29 October 1923 -- Istiklal means 'Independence', commemorating Turkey's War of Independence. It was previously known as the Grand Avenue of Pera.\n\n# Architectural Character\n\nBuildings reflect Neo-Classical, Neo-Gothic, Renaissance Revival, Beaux-Arts, Art Nouveau and First Turkish National Architecture styles from the 19th and early 20th centuries, supplemented by Art Deco examples from the early Republic.\n\n# Commercial and Nightlife Character\n\nThe avenue hosts boutiques, music stores, art galleries, cinemas, theatres, cafes, pubs, and nightclubs with live music, alongside historic pastry shops and chocolateries. A historic nostalgic tram, reinstated in 1990, runs the length of the avenue.\n\n# Notable Institutions\n\nGalatasaray High School, the oldest secondary school in Turkey, marks the avenue's midpoint. Several European nations established consulates along the avenue in the Ottoman period, including France, the Netherlands, Russia, Spain, and Sweden.",
+  "title": "Istiklal Avenue",
+  "topic_group": "istiklal_avenue",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/%C4%B0stiklal_Avenue"
+}

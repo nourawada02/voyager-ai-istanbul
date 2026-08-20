@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Buyukada (Princes' Islands)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "30e352900b6a12eb2da04355e41990b2788723e9df14c4ba63afa144c7b1791d",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Princes%27_Islands",
+  "display_name": "Buyukada (Princes' Islands)",
+  "district_id": "district_adalar",
+  "document_id": "wiki_en_buyukada",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "islands",
+    "nature",
+    "family"
+  ],
+  "language": "en",
+  "lat": 40.8767,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.1206,
+  "poi_id": "poi_buyukada",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_en_buyukada",
+  "text": "# Overview\n\nThe Princes' Islands (Adalar) are an archipelago of nine islands in the Sea of Marmara near Istanbul, with a total area of 11 square kilometres. Buyukada, at 5.46 square kilometres, is the largest.\n\n# Historical Background\n\nDuring the Byzantine Empire, out-of-favor princes and royalty were exiled to these islands; after the 1453 Ottoman conquest, members of sultans' families were banished here too, giving the islands their name. The 19th century turned them into fashionable retreats for Istanbul's wealthy classes.\n\n# Motor Vehicle Ban\n\nMotorized vehicles, except service vehicles, are forbidden on most islands. Visitors get around by foot, bicycle, horse-drawn carriage, or electric taxi.\n\n# Ferry Access\n\nFerries run from multiple Istanbul terminals, including Bostanci, Kadikoy, and Kabatas, calling at the four largest islands.\n\n# Notable Landmarks and History\n\nBuyukada's landmarks include the Prinkipo Greek Orthodox Orphanage, said to be the largest wooden building in Europe, and the 1908 Splendid Palace Hotel. Leon Trotsky lived on the island from 1929 to 1933 after his Soviet exile.",
+  "title": "Buyukada (Princes' Islands)",
+  "topic_group": "buyukada",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Princes%27_Islands"
+}

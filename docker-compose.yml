@@ -120,7 +120,19 @@ services:
       # QDRANT_URL= (empty) explicitly in a real .env to restore the old
       # always-skip-RAG-warmup behavior for a genuinely offline run.
       QDRANT_URL: "${QDRANT_URL:-http://vector-db:6333}"
-      QDRANT_COLLECTION_NAME: "istanbul_rag_B"
+      # RAG-FIRST SYSTEM B R.1: local demo environment default points at
+      # the R.1 shadow collection (rag/corpus_sources.py's expanded
+      # corpus), not the frozen Phase 3 production collection --
+      # explicit, not implicit, and reversible by editing these two
+      # lines back (never a collection rename/copy/delete; both
+      # collections continue to coexist in vector-db unchanged). The
+      # fingerprint is read from the shadow collection's own stored
+      # `__fingerprint__` marker point, not guessed -- it is identical to
+      # `istanbul_rag_B`'s fingerprint because both were built under the
+      # same frozen chunk-config/embedding identity (Checkpoint Phase 4
+      # §5/§9's frozen contract); only the corpus content differs.
+      QDRANT_COLLECTION_NAME: "istanbul_rag_B_r1_shadow"
+      QDRANT_EXPECTED_FINGERPRINT: "34830f8e42e681ce7fdedc5a36fbd33675ae4800505a06768bc783d6057d7b84"
       # Explicitly false for the offline fixture smoke (checkpoint
       # instruction) -- System B degrades cleanly to catalog-only
       # scheduling with an explicit warning rather than requiring a

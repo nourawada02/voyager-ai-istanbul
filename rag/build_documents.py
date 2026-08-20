@@ -43,6 +43,7 @@ def build() -> dict:
     for doc in DOCUMENTS:
         checksum = sha256_hex(doc.text)
         checksums[doc.source_id] = checksum
+        retrieved_at = doc.retrieved_at or RETRIEVED_AT
 
         record = {
             "schema_version": "1.0.0",
@@ -53,13 +54,23 @@ def build() -> dict:
             "url": doc.url,
             "language": doc.language,
             "content_type": doc.content_type,
-            "retrieved_at": RETRIEVED_AT,
+            "retrieved_at": retrieved_at,
             "license": LICENSE,
             "attribution": f"{PUBLISHER}, \"{doc.title}\", {doc.language.upper()} Wikipedia, {LICENSE}",
             "checksum": checksum,
             "poi_id": doc.poi_id,
             "district_id": doc.district_id,
             "topic_group": doc.topic_group,
+            "interest_tags": list(doc.interest_tags),
+            "lat": doc.lat,
+            "lon": doc.lon,
+            "side": doc.side,
+            "display_name": doc.display_name or doc.title,
+            "preferred_period": doc.preferred_period,
+            "entity_kind": doc.entity_kind,
+            "publisher_type": doc.publisher_type,
+            "transformation_method": doc.transformation_method,
+            "derived_from_source": doc.derived_from_source or doc.url,
             "text": doc.text,
         }
         out_path = DOCUMENTS_DIR / f"{doc.source_id}.json"
@@ -73,13 +84,26 @@ def build() -> dict:
                 "url": doc.url,
                 "language": doc.language,
                 "content_type": doc.content_type,
-                "retrieved_at": RETRIEVED_AT,
+                "retrieved_at": retrieved_at,
                 "license": LICENSE,
                 "checksum": checksum,
                 "poi_id": doc.poi_id,
                 "district_id": doc.district_id,
+                "interest_tags": list(doc.interest_tags),
+                "entity_kind": doc.entity_kind,
+                "publisher_type": doc.publisher_type,
+                "transformation_method": doc.transformation_method,
+                "derived_from_source": doc.derived_from_source or doc.url,
             }
         )
+
+    interest_counts: dict[str, int] = {}
+    for doc in DOCUMENTS:
+        for tag in doc.interest_tags:
+            interest_counts[tag] = interest_counts.get(tag, 0) + 1
+    publisher_type_counts: dict[str, int] = {}
+    for doc in DOCUMENTS:
+        publisher_type_counts[doc.publisher_type] = publisher_type_counts.get(doc.publisher_type, 0) + 1
 
     manifest = {
         "schema_version": "1.0.0",
@@ -88,6 +112,8 @@ def build() -> dict:
         "language_counts": {
             lang: sum(1 for d in DOCUMENTS if d.language == lang) for lang in ("en", "tr", "ar")
         },
+        "interest_tag_counts": dict(sorted(interest_counts.items())),
+        "publisher_type_counts": dict(sorted(publisher_type_counts.items())),
         "documents": manifest_entries,
     }
     manifest_path = MANIFESTS_DIR / "corpus_manifest.json"

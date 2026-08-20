@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Sultan Ahmed Mosque (Blue Mosque)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "d77e975b0f2cd75411bb0a26480bf69a75a591fead39ed8ff83d84ae48e2c8e7",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Sultan_Ahmed_Mosque",
+  "display_name": "Sultan Ahmed Mosque (Blue Mosque)",
+  "district_id": "district_fatih",
+  "document_id": "wiki_en_blue_mosque",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "attractions",
+    "history",
+    "culture"
+  ],
+  "language": "en",
+  "lat": 41.0054,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9768,
+  "poi_id": "poi_blue_mosque",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_blue_mosque",
+  "text": "# Construction History\n\nConstruction began in 1609 and completed in 1617 under Sultan Ahmed I, built on the southeast side of the former Byzantine Hippodrome, adjacent to Hagia Sophia.\n\n# Architect and Design\n\nSedefkar Mehmed Agha designed the mosque, synthesizing Classical Ottoman principles with Byzantine influences from Hagia Sophia.\n\n# Key Architectural Features\n\nThe central dome is 23.5 metres in diameter and rises 43 metres, with a prayer hall measuring 64 by 72 metres and 260 windows. The mosque is famous for its six minarets -- according to folklore, the architect misheard 'gold minarets' as 'six minarets'. Over 21,000 handmade Iznik tiles cover the lower walls, from which the mosque's popular name derives.\n\n# Complex and Modern Status\n\nThe surrounding complex includes Ahmed I's mausoleum, a madrasa, a hospital, and a market (arasta). A major restoration begun in 2018 concluded with the mosque reopening for worship in April 2023. It was included in the 1985 UNESCO World Heritage designation of the Historic Areas of Istanbul and remains an active mosque and one of Istanbul's most visited sites.",
+  "title": "Sultan Ahmed Mosque (Blue Mosque)",
+  "topic_group": "blue_mosque",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Sultan_Ahmed_Mosque"
+}

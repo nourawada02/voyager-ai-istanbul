@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"Istanbul Airport\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "1b535c19d80188a30150ecc292a54cfbe0bef2acd3d2c3158fa45acd07907d74",
+  "content_type": "transport",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Istanbul_Airport",
+  "display_name": "Istanbul Airport",
+  "district_id": null,
+  "document_id": "wiki_en_istanbul_airport",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "transportation"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_en_istanbul_airport",
+  "text": "# Opening and Timeline\n\nIstanbul Airport (IST) opened on 29 October 2018, and all scheduled commercial passenger flights transferred from Ataturk Airport on 6 April 2019.\n\n# Scale\n\nIt is the largest airport in Turkey and the busiest in Europe by passenger traffic, with a main terminal building of 1,440,000 square metres -- the world's third-largest airport terminal building.\n\n# Role as Primary Gateway\n\nThe airport is the hub for Turkish Airlines and serves as the metropolitan area's main international gateway, located about 35 kilometres from the city center in the Arnavutkoy district on the European side.\n\n# Ground Transportation\n\nThe airport connects to Istanbul's public transit system via the M11 metro line at the Istanbul Havalimani station.",
+  "title": "Istanbul Airport",
+  "topic_group": "istanbul_airport",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Istanbul_Airport"
+}

@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"جامع السليمانية\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "050030366cb7febd827067de596ebc0d6dfcc6e5ae5282e298bf53509fa175ec",
+  "content_type": "attraction",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/جامع_السليمانية",
+  "display_name": "جامع السليمانية",
+  "district_id": "district_fatih",
+  "document_id": "wiki_ar_suleymaniye_mosque",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "attractions",
+    "history"
+  ],
+  "language": "ar",
+  "lat": 41.0165,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9639,
+  "poi_id": "poi_suleymaniye_mosque",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_ar_suleymaniye_mosque",
+  "text": "# تاريخ البناء\n\nبدأ بناء جامع السليمانية عام 1550 واكتمل عام 1557، ويقع على التلة الثالثة من تلال إسطنبول السبعة في قلب مجمع السليمانية.\n\n# المهندس المعماري\n\nصمم المسجد معمار سنان، أبرز المهندسين في العهد العثماني. يضم المجمع أيضاً ضريح المهندس المعماري سنان.\n\n# الخصائص المعمارية الرئيسية\n\nيتميز المسجد بقبة مركزية مزودة بقبتين نصفيتين وقبب في الزوايا، استلهم تصميمها من كاتدرائية آيا صوفيا. يتكون من حجر ناري وحجر رملي ورخام وطوب ورصاص وحديد.\n\n# الأهمية الدينية والعمرانية\n\nيتضمن مجمع السليمانية مقبرة وأربع مدارس ومستشفى وفندق ومئذنة ودكاكين وحمّامات ومدرسة قرآنية.",
+  "title": "جامع السليمانية",
+  "topic_group": "suleymaniye_mosque",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/جامع_السليمانية"
+}

@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"أسكودار\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "8596e2097e99faf20afa20ab0f18935dd02d19ba50f394f14bca47f3f9f2be40",
+  "content_type": "neighborhood",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/أسكودار",
+  "display_name": "أسكودار",
+  "district_id": "district_uskudar",
+  "document_id": "wiki_ar_uskudar",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "neighborhoods",
+    "religious_heritage",
+    "culture"
+  ],
+  "language": "ar",
+  "lat": 41.0214,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.0161,
+  "poi_id": "poi_uskudar_district",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_ar_uskudar",
+  "text": "# الموقع والأهمية الجغرافية\n\nأسكودار إحدى بلديات محافظة إسطنبول الكبرى، تقع على الضفة الشرقية لمضيق البسفور مقابل البلدة القديمة في إمينونو، مما جعلها منطقة سكنية قديمة وحيوية.\n\n# الطابع الثقافي والاجتماعي\n\nيتميز حي أسكودار برائحة البحر والأمواج والقوارب وطيور النورس التي تجعله وجهة مميزة. تتركز فيه عدة جامعات، مما يضفي عليه طابعاً تعليمياً ملحوظاً.\n\n# المساحات الخضراء والمعالم\n\nيضم الحي عدداً من الحدائق، أبرزها بستان فتحي باشا، حديقة كبيرة على التلال المطلة على شاطئ البوسفور، إضافة إلى كثافة عالية من المباني التاريخية والمساجد العثمانية.",
+  "title": "أسكودار",
+  "topic_group": "uskudar",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/أسكودار"
+}

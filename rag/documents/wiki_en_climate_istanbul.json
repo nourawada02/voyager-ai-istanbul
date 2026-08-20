@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"Climate of Istanbul / Marmara Region\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "f2909572039fbd27344557211740d37e7bc7c541915879f6f8200bf3d0e9d6a8",
+  "content_type": "general_knowledge",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Climate_of_Turkey",
+  "display_name": "Climate of Istanbul / Marmara Region",
+  "district_id": null,
+  "document_id": "wiki_en_climate_istanbul",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "seasonal_planning",
+    "nature"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_en_climate_istanbul",
+  "text": "# Climate Classification\n\nThe Marmara Sea region, which includes Istanbul, has a complex, transitional, often microclimatic climate, classified as Koppen Csa/Csb/Cfa/Cfb -- mild-temperate rather than subtropical.\n\n# Temperature Patterns\n\nAnnual average temperature runs 12-15 degrees Celsius, with summer means of 20-25 degrees Celsius and winter means of 2-6 degrees Celsius, cooling further inland from the coast.\n\n# Precipitation\n\nAnnual rainfall totals 600-1,100 millimetres. Winters are very cloudy, with rainy days far exceeding much of Europe; snow falls occasionally, often as sea-effect snow.\n\n# Seasonal Character\n\nSummers are moderately dry but feature occasional, sometimes severe, thunderstorms, with thunderstorm activity peaking in early and late summer -- a relevant planning factor for outdoor-heavy itineraries in spring and autumn shoulder seasons.",
+  "title": "Climate of Istanbul / Marmara Region",
+  "topic_group": "climate",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Climate_of_Turkey"
+}

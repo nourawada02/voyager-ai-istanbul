@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"برج غلطة\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "88f97d978949034f729beacc3beb2f1b58212988e52df6448b22a35a0f568062",
+  "content_type": "attraction",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/برج_غلطة",
+  "display_name": "برج غلطة",
+  "district_id": "district_beyoglu",
+  "document_id": "wiki_ar_galata_tower",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "history",
+    "attractions",
+    "photography"
+  ],
+  "language": "ar",
+  "lat": 41.0256,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9741,
+  "poi_id": "poi_galata_tower",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_ar_galata_tower",
+  "text": "# تاريخ البناء\n\nتم إنشاء البرج عام 1348 خلال توسع مستعمرة جنوة في القسطنطينية. حل محل برج بيزنطي أقدم دُمر سنة 1204 أثناء الحملة الصليبية الرابعة.\n\n# الخصائص المعمارية\n\nالبرج بتصميم على الطراز الرومانسكي بشكل أسطواني مع سقف مخروطي. يبلغ ارتفاعه 66.90 متراً (62.59 متراً بدون الزخرفة)، وقطره الخارجي 16.45 متراً، ويتكون من تسعة طوابق ببناية من الحجر.\n\n# الاستخدامات عبر التاريخ\n\nفي العهد العثماني استُخدم كبرج مراقبة لاكتشاف الحرائق. شهد البرج في القرن السابع عشر محاولة الطيران التاريخية لهزارفن أحمد جلبي. بين عامي 1965 و1967 أعيد ترميمه وفُتح للعامة بهيكل خرساني حديث.\n\n# الأهمية السياحية والبانورامية\n\nيوفر البرج إطلالة بانورامية على إسطنبول والبوسفور، ويحتوي على مطعم ومصعدين ينقلان الزوار إلى الأعلى.",
+  "title": "برج غلطة",
+  "topic_group": "galata_tower",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/برج_غلطة"
+}

@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"15 July Martyrs Bridge (Bosphorus Bridge)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "489aa048a0620a4e60d616cf8af010a3adf521def225e6bee11e6f24ed228d08",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/15_July_Martyrs_Bridge",
+  "display_name": "15 July Martyrs Bridge (Bosphorus Bridge)",
+  "district_id": "district_besiktas",
+  "document_id": "wiki_en_bosphorus_bridge",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "photography",
+    "transportation",
+    "attractions"
+  ],
+  "language": "en",
+  "lat": 41.0458,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.0344,
+  "poi_id": "poi_bosphorus_bridge",
+  "preferred_period": "evening",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_bosphorus_bridge",
+  "text": "# Identification\n\nOfficially the 15 July Martyrs Bridge, commonly called the Bosphorus Bridge, it is the oldest and southernmost of the three suspension bridges crossing the Bosphorus, connecting Ortakoy (Europe) with Beylerbeyi (Asia).\n\n# Engineering Specifications\n\nThe bridge has a total length of 1,560 metres, a main span of 1,074 metres, and 165-metre-tall towers, with a deck clearance of 64 metres above sea level.\n\n# Construction Timeline\n\nDesign was contracted in 1968 to British firm Freeman Fox & Partners; construction began in February 1970 and the bridge opened on 30 October 1973, ranking as the fourth-longest suspension bridge span in the world at the time.\n\n# Renaming and Illumination\n\nThe bridge was renamed in 2016 to honor victims of the failed coup attempt of 15 July 2016. Since April 2007, a computerized LED lighting system illuminates the bridge at night with changing colors, making it a well-known nighttime photography subject from both shores.",
+  "title": "15 July Martyrs Bridge (Bosphorus Bridge)",
+  "topic_group": "bosphorus_bridge",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/15_July_Martyrs_Bridge"
+}

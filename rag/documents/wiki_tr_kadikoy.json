@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Kadıköy\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "c8a5f5a9a4630b0189576adc433cd8134ef6191bbbbda45fb8514c9014923b69",
+  "content_type": "neighborhood",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/Kad%C4%B1k%C3%B6y",
+  "display_name": "Kadıköy",
+  "district_id": "district_kadikoy",
+  "document_id": "wiki_tr_kadikoy",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "neighborhoods",
+    "culture",
+    "food",
+    "nightlife"
+  ],
+  "language": "tr",
+  "lat": 40.9903,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.0275,
+  "poi_id": "poi_kadikoy_district",
+  "preferred_period": "evening",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_tr_kadikoy",
+  "text": "# Tarihçe\n\nKadıköy'ün yerleşim geçmişi çok eski dönemlere uzanır. Fikirtepe'deki kazılarda MÖ 3000 yıllarına ait aletler bulunmuştur. Antik Çağ'da Kalkedon olarak bilinen bölge, Megaralı Yunanlılar tarafından kurulmuştur.\n\nOsmanlı döneminde Fatih Sultan Mehmet'in fethinden sonra, yönetim İstanbul Kadısı Hızır Bey Çelebi'ye verilmiş ve bölge bu tarihten itibaren Kadıköy adıyla anılmaya başlanmıştır. Cumhuriyet'te 1930 yılında ilçe statüsü kazanmıştır.\n\n# Kültürel Karakter\n\nKadıköy, İstanbul'un yaşam dolu ve sanat odaklı ilçelerinden biridir. 1900'lü yılların başında ilk sinema ve tiyatro gösterileri burada yapılmıştır. Günümüzde Süreyya Operası, Reks Sineması ve Müjdat Gezen Sanat Merkezi gibi önemli sanat kurumları bulunmaktadır.\n\n# Gece Hayatı\n\nBahariye Caddesi'nin yaya yolu haline getirilmesi ve ticari yoğunluğu, ilçeyi zengin sosyal ve gastronomik aktivitelerin merkezi haline getirmiştir.",
+  "title": "Kadıköy",
+  "topic_group": "kadikoy",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/Kad%C4%B1k%C3%B6y"
+}

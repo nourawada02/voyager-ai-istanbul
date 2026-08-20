@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Heybeliada\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "f57d34268c59a080014d60c68b8dc046f0cce7cb2356d08c6768509891c108a4",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Heybeliada",
+  "display_name": "Heybeliada",
+  "district_id": "district_adalar",
+  "document_id": "wiki_en_heybeliada",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "islands",
+    "nature",
+    "family"
+  ],
+  "language": "en",
+  "lat": 40.8791,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.0919,
+  "poi_id": "poi_heybeliada",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_en_heybeliada",
+  "text": "# Location and Size\n\nHeybeliada is the second largest of the Princes' Islands (Adalar) in the Sea of Marmara, covering approximately 2.35 square kilometres across four hills, the highest reaching 136 metres.\n\n# Historical Background\n\nThe island was historically known by Greek names referencing copper -- Halki, Halkitis, Demonesos -- reflecting its ancient reputation for copper ore.\n\n# Naval Academy\n\nA Naval High School, originally founded in 1773, overlooks the jetty and houses Byzantine church ruins, serving as a major educational facility for Turkey's maritime forces.\n\n# Transportation\n\nThe island is served by Sehir Hatlari ferries from multiple Istanbul terminals. Horse-drawn phaetons provided land transport until 2020, when they were replaced with electric vehicles.\n\n# Religious Heritage\n\nThe Halki Theological Seminary operated as the main Greek Orthodox seminary in Turkey until its 1971 closure; the island also holds several Orthodox monasteries and churches.",
+  "title": "Heybeliada",
+  "topic_group": "heybeliada",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Heybeliada"
+}

@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Galata Kulesi\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "f6f6c4a75e12bf644a05f8c69d05214ba7afa88d94370d32030900e28025cc66",
+  "content_type": "attraction",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/Galata_Kulesi",
+  "display_name": "Galata Kulesi",
+  "district_id": "district_beyoglu",
+  "document_id": "wiki_tr_galata_tower",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "history",
+    "attractions",
+    "photography"
+  ],
+  "language": "tr",
+  "lat": 41.0256,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9741,
+  "poi_id": "poi_galata_tower",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_tr_galata_tower",
+  "text": "# İnşa Tarihi\n\nGalata Kulesi 1348 yılında inşa edilmiştir. Cenevizliler tarafından 'Kutsal Haç Kulesi' adıyla kurulan yapı, bölgedeki tahkimatın bir parçasıydı.\n\n# Mimari Özellikler\n\nYapı, Romanesk tarzında silindirik bir kagir kuledir. Zeminden çatısının ucuna kadar yüksekliği 62,59 metredir. İç çapı 8,95 m, dış çapı 16,45 m olup toplam on bir katlı bir yapıdan oluşmaktadır.\n\n# Dönem Dönem Kullanımları\n\nCeneviz döneminde (1348-1453) gözetleme ve savunma amacıyla kullanılan kule, tepesinde bir haç taşıyordu. 1453'teki fetih sonrası tepesindeki haç Osmanlı bayrağıyla değiştirildi. 16-17. yüzyıllarda savaş esirlerinin barınağı ve gözlemevi olarak hizmet etti. 18. yüzyılda yangın kulesine dönüştürüldü.\n\n# Cumhuriyet Dönemi\n\n1965-1967'de turistik bir tesise dönüştürülen kule, 2020'de müzeye çevrilmiştir.",
+  "title": "Galata Kulesi",
+  "topic_group": "galata_tower",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/Galata_Kulesi"
+}

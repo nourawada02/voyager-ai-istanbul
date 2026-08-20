@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"Accessible tourism\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "9bf4d5ec014c3829c4f4cb182a6346a78e34ec900a914ed51a2be611fe0c744c",
+  "content_type": "general_knowledge",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Accessible_tourism",
+  "display_name": "Accessible tourism",
+  "district_id": null,
+  "document_id": "wiki_en_accessible_tourism",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "accessibility"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_en_accessible_tourism",
+  "text": "# What Is Accessible Tourism\n\nAccessible tourism is the ongoing endeavor to ensure tourist destinations, products, and services are accessible to all people, regardless of physical or intellectual limitations -- a concept that extends beyond travelers with disabilities to include travelers with children and seniors.\n\n# Key Components\n\nThe European Network for Accessible Tourism (ENAT) frames accessible tourism around barrier-free infrastructure and facilities, transportation suitable across air, land, and sea travel, staff training, attractions and activities enabling broad participation, and accessible digital booking systems.\n\n# Universal Design Principles\n\nSeven universal design principles, established in 1997, guide the creation of products and environments usable by anyone regardless of ability: equitable access, flexibility, intuitive use, clear information, tolerance for error, low physical effort, and appropriate size/space for approach and use.\n\n# Scale and Standards\n\nAs of 2020, approximately 15 percent of the global population lives with some form of disability. The United Nations Convention on the Rights of Persons with Disabilities (CRPD, adopted 2006) provides the closest international accessibility standard, with Article 9 addressing accessibility requirements directly.",
+  "title": "Accessible tourism",
+  "topic_group": "accessibility",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Accessible_tourism"
+}

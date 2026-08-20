@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"Istanbul Metro system (Metro İstanbul official site)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "3472c2e86c738287380351168975e9b995d4aae809bff66c97053e4ff4080144",
+  "content_type": "transport",
+  "derived_from_source": "https://www.metro.istanbul/en",
+  "display_name": "Istanbul Metro system (Metro İstanbul official site)",
+  "district_id": null,
+  "document_id": "metro_istanbul_official",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "transportation",
+    "accessibility"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "official_primary",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "metro_istanbul_official",
+  "text": "# Official Network Scope\n\nMetro Istanbul, the system's official operating authority, lists 18 operational lines across multiple transit types: 9 metro lines (M1A, M1B, M2 through M9) covering approximately 402.6 kilometres of existing infrastructure, 4 tramway lines, 2 funicular lines, and 2 cable car lines, plus night-metro service on select lines.\n\n# Official Payment System\n\nThe operating authority's own site describes travel-card based fare payment (Istanbulkart) with dedicated fare and ticketing information pages.\n\n# Official Operational Information\n\nThe authority publishes live service-status information covering escalators, elevators, station conditions, and restrooms, alongside real-time disruption notifications -- explicit accessibility-infrastructure status reporting (elevator/escalator condition) not present in any third-party source in this corpus.\n\n# Officially Stated Expansion Plans\n\nThe authority states a target network length of approximately 717 kilometres by 2050, with roughly 65 kilometres under construction at the time of this retrieval.",
+  "title": "Istanbul Metro system (Metro İstanbul official site)",
+  "topic_group": "metro_istanbul_official",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://www.metro.istanbul/en"
+}

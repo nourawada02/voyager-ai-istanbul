@@ -23,7 +23,21 @@
     "district_id": { "type": "string", "pattern": "^district_[a-z0-9_]+$" },
     "source_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "chunk_config": { "type": "string", "enum": ["A", "B", "C", "D"] },
-    "ingestion_version": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    "ingestion_version": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "interest_tags": {
+      "description": "RAG-FIRST SYSTEM B CHECKPOINT R.1 (additive, optional): supported-interest tags from the source document (rag/corpus_sources.py). Every chunk written before this checkpoint remains valid with this field absent.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+    "lon": { "type": "number", "minimum": -180, "maximum": 180 },
+    "side": { "type": "string", "enum": ["european", "asian"] },
+    "display_name": { "type": "string", "minLength": 1 },
+    "preferred_period": {
+      "type": "string",
+      "enum": ["any", "morning", "afternoon", "evening", "night"]
+    },
+    "entity_kind": { "type": "string", "enum": ["poi_candidate", "general_knowledge"] }
   },
   "required": [
     "schema_version", "chunk_id", "source_id", "language", "content_type",

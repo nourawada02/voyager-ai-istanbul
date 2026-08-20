@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"المطبخ التركي\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "d58ddb23b877e964a79f584a4426ed54722b37ba7ee89a541b1a37ab4fe1da00",
+  "content_type": "etiquette",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/المطبخ_التركي",
+  "display_name": "المطبخ التركي",
+  "district_id": null,
+  "document_id": "wiki_ar_turkish_cuisine",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "food"
+  ],
+  "language": "ar",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_ar_turkish_cuisine",
+  "text": "# التأثيرات التاريخية\n\nتطور المطبخ التركي عبر فترات زمنية طويلة، متخذاً شكله الحالي بعد تداخلات ثقافية عديدة على مر القرون ابتداءً من الفترتين السلجوقية والعثمانية.\n\n# التنوع الإقليمي\n\nالمناطق الساحلية تستخدم الأسماك بشكل واسع، خاصة في منطقة البحر الأسود. المناطق الغربية تعتمد على زيت الزيتون. الجنوب الشرقي يشتهر بتنوع الكباب والمقبلات والحلويات القائمة على العجين. وسط الأناضول معروف بأطباق مثل الكشكك والمنتي.\n\n# الأطباق الشهيرة\n\nمن المعجنات: السميت واللحماجون والبوريك. من الكباب: الدونر والإسكندر والشيش كباب وكباب أضنة الحار وكباب أورفة. من الحلويات: البقلاوة والملبن واللوقوم والكنافة.\n\n# المكونات الأساسية\n\nيعتمد المطبخ على لحم الضأن والدجاج والأرز والخضروات (خاصة الباذنجان) والمكسرات والتوابل المتنوعة.",
+  "title": "المطبخ التركي",
+  "topic_group": "turkish_cuisine",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/المطبخ_التركي"
+}

@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"Turkish cuisine\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "51595b9d0803a2a8d190693eb7b61158f7a7250929e4484b520e63f8cd3521e7",
+  "content_type": "etiquette",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Turkish_cuisine",
+  "display_name": "Turkish cuisine",
+  "district_id": null,
+  "document_id": "wiki_en_turkish_cuisine",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "food"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_en_turkish_cuisine",
+  "text": "# Historical Influences\n\nTurkish cuisine synthesizes Central Asian culinary traditions with Mediterranean and Middle Eastern influences, and shaped the food cultures of former Ottoman territories across the Balkans, Levant, North Africa, and the South Caucasus.\n\n# Regional Varieties\n\nIstanbul, Bursa, Izmir, and central Anatolia inherit Ottoman court traditions with moderate spice use and abundant vegetable stews; the Black Sea region favors fish, particularly anchovy; the southeast (Urfa, Gaziantep, Adana) is known for kebab varieties and dough-based desserts like baklava and kunefe.\n\n# Meal Structure\n\nTurkish breakfast (kahvalti, literally 'before coffee') emphasizes variety: cheese, butter, olives, eggs, tomatoes, and bread. A typical meal begins with soup, followed by vegetable or meat dishes with rice or bulgur.\n\n# Iconic Dishes\n\nKebab varieties include Adana kebap, Iskender kebap (created 1867 in Bursa), and doner kebap. Meze appetizers include cacik and stuffed vegetables. Baklava, made with pistachios or walnuts, is the best-known dessert; borek, pide, and lahmacun are everyday staples.",
+  "title": "Turkish cuisine",
+  "topic_group": "turkish_cuisine",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Turkish_cuisine"
+}

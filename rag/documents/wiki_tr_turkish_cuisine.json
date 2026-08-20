@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"Türk mutfağı\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "32b81552a4c7d77c4282e0be20c868a38e63ba3cfa7bcb485e656a53c1c60918",
+  "content_type": "etiquette",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/T%C3%BCrk_mutfa%C4%9F%C4%B1",
+  "display_name": "Türk mutfağı",
+  "district_id": null,
+  "document_id": "wiki_tr_turkish_cuisine",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "food"
+  ],
+  "language": "tr",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_tr_turkish_cuisine",
+  "text": "# Tarihi Etkiler\n\nTürk mutfağı, Orta Asya, Selçuklu ve Beylikler ile Osmanlı kültürünün mirasçısıdır ve Balkan ile Orta Doğu mutfaklarıyla karşılıklı etkileşim içinde gelişmiştir.\n\n# Bölgesel Çeşitlilik\n\nTürk mutfağı coğrafi bölgelere göre belirgin farklılıklar gösterir: Karadeniz, Ege, Orta Anadolu, Doğu Anadolu ve Güneydoğu Anadolu mutfakları kendine özgü lezzetlere sahiptir.\n\n# İkonik Yemekler\n\nKebaplar arasında döner kebap, cağ kebabı, Adana kebabı ve Urfa kebabı öne çıkar. Meze ve salatalarda çoban salatası, cacık ve çiğ köfte yaygındır. Baklava, kadayıf ve künefe uluslararası ün kazanmış tatlılardır; sütlü tatlılar arasında muhallebi, kazandibi ve sütlaç sayılabilir.\n\n# Yemek Gelenekleri\n\nBayram sofraları, geniş aile üyelerinin ve komşuların davet edildiği geleneksel önemli toplumsal etkinliklerdir.",
+  "title": "Türk mutfağı",
+  "topic_group": "turkish_cuisine",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/T%C3%BCrk_mutfa%C4%9F%C4%B1"
+}

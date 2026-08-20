@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Emirgan Park\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "5c6c5ec9dca7a522364043655a9b2794e3b0809984691029ccc09b0d4186c3f8",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Emirgan_Park",
+  "display_name": "Emirgan Park",
+  "district_id": "district_sariyer",
+  "document_id": "wiki_en_emirgan_park",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "nature",
+    "family",
+    "photography",
+    "seasonal_planning"
+  ],
+  "language": "en",
+  "lat": 41.1073,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.0522,
+  "poi_id": "poi_emirgan_park",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_emirgan_park",
+  "text": "# Overview\n\nEmirgan Park is a major public green space on the European shore of the Bosphorus in Sariyer, encompassing 117 acres of hillside terrain.\n\n# Historical Development\n\nOriginally a cypress grove in the Byzantine era, the land was granted to Ottoman Lord Chancellor Nisanci Feridun Bey in the 16th century, then to the Safavid commander Emirgune Han under Sultan Murad IV -- the source of the modern name. In the 1860s, Khedive Isma'il Pasha of Egypt acquired the property and built the wooden pavilions that remain today.\n\n# The Three Pavilions\n\nThe Yellow, Pink, and White pavilions -- Ottoman-era wooden structures restored between 1979 and 1983 -- now operate as public cafeterias and event venues.\n\n# Flora and Recreation\n\nThe park contains over 120 plant species, including stone pine, cedar varieties, and maidenhair trees, with jogging tracks and picnic areas popular with families.\n\n# Annual Tulip Festival\n\nA dedicated tulip garden established in the 1960s hosts an annual international tulip festival every April since 2005, commemorating the Ottoman Tulip Period (1718-1730) -- one of the most reliable seasonal reasons to visit the park.",
+  "title": "Emirgan Park",
+  "topic_group": "emirgan_park",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Emirgan_Park"
+}

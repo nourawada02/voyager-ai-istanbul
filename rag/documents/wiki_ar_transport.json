@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"مترو إسطنبول\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "0998d141cec4a043e882fbc767e7962a62a6bbd151d9303e9339695819955150",
+  "content_type": "transport",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/مترو_إسطنبول",
+  "display_name": "مترو إسطنبول",
+  "district_id": null,
+  "document_id": "wiki_ar_transport",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "transportation"
+  ],
+  "language": "ar",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_ar_transport",
+  "text": "# نبذة تاريخية\n\nافتتح خط إم-1، أقدم جزء من النظام الحديث، عام 1989. لكن تاريخ النقل تحت الأرض في إسطنبول أقدم بكثير: خط تونيل دخل الخدمة في 17 يناير 1875، ويُعتبر ثاني أقدم نظام من نوعه عالمياً بعد لندن.\n\n# شبكة الخطوط الحالية\n\nيضم النظام الحالي عدة خطوط رئيسية (إم-1 حتى إم-6) تغطي أكثر من 105 كيلومتر و82 محطة، تربط الجانبين الأوروبي والآسيوي عبر خط مرمراي.\n\n# الاتصالات مع وسائل النقل الأخرى\n\nيتصل مترو إسطنبول مع خط مرمراي (العابر تحت البوسفور)، وخط السكك الحديدية المعلقة إف-1، وشبكة الترام، والمتروباص.\n\n# بطاقة إسطنبول كارت\n\nيمكن للركاب استعمال آلات بيع التذاكر أو الأكشاك لدفع ثمن رحلتهم، إما بالتذاكر أو بتخزين رصيد في بطاقة كارت إسطنبول.",
+  "title": "مترو إسطنبول",
+  "topic_group": "transport",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/مترو_إسطنبول"
+}

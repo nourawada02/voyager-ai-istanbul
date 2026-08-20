@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"جامع السلطان أحمد (المسجد الأزرق)\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "f8dc29a58a81cc185df3e2b60f37bf683fef810b43011311e1b509800a53efc3",
+  "content_type": "attraction",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%A3%D8%B2%D8%B1%D9%82",
+  "display_name": "جامع السلطان أحمد (المسجد الأزرق)",
+  "district_id": "district_fatih",
+  "document_id": "wiki_ar_blue_mosque",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "attractions",
+    "history",
+    "culture"
+  ],
+  "language": "ar",
+  "lat": 41.0054,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9768,
+  "poi_id": "poi_blue_mosque",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_ar_blue_mosque",
+  "text": "# تاريخ البناء\n\nبُني المسجد بين عامي 1609م و1616م بأمر من السلطان أحمد الأول، وافتُتح رسمياً عام 1616.\n\n# المهندس المعماري\n\nصممه المعماري العثماني سيدفكار محمد الآغا، متبعاً أفكار معلمه معمار سنان.\n\n# الخصائص المعمارية\n\nيبلغ طول المسجد 72 متراً وعرضه 64 متراً، ويضم خمس قباب رئيسية وثماني قباب صغيرة، ويتسع لعشرة آلاف مصلٍ. يشتهر المسجد بمآذنه الست، وهو رقم استثنائي نتج - بحسب الروايات الشعبية - عن التباس في الترجمة بين 'مآذن ذهبية' و'ست مآذن'.\n\n# الأهمية الدينية\n\nيُعتبر المسجد آخر المساجد العظيمة في فترة العمارة العثمانية الكلاسيكية، ومن أهم المعالم الدينية والسياحية في إسطنبول.",
+  "title": "جامع السلطان أحمد (المسجد الأزرق)",
+  "topic_group": "blue_mosque",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%A3%D8%B2%D8%B1%D9%82"
+}

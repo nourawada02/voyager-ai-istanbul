@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Gulhane Park\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "bb20bbbc2431a04055f45e3d827a2aa199d959b6f3188e926f7de2eef382fdf9",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/G%C3%BClhane_Park",
+  "display_name": "Gulhane Park",
+  "district_id": "district_fatih",
+  "document_id": "wiki_en_gulhane_park",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "family",
+    "nature",
+    "attractions"
+  ],
+  "language": "en",
+  "lat": 41.0128,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9814,
+  "poi_id": "poi_gulhane_park",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_gulhane_park",
+  "text": "# Overview\n\nGulhane Park is a historic urban park in Istanbul's Fatih district, adjacent to Topkapi Palace, encompassing 9.7 hectares.\n\n# Historical Origins\n\nThe park's name derives from the Gulhane (Rosehouse), where the 1839 Edict of Gulhane was proclaimed, initiating the Tanzimat reforms. Originally part of Topkapi Palace's outer garden, it became a public park in 1912.\n\n# Notable Features\n\nThe grounds contain the Column of the Goths and the Istanbul Museum of the History of Science and Technology in Islam, which opened in 2008 in the palace's former stables and displays 140 replicas of historic inventions.\n\n# Modern Character\n\nRecent renovations removed a former zoo and amusement facilities, restoring a natural landscape popular with families and revealing trees dating from the 1800s.",
+  "title": "Gulhane Park",
+  "topic_group": "gulhane_park",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/G%C3%BClhane_Park"
+}

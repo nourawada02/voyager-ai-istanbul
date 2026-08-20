@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"Miniaturk\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "1a2fef1beda8fa1baa3a2107da6cd8a033e99d4f04e799acf73bd7eabe4dd375",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Miniat%C3%BCrk",
+  "display_name": "Miniaturk",
+  "district_id": "district_beyoglu",
+  "document_id": "wiki_en_miniaturk",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "family",
+    "attractions"
+  ],
+  "language": "en",
+  "lat": 41.0576,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9377,
+  "poi_id": "poi_miniaturk",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_miniaturk",
+  "text": "# Overview and Location\n\nMiniaturk is a miniature park on the northeastern shore of the Golden Horn, occupying 60,000 square metres. It opened on 2 May 2003 and had attracted approximately 5 million visitors by 2015.\n\n# Scale and Model Collection\n\nThe park contains 135 architectural reproductions built at 1:25 scale, depicting structures from in and around Turkey: 60 models depict Istanbul landmarks, 63 represent Anatolian sites, and 13 show former Ottoman territories now outside Turkey's borders, including the Temple of Artemis at Ephesus.\n\n# Space Allocation\n\nOf the total area, 40,000 square metres is open space, 3,500 is covered, and 2,000 contains pools and waterways, making it one of the world's largest miniature parks and a popular family destination.",
+  "title": "Miniaturk",
+  "topic_group": "miniaturk",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Miniat%C3%BCrk"
+}

@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"الشاي التركي\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "f38a223c692b5d006982d470e88413d77c1e2dc4ebc1691e803bb9eb43e75eb4",
+  "content_type": "etiquette",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/الشاي_التركي",
+  "display_name": "الشاي التركي",
+  "district_id": null,
+  "document_id": "wiki_ar_turkish_tea",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "etiquette",
+    "food"
+  ],
+  "language": "ar",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_ar_turkish_tea",
+  "text": "# التاريخ والنشأة\n\nبدأ التاريخ الحديث للشاي التركي في عشرينيات القرن العشرين، حين أُحضرت أول شتلات شاي من روسيا. تطورت الزراعة لاحقاً في مناطق البحر الأسود الشرقية، خاصة محافظة ريزا.\n\n# الأهمية الاقتصادية والاستهلاكية\n\nأنتجت تركيا 205,500 طن من الشاي عام 2004 (6.4٪ من إجمالي إنتاج الشاي العالمي)، واحتلت المركز الأول عالمياً في استهلاك الشاي بمعدل 2.5 كيلوغرام للفرد سنوياً.\n\n# طريقة التحضير التقليدية\n\nيستخدم الأتراك أباريق شاي مزدوجة خاصة: يوضع الماء في الإناء الكبير، والشاي في الإناء الآخر. كمية الماء تتحكم بقوة الشاي.\n\n# التقديم والثقافة\n\nيُقدَّم الشاي التركي في أكواب زجاجية ذات خصر رفيع مع السكر، ويعكس هذا الأسلوب أهمية الضيافة والمجاملة في الثقافة التركية.",
+  "title": "الشاي التركي",
+  "topic_group": "turkish_tea",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/الشاي_التركي"
+}

@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Sultanahmet\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "e6bb95d638758c435808c94bcaa168a9340091a1a049a662a7aa9fc4715aced8",
+  "content_type": "neighborhood",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Sultanahmet,_Fatih",
+  "display_name": "Sultanahmet",
+  "district_id": "district_fatih",
+  "document_id": "wiki_en_sultanahmet",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "neighborhoods",
+    "attractions",
+    "religious_heritage",
+    "history"
+  ],
+  "language": "en",
+  "lat": 41.0055,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9769,
+  "poi_id": "poi_sultanahmet",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_sultanahmet",
+  "text": "# Historical Significance\n\nSultanahmet is the core of Istanbul's historic peninsula, coinciding with the site of old Constantinople, the Byzantine capital.\n\n# Byzantine and Ottoman Heritage\n\nFollowing the Ottoman conquest by Mehmed II, Islamic scholars transformed the area's major churches into mosques, reshaping the neighborhood's religious character.\n\n# Major Landmarks\n\nThe district contains Hagia Sophia, the Blue Mosque, Topkapi Palace, and the Basilica Cistern, an underground Byzantine structure -- one of the densest concentrations of major historic sites anywhere in the city.\n\n# Modern Character\n\nA tramway runs from the docks at Sirkeci through Sultanahmet, and the neighborhood functions as Istanbul's primary tourist district while remaining, in local terms, emblematic of 'the real Istanbul of old times.'",
+  "title": "Sultanahmet",
+  "topic_group": "sultanahmet",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Sultanahmet,_Fatih"
+}

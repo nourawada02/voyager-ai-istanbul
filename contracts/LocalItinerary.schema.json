@@ -57,7 +57,46 @@
       "items": { "type": "string", "minLength": 1 }
     },
     "data_quality": { "$ref": "DataQuality.schema.json" },
-    "hard_constraint_validation_passed": { "type": "boolean" }
+    "hard_constraint_validation_passed": { "type": "boolean" },
+    "candidate_provenance": {
+      "description": "RAG-FIRST SYSTEM B CHECKPOINT R.1 (additive, optional): which of the two candidate pools (RagCandidate.schema.json, catalog fixture) each selected POI came from. Absent/omitted for itineraries built before this checkpoint -- never required, never inferred when missing. R.1 FINAL USER-TEST CLOSURE requirement 2 (additive, optional fields): a 'rag'-origin entry may additionally carry display_name/matched_interests/source_id/chunk_id/retrieval_query/retrieval_score; a 'catalog_fallback' entry never has these (it has no retrieval to report) and stays valid with just poi_id/candidate_origin, exactly the pre-existing two-field shape.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "poi_id": { "type": "string", "pattern": "^poi_[a-z0-9_]+$" },
+          "candidate_origin": { "type": "string", "enum": ["rag", "catalog_fallback"] },
+          "display_name": { "type": "string", "minLength": 1 },
+          "matched_interests": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "source_id": { "type": "string", "minLength": 1 },
+          "chunk_id": { "type": "string", "minLength": 1 },
+          "retrieval_query": { "type": "string", "minLength": 1 },
+          "retrieval_score": { "type": "number" }
+        },
+        "required": ["poi_id", "candidate_origin"],
+        "additionalProperties": false
+      }
+    },
+    "uncovered_interests": {
+      "description": "RAG-FIRST SYSTEM B R.1 CORRECTION (additive, optional): requested interests for which no valid RAG candidate evidence existed -- reported explicitly rather than silently dropped or forced. Absent/omitted for itineraries built before this correction.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "accessibility_evaluation": {
+      "description": "RAG-FIRST SYSTEM B R.1 CORRECTION (additive, optional): accessibility is treated as a cross-cutting evidence concern, never a schedulable POI category. Present only when accessibility was requested (via interests or mobility_constraints).",
+      "type": "object",
+      "properties": {
+        "requested": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["satisfied", "evidence_available_not_candidate_verified", "unsupported"] },
+        "evidence_count": { "type": "integer", "minimum": 0 },
+        "note": { "type": "string", "minLength": 1 }
+      },
+      "required": ["requested", "status", "evidence_count", "note"],
+      "additionalProperties": false
+    }
   },
   "required": [
     "schema_version", "session_id", "trace_id", "contract_version",

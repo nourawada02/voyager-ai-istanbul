@@ -45,6 +45,19 @@ class LoadedDocument:
     district_id: str | None
     checksum: str
     text: str
+    # RAG-FIRST SYSTEM B CHECKPOINT R.1 (additive; default matches every
+    # document record written before this checkpoint, which has none of
+    # these keys -- .get() below, never raw[...]):
+    interest_tags: tuple[str, ...] = ()
+    lat: float | None = None
+    lon: float | None = None
+    side: str | None = None
+    display_name: str | None = None
+    preferred_period: str = "any"
+    entity_kind: str = "general_knowledge"
+    publisher_type: str = "wikipedia"
+    transformation_method: str = "llm_paraphrase_of_cited_source"
+    derived_from_source: str | None = None
 
 
 def load_documents() -> list[LoadedDocument]:
@@ -61,6 +74,16 @@ def load_documents() -> list[LoadedDocument]:
                 district_id=raw["district_id"],
                 checksum=raw["checksum"],
                 text=raw["text"],
+                interest_tags=tuple(raw.get("interest_tags") or ()),
+                lat=raw.get("lat"),
+                lon=raw.get("lon"),
+                side=raw.get("side"),
+                display_name=raw.get("display_name"),
+                preferred_period=raw.get("preferred_period", "any"),
+                entity_kind=raw.get("entity_kind", "general_knowledge"),
+                publisher_type=raw.get("publisher_type", "wikipedia"),
+                transformation_method=raw.get("transformation_method", "llm_paraphrase_of_cited_source"),
+                derived_from_source=raw.get("derived_from_source"),
             )
         )
     if not docs:
@@ -143,6 +166,18 @@ def ingest_config(
                     "district_id": doc.district_id,
                     "source_checksum": doc.checksum,
                     "chunk_config": chunk_config,
+                    # RAG-FIRST SYSTEM B CHECKPOINT R.1: entity-linkage
+                    # fields consumed by phase4.knowledge.qdrant_client's
+                    # RetrievedChunk and phase4.rag_candidates -- always
+                    # present in the payload (None/() for general-
+                    # knowledge chunks), never a second lookup required.
+                    "interest_tags": list(doc.interest_tags),
+                    "lat": doc.lat,
+                    "lon": doc.lon,
+                    "side": doc.side,
+                    "display_name": doc.display_name,
+                    "preferred_period": doc.preferred_period,
+                    "entity_kind": doc.entity_kind,
                     # Manual QA remediation Q.1 (§A): the exact ingestion
                     # config fingerprint this point was written under --
                     # same value as the collection's own fingerprint marker

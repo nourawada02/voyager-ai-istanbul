@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Spice Bazaar (Egyptian Bazaar)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "ad3e67c8aab655074c048708e38ae1eb07569a0cb637f6ba656881f2717a2d95",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Spice_Bazaar,_Istanbul",
+  "display_name": "Spice Bazaar (Egyptian Bazaar)",
+  "district_id": "district_fatih",
+  "document_id": "wiki_en_spice_bazaar",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "shopping",
+    "food",
+    "history",
+    "attractions"
+  ],
+  "language": "en",
+  "lat": 41.0165,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9702,
+  "poi_id": "poi_spice_bazaar",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_spice_bazaar",
+  "text": "# Founding and Historical Origins\n\nThe Spice Bazaar was established in 1660 in Istanbul's Eminonu quarter, built with revenues from the Ottoman eyalet of Egypt -- hence its Turkish name, Misir Carsisi (Egyptian Bazaar). Construction followed the Great Fire of 1660 and was designed by court architect Koca Kasim Aga.\n\n# Architectural Significance\n\nThe bazaar forms part of the kulliye (religious complex) of the New Mosque; rent from its shops historically funded the mosque's upkeep. Construction was patronized by Turhan Hatice, the Valide Sultan (Queen Mother) of Sultan Mehmed IV.\n\n# Merchandise and Scale\n\nThe bazaar contains around 85 shops selling spices, Turkish delight and other sweets, jewellery, souvenirs, and dried fruits and nuts.\n\n# Position in Istanbul's Shopping Culture\n\nIt ranks as the most famous covered shopping complex after the Grand Bazaar, and remains a working spice market as well as a tourist destination.",
+  "title": "Spice Bazaar (Egyptian Bazaar)",
+  "topic_group": "spice_bazaar",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Spice_Bazaar,_Istanbul"
+}

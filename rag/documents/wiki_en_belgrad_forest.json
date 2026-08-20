@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"Belgrad Forest\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "fa5ddc070efb1f236dd71fcf5fcdb01db7f197f0d9e5706390d4c74e11386134",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Belgrad_Forest",
+  "display_name": "Belgrad Forest",
+  "district_id": "district_sariyer",
+  "document_id": "wiki_en_belgrad_forest",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "nature"
+  ],
+  "language": "en",
+  "lat": 41.1804,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9982,
+  "poi_id": "poi_belgrad_forest",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_belgrad_forest",
+  "text": "# Location and Geography\n\nBelgrad Forest sits adjacent to Istanbul, spanning approximately 5,524 hectares across the Sariyer and Eyup districts, at the easternmost point of the Thracian Peninsula.\n\n# Historical Origins\n\nThe forest takes its name from a nearby village established by Serbian deportees after Suleiman the Magnificent's 1521 conquest of Belgrade relocated thousands of Serbs to Constantinople.\n\n# Forest Composition\n\nThe ecosystem is mixed deciduous woodland, with sessile oak as the dominant species, supporting diverse plant, bird, and animal life.\n\n# Ottoman Water Infrastructure\n\nThe forest contains historical reservoirs and aqueducts built over 150 years of Ottoman administration, including the Kirkcesme system upgraded by architect Sinan in the 16th century, and the Maglova Aqueduct.\n\n# Recreation\n\nThe forest is used for jogging, hiking, and picnicking, with a 6.5-kilometre jogging track and the Ataturk Arboretum, which maintains over 2,000 plant species and is open daily except Mondays.",
+  "title": "Belgrad Forest",
+  "topic_group": "belgrad_forest",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Belgrad_Forest"
+}

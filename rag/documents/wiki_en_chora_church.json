@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Chora Church (Kariye)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "baa371e2f4f98bfdb4ff6460d8d304755c3bfbc904fd0f627b9f802ee15431ee",
+  "content_type": "attraction",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Chora_Church",
+  "display_name": "Chora Church (Kariye)",
+  "district_id": "district_fatih",
+  "document_id": "wiki_en_chora_church",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "attractions",
+    "history",
+    "art"
+  ],
+  "language": "en",
+  "lat": 41.0311,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9391,
+  "poi_id": "poi_chora_church",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_en_chora_church",
+  "text": "# Origins\n\nThe Chora Church began as a 4th-century monastery complex outside Constantinople's walls, later incorporated within the city when the Theodosian walls were built in 413-414.\n\n# 14th-Century Mosaics\n\nMost of the present structure dates from 1077-1081; Byzantine statesman Theodore Metochites endowed the church with its celebrated mosaics and frescoes between roughly 1310 and 1317, considered the finest example of the Palaeologian Renaissance.\n\n# Transitions: Church, Mosque, Museum\n\nAround 1500 the church was converted into a mosque (Kariye Camii) under Sultan Bayezid II; the mosaics were plastered over rather than destroyed, inadvertently preserving them. In 1945 the site was secularized and became a museum, opening to the public in 1958 after restoration by the Byzantine Institute of America. In 2020 the building was reconverted to an active mosque.\n\n# Artistic Significance\n\nThe interior showcases exceptional Late Byzantine art across its narthex, naos, and parecclesion, including the renowned Koimesis (Dormition) mosaic and the Anastasis fresco. The site is part of the 1985 UNESCO World Heritage designation of the Historic Areas of Istanbul.",
+  "title": "Chora Church (Kariye)",
+  "topic_group": "chora_church",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Chora_Church"
+}

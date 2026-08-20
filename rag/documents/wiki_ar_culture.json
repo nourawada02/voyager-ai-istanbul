@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"ثقافة تركيا\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "fba7d45e7652493f440be2c544ec9f18654ca20ec1f6fb21a4af5e6315721e48",
+  "content_type": "etiquette",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/ثقافة_تركيا",
+  "display_name": "ثقافة تركيا",
+  "district_id": null,
+  "document_id": "wiki_ar_culture",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "etiquette",
+    "culture"
+  ],
+  "language": "ar",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_ar_culture",
+  "text": "# نظرة عامة على الثقافة التركية\n\nتجمع الثقافة التركية بين مجموعة متنوعة من التقاليد المشتقة من الدولة العثمانية وأوروبا والشرق الأوسط وآسيا الوسطى، وشهدت تحولات عميقة خلال القرن الماضي.\n\n# الأدب والفنون\n\nيعتبر الأدب التركي مزيجاً من التقاليد الشعبية والعثمانية. فاز أورهان باموك بجائزة نوبل للأدب عام 2006.\n\n# العمارة\n\nمرّت العمارة التركية بفترات متعددة: الفترة الكلاسيكية (1437-1703) تحت إشراف معمار سنان، فترة التغريب (1703-1876) بتأثيرات أوروبية، والعصر الحديث بالعمارة الوطنية المستوحاة من التراث العثماني.\n\n# المطبخ التركي\n\nيعكس المطبخ التركي التراث العثماني الذي يمزج المأكولات التركية والكردية والعربية واليونانية والأرمنية والفارسية.",
+  "title": "ثقافة تركيا",
+  "topic_group": "culture",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/ثقافة_تركيا"
+}

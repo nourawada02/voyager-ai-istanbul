@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Sultan Ahmet Camii\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "c9e5997217b93efabb07a382fcc344c6fe4e8762b95ec54c2a7d68a854bf69cf",
+  "content_type": "attraction",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/Sultan_Ahmet_Camii",
+  "display_name": "Sultan Ahmet Camii",
+  "district_id": "district_fatih",
+  "document_id": "wiki_tr_blue_mosque",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "attractions",
+    "history",
+    "culture"
+  ],
+  "language": "tr",
+  "lat": 41.0054,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9768,
+  "poi_id": "poi_blue_mosque",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_tr_blue_mosque",
+  "text": "# İnşa Tarihi\n\nCami, I. Ahmed döneminde 1609-1617 yılları arasında inşa edilmiştir.\n\n# Mimar\n\nSedefkâr Mehmed Ağa, yapının mimarıdır; tasarımında 'azamet, ihtişam ve görkem' ilkelerini benimsemiştir.\n\n# Mimari Önem\n\nMerkezi kubbe 23,5 metre çapında ve 43 metre yüksekliğindedir, dört büyük ayak tarafından desteklenir.\n\n# Ayırt Edici Özellikler\n\nCami, Türkiye'de altı minareye sahip ilk camidir; bu durum döneminde tartışma yaratmış, sorun Mekke'deki Mescid-i Haram'a yedinci bir minare eklenerek çözülmüştür. İç mekânda 20.000'den fazla İznik çinisi bulunur ve 200'den fazla vitray pencere ışığın içeri dolmasını sağlar.\n\n# Dini ve Kültürel Önem\n\nAyasofya'nın 1935'te müzeye dönüştürülmesinin ardından Sultanahmet Camii İstanbul'un başlıca camisi haline gelmiştir. 1985 yılında UNESCO Dünya Mirası listesine dahil edilmiştir.",
+  "title": "Sultan Ahmet Camii",
+  "topic_group": "blue_mosque",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/Sultan_Ahmet_Camii"
+}

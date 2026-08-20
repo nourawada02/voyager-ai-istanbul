@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"شارع الاستقلال\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "bf2cc0a84c0a736318ce96c6547f714a0ce7827935104a3d9d41c43e03bfe147",
+  "content_type": "attraction",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/شارع_الاستقلال",
+  "display_name": "شارع الاستقلال",
+  "district_id": "district_beyoglu",
+  "document_id": "wiki_ar_istiklal_avenue",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "shopping",
+    "nightlife",
+    "neighborhoods",
+    "culture"
+  ],
+  "language": "ar",
+  "lat": 41.0328,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9784,
+  "poi_id": "poi_istiklal_avenue",
+  "preferred_period": "evening",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_ar_istiklal_avenue",
+  "text": "# النشأة والأهمية التاريخية\n\nشارع الاستقلال يُعتبر أحد أشهر شوارع إسطنبول بطول 1,600 متر تقريباً. نشأ كنقطة انطلاق لمشروع تحديث تركيا في عهد السلطان عبد المجيد.\n\n# الخصائص المعمارية والعمرانية\n\nيضم الشارع مباني أثرية ومحلات ملابس ومعارض ومكتبات وسينمات وملاهي ليلية. كما يخترقه ترام قديم أقيم منذ العهد العثماني، مما يعكس طابعه التاريخي.\n\n# الحياة التجارية والدبلوماسية\n\nيستقطب الشارع ملايين الزوار يومياً ويضم عدة قنصليات منها الأمريكية والفرنسية واليونانية والبريطانية.",
+  "title": "شارع الاستقلال",
+  "topic_group": "istiklal_avenue",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/شارع_الاستقلال"
+}

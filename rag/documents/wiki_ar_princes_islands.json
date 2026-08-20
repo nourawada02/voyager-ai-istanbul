@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"جزر الأمراء\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "0cb9328c27b15982daf05d81a76e7a240dcc4339056e337feefb279b9490dbc2",
+  "content_type": "attraction",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/جزر_الأمراء",
+  "display_name": "جزر الأمراء",
+  "district_id": "district_adalar",
+  "document_id": "wiki_ar_princes_islands",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "islands",
+    "nature",
+    "family"
+  ],
+  "language": "ar",
+  "lat": 40.8767,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.1206,
+  "poi_id": "poi_buyukada",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_ar_princes_islands",
+  "text": "# النشأة والتسمية\n\nتعود التسمية إلى العصور البيزنطية، حيث كانت تُستخدم كمكان لنفي الأمراء الذين كانوا يُعتبرون تهديداً للعرش. استمرت هذه الوظيفة بعد الفتح العثماني عام 1453.\n\n# الموقع والمساحة\n\nتقع جزر الأمراء في بحر مرمرة قبالة إسطنبول، وتشكل أرخبيلاً بمساحة إجمالية 15.85 كيلومتراً مربعاً.\n\n# الجزر الرئيسية\n\nتتضمن المنطقة تسع جزر، أبرزها بويوك أدا (الأكبر والأكثر زيارة)، وهيبيلي أدا المشهورة بمساحاتها الخضراء ومعهد البحرية العسكري، وبورغاز أدا وكينالي أدا الأصغر بطابع هادئ.\n\n# حظر السيارات\n\nمنطقة خالية من السيارات العادية، حيث يتم التنقل بالدراجات الهوائية والعربات الكهربائية.\n\n# الوصول والسياحة\n\nتتوفر خدمات عبّارات منتظمة من محطات ميناء إسطنبول، والرحلة تستغرق حوالي ساعة ونصف. تجذب الجزر السياح لمعالمها التاريخية والطبيعية والمطاعم البحرية.",
+  "title": "جزر الأمراء",
+  "topic_group": "buyukada",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/جزر_الأمراء"
+}

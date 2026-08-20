@@ -1,0 +1,1675 @@
+{
+  "demo_results": [
+    {
+      "case": "history_culture",
+      "status": "success",
+      "elapsed_seconds": 0.31,
+      "requested_interests": [
+        "history",
+        "culture"
+      ],
+      "retrieved_source_ids": [
+        "wiki_en_beyoglu",
+        "wiki_en_buyukada",
+        "wiki_en_chora_church",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_kadikoy",
+        "wiki_en_sultanahmet",
+        "wiki_en_uskudar"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "history",
+          "query": "historic sites and history of Istanbul",
+          "score": 0.8848,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "history",
+          "query": "historic sites and history of Istanbul",
+          "score": 0.8812,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_chora_church",
+          "display_name": "Chora Church (Kariye)",
+          "categories": [
+            "religious_heritage",
+            "attractions",
+            "history",
+            "art"
+          ],
+          "facet": "history",
+          "query": "historic sites and history of Istanbul",
+          "score": 0.8752,
+          "source_id": "wiki_en_chora_church"
+        },
+        {
+          "entity_id": "poi_uskudar_district",
+          "display_name": "\u00dcsk\u00fcdar",
+          "categories": [
+            "neighborhoods",
+            "religious_heritage",
+            "culture"
+          ],
+          "facet": "culture",
+          "query": "culture and cultural life in Istanbul",
+          "score": 0.8755,
+          "source_id": "wiki_en_uskudar"
+        },
+        {
+          "entity_id": "poi_kadikoy_district",
+          "display_name": "Kad\u0131k\u00f6y",
+          "categories": [
+            "neighborhoods",
+            "culture",
+            "food",
+            "nightlife"
+          ],
+          "facet": "culture",
+          "query": "culture and cultural life in Istanbul",
+          "score": 0.8693,
+          "source_id": "wiki_en_kadikoy"
+        },
+        {
+          "entity_id": "poi_beyoglu_district",
+          "display_name": "Beyo\u011flu",
+          "categories": [
+            "neighborhoods",
+            "culture",
+            "nightlife",
+            "shopping"
+          ],
+          "facet": "culture",
+          "query": "culture and cultural life in Istanbul",
+          "score": 0.866,
+          "source_id": "wiki_en_beyoglu"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8535,
+          "source_id": "wiki_en_emirgan_park"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "Buyukada (Princes' Islands)",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.853,
+          "source_id": "wiki_en_buyukada"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_cicek_pasaji",
+        "poi_sultanahmet",
+        "poi_kadikoy_district",
+        "poi_uskudar_district"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_cicek_pasaji",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_sultanahmet",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_kadikoy_district",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_uskudar_district",
+          "candidate_origin": "rag"
+        }
+      ],
+      "rag_origin_count": 4,
+      "catalog_fallback_count": 0,
+      "total_scheduled": 4,
+      "uncovered_interests": [],
+      "interest_coverage": {
+        "history": true,
+        "culture": true
+      },
+      "accessibility_evaluation": null,
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_cicek_pasaji",
+          "title": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "url": "https://en.wikipedia.org/wiki/%C3%87i%C3%A7ek_Pasaj%C4%B1",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_72a0128a21c10f2aec7c4a9b"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_kadikoy",
+          "title": "Kad\u0131k\u00f6y",
+          "url": "https://en.wikipedia.org/wiki/Kad%C4%B1k%C3%B6y",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "chunk_ids": [
+            "chunk_4d1a55f177305f4c4a755034"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_sultanahmet",
+          "title": "Sultanahmet",
+          "url": "https://en.wikipedia.org/wiki/Sultanahmet,_Fatih",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_54506b33ac68e96fcded2694"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_uskudar",
+          "title": "\u00dcsk\u00fcdar",
+          "url": "https://en.wikipedia.org/wiki/%C3%9Csk%C3%BCdar",
+          "retrieved_at": "2026-08-15T00:00:00Z",
+          "chunk_ids": [
+            "chunk_d44bbb931095a90727b2cab8"
+          ]
+        }
+      ],
+      "warnings": [],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    },
+    {
+      "case": "food",
+      "status": "success",
+      "elapsed_seconds": 0.3,
+      "requested_interests": [
+        "food"
+      ],
+      "retrieved_source_ids": [
+        "wiki_en_blue_mosque",
+        "wiki_en_buyukada",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_spice_bazaar",
+        "wiki_en_sultanahmet"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "food",
+          "query": "famous food markets, bazaars, and dining destinations to visit in Istanbul",
+          "score": 0.8768,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_spice_bazaar",
+          "display_name": "Spice Bazaar (Egyptian Bazaar)",
+          "categories": [
+            "shopping",
+            "food",
+            "history",
+            "attractions"
+          ],
+          "facet": "food",
+          "query": "famous food markets, bazaars, and dining destinations to visit in Istanbul",
+          "score": 0.8649,
+          "source_id": "wiki_en_spice_bazaar"
+        },
+        {
+          "entity_id": "poi_blue_mosque",
+          "display_name": "Sultan Ahmed Mosque (Blue Mosque)",
+          "categories": [
+            "religious_heritage",
+            "attractions",
+            "history",
+            "culture"
+          ],
+          "facet": "food",
+          "query": "famous food markets, bazaars, and dining destinations to visit in Istanbul",
+          "score": 0.8596,
+          "source_id": "wiki_en_blue_mosque"
+        },
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8599,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8535,
+          "source_id": "wiki_en_emirgan_park"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "Buyukada (Princes' Islands)",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.853,
+          "source_id": "wiki_en_buyukada"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_cicek_pasaji",
+        "poi_spice_bazaar",
+        "poi_buyukada",
+        "poi_camlica_hill"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_cicek_pasaji",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_spice_bazaar",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_buyukada",
+          "candidate_origin": "catalog_fallback"
+        },
+        {
+          "poi_id": "poi_camlica_hill",
+          "candidate_origin": "catalog_fallback"
+        }
+      ],
+      "rag_origin_count": 2,
+      "catalog_fallback_count": 2,
+      "total_scheduled": 4,
+      "uncovered_interests": [],
+      "interest_coverage": {
+        "food": true
+      },
+      "accessibility_evaluation": null,
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_cicek_pasaji",
+          "title": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "url": "https://en.wikipedia.org/wiki/%C3%87i%C3%A7ek_Pasaj%C4%B1",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_72a0128a21c10f2aec7c4a9b"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_spice_bazaar",
+          "title": "Spice Bazaar (Egyptian Bazaar)",
+          "url": "https://en.wikipedia.org/wiki/Spice_Bazaar,_Istanbul",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_156d0b596f2474d217e649e0"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_buyukada",
+          "title": "Buyukada (Princes' Islands)",
+          "url": "https://en.wikipedia.org/wiki/Princes%27_Islands",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_1ae9f4cc7e33acbea139cd2e"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_heybeliada",
+          "title": "Heybeliada",
+          "url": "https://en.wikipedia.org/wiki/Heybeliada",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_756265e135fd052441f401e1"
+          ]
+        }
+      ],
+      "warnings": [
+        "candidate_pool_insufficient_rag_coverage_catalog_fallback_used"
+      ],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    },
+    {
+      "case": "nightlife_shopping",
+      "status": "success",
+      "elapsed_seconds": 0.26,
+      "requested_interests": [
+        "nightlife",
+        "shopping"
+      ],
+      "retrieved_source_ids": [
+        "wiki_en_beyoglu",
+        "wiki_en_blue_mosque",
+        "wiki_en_buyukada",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_grand_bazaar",
+        "wiki_en_ortakoy",
+        "wiki_en_spice_bazaar",
+        "wiki_en_sultanahmet"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "nightlife",
+          "query": "nightlife and evening entertainment in Istanbul",
+          "score": 0.883,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_ortakoy",
+          "display_name": "Ortakoy",
+          "categories": [
+            "nightlife",
+            "nature",
+            "religious_heritage",
+            "photography",
+            "neighborhoods"
+          ],
+          "facet": "nightlife",
+          "query": "nightlife and evening entertainment in Istanbul",
+          "score": 0.8633,
+          "source_id": "wiki_en_ortakoy"
+        },
+        {
+          "entity_id": "poi_beyoglu_district",
+          "display_name": "Beyo\u011flu",
+          "categories": [
+            "neighborhoods",
+            "culture",
+            "nightlife",
+            "shopping"
+          ],
+          "facet": "nightlife",
+          "query": "nightlife and evening entertainment in Istanbul",
+          "score": 0.8572,
+          "source_id": "wiki_en_beyoglu"
+        },
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8599,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_grand_bazaar",
+          "display_name": "Grand Bazaar, Istanbul",
+          "categories": [
+            "history",
+            "shopping",
+            "attractions",
+            "culture"
+          ],
+          "facet": "shopping",
+          "query": "shopping, bazaars, and markets in Istanbul",
+          "score": 0.8673,
+          "source_id": "wiki_en_grand_bazaar"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8535,
+          "source_id": "wiki_en_emirgan_park"
+        },
+        {
+          "entity_id": "poi_spice_bazaar",
+          "display_name": "Spice Bazaar (Egyptian Bazaar)",
+          "categories": [
+            "shopping",
+            "food",
+            "history",
+            "attractions"
+          ],
+          "facet": "shopping",
+          "query": "shopping, bazaars, and markets in Istanbul",
+          "score": 0.8941,
+          "source_id": "wiki_en_spice_bazaar"
+        },
+        {
+          "entity_id": "poi_blue_mosque",
+          "display_name": "Sultan Ahmed Mosque (Blue Mosque)",
+          "categories": [
+            "religious_heritage",
+            "attractions",
+            "history",
+            "culture"
+          ],
+          "facet": "shopping",
+          "query": "shopping, bazaars, and markets in Istanbul",
+          "score": 0.8674,
+          "source_id": "wiki_en_blue_mosque"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "Buyukada (Princes' Islands)",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.853,
+          "source_id": "wiki_en_buyukada"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_cicek_pasaji",
+        "poi_grand_bazaar",
+        "poi_ortakoy",
+        "poi_spice_bazaar"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_cicek_pasaji",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_grand_bazaar",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_ortakoy",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_spice_bazaar",
+          "candidate_origin": "rag"
+        }
+      ],
+      "rag_origin_count": 4,
+      "catalog_fallback_count": 0,
+      "total_scheduled": 4,
+      "uncovered_interests": [],
+      "interest_coverage": {
+        "nightlife": true,
+        "shopping": true
+      },
+      "accessibility_evaluation": null,
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_cicek_pasaji",
+          "title": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "url": "https://en.wikipedia.org/wiki/%C3%87i%C3%A7ek_Pasaj%C4%B1",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_72a0128a21c10f2aec7c4a9b"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_spice_bazaar",
+          "title": "Spice Bazaar (Egyptian Bazaar)",
+          "url": "https://en.wikipedia.org/wiki/Spice_Bazaar,_Istanbul",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_156d0b596f2474d217e649e0"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_ortakoy",
+          "title": "Ortakoy",
+          "url": "https://en.wikipedia.org/wiki/Ortak%C3%B6y",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_04866a2db684c1ddd3d3c996"
+          ]
+        }
+      ],
+      "warnings": [],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    },
+    {
+      "case": "nature_islands",
+      "status": "success",
+      "elapsed_seconds": 0.24,
+      "requested_interests": [
+        "nature",
+        "islands"
+      ],
+      "retrieved_source_ids": [
+        "wiki_en_belgrad_forest",
+        "wiki_en_buyukada",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_gulhane_park",
+        "wiki_en_heybeliada",
+        "wiki_en_miniaturk",
+        "wiki_en_sultanahmet"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_belgrad_forest",
+          "display_name": "Belgrad Forest",
+          "categories": [
+            "nature"
+          ],
+          "facet": "nature",
+          "query": "parks, forests, and nature in Istanbul",
+          "score": 0.8868,
+          "source_id": "wiki_en_belgrad_forest"
+        },
+        {
+          "entity_id": "poi_gulhane_park",
+          "display_name": "Gulhane Park",
+          "categories": [
+            "family",
+            "nature",
+            "attractions"
+          ],
+          "facet": "nature",
+          "query": "parks, forests, and nature in Istanbul",
+          "score": 0.8665,
+          "source_id": "wiki_en_gulhane_park"
+        },
+        {
+          "entity_id": "poi_miniaturk",
+          "display_name": "Miniaturk",
+          "categories": [
+            "family",
+            "attractions"
+          ],
+          "facet": "nature",
+          "query": "parks, forests, and nature in Istanbul",
+          "score": 0.8597,
+          "source_id": "wiki_en_miniaturk"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "nature",
+          "query": "parks, forests, and nature in Istanbul",
+          "score": 0.8593,
+          "source_id": "wiki_en_emirgan_park"
+        },
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "nature",
+          "query": "parks, forests, and nature in Istanbul",
+          "score": 0.8582,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "Buyukada (Princes' Islands)",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "islands",
+          "query": "islands near Istanbul",
+          "score": 0.8846,
+          "source_id": "wiki_en_buyukada"
+        },
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8599,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_heybeliada",
+          "display_name": "Heybeliada",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "islands",
+          "query": "islands near Istanbul",
+          "score": 0.848,
+          "source_id": "wiki_en_heybeliada"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_belgrad_forest",
+        "poi_emirgan_park",
+        "poi_buyukada"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_belgrad_forest",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_emirgan_park",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_buyukada",
+          "candidate_origin": "rag"
+        }
+      ],
+      "rag_origin_count": 3,
+      "catalog_fallback_count": 0,
+      "total_scheduled": 3,
+      "uncovered_interests": [],
+      "interest_coverage": {
+        "nature": true,
+        "islands": true
+      },
+      "accessibility_evaluation": null,
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_buyukada",
+          "title": "Buyukada (Princes' Islands)",
+          "url": "https://en.wikipedia.org/wiki/Princes%27_Islands",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_99d10c4b1ab0e7028f6fc36f"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_belgrad_forest",
+          "title": "Belgrad Forest",
+          "url": "https://en.wikipedia.org/wiki/Belgrad_Forest",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_95e8014c58a1d5944964fe40"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_emirgan_park",
+          "title": "Emirgan Park",
+          "url": "https://en.wikipedia.org/wiki/Emirgan_Park",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_f71c8efca410271643b8641d"
+          ]
+        }
+      ],
+      "warnings": [],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    },
+    {
+      "case": "family",
+      "status": "success",
+      "elapsed_seconds": 0.23,
+      "requested_interests": [
+        "family"
+      ],
+      "retrieved_source_ids": [
+        "wiki_en_belgrad_forest",
+        "wiki_en_buyukada",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_gulhane_park",
+        "wiki_en_miniaturk",
+        "wiki_en_sultanahmet"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_miniaturk",
+          "display_name": "Miniaturk",
+          "categories": [
+            "family",
+            "attractions"
+          ],
+          "facet": "family",
+          "query": "family-friendly parks, miniature parks, and attractions for children in Istanbul",
+          "score": 0.8765,
+          "source_id": "wiki_en_miniaturk"
+        },
+        {
+          "entity_id": "poi_belgrad_forest",
+          "display_name": "Belgrad Forest",
+          "categories": [
+            "nature"
+          ],
+          "facet": "family",
+          "query": "family-friendly parks, miniature parks, and attractions for children in Istanbul",
+          "score": 0.8481,
+          "source_id": "wiki_en_belgrad_forest"
+        },
+        {
+          "entity_id": "poi_gulhane_park",
+          "display_name": "Gulhane Park",
+          "categories": [
+            "family",
+            "nature",
+            "attractions"
+          ],
+          "facet": "family",
+          "query": "family-friendly parks, miniature parks, and attractions for children in Istanbul",
+          "score": 0.8444,
+          "source_id": "wiki_en_gulhane_park"
+        },
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8534,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8599,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8535,
+          "source_id": "wiki_en_emirgan_park"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "Buyukada (Princes' Islands)",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.853,
+          "source_id": "wiki_en_buyukada"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_emirgan_park",
+        "poi_gulhane_park",
+        "poi_buyukada"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_emirgan_park",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_gulhane_park",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_buyukada",
+          "candidate_origin": "rag"
+        }
+      ],
+      "rag_origin_count": 3,
+      "catalog_fallback_count": 0,
+      "total_scheduled": 3,
+      "uncovered_interests": [],
+      "interest_coverage": {
+        "family": true
+      },
+      "accessibility_evaluation": null,
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_buyukada",
+          "title": "Buyukada (Princes' Islands)",
+          "url": "https://en.wikipedia.org/wiki/Princes%27_Islands",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_99d10c4b1ab0e7028f6fc36f"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_emirgan_park",
+          "title": "Emirgan Park",
+          "url": "https://en.wikipedia.org/wiki/Emirgan_Park",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_f71c8efca410271643b8641d"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_gulhane_park",
+          "title": "Gulhane Park",
+          "url": "https://en.wikipedia.org/wiki/G%C3%BClhane_Park",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_8c41dee43521ce5341ea2725"
+          ]
+        }
+      ],
+      "warnings": [],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    },
+    {
+      "case": "accessibility",
+      "status": "success",
+      "elapsed_seconds": 0.3,
+      "requested_interests": [
+        "accessibility",
+        "attractions"
+      ],
+      "retrieved_source_ids": [
+        "wiki_en_beyoglu",
+        "wiki_en_blue_mosque",
+        "wiki_en_buyukada",
+        "wiki_en_chora_church",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_sultanahmet",
+        "wiki_en_uskudar"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "attractions",
+          "query": "top tourist attractions and landmarks in Istanbul",
+          "score": 0.8728,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "attractions",
+          "query": "top tourist attractions and landmarks in Istanbul",
+          "score": 0.8622,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_beyoglu_district",
+          "display_name": "Beyo\u011flu",
+          "categories": [
+            "neighborhoods",
+            "culture",
+            "nightlife",
+            "shopping"
+          ],
+          "facet": "accessibility",
+          "query": "accessible travel and mobility considerations in Istanbul",
+          "score": 0.8523,
+          "source_id": "wiki_en_beyoglu"
+        },
+        {
+          "entity_id": "poi_chora_church",
+          "display_name": "Chora Church (Kariye)",
+          "categories": [
+            "religious_heritage",
+            "attractions",
+            "history",
+            "art"
+          ],
+          "facet": "attractions",
+          "query": "top tourist attractions and landmarks in Istanbul",
+          "score": 0.8594,
+          "source_id": "wiki_en_chora_church"
+        },
+        {
+          "entity_id": "poi_uskudar_district",
+          "display_name": "\u00dcsk\u00fcdar",
+          "categories": [
+            "neighborhoods",
+            "religious_heritage",
+            "culture"
+          ],
+          "facet": "attractions",
+          "query": "top tourist attractions and landmarks in Istanbul",
+          "score": 0.8547,
+          "source_id": "wiki_en_uskudar"
+        },
+        {
+          "entity_id": "poi_blue_mosque",
+          "display_name": "Sultan Ahmed Mosque (Blue Mosque)",
+          "categories": [
+            "religious_heritage",
+            "attractions",
+            "history",
+            "culture"
+          ],
+          "facet": "attractions",
+          "query": "top tourist attractions and landmarks in Istanbul",
+          "score": 0.8539,
+          "source_id": "wiki_en_blue_mosque"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8535,
+          "source_id": "wiki_en_emirgan_park"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "Buyukada (Princes' Islands)",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.853,
+          "source_id": "wiki_en_buyukada"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_blue_mosque",
+        "poi_chora_church",
+        "poi_buyukada"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_blue_mosque",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_chora_church",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_buyukada",
+          "candidate_origin": "catalog_fallback"
+        }
+      ],
+      "rag_origin_count": 2,
+      "catalog_fallback_count": 1,
+      "total_scheduled": 3,
+      "uncovered_interests": [
+        "accessibility"
+      ],
+      "interest_coverage": {
+        "accessibility": false,
+        "attractions": true
+      },
+      "accessibility_evaluation": {
+        "requested": true,
+        "status": "partially_satisfied",
+        "evidence_count": 2,
+        "note": "accessibility is treated as cross-cutting evidence, not a schedulable POI category; no per-landmark accessibility infrastructure data exists in this corpus/catalog to filter or score individual candidates by, so this reports citation-level support only"
+      },
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_spice_bazaar",
+          "title": "Spice Bazaar (Egyptian Bazaar)",
+          "url": "https://en.wikipedia.org/wiki/Spice_Bazaar,_Istanbul",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_57c890eb8820425d0776e570"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_chora_church",
+          "title": "Chora Church (Kariye)",
+          "url": "https://en.wikipedia.org/wiki/Chora_Church",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_15769db9a1e8c71bf2566c86"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_buyukada",
+          "title": "Buyukada (Princes' Islands)",
+          "url": "https://en.wikipedia.org/wiki/Princes%27_Islands",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_1ae9f4cc7e33acbea139cd2e"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_universal_design",
+          "title": "Universal design",
+          "url": "https://en.wikipedia.org/wiki/Universal_design",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_b4c1e86b1af5ba1ab2b56aa6"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_accessible_tourism",
+          "title": "Accessible tourism",
+          "url": "https://en.wikipedia.org/wiki/Accessible_tourism",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_aef4803618b3f5035fa31915"
+          ]
+        }
+      ],
+      "warnings": [
+        "candidate_pool_insufficient_rag_coverage_catalog_fallback_used",
+        "rag_evidence_insufficient_for_interests:accessibility"
+      ],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    },
+    {
+      "case": "arabic_query",
+      "status": "success",
+      "elapsed_seconds": 0.22,
+      "requested_interests": [
+        "religious_heritage",
+        "history"
+      ],
+      "retrieved_source_ids": [
+        "wiki_ar_blue_mosque",
+        "wiki_ar_hagia_sophia",
+        "wiki_ar_istiklal_avenue",
+        "wiki_ar_kadikoy",
+        "wiki_ar_princes_islands",
+        "wiki_ar_suleymaniye_mosque",
+        "wiki_en_beyoglu",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_sultanahmet",
+        "wiki_en_uskudar"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_blue_mosque",
+          "display_name": "\u062c\u0627\u0645\u0639 \u0627\u0644\u0633\u0644\u0637\u0627\u0646 \u0623\u062d\u0645\u062f (\u0627\u0644\u0645\u0633\u062c\u062f \u0627\u0644\u0623\u0632\u0631\u0642)",
+          "categories": [
+            "religious_heritage",
+            "attractions",
+            "history",
+            "culture"
+          ],
+          "facet": "religious_heritage",
+          "query": "\u0645\u0633\u0627\u062c\u062f \u0648\u0643\u0646\u0627\u0626\u0633 \u0648\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062a\u0631\u0627\u062b \u0627\u0644\u062f\u064a\u0646\u064a \u0641\u064a \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8926,
+          "source_id": "wiki_ar_blue_mosque"
+        },
+        {
+          "entity_id": "poi_kadikoy_district",
+          "display_name": "\u0642\u0627\u0636\u064a \u0643\u0648\u064a",
+          "categories": [
+            "neighborhoods",
+            "culture",
+            "food",
+            "nightlife"
+          ],
+          "facet": "religious_heritage",
+          "query": "\u0645\u0633\u0627\u062c\u062f \u0648\u0643\u0646\u0627\u0626\u0633 \u0648\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062a\u0631\u0627\u062b \u0627\u0644\u062f\u064a\u0646\u064a \u0641\u064a \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8625,
+          "source_id": "wiki_ar_kadikoy"
+        },
+        {
+          "entity_id": "poi_uskudar_district",
+          "display_name": "\u00dcsk\u00fcdar",
+          "categories": [
+            "neighborhoods",
+            "religious_heritage",
+            "culture"
+          ],
+          "facet": "religious_heritage",
+          "query": "\u0645\u0633\u0627\u062c\u062f \u0648\u0643\u0646\u0627\u0626\u0633 \u0648\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062a\u0631\u0627\u062b \u0627\u0644\u062f\u064a\u0646\u064a \u0641\u064a \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8355,
+          "source_id": "wiki_en_uskudar"
+        },
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8399,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_suleymaniye_mosque",
+          "display_name": "\u062c\u0627\u0645\u0639 \u0627\u0644\u0633\u0644\u064a\u0645\u0627\u0646\u064a\u0629",
+          "categories": [
+            "religious_heritage",
+            "attractions",
+            "history"
+          ],
+          "facet": "religious_heritage",
+          "query": "\u0645\u0633\u0627\u062c\u062f \u0648\u0643\u0646\u0627\u0626\u0633 \u0648\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062a\u0631\u0627\u062b \u0627\u0644\u062f\u064a\u0646\u064a \u0641\u064a \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8466,
+          "source_id": "wiki_ar_suleymaniye_mosque"
+        },
+        {
+          "entity_id": "poi_beyoglu_district",
+          "display_name": "Beyo\u011flu",
+          "categories": [
+            "neighborhoods",
+            "culture",
+            "nightlife",
+            "shopping"
+          ],
+          "facet": "religious_heritage",
+          "query": "\u0645\u0633\u0627\u062c\u062f \u0648\u0643\u0646\u0627\u0626\u0633 \u0648\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062a\u0631\u0627\u062b \u0627\u0644\u062f\u064a\u0646\u064a \u0641\u064a \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8264,
+          "source_id": "wiki_en_beyoglu"
+        },
+        {
+          "entity_id": "poi_istiklal_avenue",
+          "display_name": "\u0634\u0627\u0631\u0639 \u0627\u0644\u0627\u0633\u062a\u0642\u0644\u0627\u0644",
+          "categories": [
+            "shopping",
+            "nightlife",
+            "neighborhoods",
+            "culture"
+          ],
+          "facet": "religious_heritage",
+          "query": "\u0645\u0633\u0627\u062c\u062f \u0648\u0643\u0646\u0627\u0626\u0633 \u0648\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062a\u0631\u0627\u062b \u0627\u0644\u062f\u064a\u0646\u064a \u0641\u064a \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8426,
+          "source_id": "wiki_ar_istiklal_avenue"
+        },
+        {
+          "entity_id": "poi_hagia_sophia",
+          "display_name": "\u0622\u064a\u0627 \u0635\u0648\u0641\u064a\u0627",
+          "categories": [
+            "history",
+            "culture",
+            "attractions",
+            "religious_heritage"
+          ],
+          "facet": "religious_heritage",
+          "query": "\u0645\u0633\u0627\u062c\u062f \u0648\u0643\u0646\u0627\u0626\u0633 \u0648\u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u062a\u0631\u0627\u062b \u0627\u0644\u062f\u064a\u0646\u064a \u0641\u064a \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8419,
+          "source_id": "wiki_ar_hagia_sophia"
+        },
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "history",
+          "query": "\u0645\u0648\u0627\u0642\u0639 \u062a\u0627\u0631\u064a\u062e\u064a\u0629 \u0648\u062a\u0627\u0631\u064a\u062e \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.835,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "\u062c\u0632\u0631 \u0627\u0644\u0623\u0645\u0631\u0627\u0621",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "history",
+          "query": "\u0645\u0648\u0627\u0642\u0639 \u062a\u0627\u0631\u064a\u062e\u064a\u0629 \u0648\u062a\u0627\u0631\u064a\u062e \u0625\u0633\u0637\u0646\u0628\u0648\u0644",
+          "score": 0.8482,
+          "source_id": "wiki_ar_princes_islands"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8335,
+          "source_id": "wiki_en_emirgan_park"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_blue_mosque",
+        "poi_cicek_pasaji",
+        "poi_uskudar_district"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_blue_mosque",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_cicek_pasaji",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_uskudar_district",
+          "candidate_origin": "rag"
+        }
+      ],
+      "rag_origin_count": 3,
+      "catalog_fallback_count": 0,
+      "total_scheduled": 3,
+      "uncovered_interests": [],
+      "interest_coverage": {
+        "religious_heritage": true,
+        "history": true
+      },
+      "accessibility_evaluation": null,
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_ar_blue_mosque",
+          "title": "\u062c\u0627\u0645\u0639 \u0627\u0644\u0633\u0644\u0637\u0627\u0646 \u0623\u062d\u0645\u062f (\u0627\u0644\u0645\u0633\u062c\u062f \u0627\u0644\u0623\u0632\u0631\u0642)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%85%D8%B3%D8%AC%D8%AF_%D8%A7%D9%84%D8%A3%D8%B2%D8%B1%D9%82",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_f98a99137516eb0a5720203f"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_en_cicek_pasaji",
+          "title": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "url": "https://en.wikipedia.org/wiki/%C3%87i%C3%A7ek_Pasaj%C4%B1",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_72a0128a21c10f2aec7c4a9b"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_ar_uskudar",
+          "title": "\u0623\u0633\u0643\u0648\u062f\u0627\u0631",
+          "url": "https://ar.wikipedia.org/wiki/\u0623\u0633\u0643\u0648\u062f\u0627\u0631",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_279034af34decd9e7c664bd1"
+          ]
+        }
+      ],
+      "warnings": [],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    },
+    {
+      "case": "turkish_query",
+      "status": "success",
+      "elapsed_seconds": 0.26,
+      "requested_interests": [
+        "shopping",
+        "food"
+      ],
+      "retrieved_source_ids": [
+        "wiki_en_buyukada",
+        "wiki_en_cicek_pasaji",
+        "wiki_en_emirgan_park",
+        "wiki_en_sultanahmet",
+        "wiki_tr_grand_bazaar",
+        "wiki_tr_kadikoy",
+        "wiki_tr_spice_bazaar"
+      ],
+      "rag_candidates": [
+        {
+          "entity_id": "poi_spice_bazaar",
+          "display_name": "M\u0131s\u0131r \u00c7ar\u015f\u0131s\u0131",
+          "categories": [
+            "shopping",
+            "food",
+            "history",
+            "attractions"
+          ],
+          "facet": "shopping",
+          "query": "\u0130stanbul'da al\u0131\u015fveri\u015f, \u00e7ar\u015f\u0131lar ve pazarlar",
+          "score": 0.8766,
+          "source_id": "wiki_tr_spice_bazaar"
+        },
+        {
+          "entity_id": "poi_grand_bazaar",
+          "display_name": "Kapal\u0131\u00e7ar\u015f\u0131",
+          "categories": [
+            "history",
+            "shopping",
+            "attractions",
+            "culture"
+          ],
+          "facet": "food",
+          "query": "\u0130stanbul'da \u00fcnl\u00fc yiyecek pazarlar\u0131, \u00e7ar\u015f\u0131lar ve gastronomi mekanlar\u0131",
+          "score": 0.8519,
+          "source_id": "wiki_tr_grand_bazaar"
+        },
+        {
+          "entity_id": "poi_kadikoy_district",
+          "display_name": "Kad\u0131k\u00f6y",
+          "categories": [
+            "neighborhoods",
+            "culture",
+            "food",
+            "nightlife"
+          ],
+          "facet": "food",
+          "query": "\u0130stanbul'da \u00fcnl\u00fc yiyecek pazarlar\u0131, \u00e7ar\u015f\u0131lar ve gastronomi mekanlar\u0131",
+          "score": 0.8469,
+          "source_id": "wiki_tr_kadikoy"
+        },
+        {
+          "entity_id": "poi_cicek_pasaji",
+          "display_name": "\u00c7i\u00e7ek Pasaj\u0131 (Flower Passage)",
+          "categories": [
+            "food",
+            "nightlife",
+            "shopping",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8334,
+          "source_id": "wiki_en_cicek_pasaji"
+        },
+        {
+          "entity_id": "poi_sultanahmet",
+          "display_name": "Sultanahmet",
+          "categories": [
+            "neighborhoods",
+            "attractions",
+            "religious_heritage",
+            "history"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8399,
+          "source_id": "wiki_en_sultanahmet"
+        },
+        {
+          "entity_id": "poi_emirgan_park",
+          "display_name": "Emirgan Park",
+          "categories": [
+            "nature",
+            "family",
+            "photography",
+            "seasonal_planning"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.8335,
+          "source_id": "wiki_en_emirgan_park"
+        },
+        {
+          "entity_id": "poi_buyukada",
+          "display_name": "Buyukada (Princes' Islands)",
+          "categories": [
+            "islands",
+            "nature",
+            "family"
+          ],
+          "facet": "seasonal_planning",
+          "query": "autumn season travel in Istanbul",
+          "score": 0.833,
+          "source_id": "wiki_en_buyukada"
+        }
+      ],
+      "selected_poi_ids": [
+        "poi_cicek_pasaji",
+        "poi_spice_bazaar",
+        "poi_kadikoy_district"
+      ],
+      "candidate_provenance": [
+        {
+          "poi_id": "poi_cicek_pasaji",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_spice_bazaar",
+          "candidate_origin": "rag"
+        },
+        {
+          "poi_id": "poi_kadikoy_district",
+          "candidate_origin": "rag"
+        }
+      ],
+      "rag_origin_count": 3,
+      "catalog_fallback_count": 0,
+      "total_scheduled": 3,
+      "uncovered_interests": [],
+      "interest_coverage": {
+        "shopping": true,
+        "food": true
+      },
+      "accessibility_evaluation": null,
+      "citations": [
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_buyukada",
+          "title": "B\u00fcy\u00fckada",
+          "url": "https://tr.wikipedia.org/wiki/B%C3%BCy%C3%BCkada",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_ec33820450cdbb07f1a46d01"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_spice_bazaar",
+          "title": "M\u0131s\u0131r \u00c7ar\u015f\u0131s\u0131",
+          "url": "https://tr.wikipedia.org/wiki/M%C4%B1s%C4%B1r_%C3%87ar%C5%9F%C4%B1s%C4%B1",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_5e0b3a453b27271408d8e108"
+          ]
+        },
+        {
+          "schema_version": "1.0.0",
+          "source_id": "wiki_tr_kadikoy",
+          "title": "Kad\u0131k\u00f6y",
+          "url": "https://tr.wikipedia.org/wiki/Kad%C4%B1k%C3%B6y",
+          "retrieved_at": "2026-08-20T00:00:00Z",
+          "chunk_ids": [
+            "chunk_49136cf374eb68604a052a7a"
+          ]
+        }
+      ],
+      "warnings": [],
+      "hard_constraint_validation_passed": true,
+      "side_crossings": 0,
+      "schema_valid": true
+    }
+  ],
+  "qdrant_unavailable_fallback_demo": {
+    "case": "qdrant_unavailable_fallback",
+    "status": "success",
+    "elapsed_seconds": 0.0,
+    "requested_interests": [
+      "history",
+      "food"
+    ],
+    "retrieved_source_ids": [],
+    "rag_candidates": [],
+    "selected_poi_ids": [
+      "poi_galata_tower",
+      "poi_grand_bazaar",
+      "poi_buyukada",
+      "poi_camlica_hill"
+    ],
+    "candidate_provenance": [
+      {
+        "poi_id": "poi_galata_tower",
+        "candidate_origin": "catalog_fallback"
+      },
+      {
+        "poi_id": "poi_grand_bazaar",
+        "candidate_origin": "catalog_fallback"
+      },
+      {
+        "poi_id": "poi_buyukada",
+        "candidate_origin": "catalog_fallback"
+      },
+      {
+        "poi_id": "poi_camlica_hill",
+        "candidate_origin": "catalog_fallback"
+      }
+    ],
+    "rag_origin_count": 0,
+    "catalog_fallback_count": 4,
+    "total_scheduled": 4,
+    "uncovered_interests": [
+      "history",
+      "food"
+    ],
+    "interest_coverage": {
+      "history": false,
+      "food": false
+    },
+    "accessibility_evaluation": null,
+    "citations": [],
+    "warnings": [
+      "candidate_pool_no_rag_candidates_catalog_fallback_used",
+      "rag_evidence_insufficient_for_interests:history,food",
+      "rag_unavailable_structured_catalog_only"
+    ],
+    "hard_constraint_validation_passed": true,
+    "side_crossings": 0,
+    "schema_valid": true
+  }
+}

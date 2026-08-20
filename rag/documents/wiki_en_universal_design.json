@@ -1,0 +1,30 @@
+{
+  "attribution": "Wikipedia contributors, \"Universal design\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "e16ff990e725f4db926619be3203fa8b3c044e98d6d5e7d962eb3d0d3f1873eb",
+  "content_type": "general_knowledge",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Universal_design",
+  "display_name": "Universal design",
+  "district_id": null,
+  "document_id": "wiki_en_universal_design",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "accessibility"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_en_universal_design",
+  "text": "# Definition\n\nUniversal design refers to the design of buildings, products, or environments to make them accessible to all people, regardless of age, disability, or other factors -- a rights-based approach aiming for designs usable by the broadest possible population.\n\n# The Seven Core Principles\n\nThe Center for Universal Design at North Carolina State University established seven principles: equitable use, flexibility in use, simple and intuitive use, perceptible information, tolerance for error, low physical effort, and appropriate size and space for approach and use.\n\n# Application to Public Spaces and Transportation\n\nPractical applications include low-floor buses that kneel to ground level, level building entrances without stairs, sufficient turning space for wheelchairs, high-contrast signage, redundant visual and auditory information, lever door handles instead of twist knobs, and controls operable with low physical force.\n\n# Relevance for Travelers\n\nAccessible design removes participation barriers so people with varying abilities can navigate public environments independently -- the curb cut, originally designed for wheelchair users, is a well-known example that also benefits travelers with strollers or luggage.",
+  "title": "Universal design",
+  "topic_group": "accessibility",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Universal_design"
+}

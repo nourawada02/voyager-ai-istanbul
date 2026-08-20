@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Üsküdar\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "29de6f3d59b2734e5389492df953e9191e83822790313ba79462b05ca616a189",
+  "content_type": "neighborhood",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/%C3%9Csk%C3%BCdar",
+  "display_name": "Üsküdar",
+  "district_id": "district_uskudar",
+  "document_id": "wiki_tr_uskudar",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "neighborhoods",
+    "religious_heritage",
+    "culture"
+  ],
+  "language": "tr",
+  "lat": 41.0214,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.0161,
+  "poi_id": "poi_uskudar_district",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_tr_uskudar",
+  "text": "# Tarihçe\n\nÜsküdar'ın antik adı Khrysopolis (Altın Şehir) olup Yunanca kökenlidir. Bugünkü adı Roma ordusunun zırhlı süvari birlikleri olan Scutarii'den türetildiği düşünülmektedir. İstanbul'un fethinden sonra önemli bir yönetim merkezi olmuş, 1926 yılına kadar il statüsünde bulunmuştur.\n\n# Dini Miras ve Camiler\n\nOsmanlı döneminde geniş ölçüde mimari faaliyete sahne olan Üsküdar'da Mihrimah Sultan Külliyesi, Yeni Valide Külliyesi, Şemsi Paşa Camii, Ayazma Camii ve Çinili Külliyesi gibi önemli yapılar bulunur. Karacaahmet Mezarlığı, Anadolu yakasındaki en büyük Müslüman mezarlığı olma özelliğini yüzyıllardır korumaktadır.\n\n# Kültürel Karakter\n\nÜsküdar çok kültürlü bir miras taşır; Rum Ortodoks kiliseleri, Ermeni kiliseleri ve sinagoglar bu çeşitliliği yansıtır. Boğaziçi kıyısındaki Osmanlı dönemi yalıları mimari zenginliğin diğer örnekleridir.",
+  "title": "Üsküdar",
+  "topic_group": "uskudar",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/%C3%9Csk%C3%BCdar"
+}

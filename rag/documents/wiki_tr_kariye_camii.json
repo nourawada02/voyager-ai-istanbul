@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Kariye Camii\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "b0a8421aca065f13fc9013e26f2be772db9363d2652636093baa5db8c2c69017",
+  "content_type": "attraction",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/Kariye_M%C3%BCzesi",
+  "display_name": "Kariye Camii",
+  "district_id": "district_fatih",
+  "document_id": "wiki_tr_kariye_camii",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "religious_heritage",
+    "attractions",
+    "history",
+    "art"
+  ],
+  "language": "tr",
+  "lat": 41.0311,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9391,
+  "poi_id": "poi_chora_church",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_tr_kariye_camii",
+  "text": "# Genel Bilgi\n\nKariye Camii, İstanbul'un Fatih ilçesinde yer alan eski bir Rum Ortodoks kilisesidir. İstanbul'un Fethi'nden sonra elli sekiz yıl daha kilise olarak işlevini sürdürdü.\n\n# Tarihçe\n\nYapının tarihi 536 yılında I. Justinianus dönemine dayanır. 11. yüzyılda Maria Dukaina himayesinde restore edildi. 14. yüzyılda Metokhites, manastırın tamirine büyük servet harcadı.\n\n# Osmanlı ve Cumhuriyet Dönemleri\n\n1511 yılında Sultan II. Bayezid'in sadrazamı Atik Ali Paşa tarafından camiye dönüştürüldü. 1945'te Bakanlar Kurulu kararıyla müzeye çevrildi. 6 Mayıs 2024'te yeniden ibadete açıldı.\n\n# Sanat ve Mimari\n\nKariye'nin mozaikleri ve freskleri 'Bizans Rönesansı' olarak değerlendirilir. Pareklezyon bölümündeki Anastasis freski, Geç Bizans sanatının başyapıtı kabul edilir. Camiye çevrilişinde mozaik ve freskler sıva ile kaplandı, bu sayede günümüze kadar ulaşmıştır.",
+  "title": "Kariye Camii",
+  "topic_group": "chora_church",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/Kariye_M%C3%BCzesi"
+}

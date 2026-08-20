@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "entity_id": "poi_hagia_sophia",
+  "display_name": "Hagia Sophia",
+  "categories": ["history", "culture", "attractions", "religious_heritage"],
+  "district_id": "district_fatih",
+  "side": "european",
+  "coordinates": { "lat": 41.0086, "lon": 28.9802 },
+  "duration_minutes": 90.0,
+  "preferred_period": "any",
+  "source_url": "https://en.wikipedia.org/wiki/Hagia_Sophia",
+  "retrieval_provenance": {
+    "source_id": "wiki_en_hagia_sophia",
+    "chunk_id": "chunk_ab12cd34ef",
+    "query": "historic sites and history of Istanbul",
+    "facet": "history",
+    "score": 0.8721
+  },
+  "candidate_origin": "rag"
+}

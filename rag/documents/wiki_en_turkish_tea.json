@@ -1,0 +1,31 @@
+{
+  "attribution": "Wikipedia contributors, \"Turkish tea\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "d5d9a6e930b92f2d390375d37691cd71bc7d40edb44de9035ae464852e4dc78a",
+  "content_type": "etiquette",
+  "derived_from_source": "https://en.wikipedia.org/wiki/Turkish_tea",
+  "display_name": "Turkish tea",
+  "district_id": null,
+  "document_id": "wiki_en_turkish_tea",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "etiquette",
+    "food"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "wiki_en_turkish_tea",
+  "text": "# Historical Development\n\nTea cultivation in Turkey began in Rize Province in 1912; a Central Tea Nursery was established in 1924, and large-scale production stabilized between 1939 and 1945. By the mid-20th century, tea had become Turkey's beverage of choice.\n\n# Preparation Method\n\nTurkish tea uses a two-pot system called a caydanlik: water boils in the lower pot while loose tea leaves steep in the upper pot, producing a concentrated brew that is diluted per cup to taste, either strong (koyu) or weak (acik).\n\n# Serving Traditions\n\nTea is served in small tulip-shaped glasses called ince belli, held by the rim, typically with beet sugar cubes between three and five in the afternoon.\n\n# Social and Cultural Role\n\nOffering tea to guests is a core part of Turkish hospitality. Tea gardens and traditional kiraathane (coffeehouse-style social spaces) serve as gathering places, particularly common in Istanbul's Sultanahmet and Taksim neighborhoods.",
+  "title": "Turkish tea",
+  "topic_group": "turkish_tea",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://en.wikipedia.org/wiki/Turkish_tea"
+}

@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"البازار الكبير (إسطنبول)\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "4ec57ff1895296b97cc357b7233c5a7169f8175f3ed35f21d2197803e155324f",
+  "content_type": "attraction",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/السوق_الكبير_(إسطنبول)",
+  "display_name": "البازار الكبير (إسطنبول)",
+  "district_id": "district_fatih",
+  "document_id": "wiki_ar_grand_bazaar",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "history",
+    "shopping",
+    "attractions",
+    "culture"
+  ],
+  "language": "ar",
+  "lat": 41.0106,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9681,
+  "poi_id": "poi_grand_bazaar",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_ar_grand_bazaar",
+  "text": "# تاريخ التأسيس\n\nبدأ بناء البازار الكبير خلال شتاء عام 1455، بعد فترة وجيزة من فتح القسطنطينية، بأمر من السلطان محمد الفاتح. انتهى التشييد عام 1460-1461، حيث وُقِف المبنى على جامع آيا صوفيا.\n\n# الحجم والمساحة\n\nيشغل البازار 30,700 متر مربع ويضم 61 شارعاً مغطى وأكثر من 4,000 متجر. يستقطب يومياً ما بين 250 ألف و400 ألف زائر، وكان الأكثر زيارة بـ91,250,000 زائر سنوياً عام 2014.\n\n# السلع والبضائع\n\nتاريخياً، تخصص البازار في تجارة المنسوجات والمجوهرات. احتوى على مناطق مخصصة للملابس والكتب والسلع المستعملة، مع أسواق متنوعة في الخانات المحيطة.\n\n# الأهمية الثقافية والاقتصادية\n\nيُنظر للبازار على أنه أحد مراكز التسوق الأولى في العالم. كان مركزاً لتجارة البحر الأبيض المتوسط وعكس ازدهار إسطنبول الاقتصادي منذ العصر العثماني المبكر.",
+  "title": "البازار الكبير (إسطنبول)",
+  "topic_group": "grand_bazaar",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/السوق_الكبير_(إسطنبول)"
+}

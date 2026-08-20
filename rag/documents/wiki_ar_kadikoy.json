@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"قاضي كوي\", AR Wikipedia, CC BY-SA 4.0",
+  "checksum": "f0014220f5684d89ee305f909677bd27b9950c7dffe6e6042dfa5d29ce0172a9",
+  "content_type": "neighborhood",
+  "derived_from_source": "https://ar.wikipedia.org/wiki/قاضي_كوي",
+  "display_name": "قاضي كوي",
+  "district_id": "district_kadikoy",
+  "document_id": "wiki_ar_kadikoy",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "neighborhoods",
+    "culture",
+    "food",
+    "nightlife"
+  ],
+  "language": "ar",
+  "lat": 40.9903,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.0275,
+  "poi_id": "poi_kadikoy_district",
+  "preferred_period": "evening",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_ar_kadikoy",
+  "text": "# التاريخ والأصول\n\nيُعرف حي قاضي كوي قديماً باسم خلقدون. أطلق العثمانيون عليه هذا الاسم الجديد لأنها كانت القرية التي يقيم فيها القاضي قرب القسطنطينية.\n\n# الأهمية الدينية التاريخية\n\nتحمل المنطقة أهمية دينية كبرى في تاريخ المسيحية، إذ شهدت سنة 451 ميلادية انعقاد مجمع خلقيدونية الذي ساهم في حدوث انقسامات كنسية مهمة.\n\n# الموقع والخصائص الجغرافية\n\nيقع الحي على الشاطئ الشمالي من بحر مرمرة في مواجهة المركز القديم التاريخي للمدينة على الجانب الآسيوي من إسطنبول.\n\n# الطابع الثقافي والحياة الليلية\n\nتتمتع المنطقة بحضور ثقافي واضح، حيث توصف كمركز ثقافي في الجانب الأناضولي من إسطنبول. تضم دور سينما وحانات ومكتبات، مما يجعلها وجهة ثقافية وترفيهية متميزة.",
+  "title": "قاضي كوي",
+  "topic_group": "kadikoy",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ar.wikipedia.org/wiki/قاضي_كوي"
+}

@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Büyükada\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "d31ef840de900f2834fe3ed7f1a70aaad0a6a01fe8eec36a9d5b234d5dbd3925",
+  "content_type": "attraction",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/B%C3%BCy%C3%BCkada",
+  "display_name": "Büyükada",
+  "district_id": "district_adalar",
+  "document_id": "wiki_tr_buyukada",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "islands",
+    "nature",
+    "family"
+  ],
+  "language": "tr",
+  "lat": 40.8767,
+  "license": "CC BY-SA 4.0",
+  "lon": 29.1206,
+  "poi_id": "poi_buyukada",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "asian",
+  "source_id": "wiki_tr_buyukada",
+  "text": "# Tarihsel Genel Bakış\n\nYunanca Prinkipos (prens) olarak da bilinen Büyükada, Prens Adaları grubunun en büyüğüdür. 1930 yılında adada bulunan ve Makedonya Kralı II. Filip'e ait altın sikkeler İstanbul Arkeoloji Müzesi'nde sergilenmektedir.\n\n# Coğrafya ve Ulaşım\n\nAda 5,4 km² alana sahiptir. Yücetepe (203 m) ve Manastır Tepesi (164 m) adanın iki tepesidir. Bostancı'dan deniz otobüsleri yaklaşık 35 dakikada, Kabataş'tan vapurlar yaklaşık 80 dakikada adaya ulaşır.\n\n# Ada İçi Ulaşım\n\nAda içinde ulaşım bisiklet ve elektrikli araçlarla sağlanmaktadır; tarihi faytonlar son yıllarda kaldırılmıştır.\n\n# Kültürel ve Doğal Özellikler\n\nLev Trotski 1929-1933 yılları arasında adada yaşamıştır. En yüksek noktada bulunan Aya Yorgi Manastırı özel günlerde hacılar çekmektedir. Adanın bitki örtüsüne kızılçam ormanları, servi, defne ve laden türleri hakimdir.",
+  "title": "Büyükada",
+  "topic_group": "buyukada",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/B%C3%BCy%C3%BCkada"
+}

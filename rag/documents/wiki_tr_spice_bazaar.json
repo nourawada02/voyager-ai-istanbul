@@ -1,0 +1,33 @@
+{
+  "attribution": "Wikipedia contributors, \"Mısır Çarşısı\", TR Wikipedia, CC BY-SA 4.0",
+  "checksum": "ac4a4867bd1feb53f18d057ceecf5871bb3f1849ab3148dfe91f317ca2edb2cf",
+  "content_type": "attraction",
+  "derived_from_source": "https://tr.wikipedia.org/wiki/M%C4%B1s%C4%B1r_%C3%87ar%C5%9F%C4%B1s%C4%B1",
+  "display_name": "Mısır Çarşısı",
+  "district_id": "district_fatih",
+  "document_id": "wiki_tr_spice_bazaar",
+  "entity_kind": "poi_candidate",
+  "interest_tags": [
+    "shopping",
+    "food",
+    "history",
+    "attractions"
+  ],
+  "language": "tr",
+  "lat": 41.0165,
+  "license": "CC BY-SA 4.0",
+  "lon": 28.9702,
+  "poi_id": "poi_spice_bazaar",
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "wikipedia",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": "european",
+  "source_id": "wiki_tr_spice_bazaar",
+  "text": "# Kuruluş ve Tarihçe\n\nMısır Çarşısı, 1660 yılında Turhan Sultan'ın himayesinde, baş mimar Kazım Ağa yönetiminde inşa edilmiştir. Bizans döneminde aynı yerde bir çarşı bulunduğu aktarılır. İlk olarak 'Yeni Çarşı' veya 'Valide Çarşısı' olarak anılmış, günümüzdeki adını 18. yüzyıldan sonra almıştır.\n\n# Konum ve Ürünler\n\nEminönü'nde Yeni Cami'nin arkasında konumlanan çarşı, İstanbul'un en eski kapalı çarşılarından biridir. Geleneksel şifalı bitkiler, baharatlar, çiçek tohumları ve kurutulmuş bitkisel ürünlerin yanı sıra kuruyemiş ve şarküteri ürünleri de satılmaktadır.\n\n# Mimari\n\nL biçimli yapı altı kapıya sahiptir; bunlardan biri Hasekiler Kapısı'dır. Üst katlar bir zamanlar esnaf arasındaki uyuşmazlıkların çözüldüğü bir mahkeme işlevi görmüştür.\n\n# Kültürel Önem\n\nÇarşı, İstanbul'un ticari mirasını yansıtan önemli bir turistik merkez olmaya devam etmektedir.",
+  "title": "Mısır Çarşısı",
+  "topic_group": "spice_bazaar",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://tr.wikipedia.org/wiki/M%C4%B1s%C4%B1r_%C3%87ar%C5%9F%C4%B1s%C4%B1"
+}

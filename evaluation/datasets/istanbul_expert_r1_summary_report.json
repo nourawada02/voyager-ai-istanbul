@@ -1,0 +1,528 @@
+{
+  "checkpoint": "RAG-FIRST SYSTEM B R.1 CORRECTION",
+  "generated_against": {
+    "shadow_collection_name": "istanbul_rag_B_r1_shadow",
+    "shadow_fingerprint": "34830f8e42e681ce7fdedc5a36fbd33675ae4800505a06768bc783d6057d7b84",
+    "shadow_document_count": 69,
+    "shadow_qdrant_point_count": 288,
+    "shadow_qdrant_chunk_count": 287,
+    "production_collection_name": "istanbul_rag_B",
+    "production_qdrant_point_count": 91,
+    "production_untouched": true
+  },
+  "corpus": {
+    "document_count": 69,
+    "language_counts": {
+      "en": 39,
+      "tr": 14,
+      "ar": 16
+    },
+    "publisher_type_counts": {
+      "wikipedia": 66,
+      "official_primary": 3
+    },
+    "interest_tag_counts": {
+      "accessibility": 3,
+      "art": 2,
+      "attractions": 27,
+      "culture": 30,
+      "etiquette": 6,
+      "family": 8,
+      "food": 14,
+      "history": 27,
+      "islands": 4,
+      "nature": 12,
+      "neighborhoods": 14,
+      "nightlife": 10,
+      "photography": 10,
+      "religious_heritage": 16,
+      "seasonal_planning": 3,
+      "shopping": 11,
+      "transportation": 8
+    },
+    "interests_with_zero_coverage": [],
+    "interests_below_three_docs": [
+      "art"
+    ]
+  },
+  "retrieval_metrics": {
+    "k": 5,
+    "per_facet": {
+      "history": {
+        "query": "historic sites and history of Istanbul",
+        "relevant_count": 27,
+        "retrieved_source_ids": [
+          "goturkiye_istanbul_overview",
+          "wiki_en_sultanahmet",
+          "wiki_en_cicek_pasaji",
+          "wiki_en_istanbul"
+        ],
+        "hit_count": 3,
+        "recall_at_5": 0.111,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.75,
+        "ndcg_at_5": 0.53
+      },
+      "culture": {
+        "query": "culture and cultural life in Istanbul",
+        "relevant_count": 30,
+        "retrieved_source_ids": [
+          "wiki_en_uskudar",
+          "wiki_en_cicek_pasaji",
+          "goturkiye_istanbul_overview",
+          "wiki_en_kadikoy",
+          "wiki_en_beyoglu"
+        ],
+        "hit_count": 4,
+        "recall_at_5": 0.133,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.8,
+        "ndcg_at_5": 0.786
+      },
+      "food": {
+        "query": "famous food markets, bazaars, and dining destinations to visit in Istanbul",
+        "relevant_count": 14,
+        "retrieved_source_ids": [
+          "goturkiye_istanbul_overview",
+          "wiki_en_cicek_pasaji",
+          "wiki_en_turkish_cuisine",
+          "wiki_en_spice_bazaar"
+        ],
+        "hit_count": 3,
+        "recall_at_5": 0.214,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.75,
+        "ndcg_at_5": 0.53
+      },
+      "shopping": {
+        "query": "shopping, bazaars, and markets in Istanbul",
+        "relevant_count": 11,
+        "retrieved_source_ids": [
+          "wiki_en_spice_bazaar",
+          "goturkiye_istanbul_overview"
+        ],
+        "hit_count": 2,
+        "recall_at_5": 0.182,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 1.0,
+        "ndcg_at_5": 0.553
+      },
+      "nightlife": {
+        "query": "nightlife and evening entertainment in Istanbul",
+        "relevant_count": 10,
+        "retrieved_source_ids": [
+          "wiki_en_cicek_pasaji",
+          "wiki_en_culture",
+          "wiki_en_ortakoy",
+          "goturkiye_istanbul_overview"
+        ],
+        "hit_count": 3,
+        "recall_at_5": 0.3,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.75,
+        "ndcg_at_5": 0.655
+      },
+      "art": {
+        "query": "art, museums, and galleries in Istanbul",
+        "relevant_count": 2,
+        "retrieved_source_ids": [
+          "wiki_en_cicek_pasaji",
+          "goturkiye_istanbul_overview",
+          "wiki_en_chora_church"
+        ],
+        "hit_count": 1,
+        "recall_at_5": 0.5,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.333,
+        "ndcg_at_5": 0.307
+      },
+      "nature": {
+        "query": "parks, forests, and nature in Istanbul",
+        "relevant_count": 12,
+        "retrieved_source_ids": [
+          "goturkiye_istanbul_overview",
+          "wiki_en_belgrad_forest",
+          "wiki_en_transport",
+          "wiki_en_gulhane_park"
+        ],
+        "hit_count": 2,
+        "recall_at_5": 0.167,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.5,
+        "ndcg_at_5": 0.36
+      },
+      "family": {
+        "query": "family-friendly parks, miniature parks, and attractions for children in Istanbul",
+        "relevant_count": 8,
+        "retrieved_source_ids": [
+          "wiki_en_miniaturk",
+          "goturkiye_istanbul_overview",
+          "wiki_en_turkish_tea"
+        ],
+        "hit_count": 1,
+        "recall_at_5": 0.125,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.333,
+        "ndcg_at_5": 0.339
+      },
+      "attractions": {
+        "query": "top tourist attractions and landmarks in Istanbul",
+        "relevant_count": 27,
+        "retrieved_source_ids": [
+          "goturkiye_istanbul_overview",
+          "wiki_en_cicek_pasaji",
+          "wiki_en_sultanahmet",
+          "wiki_en_chora_church"
+        ],
+        "hit_count": 3,
+        "recall_at_5": 0.111,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.75,
+        "ndcg_at_5": 0.655
+      },
+      "islands": {
+        "query": "islands near Istanbul",
+        "relevant_count": 4,
+        "retrieved_source_ids": [
+          "wiki_en_buyukada",
+          "goturkiye_istanbul_overview",
+          "wiki_en_istanbul"
+        ],
+        "hit_count": 1,
+        "recall_at_5": 0.25,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.333,
+        "ndcg_at_5": 0.39
+      },
+      "accessibility": {
+        "query": "accessible travel and mobility considerations in Istanbul",
+        "relevant_count": 3,
+        "retrieved_source_ids": [
+          "wiki_en_transport",
+          "goturkiye_istanbul_overview",
+          "wiki_en_universal_design",
+          "wiki_en_accessible_tourism"
+        ],
+        "hit_count": 2,
+        "recall_at_5": 0.667,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.5,
+        "ndcg_at_5": 0.437
+      },
+      "religious_heritage": {
+        "query": "mosques, churches, and religious heritage sites in Istanbul",
+        "relevant_count": 16,
+        "retrieved_source_ids": [
+          "wiki_en_blue_mosque",
+          "wiki_en_uskudar",
+          "wiki_en_sultanahmet",
+          "wiki_en_suleymaniye_mosque"
+        ],
+        "hit_count": 4,
+        "recall_at_5": 0.25,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 1.0,
+        "ndcg_at_5": 0.869
+      },
+      "photography": {
+        "query": "scenic viewpoints and photogenic spots in Istanbul",
+        "relevant_count": 10,
+        "retrieved_source_ids": [
+          "goturkiye_istanbul_overview",
+          "wiki_en_istanbul",
+          "wiki_en_cicek_pasaji",
+          "wiki_en_chora_church"
+        ],
+        "hit_count": 0,
+        "recall_at_5": 0.0,
+        "hit_rate_at_5": 0.0,
+        "precision_at_5": 0.0,
+        "ndcg_at_5": 0.0
+      },
+      "neighborhoods": {
+        "query": "historic neighborhoods and districts of Istanbul",
+        "relevant_count": 14,
+        "retrieved_source_ids": [
+          "wiki_en_sultanahmet",
+          "wiki_en_balat",
+          "wiki_en_beyoglu",
+          "wiki_en_istanbul"
+        ],
+        "hit_count": 3,
+        "recall_at_5": 0.214,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.75,
+        "ndcg_at_5": 0.723
+      },
+      "transportation": {
+        "query": "getting around Istanbul by public transport",
+        "relevant_count": 8,
+        "retrieved_source_ids": [
+          "wiki_en_transport",
+          "wiki_en_sultanahmet",
+          "goturkiye_istanbul_overview",
+          "wiki_en_istanbul_airport",
+          "wiki_en_buyukada"
+        ],
+        "hit_count": 2,
+        "recall_at_5": 0.25,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.4,
+        "ndcg_at_5": 0.485
+      },
+      "etiquette": {
+        "query": "local customs and etiquette in Istanbul",
+        "relevant_count": 6,
+        "retrieved_source_ids": [
+          "wiki_en_turkish_tea",
+          "goturkiye_istanbul_overview",
+          "wiki_en_culture",
+          "wiki_en_cicek_pasaji",
+          "wiki_en_sultanahmet"
+        ],
+        "hit_count": 2,
+        "recall_at_5": 0.333,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.4,
+        "ndcg_at_5": 0.509
+      },
+      "seasonal_planning": {
+        "query": "best season and weather to visit Istanbul",
+        "relevant_count": 3,
+        "retrieved_source_ids": [
+          "wiki_en_climate_istanbul",
+          "goturkiye_istanbul_overview",
+          "wiki_en_cicek_pasaji",
+          "wiki_en_emirgan_park"
+        ],
+        "hit_count": 2,
+        "recall_at_5": 0.667,
+        "hit_rate_at_5": 1.0,
+        "precision_at_5": 0.5,
+        "ndcg_at_5": 0.671
+      }
+    },
+    "mean_recall_at_5": 0.263,
+    "mean_hit_rate_at_5": 0.941,
+    "mean_precision_at_5": 0.579,
+    "mean_ndcg_at_5": 0.518,
+    "per_language_english_query": {
+      "en": {
+        "facets_with_relevant_docs": 17,
+        "mean_recall_at_5": 0.42,
+        "mean_hit_rate_at_5": 0.941,
+        "mean_precision_at_5": 0.579,
+        "mean_ndcg_at_5": 0.553
+      },
+      "tr": {
+        "facets_with_relevant_docs": 14,
+        "mean_recall_at_5": 0.0,
+        "mean_hit_rate_at_5": 0.0,
+        "mean_precision_at_5": 0.0,
+        "mean_ndcg_at_5": 0.0
+      },
+      "ar": {
+        "facets_with_relevant_docs": 14,
+        "mean_recall_at_5": 0.0,
+        "mean_hit_rate_at_5": 0.0,
+        "mean_precision_at_5": 0.0,
+        "mean_ndcg_at_5": 0.0
+      }
+    },
+    "per_language_native_query": {
+      "tr": {
+        "facets_queried_natively": [
+          "history",
+          "culture",
+          "food",
+          "shopping",
+          "nightlife",
+          "nature",
+          "family",
+          "attractions",
+          "islands",
+          "religious_heritage",
+          "neighborhoods",
+          "etiquette"
+        ],
+        "mean_recall_at_5": 0.44,
+        "mean_hit_rate_at_5": 0.833,
+        "mean_precision_at_5": 0.364,
+        "mean_ndcg_at_5": 0.492
+      },
+      "ar": {
+        "facets_queried_natively": [
+          "history",
+          "culture",
+          "food",
+          "shopping",
+          "nightlife",
+          "nature",
+          "family",
+          "attractions",
+          "islands",
+          "religious_heritage",
+          "neighborhoods",
+          "transportation",
+          "etiquette"
+        ],
+        "mean_recall_at_5": 0.535,
+        "mean_hit_rate_at_5": 1.0,
+        "mean_precision_at_5": 0.345,
+        "mean_ndcg_at_5": 0.531
+      }
+    }
+  },
+  "candidate_schema_validity": {
+    "note": "every RagCandidateResult in rag_candidates for every demo case below passed phase4.rag_candidates._validate_and_build's full field gate before being counted; invalid/incomplete chunks are silently dropped, never counted, never repaired.",
+    "total_rag_candidates_across_demos": 64
+  },
+  "citation_validity": {
+    "total_citations_across_demos": 28,
+    "all_citations_have_source_id_and_retrieved_at": true
+  },
+  "candidate_origin_by_case": {
+    "history_culture": {
+      "rag_origin_numerator": 4,
+      "total_scheduled_denominator": 4,
+      "rag_origin_pct": 100.0
+    },
+    "food": {
+      "rag_origin_numerator": 2,
+      "total_scheduled_denominator": 4,
+      "rag_origin_pct": 50.0
+    },
+    "nightlife_shopping": {
+      "rag_origin_numerator": 4,
+      "total_scheduled_denominator": 4,
+      "rag_origin_pct": 100.0
+    },
+    "nature_islands": {
+      "rag_origin_numerator": 3,
+      "total_scheduled_denominator": 3,
+      "rag_origin_pct": 100.0
+    },
+    "family": {
+      "rag_origin_numerator": 3,
+      "total_scheduled_denominator": 3,
+      "rag_origin_pct": 100.0
+    },
+    "accessibility": {
+      "rag_origin_numerator": 2,
+      "total_scheduled_denominator": 3,
+      "rag_origin_pct": 66.7
+    },
+    "arabic_query": {
+      "rag_origin_numerator": 3,
+      "total_scheduled_denominator": 3,
+      "rag_origin_pct": 100.0
+    },
+    "turkish_query": {
+      "rag_origin_numerator": 3,
+      "total_scheduled_denominator": 3,
+      "rag_origin_pct": 100.0
+    }
+  },
+  "candidate_origin_overall": {
+    "total_selected_pois_across_demos": 27,
+    "rag_origin_count": 24,
+    "catalog_fallback_count": 3,
+    "rag_origin_percentage": 88.9,
+    "meets_80pct_target": true
+  },
+  "uncovered_interests_by_case": {
+    "history_culture": [],
+    "food": [],
+    "nightlife_shopping": [],
+    "nature_islands": [],
+    "family": [],
+    "accessibility": [
+      "accessibility"
+    ],
+    "arabic_query": [],
+    "turkish_query": []
+  },
+  "final_itinerary_interest_coverage": {
+    "history_culture": {
+      "history": true,
+      "culture": true
+    },
+    "food": {
+      "food": true
+    },
+    "nightlife_shopping": {
+      "nightlife": true,
+      "shopping": true
+    },
+    "nature_islands": {
+      "nature": true,
+      "islands": true
+    },
+    "family": {
+      "family": true
+    },
+    "accessibility": {
+      "accessibility": false,
+      "attractions": true
+    },
+    "arabic_query": {
+      "religious_heritage": true,
+      "history": true
+    },
+    "turkish_query": {
+      "shopping": true,
+      "food": true
+    }
+  },
+  "accessibility_evaluation_by_case": {
+    "accessibility": {
+      "requested": true,
+      "status": "partially_satisfied",
+      "evidence_count": 2,
+      "note": "accessibility is treated as cross-cutting evidence, not a schedulable POI category; no per-landmark accessibility infrastructure data exists in this corpus/catalog to filter or score individual candidates by, so this reports citation-level support only"
+    }
+  },
+  "structural_validity": {
+    "all_demos_hard_constraint_validation_passed": true,
+    "all_demos_schema_valid": true
+  },
+  "qdrant_unavailable_fallback_demo": {
+    "status": "success",
+    "candidate_provenance": [
+      {
+        "poi_id": "poi_galata_tower",
+        "candidate_origin": "catalog_fallback"
+      },
+      {
+        "poi_id": "poi_grand_bazaar",
+        "candidate_origin": "catalog_fallback"
+      },
+      {
+        "poi_id": "poi_buyukada",
+        "candidate_origin": "catalog_fallback"
+      },
+      {
+        "poi_id": "poi_camlica_hill",
+        "candidate_origin": "catalog_fallback"
+      }
+    ],
+    "catalog_fallback_count": 4,
+    "rag_origin_count": 0,
+    "warnings": [
+      "candidate_pool_no_rag_candidates_catalog_fallback_used",
+      "rag_evidence_insufficient_for_interests:history,food",
+      "rag_unavailable_structured_catalog_only"
+    ],
+    "unnecessary_fallback": false
+  },
+  "failed_cases": [
+    {
+      "case": "accessibility",
+      "status": "uncovered_interest",
+      "uncovered_interests": [
+        "accessibility"
+      ],
+      "detail": "requested interest(s) ['accessibility'] had zero valid RAG candidate evidence"
+    }
+  ]
+}

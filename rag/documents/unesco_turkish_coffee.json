@@ -1,0 +1,32 @@
+{
+  "attribution": "Wikipedia contributors, \"Turkish Coffee Culture and Tradition (UNESCO ICH)\", EN Wikipedia, CC BY-SA 4.0",
+  "checksum": "59863af54e6776d7a373d5554634044f9f469b886d72995c62cf3a26d4e0d08e",
+  "content_type": "etiquette",
+  "derived_from_source": "https://ich.unesco.org/en/RL/turkish-coffee-culture-and-tradition-00645",
+  "display_name": "Turkish Coffee Culture and Tradition (UNESCO ICH)",
+  "district_id": null,
+  "document_id": "unesco_turkish_coffee",
+  "entity_kind": "general_knowledge",
+  "interest_tags": [
+    "etiquette",
+    "food",
+    "culture"
+  ],
+  "language": "en",
+  "lat": null,
+  "license": "CC BY-SA 4.0",
+  "lon": null,
+  "poi_id": null,
+  "preferred_period": "any",
+  "publisher": "Wikipedia contributors",
+  "publisher_type": "official_primary",
+  "retrieved_at": "2026-08-20T00:00:00Z",
+  "schema_version": "1.0.0",
+  "side": null,
+  "source_id": "unesco_turkish_coffee",
+  "text": "# Inscription\n\nTurkish coffee culture and tradition was inscribed on UNESCO's Representative List of the Intangible Cultural Heritage of Humanity in 2013 (8th session of the Intergovernmental Committee).\n\n# What Was Inscribed\n\nThe inscription covers both the preparation and brewing technique (roasting and grinding coffee beans, slow brewing producing foam, serving in small cups with water) and the communal cultural practices built around it, including coffee-house gatherings, fortune-telling through the grounds, and ceremonial roles in engagements and religious holidays.\n\n# Official Cultural Significance\n\nUNESCO's own description states that Turkish coffee 'combines special preparation and brewing techniques with a rich communal traditional culture,' functioning as 'a symbol of hospitality, friendship, refinement and entertainment that permeates all walks of life,' providing 'an opportunity for intimate talk and the sharing of daily concerns' among friends.\n\n# Domains\n\nUNESCO classifies the inscription under oral traditions and expressions; social practices, rituals and festive events; and traditional craftsmanship.",
+  "title": "Turkish Coffee Culture and Tradition (UNESCO ICH)",
+  "topic_group": "turkish_coffee_unesco",
+  "transformation_method": "llm_paraphrase_of_cited_source",
+  "url": "https://ich.unesco.org/en/RL/turkish-coffee-culture-and-tradition-00645"
+}
