@@ -334,6 +334,30 @@ def test_success_is_schema_valid(registry):
     _validate_full(envelope, registry)
 
 
+def test_usd_currency_is_requested_natively_and_labels_every_price(registry):
+    """Manual QA remediation Q.1 (§B): SerpApi is asked for the trip's
+    own currency directly (never converted client-side after the fact),
+    and every returned price -- envelope-level and per-option -- is
+    labeled with that same currency, never left as a stale 'TRY'."""
+    transport = FakeHttpTransport(responses={FLIGHTS_URL: _json_response(FLIGHTS_SUCCESS)})
+    envelope = _provider(transport).search_flights(_query(currency="USD"))
+    assert envelope["status"] == "success"
+    assert envelope["currency"] == "USD"
+    assert envelope["result"]["options"]
+    assert all(opt["price"]["currency"] == "USD" for opt in envelope["result"]["options"])
+    _validate_full(envelope, registry)
+
+    request_call = next(c for c in transport.call_log if c[0] == FLIGHTS_URL)
+    assert request_call[1]["currency"] == "USD"
+
+
+def test_try_currency_is_unchanged_by_default():
+    transport = FakeHttpTransport(responses={FLIGHTS_URL: _json_response(FLIGHTS_SUCCESS)})
+    envelope = _provider(transport).search_flights(_query())
+    assert envelope["currency"] == "TRY"
+    assert all(opt["price"]["currency"] == "TRY" for opt in envelope["result"]["options"])
+
+
 def test_best_flights_normalized_into_options():
     transport = FakeHttpTransport(responses={FLIGHTS_URL: _json_response(FLIGHTS_SUCCESS)})
     envelope = _provider(transport).search_flights(_query())

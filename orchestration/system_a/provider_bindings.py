@@ -19,14 +19,31 @@ result shapes, exactly as ADR 0009 §5 already established).
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Optional
 
+from phase4.context import ExecutionContext
 from providers.flights import FlightSearchQuery
 from providers.flights_serpapi import SerpApiFlightSearchProvider
 from providers.weather import WeatherQuery
 from providers.weather_openmeteo import OpenMeteoWeatherProvider
 from providers.web_evidence import WebEvidenceQuery
 from providers.web_evidence_serpapi import SerpApiWebEvidenceProvider
+
+# Manual QA remediation Q.1 (§B): the one currency this system can price
+# flights in when the trip's own currency is not otherwise recognized --
+# never Qwen-chosen, mirrors DEFAULT_CURRENCY in tool_executor.py.
+_DEFAULT_FLIGHT_CURRENCY = "TRY"
+_SUPPORTED_FLIGHT_CURRENCIES = frozenset({"TRY", "USD"})
+
+
+def _trip_currency(context: Optional[ExecutionContext]) -> str:
+    if context is None:
+        return _DEFAULT_FLIGHT_CURRENCY
+    trip_request = (context.normalized_request or {}).get("trip_request") or {}
+    currency = (trip_request.get("budget") or {}).get("currency")
+    if currency in _SUPPORTED_FLIGHT_CURRENCIES:
+        return currency
+    return _DEFAULT_FLIGHT_CURRENCY
 
 
 def _tool_result(envelope: dict[str, Any]) -> dict[str, Any]:
@@ -38,7 +55,7 @@ def _tool_result(envelope: dict[str, Any]) -> dict[str, Any]:
     return {"status": envelope.get("status", "provider_error"), "result": envelope}
 
 
-def fetch_weather(provider: OpenMeteoWeatherProvider, arguments: dict[str, Any]) -> dict[str, Any]:
+def fetch_weather(provider: OpenMeteoWeatherProvider, arguments: dict[str, Any], context: Optional[ExecutionContext] = None) -> dict[str, Any]:
     query = WeatherQuery(
         location=arguments.get("location") or "Istanbul",
         timezone="",
@@ -48,7 +65,7 @@ def fetch_weather(provider: OpenMeteoWeatherProvider, arguments: dict[str, Any])
     return _tool_result(provider.fetch_weather(query))
 
 
-def search_web(provider: SerpApiWebEvidenceProvider, arguments: dict[str, Any]) -> dict[str, Any]:
+def search_web(provider: SerpApiWebEvidenceProvider, arguments: dict[str, Any], context: Optional[ExecutionContext] = None) -> dict[str, Any]:
     query = WebEvidenceQuery(
         query=arguments["query"],
         language_hint="en",
@@ -57,7 +74,7 @@ def search_web(provider: SerpApiWebEvidenceProvider, arguments: dict[str, Any]) 
     return _tool_result(provider.search(query))
 
 
-def search_flights(provider: SerpApiFlightSearchProvider, arguments: dict[str, Any]) -> dict[str, Any]:
+def search_flights(provider: SerpApiFlightSearchProvider, arguments: dict[str, Any], context: Optional[ExecutionContext] = None) -> dict[str, Any]:
     # phase4.models.SearchFlightsArgs is exact-date, one-way only --
     # matches providers.flights_serpapi's own V1 boundary exactly, so
     # depart_date_from == depart_date_to always, never a range.
@@ -69,5 +86,9 @@ def search_flights(provider: SerpApiFlightSearchProvider, arguments: dict[str, A
         depart_date_to=depart_date,
         passenger_count=arguments["passenger_count"],
         cabin_class=arguments.get("cabin_class"),
+        # Manual QA remediation Q.1 (§B): the trip's own currency, server-
+        # injected from context -- never Qwen-chosen, exactly like
+        # search_stays'/estimate_fair_price's own DEFAULT_CURRENCY.
+        currency=_trip_currency(context),
     )
     return _tool_result(provider.search_flights(query))

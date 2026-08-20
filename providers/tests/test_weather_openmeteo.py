@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import socket
+from datetime import date as _dt_date
 
 import pytest
 
@@ -16,7 +17,7 @@ from providers.policy import RetryPolicy, TimeoutPolicy
 from providers.tests.conftest import make_validator
 from providers.validation import EnvelopeValidationError
 from providers.weather import WeatherQuery
-from providers.weather_openmeteo import FORECAST_URL, GEOCODING_URL, OpenMeteoWeatherProvider
+from providers.weather_openmeteo import ARCHIVE_URL, FORECAST_URL, GEOCODING_URL, OpenMeteoWeatherProvider
 
 FIXED_NOW = "2026-08-17T12:00:00Z"
 
@@ -258,11 +259,139 @@ def test_past_date_range_is_unsupported_never_silently_served():
     assert envelope["status"] == "unsupported"
 
 
-def test_forecast_range_beyond_horizon_is_unsupported_never_silently_truncated():
-    provider = _provider(FakeHttpTransport())
-    query = WeatherQuery(location="Istanbul", timezone="", date_from="2026-08-17", date_to="2026-09-20")  # > 16 days out
+ARCHIVE_DAILY = {
+    "latitude": 41.01, "longitude": 28.96, "timezone": "Europe/Istanbul",
+    "daily": {
+        # A single canned 3-day response reused for every sampled year
+        # (the fake transport is not year-aware) -- since parsing is
+        # index-based, this exercises real aggregation logic identically
+        # to a real per-year variance would, and with 3 identical years
+        # the averages equal these exact values, keeping assertions exact.
+        "time": ["2023-09-03", "2023-09-04", "2023-09-05"],
+        "weather_code": [1, 1, 61],
+        "temperature_2m_max": [30.0, 28.0, 26.0],
+        "temperature_2m_min": [20.0, 19.0, 18.0],
+        "precipitation_sum": [0.0, 0.0, 2.0],
+        "wind_speed_10m_max": [10.0, 12.0, 14.0],
+    },
+}
+
+
+def test_trip_straddling_the_horizon_returns_mixed_live_plus_historical_coverage(envelope_validator, registry):
+    """User correction pass (§C): date_from is today (within horizon),
+    date_to is beyond it -- the full requested range must be covered,
+    never silently truncated: live forecast for the reachable prefix,
+    real historical climate guidance for the rest, explicitly marked
+    'mixed'."""
+    transport = FakeHttpTransport(responses={
+        GEOCODING_URL: _json_response(GEOCODE_ISTANBUL),
+        FORECAST_URL: _json_response(FORECAST_DAILY),
+        ARCHIVE_URL: _json_response(ARCHIVE_DAILY),
+    })
+    provider = _provider(transport)
+    query = WeatherQuery(location="Istanbul", timezone="", date_from="2026-08-17", date_to="2026-09-05")
     envelope = provider.fetch_weather(query)
-    assert envelope["status"] == "unsupported"
+
+    errors = list(envelope_validator.iter_errors(envelope))
+    assert not errors, [e.message for e in errors]
+    _validate_full(envelope, registry)
+    assert envelope["status"] == "success"
+    assert envelope["data_mode"] == "mixed"
+    result = envelope["result"]
+    assert result["coverage"] == "mixed"
+    assert result["kind"] == "mixed"
+    assert len(result["forecast_days"]) == 2  # from FORECAST_DAILY, unchanged
+    assert [d["date"] for d in result["historical_climate_days"]] == ["2026-09-03", "2026-09-04", "2026-09-05"]
+    assert result["historical_climate_days"][0]["avg_high"] == 30.0
+    assert result["historical_climate_days"][0]["avg_low"] == 20.0
+    assert result["historical_climate_days"][2]["avg_precipitation_amount"] == 2.0
+    assert result["years_sampled"] == [2023, 2024, 2025]
+    assert result["aggregation_method"] == "arithmetic_mean_across_sampled_years"
+    assert "not a forecast" in result["climate_disclaimer"].lower()
+    # User correction pass §C: a fixed property of date_from (2026-08-17),
+    # never of "today" -- date_from - 16.
+    assert result["earliest_available_forecast_date"] == "2026-08-01"
+
+    forecast_call = next(call for call in transport.call_log if call[0] == FORECAST_URL)
+    assert forecast_call[1]["start_date"] == "2026-08-17"
+    assert forecast_call[1]["end_date"] == "2026-09-02"  # clipped to the horizon
+    archive_calls = [call for call in transport.call_log if call[0] == ARCHIVE_URL]
+    assert len(archive_calls) == 3  # one real request per sampled year
+    assert {c[1]["start_date"] for c in archive_calls} == {"2023-09-03", "2024-09-03", "2025-09-03"}
+
+
+def test_depart_date_itself_beyond_horizon_returns_pure_historical_climate_guidance(envelope_validator, registry):
+    """User correction pass (§C): a future trip entirely beyond the
+    forecast horizon is never a dead end -- it gets a genuine successful
+    historical-climate result, clearly labeled, never a fabricated
+    forecast and never a bare degraded status."""
+    transport = FakeHttpTransport(responses={
+        GEOCODING_URL: _json_response(GEOCODE_ISTANBUL),
+        ARCHIVE_URL: _json_response(ARCHIVE_DAILY),
+    })
+    provider = _provider(transport)
+    query = WeatherQuery(location="Istanbul", timezone="", date_from="2026-09-05", date_to="2026-09-05")
+    envelope = provider.fetch_weather(query)
+
+    errors = list(envelope_validator.iter_errors(envelope))
+    assert not errors, [e.message for e in errors]
+    _validate_full(envelope, registry)
+    assert envelope["status"] == "success"
+    assert envelope["data_mode"] == "historical"
+    result = envelope["result"]
+    assert result["coverage"] == "historical"
+    assert result["kind"] == "historical"
+    assert result["forecast_days"] == []
+    assert len(result["historical_climate_days"]) == 1
+    assert result["historical_climate_days"][0]["date"] == "2026-09-05"
+    assert result["earliest_available_forecast_date"] == "2026-08-20"  # 2026-09-05 - 16
+    assert not any(call[0] == FORECAST_URL for call in transport.call_log)  # never called: no live portion at all
+
+
+def test_historical_climate_fetch_failure_degrades_honestly_never_fabricated(envelope_validator, registry):
+    """A real archive-API failure (e.g. timeout) must degrade the whole
+    call to that honest status -- never silently return an empty/partial
+    aggregate pretending to be real climate guidance."""
+    transport = FakeHttpTransport(responses={GEOCODING_URL: _json_response(GEOCODE_ISTANBUL)}, raise_transport_error=True)
+    provider = _provider(transport)
+    query = WeatherQuery(location="Istanbul", timezone="", date_from="2026-09-05", date_to="2026-09-05")
+    envelope = provider.fetch_weather(query)
+
+    errors = list(envelope_validator.iter_errors(envelope))
+    assert not errors, [e.message for e in errors]
+    assert envelope["status"] == "timeout"
+    assert "historical_climate_days" not in envelope["result"]  # never a fabricated/partial aggregate
+    assert envelope["result"]["forecast_days"] == []
+
+
+def test_year_equivalent_date_clamps_feb29_in_a_non_leap_sampled_year():
+    """Leap-day handling (User correction pass §C test requirement):
+    deterministic, documented clamp -- never silently skipped."""
+    from providers.weather_openmeteo import _year_equivalent_date
+
+    reference = _dt_date(2028, 2, 29)  # 2028 is itself a leap year
+    assert _year_equivalent_date(reference, 2024) == _dt_date(2024, 2, 29)  # 2024 is leap: exact match
+    assert _year_equivalent_date(reference, 2023) == _dt_date(2023, 2, 28)  # 2023 is not leap: clamped
+    assert _year_equivalent_date(reference, 2025) == _dt_date(2025, 2, 28)  # 2025 is not leap: clamped
+
+
+def test_sample_years_is_deterministic_and_never_includes_the_current_year():
+    from providers.weather_openmeteo import _sample_years
+
+    assert _sample_years(_dt_date(2026, 8, 17), count=3) == [2023, 2024, 2025]
+    assert _sample_years(_dt_date(2030, 1, 1), count=5) == [2025, 2026, 2027, 2028, 2029]
+
+
+def test_earliest_available_forecast_date_depends_only_on_date_from_never_on_today():
+    """The exact bug the user correction pass caught: this must be a
+    fixed property of the request's own date_from, never drift depending
+    on when the identical trip date happens to be queried."""
+    from providers.weather_openmeteo import _earliest_available_forecast_date
+
+    date_from = _dt_date(2026, 9, 20)
+    assert _earliest_available_forecast_date(date_from) == _dt_date(2026, 9, 4)
+    # Querying the SAME date_from "later" must give the identical answer
+    # -- this function takes no "today"/clock argument at all by design.
 
 
 def test_out_of_range_coordinates_are_invalid_request():

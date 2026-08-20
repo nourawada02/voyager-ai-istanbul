@@ -31,6 +31,11 @@ class FlightSearchQuery:
     return_date_from: Optional[str] = None
     return_date_to: Optional[str] = None
     cabin_class: Optional[str] = None
+    # Manual QA remediation Q.1 (§B): the currency to request the search
+    # itself in (SerpApi Google Flights supports this natively) -- never
+    # Qwen-chosen, always server-injected from the trip's own budget
+    # currency, defaulting to TRY unchanged for every existing caller.
+    currency: str = "TRY"
 
     def normalized(self) -> dict:
         return {
@@ -42,6 +47,7 @@ class FlightSearchQuery:
             "return_date_to": self.return_date_to,
             "passenger_count": self.passenger_count,
             "cabin_class": self.cabin_class,
+            "currency": self.currency.upper(),
         }
 
     def fingerprint(self) -> str:

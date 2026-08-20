@@ -79,6 +79,35 @@ def test_search_flights_maps_exact_date_arguments():
     assert params["type"] == "2"
 
 
+def test_search_flights_uses_the_trip_currency_from_context_never_qwen_chosen():
+    """Manual QA remediation Q.1 (§B): the flight search currency is
+    server-injected from the trip's own budget currency via
+    ExecutionContext -- never an argument Qwen could have chosen, exactly
+    like DEFAULT_CURRENCY for search_stays/estimate_fair_price."""
+    from phase4.context import ExecutionContext
+
+    body = {"search_metadata": {"status": "Success"}, "best_flights": [], "other_flights": []}
+    transport = FakeHttpTransport(responses={FLIGHTS_URL: _json_response(body)})
+    provider = SerpApiFlightSearchProvider(transport=transport, clock=_clock, sleep_fn=lambda s: None, api_key=SecretString("test"))
+    context = ExecutionContext(
+        session_id="s1", trace_id="t1",
+        normalized_request={"trip_request": {"budget": {"amount_minor_units": 500000, "currency": "USD"}}},
+        observations=(), deadline_monotonic=1e9, cancellation_check=lambda: False,
+    )
+    result = search_flights(provider, {"origin": "BEY", "destination": "IST", "depart_date": "2026-09-10", "passenger_count": 1}, context)
+    assert result["status"] == "success"
+    assert transport.call_log[0][1]["currency"] == "USD"
+    assert result["result"]["currency"] == "USD"
+
+
+def test_search_flights_defaults_to_try_with_no_context():
+    body = {"search_metadata": {"status": "Success"}, "best_flights": [], "other_flights": []}
+    transport = FakeHttpTransport(responses={FLIGHTS_URL: _json_response(body)})
+    provider = SerpApiFlightSearchProvider(transport=transport, clock=_clock, sleep_fn=lambda s: None, api_key=SecretString("test"))
+    result = search_flights(provider, {"origin": "BEY", "destination": "IST", "depart_date": "2026-09-10", "passenger_count": 1})
+    assert transport.call_log[0][1]["currency"] == "TRY"
+
+
 def test_search_flights_missing_key_is_unavailable_not_success(monkeypatch):
     monkeypatch.delenv("SERPAPI_API_KEY", raising=False)
     transport = FakeHttpTransport(responses={})

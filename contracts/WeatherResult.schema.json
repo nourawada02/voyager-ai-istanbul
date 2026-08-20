@@ -2,10 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase4/WeatherResult.schema.json",
   "title": "WeatherResult",
-  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='weather' (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md). Explicitly distinguishes a forecast, a current observation, historical data, and an unavailable result via 'kind' -- a caller must never infer freshness from field presence alone. freshness/provenance/retrieved_at live on the enclosing ProviderResponseEnvelope, not duplicated here. schema_version 1.1.0 (Checkpoint Phase 4 C.1, docs/adr/0010-phase4-checkpointc1-openmeteo-weather-adapter.md) additively introduces optional 'requested_location', 'country', 'resolved_latitude', 'resolved_longitude', and 'attribution' -- needed once a real geocoding-backed adapter (Open-Meteo) exists to resolve a free-text location and to carry the provider's own attribution/licence notice. Every existing 1.0.0 instance (none of these fields set) remains valid unchanged.",
+  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='weather' (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md). Explicitly distinguishes a forecast, a current observation, historical data, and an unavailable result via 'kind' -- a caller must never infer freshness from field presence alone. freshness/provenance/retrieved_at live on the enclosing ProviderResponseEnvelope, not duplicated here. schema_version 1.1.0 (Checkpoint Phase 4 C.1, docs/adr/0010-phase4-checkpointc1-openmeteo-weather-adapter.md) additively introduces optional 'requested_location', 'country', 'resolved_latitude', 'resolved_longitude', and 'attribution' -- needed once a real geocoding-backed adapter (Open-Meteo) exists to resolve a free-text location and to carry the provider's own attribution/licence notice. Every existing 1.0.0 instance (none of these fields set) remains valid unchanged. schema_version 1.3.0 (Manual QA remediation Q.1, user correction pass §C) additively introduces: 'coverage' (live/historical/mixed -- which of the two data sources below this specific response drew from); 'historical_climate_days' (aggregated prior-year climate guidance for a future trip date beyond Open-Meteo's live forecast horizon, structurally distinct from 'forecast_days' so a caller can never mistake an aggregate for a literal daily forecast); 'years_sampled'/'aggregation_method'/'climate_disclaimer' (full provenance for that aggregate); 'kind' gains one new enum value, 'mixed' (part of the requested range is live, part is historical -- both forecast_days and historical_climate_days are populated, and the full requested range is always covered, never silently truncated); and 'earliest_available_forecast_date' is redefined to be present whenever ANY historical portion is included (kind='historical' or 'mixed'), computed as request.date_from - MAX_FORECAST_DAYS_AHEAD -- a fixed property of the request's own date_from, deliberately never of when the request happens to be evaluated. Every existing 1.2.0 instance (none of these fields/values used) remains valid unchanged.",
   "type": "object",
   "properties": {
-    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
+    "schema_version": { "enum": ["1.0.0", "1.1.0", "1.2.0", "1.3.0"] },
     "location": { "type": "string", "minLength": 1 },
     "requested_location": {
       "type": "string",
@@ -36,7 +36,12 @@
     },
     "kind": {
       "type": "string",
-      "enum": ["forecast", "current_observation", "historical", "unavailable"]
+      "enum": ["forecast", "current_observation", "historical", "unavailable", "mixed"]
+    },
+    "coverage": {
+      "type": "string",
+      "enum": ["live", "historical", "mixed"],
+      "description": "1.3.0+ only. Which real data source(s) this response actually drew from -- 'live' (Open-Meteo forecast API), 'historical' (Open-Meteo archive API, aggregated across years_sampled), or 'mixed' (both, because the requested range straddled the forecast horizon)."
     },
     "units": {
       "type": "object",
@@ -90,6 +95,43 @@
       "type": "array",
       "description": "Explicitly names any field a caller might expect but this response could not populate -- never silently omitted without a reason recorded here.",
       "items": { "type": "string", "minLength": 1 }
+    },
+    "earliest_available_forecast_date": {
+      "type": "string",
+      "format": "date",
+      "description": "1.3.0+ only (Manual QA remediation Q.1, user correction pass §C). Present whenever this response includes any historical portion (kind='historical' or 'mixed') -- the exact date this request's date_from enters Open-Meteo's live forecast horizon, computed as date_from - MAX_FORECAST_DAYS_AHEAD (a fixed property of the request, never of when it happens to be evaluated)."
+    },
+    "historical_climate_days": {
+      "type": "array",
+      "description": "1.3.0+ only. Present for kind='historical' or 'mixed'. Deterministic aggregates across years_sampled for each requested future calendar date beyond the live forecast horizon -- structurally distinct from forecast_days (avg_high/avg_low, never high/low) so a caller can never mistake an aggregate for a literal daily forecast.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "condition": { "type": "string", "minLength": 1 },
+          "avg_high": { "type": "number" },
+          "avg_low": { "type": "number" },
+          "avg_precipitation_amount": { "type": "number", "minimum": 0 },
+          "years_sampled": { "type": "array", "items": { "type": "integer" }, "minItems": 1 }
+        },
+        "required": ["date", "condition", "avg_high", "avg_low", "years_sampled"],
+        "additionalProperties": false
+      }
+    },
+    "years_sampled": {
+      "type": "array",
+      "description": "1.3.0+ only. Present for kind='historical' or 'mixed' -- the fixed, documented set of prior full years aggregated across (see providers/weather_openmeteo.py::CLIMATE_SAMPLE_YEAR_COUNT). Same list as every historical_climate_days[i].years_sampled entry, hoisted to the top level so a caller need not inspect an individual day to learn it.",
+      "items": { "type": "integer" }
+    },
+    "aggregation_method": {
+      "type": "string",
+      "minLength": 1,
+      "description": "1.3.0+ only. Present for kind='historical' or 'mixed' -- names the deterministic aggregation actually used (e.g. 'arithmetic_mean_across_sampled_years'), never left implicit."
+    },
+    "climate_disclaimer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "1.3.0+ only. Present for kind='historical' or 'mixed' -- a fixed, server-authored disclaimer ('Historical climate guidance -- not a forecast.') that must never be omitted or reworded to imply certainty about a future date."
     }
   },
   "required": ["schema_version", "location", "timezone", "kind", "units", "missing_fields"],

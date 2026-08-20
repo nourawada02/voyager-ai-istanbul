@@ -259,7 +259,7 @@ class SerpApiFlightSearchProvider:
         if isinstance(response_or_status, str):
             return self._degraded_envelope(query, response_or_status, retrieved_at, [])
 
-        parsed = self._parse_or_status(response_or_status, retrieved_at)
+        parsed = self._parse_or_status(response_or_status, retrieved_at, query.currency)
         if isinstance(parsed, str):
             return self._degraded_envelope(query, parsed, retrieved_at, [])
         options, warnings = parsed
@@ -312,7 +312,10 @@ class SerpApiFlightSearchProvider:
             "outbound_date": query.depart_date_from,
             "type": "2",  # one-way -- V1 never requests round-trip (type=1) or multi-city (type=3)
             "adults": query.passenger_count,
-            "currency": "TRY",
+            # Manual QA remediation Q.1 (§B): requested natively in the
+            # trip's own currency (SerpApi Google Flights supports this)
+            # -- never converted client-side after the fact.
+            "currency": query.currency,
             "output": "json",
             "hl": "en",
             "gl": "tr",
@@ -360,7 +363,7 @@ class SerpApiFlightSearchProvider:
 
     # --- response parsing --------------------------------------------------------------
 
-    def _parse_or_status(self, response: HttpResponse, retrieved_at: str) -> tuple[list[dict], list[str]] | str:
+    def _parse_or_status(self, response: HttpResponse, retrieved_at: str, currency: str) -> tuple[list[dict], list[str]] | str:
         try:
             body = response.json()
         except Exception:  # noqa: BLE001
@@ -387,9 +390,9 @@ class SerpApiFlightSearchProvider:
         if isinstance(other, list):
             combined.extend(other)
 
-        return self._normalize_itineraries(combined, retrieved_at)
+        return self._normalize_itineraries(combined, retrieved_at, currency)
 
-    def _normalize_itineraries(self, raw_itineraries: list, retrieved_at: str) -> tuple[list[dict], list[str]]:
+    def _normalize_itineraries(self, raw_itineraries: list, retrieved_at: str, currency: str) -> tuple[list[dict], list[str]]:
         options: list[dict] = []
         warnings: list[str] = []
         seen_ids: set[str] = set()
@@ -403,7 +406,7 @@ class SerpApiFlightSearchProvider:
                 warnings.append("skipped an itinerary missing usable flight segments")
                 continue
 
-            option = self._normalize_one(raw, segments, retrieved_at, warnings)
+            option = self._normalize_one(raw, segments, retrieved_at, warnings, currency)
             if option is None:
                 continue
             if option["flight_id"] in seen_ids:
@@ -415,7 +418,7 @@ class SerpApiFlightSearchProvider:
 
         return options, warnings
 
-    def _normalize_one(self, raw: dict, segments: list, retrieved_at: str, warnings: list[str]) -> Optional[dict]:
+    def _normalize_one(self, raw: dict, segments: list, retrieved_at: str, warnings: list[str], currency: str) -> Optional[dict]:
         legs: list[dict] = []
         for seg in segments:
             if not isinstance(seg, dict):
@@ -467,7 +470,7 @@ class SerpApiFlightSearchProvider:
             "arrive_at": last_leg["arrive_at"],
             "carrier": first_leg["carrier"],
             "stops": len(legs) - 1,
-            "price": {"amount_minor_units": amount_minor_units, "currency": "TRY"},
+            "price": {"amount_minor_units": amount_minor_units, "currency": currency},
             "provenance": {
                 "schema_version": "1.0.0",
                 "provider": self.provider_name,
@@ -516,7 +519,7 @@ class SerpApiFlightSearchProvider:
         fingerprint = query.fingerprint()
         assumptions = [
             "Search-time snapshot only; never a booking, seat-availability, or fare guarantee.",
-            "SerpApi request executed via Google Flights engine (type='one-way', hl='en', gl='tr', currency='TRY').",
+            f"SerpApi request executed via Google Flights engine (type='one-way', hl='en', gl='tr', currency={query.currency!r}).",
         ]
         if status != "success":
             assumptions.append(f"SerpApi Google Flights call ended with status={status!r}.")
@@ -550,7 +553,7 @@ class SerpApiFlightSearchProvider:
             "query_fingerprint": fingerprint,
             "cache_status": "bypass",  # this adapter implements no cache layer of its own -- reported honestly
             "retrieved_at": retrieved_at,
-            "currency": "TRY",
+            "currency": query.currency,
             "source_urls": [],
             "quality": {
                 "schema_version": "1.0.0",

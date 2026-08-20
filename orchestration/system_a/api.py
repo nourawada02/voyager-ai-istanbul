@@ -23,7 +23,7 @@ from __future__ import annotations
 import asyncio
 import time
 from contextlib import asynccontextmanager
-from datetime import date
+from datetime import date, datetime
 from typing import Any, AsyncIterator, Callable, Optional
 from uuid import uuid4
 
@@ -34,8 +34,9 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
 from orchestration.system_a import config, sse
 from orchestration.system_a.run_store import RunRecord, RunStore
-from orchestration.system_a.service import RunService
+from orchestration.system_a.service import RunService, TripRequestRejected, default_fx_provider_factory
 from phase1.models import Money, TripPreferences
+from phase4.guards import default_wall_clock
 from phase4.qwen_client import DecisionProvider
 from phase4.tools import ToolExecutor
 
@@ -124,6 +125,8 @@ def create_app(
     db_path: Optional[str] = None,
     max_workers: Optional[int] = None,
     mode: str = "real",
+    wall_clock: Callable[[], datetime] = default_wall_clock,
+    fx_provider_factory: Callable[[], Any] = default_fx_provider_factory,
 ) -> FastAPI:
     """Builds one independent FastAPI app instance, owning one `RunStore`
     (one SQLite database file) and one bounded run-execution thread pool.
@@ -159,6 +162,8 @@ def create_app(
         specialist_decision_provider_factory=specialist_decision_provider_factory,
         max_workers=resolved_max_workers,
         busy_timeout_ms=config.busy_timeout_ms(),
+        wall_clock=wall_clock,
+        fx_provider_factory=fx_provider_factory,
     )
 
     @asynccontextmanager
@@ -200,9 +205,16 @@ def create_app(
     @app.post("/v1/runs", response_model=RunCreateResponse, status_code=201)
     async def create_run(body: PlanningRunRequest) -> Any:
         trip_request_partial = body.trip_request.model_dump(mode="json") if body.trip_request is not None else None
-        record, created = await asyncio.to_thread(
-            service.create_run, body.user_message, trip_request_partial, body.idempotency_key
-        )
+        try:
+            record, created = await asyncio.to_thread(
+                service.create_run, body.user_message, trip_request_partial, body.idempotency_key
+            )
+        except TripRequestRejected as exc:
+            # Manual QA remediation Q.1: a typed client validation error --
+            # no run row was created (RunService.create_run raises this
+            # BEFORE inserting one), and no Qwen/provider call was ever
+            # made. Never surfaced as a 500/internal error.
+            return _error_response(422, "TRIP_REQUEST_REJECTED", exc.safe_error or "input_rejected", retriable=False)
         status_code = 201 if created else 200
         payload = RunCreateResponse(run_id=record.run_id, session_id=record.session_id, status=record.status.value)
         return JSONResponse(status_code=status_code, content=payload.model_dump(mode="json"))

@@ -2,10 +2,10 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.voyagerai.dev/phase1/ProviderResponseEnvelope.schema.json",
   "title": "ProviderResponseEnvelope",
-  "description": "Required response envelope for MCP tool / provider-adapter responses (architecture.md §8.2). Scope: provider/MCP tool responses only — A2A payloads carry their own separately-specified fields (§7.1–7.3), never this envelope. schema_version 1.1.0 (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md) additively introduces optional 'capability', 'status', 'query_fingerprint', 'cache_status', and 'cache_age_seconds' -- the richer operational-status vocabulary the new live-data tools (weather, web-search evidence, flight search) need to distinguish a genuine provider failure (timeout, rate limit, provider error, cancellation) from an empty-but-successful result, which 'data_mode' alone was never designed to express. Every existing 1.0.0 instance (none of the new fields set) remains valid unchanged; this is the same additive-minor-version discipline already used by ErrorEnvelope (1.0.0 -> 1.1.0) and StayOption/FairPriceEstimate (1.0.0 -> 1.1.0, docs/adr/0003-phase2-checkpoint-c0-serving-contract.md).",
+  "description": "Required response envelope for MCP tool / provider-adapter responses (architecture.md §8.2). Scope: provider/MCP tool responses only — A2A payloads carry their own separately-specified fields (§7.1–7.3), never this envelope. schema_version 1.1.0 (Checkpoint Phase 4 C.0, docs/adr/0009-phase4-checkpointc0-live-data-and-react-design.md) additively introduces optional 'capability', 'status', 'query_fingerprint', 'cache_status', and 'cache_age_seconds' -- the richer operational-status vocabulary the new live-data tools (weather, web-search evidence, flight search) need to distinguish a genuine provider failure (timeout, rate limit, provider error, cancellation) from an empty-but-successful result, which 'data_mode' alone was never designed to express. Every existing 1.0.0 instance (none of the new fields set) remains valid unchanged; this is the same additive-minor-version discipline already used by ErrorEnvelope (1.0.0 -> 1.1.0) and StayOption/FairPriceEstimate (1.0.0 -> 1.1.0, docs/adr/0003-phase2-checkpoint-c0-serving-contract.md). schema_version 1.2.0 (Manual QA remediation Q.1) additively introduces one new 'status' enum value, 'forecast_not_yet_available', and one new 'data_mode' enum value, 'mixed' (part of a response is live, part is a separate real data source -- e.g. weather's live-forecast-plus-historical-climate blend, user correction pass §C). Every existing 1.1.0 instance (which never emits these new values) remains valid unchanged. Note: 'forecast_not_yet_available' was introduced, then immediately superseded within this same remediation pass once real historical-climate guidance replaced it as the honest answer for a future date beyond the forecast horizon (weather now always returns a genuine 'success' -- live, historical, or mixed -- for any valid future date); the enum value is left defined, unused, for forward compatibility rather than removed.",
   "type": "object",
   "properties": {
-    "schema_version": { "enum": ["1.0.0", "1.1.0"] },
+    "schema_version": { "enum": ["1.0.0", "1.1.0", "1.2.0"] },
     "request_id": {
       "type": "string",
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
@@ -18,14 +18,15 @@
     },
     "data_mode": {
       "type": "string",
-      "enum": ["live", "cached", "historical", "fixture", "estimated", "unavailable"],
+      "enum": ["live", "cached", "historical", "fixture", "estimated", "unavailable", "mixed"],
       "description": "'unavailable' (1.1.0+, Checkpoint Phase 4 C.0 correction pass) means no data and no computed estimate exist at all -- distinct from 'estimated' (a genuine computed fallback exists, e.g. a Haversine distance). A timeout/rate_limited/provider_error/cancelled/unavailable status must use data_mode='unavailable' here, never 'estimated', unless an adapter actually computed a real fallback value."
     },
     "status": {
       "type": "string",
       "enum": [
         "success", "partial", "unavailable", "unsupported", "invalid_request",
-        "timeout", "rate_limited", "provider_error", "stale", "cancelled"
+        "timeout", "rate_limited", "provider_error", "stale", "cancelled",
+        "forecast_not_yet_available"
       ],
       "description": "1.1.0+ only. The operational outcome of this specific call, orthogonal to data_mode (which describes the *kind* of data returned, not whether the call succeeded). Omitted on a 1.0.0 instance implies 'success' for backward compatibility with every pre-existing fixture. A provider failure must always be represented as one of the non-'success'/'partial' values here -- never as an empty 'result' object with no status signal (Checkpoint Phase 4 C.0 failure-policy requirement)."
     },

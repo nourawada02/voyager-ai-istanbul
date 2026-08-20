@@ -19,11 +19,15 @@ from enum import Enum
 from typing import Optional
 
 # The shared status vocabulary (mirrors ProviderResponseEnvelope.schema.json
-# 1.1.0's 'status' enum exactly -- kept as a plain tuple, not duplicated
-# per provider module).
+# 1.2.0's 'status' enum exactly -- kept as a plain tuple, not duplicated
+# per provider module). 'forecast_not_yet_available' (Manual QA
+# remediation Q.1) is weather-specific in practice but lives in this
+# shared vocabulary like every other status here -- other providers simply
+# never emit it, the same way most providers never emit 'stale'.
 RESULT_STATUSES = (
     "success", "partial", "unavailable", "unsupported", "invalid_request",
     "timeout", "rate_limited", "provider_error", "stale", "cancelled",
+    "forecast_not_yet_available",
 )
 
 # A provider failure must never be represented as an empty successful
@@ -44,7 +48,7 @@ FAILURE_STATUSES = frozenset({"unavailable", "timeout", "rate_limited", "provide
 # status was incorrectly reported with data_mode='live'.
 NO_DATA_STATUSES = frozenset({
     "timeout", "rate_limited", "provider_error", "cancelled", "unavailable",
-    "invalid_request", "unsupported",
+    "invalid_request", "unsupported", "forecast_not_yet_available",
 })
 
 

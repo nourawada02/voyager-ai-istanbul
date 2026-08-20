@@ -89,7 +89,18 @@ class HttpTransport(Protocol):
 # caller (providers.weather_openmeteo, providers.web_evidence_serpapi),
 # not by this generic transport, which is deliberately reusable for
 # future providers too.
-ALLOWED_HOSTS = frozenset({"geocoding-api.open-meteo.com", "api.open-meteo.com", "serpapi.com"})
+ALLOWED_HOSTS = frozenset({
+    "geocoding-api.open-meteo.com", "api.open-meteo.com", "serpapi.com",
+    # User correction pass (§C): Open-Meteo's historical reanalysis
+    # archive, added when historical-climate-guidance mode was built --
+    # missing here meant every real archive call was silently rejected by
+    # this allowlist and misreported as a generic "timeout" (caught only
+    # by direct live testing; every hermetic test used FakeHttpTransport,
+    # which never exercises this check at all).
+    "archive-api.open-meteo.com",
+    # Manual QA remediation Q.1 (§B): the real FX-rate source.
+    "api.frankfurter.dev",
+})
 
 _DEFAULT_HEADERS = {"User-Agent": "voyager-ai-istanbul/1.0"}
 

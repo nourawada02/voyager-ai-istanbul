@@ -29,20 +29,45 @@ import logging
 import sqlite3
 import time
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime
 from typing import Any, Callable, Optional
 from uuid import UUID, uuid4
 
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.errors import GraphRecursionError
 
+from orchestration.system_a import budget_summary as budget_summary_module
 from orchestration.system_a import sse
 from orchestration.system_a.run_store import RunEventRecord, RunRecord, RunStatus, RunStore
 from phase4.graph import build_graph
+from phase4.guards import check_input, default_wall_clock, resolve_today
 from phase4.models import MAX_GRAPH_TRANSITIONS, TOOL_CALL_ACTIONS
 from phase4.qwen_client import DecisionProvider
 from phase4.tools import ToolExecutor
 
+
+def default_fx_provider_factory() -> Any:
+    from providers.fx_frankfurter import FrankfurterFxProvider
+
+    return FrankfurterFxProvider()
+
 logger = logging.getLogger("voyager.system_a.service")
+
+
+class TripRequestRejected(Exception):
+    """Raised by `RunService.create_run` when `phase4.guards.check_input`
+    rejects the request (Manual QA remediation Q.1) -- e.g. a past
+    departure date, a return date before departure, or an unsupported
+    currency. Raised BEFORE any run row is created and BEFORE the
+    execution thread pool is touched, so an invalid request never shows up
+    as a run at all, and never reaches Qwen or any provider. The HTTP
+    layer (api.py) catches this and returns a typed 422, never treating it
+    as an internal error."""
+
+    def __init__(self, reason_code: Optional[str], safe_error: Optional[str]) -> None:
+        self.reason_code = reason_code
+        self.safe_error = safe_error
+        super().__init__(safe_error or "input_rejected")
 
 _TOOL_CALL_ACTION_VALUES = frozenset(a.value for a in TOOL_CALL_ACTIONS)
 
@@ -101,6 +126,8 @@ class RunService:
         specialist_decision_provider_factory: Callable[[], DecisionProvider],
         max_workers: int = 4,
         busy_timeout_ms: int = 5000,
+        wall_clock: Callable[[], datetime] = default_wall_clock,
+        fx_provider_factory: Callable[[], Any] = default_fx_provider_factory,
     ):
         self._store = run_store
         self._db_path = db_path
@@ -108,6 +135,17 @@ class RunService:
         self._decision_provider_factory = decision_provider_factory
         self._specialist_decision_provider_factory = specialist_decision_provider_factory
         self._busy_timeout_ms = busy_timeout_ms
+        # Manual QA remediation Q.1 (§B): injected exactly like every
+        # other provider (tool_executor_factory) -- every hermetic test
+        # passes a FakeFxProvider factory, so no test ever makes a real
+        # network call just because a trip's budget currency is USD.
+        self._fx_provider_factory = fx_provider_factory
+        # Single source of truth for "now" (Manual QA remediation Q.1) --
+        # the same injected clock resolves "today" both for the
+        # pre-run rejection check below AND for the graph's own InputGuard
+        # (passed through to build_graph in _execute), so the two layers
+        # can never disagree about what date is being validated against.
+        self._wall_clock = wall_clock
         self._pool = ThreadPoolExecutor(max_workers=max_workers, thread_name_prefix="voyager-run-worker")
 
     # --- public API used by the FastAPI layer ---------------------------------------
@@ -122,13 +160,31 @@ class RunService:
         trace_id pair for the whole run and stamps it into both the run
         record and the embedded trip_request, so the two are always the
         same session by construction, never two independently-supplied
-        values that could silently diverge."""
-        run_id = str(uuid4())
+        values that could silently diverge.
+
+        Manual QA remediation Q.1: `phase4.guards.check_input` is
+        consulted HERE, synchronously, before any run row exists and
+        before the execution thread pool is touched. A rejected request
+        (past departure date, return before departure, unsupported
+        currency, etc.) raises `TripRequestRejected` -- no run is ever
+        created, and Qwen/every provider is never called. This is in
+        addition to (not a replacement for) the graph's own InputGuard,
+        which still re-validates the same way for any caller that invokes
+        the graph directly."""
         session_id = str(uuid4())
         trace_id = str(uuid4())
         trip_request: Optional[dict[str, Any]] = None
         if trip_request_partial is not None:
             trip_request = {"schema_version": "1.0.0", "session_id": session_id, "trace_id": trace_id, **trip_request_partial}
+
+        today = resolve_today(self._wall_clock)
+        guard_result = check_input(user_message, trip_request, today=today)
+        if not guard_result.accepted:
+            raise TripRequestRejected(
+                guard_result.reason_code.value if guard_result.reason_code else None, guard_result.safe_error
+            )
+
+        run_id = str(uuid4())
         request_dict = {"user_message": user_message, "trip_request": trip_request}
         record, created = self._store.create_run(
             run_id=run_id, session_id=session_id, trace_id=trace_id, request=request_dict, idempotency_key=idempotency_key
@@ -185,6 +241,7 @@ class RunService:
                 decision_provider,
                 specialist_decision_provider,
                 cancellation_check=lambda: self._store.is_cancellation_requested(run_id),
+                wall_clock=self._wall_clock,
                 checkpointer=saver,
                 specialist_event_callback=lambda event: self._handle_specialist_event(run_id, event),
             )
@@ -212,6 +269,23 @@ class RunService:
                 final_result = final_state.get("final_result") or _FALLBACK_RECURSION_RESULT
             except GraphRecursionError:
                 final_result = _FALLBACK_RECURSION_RESULT
+
+            # Manual QA remediation Q.1 (§B): a deterministic, server-side
+            # post-processing step -- never part of the bounded ReAct
+            # loop, never Qwen-decided. Attached only when there is a
+            # real trip_request/budget to summarize; a failure here is
+            # never allowed to turn an otherwise-successful run into a
+            # failed one (budget_summary is a genuine best-effort
+            # enrichment, not a required output).
+            try:
+                summary = budget_summary_module.build_budget_summary(
+                    final_result, request_dict.get("trip_request"), self._fx_provider_factory
+                )
+                if summary is not None:
+                    final_result = dict(final_result)
+                    final_result["budget_summary"] = summary
+            except Exception:  # noqa: BLE001 -- never lets a budget-summary bug fail the whole run
+                pass
 
             cancellation_requested = self._store.is_cancellation_requested(run_id)
             run_status = _map_final_result_to_run_status(final_result, cancellation_requested)

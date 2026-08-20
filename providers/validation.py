@@ -31,6 +31,7 @@ CAPABILITY_RESULT_SCHEMAS: dict[str, str] = {
     "weather": "WeatherResult",
     "web_search": "WebEvidenceResult",
     "flight_search": "FlightSearchResult",
+    "fx_rate": "FxRateResult",
 }
 
 

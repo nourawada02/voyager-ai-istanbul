@@ -30,7 +30,7 @@ DEFAULT_CURRENCY = "TRY"
 DEFAULT_DAILY_ACTIVITY_BUDGET_MINUTES = 360  # 6 hours/day -- a documented default, never an invented hard preference
 
 
-def _call_provider_binding(binding: Any, provider: Any, arguments: dict[str, Any]) -> dict[str, Any]:
+def _call_provider_binding(binding: Any, provider: Any, arguments: dict[str, Any], context: Optional[ExecutionContext] = None) -> dict[str, Any]:
     """Production real-mode incident P.1: `TravelMcpClient.call_tool()`
     and `IstanbulExpertA2AClient.call_istanbul_expert()` already never let
     a raw transport exception reach the caller (their own `except
@@ -47,7 +47,7 @@ def _call_provider_binding(binding: Any, provider: Any, arguments: dict[str, Any
     ReAct loop continues to whatever else remains eligible exactly as it
     already does for any other provider failure status."""
     try:
-        return binding(provider, arguments)
+        return binding(provider, arguments, context)
     except Exception:  # noqa: BLE001 -- an unexpected root-provider exception must never reach the caller
         return {"status": "provider_error", "result": None}
 
@@ -187,11 +187,11 @@ class ProductionToolExecutor:
 
     def execute(self, action: Action, arguments: dict[str, Any], context: Optional[ExecutionContext] = None) -> dict[str, Any]:
         if action == Action.GET_WEATHER:
-            return _call_provider_binding(fetch_weather, self.weather_provider, arguments)
+            return _call_provider_binding(fetch_weather, self.weather_provider, arguments, context)
         if action == Action.WEB_SEARCH:
-            return _call_provider_binding(search_web, self.web_evidence_provider, arguments)
+            return _call_provider_binding(search_web, self.web_evidence_provider, arguments, context)
         if action == Action.SEARCH_FLIGHTS:
-            return _call_provider_binding(search_flights, self.flight_provider, arguments)
+            return _call_provider_binding(search_flights, self.flight_provider, arguments, context)
         if action == Action.SEARCH_STAYS:
             return self.mcp_client.call_tool("search_stays", _build_search_stays_arguments(arguments, context))
         if action == Action.ESTIMATE_FAIR_PRICE:

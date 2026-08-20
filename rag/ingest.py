@@ -143,6 +143,13 @@ def ingest_config(
                     "district_id": doc.district_id,
                     "source_checksum": doc.checksum,
                     "chunk_config": chunk_config,
+                    # Manual QA remediation Q.1 (§A): the exact ingestion
+                    # config fingerprint this point was written under --
+                    # same value as the collection's own fingerprint marker
+                    # point, but recorded per-chunk too so a caller can
+                    # answer "which ingestion run produced this point"
+                    # without a separate lookup.
+                    "ingestion_version": fp,
                 }
             )
 

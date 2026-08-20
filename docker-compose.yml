@@ -15,29 +15,46 @@
 # (e.g. `http://agent-system-a:8002`) -- never `localhost`, which would
 # resolve to the calling container itself, not the target service.
 #
-# Two supported modes, both offline-safe by default:
+# Two supported modes, both zero-paid-provider-call by default:
 #   1. Deterministic offline fixture mode (default): VOYAGER_SYSTEM_A_MODE
 #      defaults to "fixture" below, so `docker compose up` with no `.env`
 #      file at all makes zero paid-provider calls. agent-system-b's own
 #      RAG_REQUIRED=false lets it degrade cleanly to catalog-only
 #      scheduling even before vector-db has ever been populated (see the
 #      Qdrant population note below) -- every one of the five containers
-#      still starts and passes its own health check either way.
+#      still starts and passes its own health check either way. Manual QA
+#      remediation Q.1 (second correction pass, §2) note: agent-system-b
+#      now defaults QDRANT_URL to the real vector-db service (below), so
+#      even this "offline" mode makes one real, free, no-key network call
+#      on first boot to download its pinned embedding model -- not a
+#      paid-provider call, but not fully air-gapped either. Set
+#      QDRANT_URL= (empty) explicitly in a real .env to restore a fully
+#      offline first boot.
 #   2. Real-provider mode: set VOYAGER_SYSTEM_A_MODE=real and supply
 #      QWEN_API_KEY/QWEN_BASE_URL/SERPAPI_API_KEY through the environment
 #      (a real .env file, never committed -- see .env.example). No
 #      literal credential ever appears in this file.
 #
-# Qdrant population: vector-db starts as an empty, real Qdrant instance --
-# this file never runs ingestion itself (Checkpoint Phase 3's own
-# `rag/run_ingestion.py`-equivalent one-time step is explicitly out of
-# scope for a long-running Compose service, and is not invented here as
-# a sixth container). To populate it for real citations, run the existing
-# frozen Phase 3 ingestion pipeline once, out-of-band, against
-# `http://localhost:6333` while this stack is up, before querying
-# agent-system-b for citation-bearing results -- agent-system-b degrades
-# safely (RAG_REQUIRED=false) with an explicit warning if this step was
-# never run, exactly as Checkpoint B already proved.
+# Qdrant population (Manual QA remediation Q.1, §A -- supersedes the
+# original Checkpoint D.2B design note this replaced): vector-db still
+# starts as an empty, real Qdrant instance -- ingestion is deliberately
+# NOT baked into vector-db's own startup, and is NOT a sixth
+# long-running service. Instead, `rag-ingest` (defined below,
+# `profiles: ["ingest"]`) is a real, committed, idempotent one-shot CLI
+# service that never starts with a bare `docker compose up` and is run
+# explicitly:
+#
+#   docker compose run --rm rag-ingest bootstrap
+#
+# This ingests the full existing approved Istanbul corpus
+# (rag/documents/*.json) if the collection is missing or empty, and is a
+# safe no-op if it is already correctly populated -- reproducible from a
+# fresh clone / empty volume, not a manual, undocumented, host-only step.
+# agent-system-b degrades safely (RAG_REQUIRED=false) with an explicit,
+# distinguishable warning if this step was never run, exactly as
+# Checkpoint B already proved. See rag/ingest_cli.py and rag/Dockerfile
+# for the full command surface (status/bootstrap/ingest --source, the
+# last one for adding reviewed demo documents at runtime).
 
 services:
   vector-db:
@@ -82,19 +99,27 @@ services:
     environment:
       PORT: "8000"
       ADVERTISED_HOST: agent-system-b
-      # Empty by default -- matches services/istanbul-expert-b/Dockerfile's
-      # own safe default exactly ("not configured", degrade to catalog-only,
-      # Checkpoint A behavior). Deliberately NOT pointed at vector-db by
-      # default: simply SETTING QDRANT_URL makes System B synchronously
-      # download and warm the pinned multilingual embedding model before
-      # it will accept any connection at all (a real, internet-dependent,
-      # multi-minute cold start, observed directly in this checkpoint's
-      # own gate) -- unnecessary and undesired for the offline fixture
-      # smoke this file defaults to. Set QDRANT_URL=http://vector-db:6333
-      # explicitly (e.g. in a real .env) only after populating vector-db
-      # (see the Qdrant population note above) and only when real
-      # citation-bearing RAG results are actually wanted.
-      QDRANT_URL: "${QDRANT_URL:-}"
+      # Manual QA remediation Q.1 (second correction pass, §2): a real,
+      # non-secret, committed default -- the internal Compose service
+      # name, never `localhost` or a secret. This is the reproducibility
+      # fix: a fresh clone/empty `.env` must resolve System B to the real
+      # `vector-db` service by construction, not depend on a
+      # git-ignored, host-local `.env` edit that a QA report cannot hand
+      # off to another machine. `${QDRANT_URL:-...}` still lets an
+      # operator override it (e.g. to point at an external Qdrant, or to
+      # blank it out for a genuinely offline fixture run) -- the syntax
+      # itself is unchanged, only the fallback value moved from empty to
+      # this real default.
+      #
+      # Tradeoff, disclosed rather than hidden: this means the FIRST
+      # `docker compose up` (any mode, including offline fixture mode)
+      # now also pays System B's real embedding-model cold start
+      # (multi-minute on an unprimed rag_ingest_model_cache/
+      # agent_system_b_data volume, observed directly in this
+      # checkpoint's own gate) instead of skipping it. Set
+      # QDRANT_URL= (empty) explicitly in a real .env to restore the old
+      # always-skip-RAG-warmup behavior for a genuinely offline run.
+      QDRANT_URL: "${QDRANT_URL:-http://vector-db:6333}"
       QDRANT_COLLECTION_NAME: "istanbul_rag_B"
       # Explicitly false for the offline fixture smoke (checkpoint
       # instruction) -- System B degrades cleanly to catalog-only
@@ -165,6 +190,39 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  # Manual QA remediation Q.1 (§A): the real, committed, one-command RAG
+  # ingestion/bootstrap CLI (rag/ingest_cli.py) as a Compose one-shot
+  # service -- `profiles: ["ingest"]` means it NEVER starts as part of a
+  # bare `docker compose up` (the documented "exactly five long-running
+  # services" topology above is unchanged) and is only ever run
+  # explicitly:
+  #
+  #   docker compose run --rm rag-ingest bootstrap
+  #   docker compose run --rm rag-ingest status
+  #   docker compose run --rm -v ./my-demo-docs:/demo-documents:ro \
+  #     rag-ingest ingest --source /demo-documents
+  #
+  # QDRANT_URL below sets rag/ingest_cli.py's own --qdrant-url default,
+  # so every invocation above already targets the real vector-db service
+  # with no extra flag needed. Idempotent and safe to run against an
+  # already-populated collection (a no-op, reported honestly) -- this is
+  # what makes "a fresh clone/empty-volume setup is reproducible" true:
+  # `vector-db` alone starts empty, and `rag-ingest bootstrap` is the one
+  # command that brings it to a real, query-ready state before
+  # agent-system-b is expected to serve citation-bearing results.
+  rag-ingest:
+    profiles: ["ingest"]
+    build:
+      context: ./rag
+    environment:
+      QDRANT_URL: "http://vector-db:6333"
+    volumes:
+      - rag_ingest_model_cache:/data/model_cache
+    depends_on:
+      vector-db:
+        condition: service_healthy
+    command: ["bootstrap"]
+
 volumes:
   # Checkpoint Phase 4 D.2A/D.2B: run/session/event history plus the
   # LangGraph checkpoint tables (orchestration/system_a/run_store.py,
@@ -178,3 +236,8 @@ volumes:
   # (services/istanbul-expert-b/Dockerfile's own /data ENV vars) --
   # avoids re-downloading the pinned embedding model on every restart.
   agent_system_b_data:
+  # Manual QA remediation Q.1 (§A): the rag-ingest one-shot service's own
+  # embedding-model cache, separate from agent_system_b_data (a
+  # different container, a different image) -- avoids re-downloading the
+  # pinned model on every `docker compose run rag-ingest ...` invocation.
+  rag_ingest_model_cache:

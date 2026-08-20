@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.voyagerai.dev/phase4/FxRateResult.schema.json",
+  "title": "FxRateResult",
+  "description": "The 'result' payload shape when ProviderResponseEnvelope.capability='fx_rate' (Manual QA remediation Q.1, §B). One quote: 1 base_currency = rate quote_currency. 'rate' is a decimal STRING, never a JSON number -- a JSON number is IEEE-754 binary float, which this project's own 'Decimal or integer minor units, never binary float' money rule forbids for anything that feeds a currency conversion. Every field needed to disclose full provenance (source, effective date, retrieval timestamp) lives here or on the enclosing envelope (retrieved_at, cache_status) -- a caller must never present a converted amount without being able to also show where the rate came from and when it was true.",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "base_currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "quote_currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "rate": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]+(\\.[0-9]+)?$",
+      "description": "Decimal string, e.g. '47.935'. Null exactly when the enclosing envelope's status is not 'success' -- never a fabricated/placeholder rate."
+    },
+    "effective_date": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "The date this rate was true as of (the provider's own published reference date, e.g. the ECB's latest business-day rate) -- distinct from the envelope's retrieved_at (when THIS call fetched it). Null exactly when rate is null."
+    }
+  },
+  "required": ["schema_version", "base_currency", "quote_currency", "rate", "effective_date"],
+  "additionalProperties": false
+}
