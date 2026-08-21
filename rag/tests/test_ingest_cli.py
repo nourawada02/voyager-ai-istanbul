@@ -147,7 +147,17 @@ def real_client_for_cleanup():
 
 
 def _args(chunk_config: str, **overrides) -> argparse.Namespace:
-    base = {"qdrant_url": QDRANT_TEST_URL, "chunk_config": chunk_config}
+    base = {
+        "qdrant_url": QDRANT_TEST_URL,
+        "chunk_config": chunk_config,
+        # Pre-existing tests below exercise the config-derived-name
+        # behavior directly (their own throwaway 'istanbul_rag_<config>'
+        # collection, unrelated to the istanbul_rag_B_v2 promotion) --
+        # preserved explicitly now that collection naming is a first-class
+        # CLI argument rather than always config-derived.
+        "collection_name": f"istanbul_rag_{chunk_config}",
+        "rebuild_on_fingerprint_mismatch": False,
+    }
     base.update(overrides)
     return argparse.Namespace(**base)
 
@@ -188,68 +198,24 @@ def test_bootstrap_populates_a_genuinely_missing_collection_and_is_idempotent(th
             pass
 
 
-def test_demo_document_ingest_retrieve_and_idempotent_reingest(tmp_path, throwaway_chunk_config, real_client_for_cleanup):
-    """The exact required test (Manual QA remediation Q.1, §A demo
-    ingestion): a small synthetic demo document is ingested, a unique
-    fact from it is retrieved, ingestion is re-run unchanged, and the
-    point count does not increase the second time."""
-    unique_fact_text = (
-        "The Zephyrion Test Kiosk (a fictional Q.1 test fixture, never a real place) "
-        "is painted entirely in the invented color glimmercrust violet."
-    )
+def test_cmd_ingest_is_disabled_for_this_release_and_never_creates_the_collection(
+    tmp_path, throwaway_chunk_config, real_client_for_cleanup
+):
+    """`ingest --source` was disabled for this release (RAG official-
+    promotion checkpoint, review-round fix): a noncanonical collection
+    populated incrementally would either wrongly keep claiming the
+    canonical 69-document fingerprint, or need a second fingerprinting
+    scheme this release does not implement -- so the command refuses
+    unconditionally, for every collection name, rather than leave that
+    misleading behavior in place. Proven here against a genuinely fresh
+    throwaway collection name: cmd_ingest refuses before ever creating
+    it."""
     doc_path = tmp_path / "demo.json"
-    doc_path.write_text(json.dumps(_valid_record(
-        source_id="q1_zephyrion_test_kiosk", title="Zephyrion Test Kiosk", text=unique_fact_text,
-    )), encoding="utf-8")
-
+    doc_path.write_text(json.dumps(_valid_record(source_id="q1_zephyrion_test_kiosk")), encoding="utf-8")
     collection_name = f"istanbul_rag_{throwaway_chunk_config}"
-    try:
-        exit_code = ingest_cli.cmd_ingest(_args(throwaway_chunk_config, source=str(doc_path)))
-        assert exit_code == 0
-        first_count = real_client_for_cleanup.count(collection_name).count
-        assert first_count >= 1  # the fingerprint marker plus at least the one real chunk
 
-        # Retrieve a unique fact from the demo document -- proves it is
-        # genuinely searchable, not just stored.
-        from rag import embeddings, qdrant_store
+    exit_code = ingest_cli.cmd_ingest(_args(throwaway_chunk_config, source=str(doc_path)))
+    assert exit_code == 2
 
-        query_vector = embeddings.embed_query("What color is the Zephyrion Test Kiosk painted?")
-        hits = qdrant_store.dense_search(real_client_for_cleanup, collection_name, query_vector, top_k=3)
-        assert hits, "expected at least one real hit from the demo document"
-        assert hits[0].payload["source_id"] == "q1_zephyrion_test_kiosk"
-        assert "glimmercrust violet" in hits[0].payload["text"]
-
-        # Re-run ingestion, completely unchanged -- must be a no-op:
-        # the point count must NOT increase.
-        exit_code = ingest_cli.cmd_ingest(_args(throwaway_chunk_config, source=str(doc_path)))
-        assert exit_code == 0
-        second_count = real_client_for_cleanup.count(collection_name).count
-        assert second_count == first_count
-    finally:
-        try:
-            real_client_for_cleanup.delete_collection(collection_name)
-        except Exception:  # noqa: BLE001 -- best-effort test cleanup, never masks a real assertion failure
-            pass
-
-
-def test_changed_document_content_updates_the_same_point_not_a_duplicate(tmp_path, throwaway_chunk_config, real_client_for_cleanup):
-    collection_name = f"istanbul_rag_{throwaway_chunk_config}"
-    doc_path = tmp_path / "demo.json"
-    try:
-        doc_path.write_text(json.dumps(_valid_record(source_id="q1_changing_doc", text="Original fact about a fictional place.")), encoding="utf-8")
-        ingest_cli.cmd_ingest(_args(throwaway_chunk_config, source=str(doc_path)))
-        first_count = real_client_for_cleanup.count(collection_name).count
-
-        doc_path.write_text(json.dumps(_valid_record(source_id="q1_changing_doc", text="A DIFFERENT fact about the same fictional place, now updated.")), encoding="utf-8")
-        exit_code = ingest_cli.cmd_ingest(_args(throwaway_chunk_config, source=str(doc_path)))
-        assert exit_code == 0
-        second_count = real_client_for_cleanup.count(collection_name).count
-        # Same number of points (one chunk each way) -- the changed
-        # content overwrote the same deterministic point id, never added
-        # a duplicate alongside the old version.
-        assert second_count == first_count
-    finally:
-        try:
-            real_client_for_cleanup.delete_collection(collection_name)
-        except Exception:  # noqa: BLE001
-            pass
+    existing = {c.name for c in real_client_for_cleanup.get_collections().collections}
+    assert collection_name not in existing  # never created -- the refusal happens before any connection

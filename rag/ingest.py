@@ -22,7 +22,7 @@ from qdrant_client import QdrantClient
 from rag import bm25, qdrant_store
 from rag.chunking import ChunkRecord, Tokenizer, chunk_document
 from rag.ids import chunk_id as make_chunk_id
-from rag.ids import config_fingerprint, corpus_fingerprint
+from rag.ids import config_fingerprint, corpus_fingerprint, ingestion_fingerprint
 
 RAG_ROOT = Path(__file__).resolve().parent
 DOCUMENTS_DIR = RAG_ROOT / "documents"
@@ -33,6 +33,14 @@ CHUNK_CONFIGS: dict[str, dict[str, int]] = {
     "C": {"chunk_tokens": 700, "overlap_tokens": 100, "top_k": 3},
     "D": {"chunk_tokens": 700, "overlap_tokens": 100, "top_k": 5},
 }
+
+# The chunking algorithm identity (rag/chunking.py::chunk_document) and the
+# fingerprint composition scheme itself, both included in the stored
+# fingerprint (corpus-aware fingerprint, RAG official-promotion checkpoint)
+# so a future change to *how* chunking or fingerprinting work -- not just
+# the numeric knobs -- is also detected as a mismatch, never silently mixed.
+CHUNKING_METHOD = "heading_aware_recursive_v1"
+FINGERPRINT_SCHEMA_VERSION = "2"
 
 
 @dataclass(frozen=True)
@@ -101,8 +109,47 @@ def _ingestion_config_dict(chunk_config: str, embedding_fp: dict[str, Any]) -> d
         "chunk_config": chunk_config,
         "chunk_tokens": cfg["chunk_tokens"],
         "overlap_tokens": cfg["overlap_tokens"],
+        "chunking_method": CHUNKING_METHOD,
         "embedding": embedding_fp,
+        "schema_version": FINGERPRINT_SCHEMA_VERSION,
     }
+
+
+def _corpus_identity(docs: list["LoadedDocument"]) -> dict[str, str]:
+    """Ordered (sorted-key, inside corpus_fingerprint) canonical identity
+    of exactly the documents about to be ingested: source_id -> a value
+    that changes if EITHER the document's language OR its normalized
+    content (checksum, a real sha256 of the stored text) changes -- never
+    just an aggregate blob, so a caller can tell which source moved."""
+    return {d.source_id: f"{d.language}|{d.checksum}" for d in docs}
+
+
+def compute_fingerprint(chunk_config: str, embedding_fp: dict[str, Any]) -> str:
+    """The one, single, corpus-aware ingestion fingerprint -- combines the
+    CANONICAL full corpus's identity (source ids, languages, per-document
+    content hashes, always `load_documents()` -- every document
+    `rag/corpus_sources.py` defines, via `rag/documents/*.json`, never a
+    partial/incremental subset), chunking method/configuration, embedding
+    model identity, and a schema version.
+
+    Deliberately independent of any partial `documents=` override a
+    caller passes to ingest_config() (e.g. rag/ingest_cli.py's `ingest
+    --source` incremental demo-document add): the fingerprint is the
+    TARGET collection's committed identity ("this collection is the
+    istanbul_rag_B_v2 canonical corpus under config B"), not a report of
+    whatever subset of documents one particular call happens to embed.
+    Computing it from a partial subset would make every incremental add
+    fail closed against the collection's own already-stored marker --
+    exactly the silent-mixing failure this fingerprint exists to prevent,
+    turned into a false positive instead.
+
+    Used by both the real ingestion path (ingest_config) and
+    rag/ingest_cli.py's status/bootstrap/ingest fingerprint checks, so
+    they can never silently disagree about what the "expected"
+    fingerprint for a given (chunk_config) is."""
+    corpus_fp = corpus_fingerprint(_corpus_identity(load_documents()))
+    config_fp = config_fingerprint(_ingestion_config_dict(chunk_config, embedding_fp))
+    return ingestion_fingerprint(corpus_fp, config_fp)
 
 
 @dataclass(frozen=True)
@@ -124,13 +171,22 @@ def ingest_config(
     embed_fn,
     embedding_fp: dict[str, Any],
     documents: list[LoadedDocument] | None = None,
+    collection_name_override: str | None = None,
 ) -> IngestionResult:
     """Runs ingestion for one config (A-D) against `client`. `embed_fn`
     takes a list[str] of already-`passage:`-prefixed-or-not text (the
     caller decides prefixing -- see embeddings.embed_passages) and
     returns list[list[float]]. Idempotent: re-running with an unchanged
     corpus+config reproduces the identical chunk_id set and upserts the
-    identical vectors/payloads."""
+    identical vectors/payloads.
+
+    `collection_name_override`, when given, targets that exact Qdrant
+    collection instead of the config-derived `istanbul_rag_<chunk_config>`
+    name -- the one seam rag/ingest_cli.py uses to target a configured
+    collection (e.g. `istanbul_rag_B_v2`) without a second, duplicated
+    ingestion codepath. The stored/returned fingerprint is unaffected by
+    this override -- it is still a pure function of corpus + chunking +
+    embedding identity, never of the collection's own name."""
     docs = documents if documents is not None else load_documents()
     cfg = CHUNK_CONFIGS[chunk_config]
 
@@ -138,10 +194,13 @@ def ingest_config(
     all_texts: list[str] = []
     all_payloads: list[dict[str, Any]] = []
 
-    checksums = {d.source_id: d.checksum for d in docs}
-    corpus_fp = corpus_fingerprint(checksums)
-    ingestion_cfg = _ingestion_config_dict(chunk_config, embedding_fp)
-    fp = config_fingerprint(ingestion_cfg)
+    # Fingerprint reflects the CANONICAL full corpus, not `docs` -- see
+    # compute_fingerprint()'s own docstring: `docs` may be a deliberate
+    # partial/incremental subset (rag/ingest_cli.py's `ingest --source`),
+    # and the collection's committed identity must stay fixed regardless.
+    canonical_docs = docs if documents is None else load_documents()
+    fp = compute_fingerprint(chunk_config, embedding_fp)
+    corpus_fp = corpus_fingerprint(_corpus_identity(canonical_docs))
 
     for doc in docs:
         chunks: list[ChunkRecord] = chunk_document(
@@ -188,7 +247,7 @@ def ingest_config(
                 }
             )
 
-    coll_name = collection_name(chunk_config)
+    coll_name = collection_name_override if collection_name_override is not None else collection_name(chunk_config)
     dim = len(embed_fn([all_texts[0]])[0]) if all_texts else 0
     qdrant_store.ensure_collection(client, coll_name, dim, fp)
 

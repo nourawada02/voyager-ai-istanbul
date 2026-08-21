@@ -88,6 +88,8 @@ Per-language judge means: EN 1.91/1.91/1.91 · TR 2.00/2.00/2.00 · AR 1.91/2.00
 
 Source: `evaluation/datasets/istanbul_expert_r1_summary_report.json`. For every supported interest, Qdrant retrieval is the first-priority candidate source; the catalog is used only when RAG evidence is insufficient.
 
+Measured against the R.1 development shadow collection's 69-document corpus content (39 EN / 14 TR / 16 AR). The official-promotion checkpoint (`istanbul_rag_B_v2`, see [Qdrant multilingual RAG](README.md#qdrant-multilingual-rag)) reproducibly serves that exact same corpus content under a new collection name and a corpus-aware fingerprint — a deployment-reproducibility and naming change, not a retrieval-algorithm change. The numbers below were **not** re-measured against `istanbul_rag_B_v2` and are not claimed to be.
+
 | Metric | Result | Target | Status |
 |---|---|---|---|
 | RAG-origin scheduled points of interest | 24/27 = **88.9%** | ≥ 80% | **PASS** |

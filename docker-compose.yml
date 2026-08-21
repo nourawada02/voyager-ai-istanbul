@@ -120,19 +120,25 @@ services:
       # QDRANT_URL= (empty) explicitly in a real .env to restore the old
       # always-skip-RAG-warmup behavior for a genuinely offline run.
       QDRANT_URL: "${QDRANT_URL:-http://vector-db:6333}"
-      # RAG-FIRST SYSTEM B R.1: local demo environment default points at
-      # the R.1 shadow collection (rag/corpus_sources.py's expanded
-      # corpus), not the frozen Phase 3 production collection --
-      # explicit, not implicit, and reversible by editing these two
-      # lines back (never a collection rename/copy/delete; both
-      # collections continue to coexist in vector-db unchanged). The
-      # fingerprint is read from the shadow collection's own stored
-      # `__fingerprint__` marker point, not guessed -- it is identical to
-      # `istanbul_rag_B`'s fingerprint because both were built under the
-      # same frozen chunk-config/embedding identity (Checkpoint Phase 4
-      # §5/§9's frozen contract); only the corpus content differs.
-      QDRANT_COLLECTION_NAME: "istanbul_rag_B_r1_shadow"
-      QDRANT_EXPECTED_FINGERPRINT: "34830f8e42e681ce7fdedc5a36fbd33675ae4800505a06768bc783d6057d7b84"
+      # Official 69-document RAG corpus promotion: the shared default
+      # collection for both this service (the read path) and the
+      # `rag-ingest` service below (the write path) -- same variable
+      # name, same default, on both, so a fresh clone's
+      # `rag-ingest bootstrap` populates exactly what this service reads.
+      # No special case for the legacy `istanbul_rag_B` (the original
+      # frozen 20-document Phase 3 production collection) or
+      # `istanbul_rag_B_r1_shadow` (the R.1 development shadow
+      # collection) -- both continue to coexist, untouched, in the same
+      # `vector-db` instance; this default simply no longer points at
+      # either of them. QDRANT_EXPECTED_FINGERPRINT is the real,
+      # corpus-aware fingerprint `rag/ingest_cli.py bootstrap` computes
+      # and stores for the 69-document corpus under chunk config B
+      # (rag/ingest.py::compute_fingerprint) -- distinct from the legacy
+      # collections' own stored fingerprint by construction, since the
+      # fingerprint now depends on corpus content identity, not only
+      # chunking/embedding configuration.
+      QDRANT_COLLECTION_NAME: "${QDRANT_COLLECTION_NAME:-istanbul_rag_B_v2}"
+      QDRANT_EXPECTED_FINGERPRINT: "2fec1fa35181a3ea79d51ea3262d3f19894dbfa0ed057debdf95069106c4d7c5"
       # Explicitly false for the offline fixture smoke (checkpoint
       # instruction) -- System B degrades cleanly to catalog-only
       # scheduling with an explicit warning rather than requiring a
@@ -211,8 +217,13 @@ services:
   #
   #   docker compose run --rm rag-ingest bootstrap
   #   docker compose run --rm rag-ingest status
-  #   docker compose run --rm -v ./my-demo-docs:/demo-documents:ro \
-  #     rag-ingest ingest --source /demo-documents
+  #
+  # `rag-ingest ingest --source PATH` (adding incremental/demo documents
+  # to an existing collection) is DISABLED for this release -- see
+  # rag/ingest_cli.py's own module docstring and
+  # docs/adr/0018-rag-official-corpus-promotion.md. To add sources:
+  # define a new versioned corpus manifest and bootstrap a new,
+  # separately named versioned collection from it.
   #
   # QDRANT_URL below sets rag/ingest_cli.py's own --qdrant-url default,
   # so every invocation above already targets the real vector-db service
@@ -222,12 +233,22 @@ services:
   # `vector-db` alone starts empty, and `rag-ingest bootstrap` is the one
   # command that brings it to a real, query-ready state before
   # agent-system-b is expected to serve citation-bearing results.
+  #
+  # Official 69-document RAG corpus promotion: QDRANT_COLLECTION_NAME
+  # here is the SAME variable, with the SAME default, as agent-system-b's
+  # own setting above -- rag/ingest_cli.py reads it directly (no flag
+  # needed), so `rag-ingest bootstrap`/`status` operate on exactly the
+  # collection agent-system-b is configured to read. An explicit override
+  # still works exactly like every other setting in this file, e.g.:
+  #   docker compose run --rm -e QDRANT_COLLECTION_NAME=test_collection \
+  #     rag-ingest status
   rag-ingest:
     profiles: ["ingest"]
     build:
       context: ./rag
     environment:
       QDRANT_URL: "http://vector-db:6333"
+      QDRANT_COLLECTION_NAME: "${QDRANT_COLLECTION_NAME:-istanbul_rag_B_v2}"
     volumes:
       - rag_ingest_model_cache:/data/model_cache
     depends_on:

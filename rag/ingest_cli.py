@@ -3,30 +3,32 @@ remediation Q.1, §A). Replaces the earlier ad hoc, undocumented,
 manually-run-once population of Qdrant with a reproducible, idempotent,
 one-command operation any fresh clone / empty volume can run.
 
-Three subcommands, all against a real Qdrant server, all reusing the
-exact frozen Phase 3 ingestion path (rag/ingest.py::ingest_config,
+Two working subcommands, both against a real Qdrant server, both reusing
+the exact frozen Phase 3 ingestion path (rag/ingest.py::ingest_config,
 rag/qdrant_store.py) -- never a separate/duplicated ingestion codepath:
 
-    python -m rag.ingest_cli status    [--qdrant-url URL] [--chunk-config B]
-    python -m rag.ingest_cli bootstrap [--qdrant-url URL] [--chunk-config B]
-    python -m rag.ingest_cli ingest --source PATH [--qdrant-url URL] [--chunk-config B]
+    python -m rag.ingest_cli status    [--qdrant-url URL] [--chunk-config B] [--collection-name NAME]
+    python -m rag.ingest_cli bootstrap [--qdrant-url URL] [--chunk-config B] [--collection-name NAME]
 
 `bootstrap` ingests the full existing approved Istanbul corpus
 (rag/documents/*.json, built by rag/build_documents.py from
 rag/corpus_sources.py) if the target collection is missing or empty; a
 correctly-populated collection is left untouched and reported as such
-(idempotent, never a duplicate).
+(idempotent, never a duplicate). `--collection-name` / $QDRANT_COLLECTION_NAME
+selects the target collection (default: istanbul_rag_B_v2, the official
+collection).
 
-`ingest --source PATH` adds ADDITIONAL documents from a directory or
-single file of normalized document records -- the exact same JSON shape
-rag/documents/*.json already uses (source_id/title/language/content_type/
-text, optional poi_id/district_id). This is the project's own reviewed,
-safe format; nothing is scraped and no unreviewed external corpus is ever
-pulled in. Every file is validated and a bad one is rejected with a clear,
-specific reason, never silently skipped or silently accepted. Checksums
-are always computed by this CLI itself (never trusted from the file), so
-"only new or changed content" is added: an unchanged (source_id, checksum)
-pair already present in the collection is a no-op.
+`ingest --source PATH` (RAG official-promotion checkpoint, review-round
+fix) is DISABLED for this release -- it always refuses, for every
+collection name, and mutates nothing. A collection's stored fingerprint
+is a single, fixed identity representing exactly one corpus definition;
+this CLI has no correct, non-misleading way yet to represent "a canonical
+collection plus N incremental documents" as its own distinct identity,
+so rather than leave a collection able to silently drift from what its
+fingerprint claims, the command is disabled outright. See
+DISABLED_INGEST_SOURCE_MESSAGE for the exact reason and the supported
+alternative (define a new versioned corpus manifest and bootstrap a new,
+separately named versioned collection from it).
 
 `status` reports one of a small closed set of states -- unreachable,
 collection_missing, collection_empty, fingerprint_mismatch, ready -- plus
@@ -44,7 +46,6 @@ from pathlib import Path
 from typing import Any, Optional
 
 from qdrant_client import QdrantClient
-from qdrant_client.http import models as qmodels
 
 from rag import embeddings, ingest, qdrant_store
 from rag.ids import sha256_hex
@@ -53,6 +54,24 @@ _SUPPORTED_LANGUAGES = frozenset({"en", "tr", "ar"})
 _MAX_TEXT_CHARS = 20000
 _MIN_TEXT_CHARS = 1
 _REQUIRED_FIELDS = ("source_id", "title", "language", "content_type", "text")
+
+#: Official RAG-promotion checkpoint default -- rag-ingest's own target
+#: collection, independent of `--chunk-config` (which still selects the
+#: chunking config, "B", the frozen Phase 3 retrieval winner). No special
+#: case for the legacy `istanbul_rag_B`/`istanbul_rag_B_r1_shadow`
+#: collections exists anywhere in this module: this is a plain, generic
+#: env-overridable default like every other setting here.
+DEFAULT_COLLECTION_NAME = "istanbul_rag_B_v2"
+
+#: The two frozen, pre-existing collections this checkpoint must never
+#: mutate, rename, or delete, no matter how they are named on the command
+#: line -- protected even when supplied explicitly via --collection-name
+#: or $QDRANT_COLLECTION_NAME, and even under an explicit
+#: --rebuild-on-fingerprint-mismatch. `istanbul_rag_B` is the original
+#: frozen 20-document Phase 3 production collection; `istanbul_rag_B_r1_shadow`
+#: is the R.1 development shadow collection this checkpoint formally
+#: superseded. Both remain queryable rollback/evaluation artifacts.
+PROTECTED_LEGACY_COLLECTIONS = frozenset({"istanbul_rag_B", "istanbul_rag_B_r1_shadow"})
 
 
 class DocumentRejected(ValueError):
@@ -170,16 +189,13 @@ def _collection_status(client: QdrantClient, collection_name: str, expected_fing
 
 
 def _expected_fingerprint(chunk_config: str) -> str:
-    from rag.ids import config_fingerprint
-
-    cfg = ingest._ingestion_config_dict(chunk_config, embeddings.fingerprint().as_dict())
-    return config_fingerprint(cfg)
+    return ingest.compute_fingerprint(chunk_config, embeddings.fingerprint().as_dict())
 
 
 def cmd_status(args: argparse.Namespace) -> int:
     client = _connect(args.qdrant_url)
     try:
-        collection_name = ingest.collection_name(args.chunk_config)
+        collection_name = args.collection_name
         expected_fp = _expected_fingerprint(args.chunk_config)
         result = _collection_status(client, collection_name, expected_fp)
     finally:
@@ -190,25 +206,60 @@ def cmd_status(args: argparse.Namespace) -> int:
 
 
 def cmd_bootstrap(args: argparse.Namespace) -> int:
+    collection_name = args.collection_name
+    # Checked before any connection or status lookup, unconditionally:
+    # --rebuild-on-fingerprint-mismatch can never delete or rebuild either
+    # protected legacy collection, no matter how `collection_name` got its
+    # value (default, --collection-name, or $QDRANT_COLLECTION_NAME). This
+    # is the one and only gate on the delete-and-recreate branch below, so
+    # there is no code path that reaches `client.delete_collection(...)`
+    # for a protected name.
+    if args.rebuild_on_fingerprint_mismatch and collection_name in PROTECTED_LEGACY_COLLECTIONS:
+        print(
+            f"refusing: {collection_name!r} is a protected legacy collection -- "
+            "--rebuild-on-fingerprint-mismatch can never delete or rebuild it, even when the name was supplied "
+            "explicitly via --collection-name or $QDRANT_COLLECTION_NAME. Target a different collection name.",
+            file=sys.stderr,
+        )
+        return 2
+
     client = _connect(args.qdrant_url)
     try:
-        collection_name = ingest.collection_name(args.chunk_config)
         expected_fp = _expected_fingerprint(args.chunk_config)
         status = _collection_status(client, collection_name, expected_fp)
         if status["state"] == "ready":
             print(f"already bootstrapped: {status['point_count']} points in {collection_name!r} (fingerprint matches) -- no-op")
             return 0
         if status["state"] == "fingerprint_mismatch":
+            if not args.rebuild_on_fingerprint_mismatch:
+                print(
+                    f"refusing to bootstrap: {collection_name!r} exists with a DIFFERENT ingestion fingerprint "
+                    f"({status.get('stored_fingerprint')!r} != {expected_fp!r}) -- never silently mixing "
+                    "configurations; re-run with --rebuild-on-fingerprint-mismatch to explicitly delete and "
+                    "rebuild ONLY this configured collection",
+                    file=sys.stderr,
+                )
+                return 2
+            # Explicit, clearly named, opt-in rebuild -- deletes and
+            # recreates ONLY `collection_name` (the one this exact
+            # invocation is configured for, via --collection-name /
+            # QDRANT_COLLECTION_NAME). There is no code path here or
+            # anywhere else in this module that can name a different
+            # collection -- and the protected-legacy-name guard above has
+            # already returned before this point for either legacy name.
             print(
-                f"refusing to bootstrap: {collection_name!r} exists with a DIFFERENT ingestion fingerprint "
-                f"({status.get('stored_fingerprint')!r} != {expected_fp!r}) -- never silently mixing configurations",
+                f"--rebuild-on-fingerprint-mismatch set: deleting and rebuilding {collection_name!r} "
+                f"(stored fingerprint {status.get('stored_fingerprint')!r} != expected {expected_fp!r})",
                 file=sys.stderr,
             )
-            return 2
+            client.delete_collection(collection_name)
 
         print(f"bootstrapping {collection_name!r} (state was {status['state']!r})...")
         tokenizer = embeddings.load_tokenizer()
-        result = ingest.ingest_config(client, args.chunk_config, tokenizer, embeddings.embed_passages, embeddings.fingerprint().as_dict())
+        result = ingest.ingest_config(
+            client, args.chunk_config, tokenizer, embeddings.embed_passages, embeddings.fingerprint().as_dict(),
+            collection_name_override=collection_name,
+        )
         count = client.count(collection_name).count
         print(f"bootstrapped {len(result.chunk_ids)} chunks from {len(set(p['source_id'] for p in result.chunk_payloads))} documents; {count} total points")
         return 0
@@ -216,69 +267,33 @@ def cmd_bootstrap(args: argparse.Namespace) -> int:
         client.close()
 
 
+#: Disabled for this release -- see cmd_ingest()'s own docstring for why.
+DISABLED_INGEST_SOURCE_MESSAGE = (
+    "`ingest --source` is disabled for this release: a collection's stored fingerprint is a single, "
+    "fixed identity (rag/ingest.py::compute_fingerprint) representing exactly one corpus definition, and "
+    "this CLI has no correct, non-misleading way yet to represent 'a canonical collection plus N "
+    "incremental documents' as a distinct, honestly-labeled identity -- an incrementally-mutated "
+    "noncanonical collection would either wrongly keep claiming the canonical 69-document fingerprint, or "
+    "need a second fingerprinting scheme this release does not implement. Never targetable, for the same "
+    "reason, regardless of --collection-name / $QDRANT_COLLECTION_NAME: istanbul_rag_B_v2 (the official "
+    "collection), istanbul_rag_B and istanbul_rag_B_r1_shadow (the two legacy collections), and every "
+    "other collection name -- this command refuses unconditionally. To add sources: define a new, "
+    "explicitly versioned corpus manifest (extend rag/corpus_sources.py's DOCUMENTS, or add a new "
+    "manifest alongside it) and bootstrap a new, separately named versioned collection "
+    "(--collection-name / $QDRANT_COLLECTION_NAME) from it with `bootstrap` -- never `ingest --source` "
+    "against an existing one."
+)
+
+
 def cmd_ingest(args: argparse.Namespace) -> int:
-    try:
-        documents = _load_demo_documents(Path(args.source))
-    except DocumentRejected as exc:
-        print(f"rejected: {exc}", file=sys.stderr)
-        return 2
-
-    client = _connect(args.qdrant_url)
-    try:
-        collection_name = ingest.collection_name(args.chunk_config)
-        expected_fp = _expected_fingerprint(args.chunk_config)
-        status = _collection_status(client, collection_name, expected_fp)
-        if status["state"] == "fingerprint_mismatch":
-            print(
-                f"refusing to ingest: {collection_name!r} exists with a DIFFERENT ingestion fingerprint -- "
-                "run `bootstrap` first or resolve the mismatch",
-                file=sys.stderr,
-            )
-            return 2
-
-        # "add only new or changed content": skip any document whose
-        # (source_id, checksum) already has at least one point in the
-        # collection -- never re-embeds/re-uploads unchanged content.
-        to_ingest = []
-        skipped_unchanged = []
-        for doc in documents:
-            existing_points, _ = client.scroll(
-                collection_name=collection_name,
-                scroll_filter=qmodels.Filter(must=[
-                    qmodels.FieldCondition(key="source_id", match=qmodels.MatchValue(value=doc.source_id)),
-                    qmodels.FieldCondition(key="source_checksum", match=qmodels.MatchValue(value=doc.checksum)),
-                ]),
-                limit=1,
-            ) if status["state"] != "collection_missing" else ([], None)
-            if existing_points:
-                skipped_unchanged.append(doc.source_id)
-            else:
-                to_ingest.append(doc)
-
-        if not to_ingest:
-            print(f"nothing to do: {len(skipped_unchanged)} document(s) already ingested unchanged ({skipped_unchanged})")
-            return 0
-
-        loaded = [
-            ingest.LoadedDocument(
-                source_id=d.source_id, title=d.title, language=d.language, content_type=d.content_type,
-                poi_id=d.poi_id, district_id=d.district_id, checksum=d.checksum, text=d.text,
-            )
-            for d in to_ingest
-        ]
-        tokenizer = embeddings.load_tokenizer()
-        result = ingest.ingest_config(
-            client, args.chunk_config, tokenizer, embeddings.embed_passages, embeddings.fingerprint().as_dict(),
-            documents=loaded,
-        )
-        count = client.count(collection_name).count
-        print(
-            f"ingested {len(result.chunk_ids)} chunks from {len(to_ingest)} new/changed document(s) "
-            f"({[d.source_id for d in to_ingest]}); skipped {len(skipped_unchanged)} unchanged; {count} total points in {collection_name!r}"
-        )
-        return 0
-    finally:
-        client.close()
+    """Disabled for this release (RAG official-promotion checkpoint,
+    review-round fix). Refuses unconditionally, before any file loading
+    or Qdrant connection, for every collection name -- there is
+    deliberately no code path left in this function that can mutate any
+    collection. See DISABLED_INGEST_SOURCE_MESSAGE for the full reason
+    and the supported alternative."""
+    print(DISABLED_INGEST_SOURCE_MESSAGE, file=sys.stderr)
+    return 2
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -292,13 +307,32 @@ def build_parser() -> argparse.ArgumentParser:
         help="Qdrant server URL (default: $QDRANT_URL, else http://localhost:6333)",
     )
     parser.add_argument("--chunk-config", default="B", choices=sorted(ingest.CHUNK_CONFIGS), help="chunking config (default: B, the frozen Phase 3 retrieval winner)")
+    # QDRANT_COLLECTION_NAME env var sets the default (same convention as
+    # --qdrant-url above) -- the write path (this CLI) and the read path
+    # (services/istanbul-expert-b/phase4/config.py) now share the exact
+    # same variable name and default, so a fresh clone's `rag-ingest
+    # bootstrap` populates precisely the collection System B reads.
+    parser.add_argument(
+        "--collection-name", default=os.environ.get("QDRANT_COLLECTION_NAME") or DEFAULT_COLLECTION_NAME,
+        help=f"target Qdrant collection (default: $QDRANT_COLLECTION_NAME, else {DEFAULT_COLLECTION_NAME!r})",
+    )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     subparsers.add_parser("status", help="report Qdrant/collection readiness")
-    subparsers.add_parser("bootstrap", help="ingest the full approved corpus if the collection is missing/empty")
+    bootstrap_parser = subparsers.add_parser("bootstrap", help="ingest the full approved corpus if the collection is missing/empty")
+    bootstrap_parser.add_argument(
+        "--rebuild-on-fingerprint-mismatch", action="store_true",
+        help=(
+            "explicit, opt-in: if the configured collection (--collection-name / $QDRANT_COLLECTION_NAME) "
+            "exists with a stale/incompatible fingerprint, delete and rebuild ONLY that exact collection "
+            "instead of refusing. Never affects any other collection."
+        ),
+    )
 
-    ingest_parser = subparsers.add_parser("ingest", help="ingest additional documents from --source")
-    ingest_parser.add_argument("--source", required=True, help="a directory of *.json document records, or a single .json file")
+    ingest_parser = subparsers.add_parser(
+        "ingest", help="DISABLED for this release -- always refuses; see cmd_ingest()'s own docstring",
+    )
+    ingest_parser.add_argument("--source", required=True, help="a directory of *.json document records, or a single .json file (unused -- this command always refuses before reading it)")
 
     return parser
 
